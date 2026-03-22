@@ -3,6 +3,7 @@ FROM node:20-slim AS deps
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY package.json package-lock.json ./
+ENV NODE_ENV=development
 RUN npm ci
 
 # Stage 2: Build
@@ -11,6 +12,7 @@ RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ENV NODE_ENV=development
 ENV OPENAI_API_KEY=build-placeholder
 RUN npm run build
 
