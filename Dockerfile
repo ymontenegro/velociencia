@@ -15,7 +15,7 @@ COPY . .
 RUN mkdir -p data content/nutricion content/ciencia content/entrenamiento content/competencia
 ENV NODE_ENV=development
 ENV OPENAI_API_KEY=build-placeholder
-RUN npm run build
+RUN npx next build --webpack
 
 # Stage 3: Runner
 FROM node:22-slim AS runner
