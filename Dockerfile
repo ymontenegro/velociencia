@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN mkdir -p data content/nutricion content/ciencia content/entrenamiento content/competencia
 ENV NODE_ENV=development
 ENV OPENAI_API_KEY=build-placeholder
 RUN npm run build
