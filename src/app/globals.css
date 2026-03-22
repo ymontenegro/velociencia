@@ -1,26 +1,505 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Design System: Ciclismo Magazine — "Velodrome Editorial"
+ * ────────────────────────────────────────────────────────
+ * Premium cycling editorial aesthetic
+ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base palette */
+  --color-bg: #FAFAFA;
+  --color-bg-card: #FFFFFF;
+  --color-text: #1A1D23;
+  --color-text-secondary: #4A4E57;
+  --color-text-muted: #8A8E96;
+  --color-border: #E5E5DF;
+  --color-border-light: #F0F0EA;
+
+  /* Section colors — monochromatic editorial */
+  --color-nutricion: #1A1D23;
+  --color-nutricion-light: #F5F5F5;
+  --color-nutricion-dark: #0F1015;
+
+  --color-ciencia: #1A1D23;
+  --color-ciencia-light: #F5F5F5;
+  --color-ciencia-dark: #0F1015;
+
+  --color-entrenamiento: #1A1D23;
+  --color-entrenamiento-light: #F5F5F5;
+  --color-entrenamiento-dark: #0F1015;
+
+  --color-competencia: #1A1D23;
+  --color-competencia-light: #F5F5F5;
+  --color-competencia-dark: #0F1015;
+
+  /* Accent for links/interactions */
+  --color-accent: hsl(0, 0%, 20%);
+
+  /* Typography */
+  --font-heading: var(--font-playfair), "Georgia", serif;
+  --font-body: var(--font-dm-sans), "Helvetica Neue", sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Keyframe Animations ─── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scroll-hint {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+@keyframes speed-lines {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200vw) skewX(-15deg);
+  }
+}
+
+@keyframes underline-expand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(var(--scroll-progress, 0));
+  }
+}
+
+/* ─── Animation Utility Classes ─── */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+.animate-scroll-hint {
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.25s;
+}
+
+.stagger-3 {
+  animation-delay: 0.4s;
+}
+
+.stagger-4 {
+  animation-delay: 0.55s;
+}
+
+/* ─── Dark Mode ─── */
+
+.dark {
+  --color-bg: #0F0F14;
+  --color-bg-card: #1A1D23;
+  --color-text: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --color-border: #2D3039;
+  --color-border-light: #232730;
+
+  /* Section colors — monochromatic for dark mode */
+  --color-nutricion: #E5E7EB;
+  --color-nutricion-light: #1F2937;
+  --color-nutricion-dark: #F3F4F6;
+
+  --color-ciencia: #E5E7EB;
+  --color-ciencia-light: #1F2937;
+  --color-ciencia-dark: #F3F4F6;
+
+  --color-entrenamiento: #E5E7EB;
+  --color-entrenamiento-light: #1F2937;
+  --color-entrenamiento-dark: #F3F4F6;
+}
+
+/* ─── Base Styles ─── */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Grain Overlay ─── */
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  transition: opacity 0.3s ease;
+}
+
+.dark .grain-overlay {
+  opacity: 0.015;
+}
+
+/* ─── Glassmorphism ─── */
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass {
+  background: rgba(26, 29, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Typography / Prose Customizations ─── */
+
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-links: var(--color-text);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-text-secondary);
+  --tw-prose-bullets: var(--color-text-muted);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-text-secondary);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-captions: var(--color-text-muted);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border-light);
+  max-width: 72ch;
+}
+
+/* Drop cap for first paragraph of articles */
+.prose > p:first-of-type::first-letter {
+  font-family: var(--font-heading);
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.8;
+  padding-right: 0.12em;
+  padding-top: 0.07em;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.prose h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2.5em;
+  margin-bottom: 0.8em;
+}
+
+.prose h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.prose a:hover {
+  color: var(--color-text-secondary);
+}
+
+.prose blockquote {
+  border-left-width: 4px;
+  border-left-color: var(--color-text);
+  font-style: italic;
+  font-size: 1.1em;
+  padding-left: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background: linear-gradient(to right, #F5F5F5, transparent 70%);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose table {
+  font-size: 0.9em;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.prose thead th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  background-color: var(--color-border-light);
+  padding: 0.75rem 1rem;
+}
+
+.prose tbody td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.prose tbody tr:hover {
+  background-color: var(--color-border-light);
+}
+
+.prose img {
+  border-radius: 0.5rem;
+}
+
+.prose code:not(pre code) {
+  background-color: var(--color-border-light);
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+}
+
+/* ─── Section-specific prose (unified monochromatic) ─── */
+
+.prose-nutricion a,
+.prose-ciencia a,
+.prose-entrenamiento a {
+  color: var(--color-text);
+}
+.prose-nutricion a:hover,
+.prose-ciencia a:hover,
+.prose-entrenamiento a:hover {
+  color: var(--color-text-secondary);
+}
+
+/* ─── Section accent borders ─── */
+
+.section-accent-nutricion {
+  border-top: 3px solid var(--color-nutricion);
+}
+.section-accent-ciencia {
+  border-top: 3px solid var(--color-ciencia);
+}
+.section-accent-entrenamiento {
+  border-top: 3px solid var(--color-entrenamiento);
+}
+
+/* ─── Section-colored table headers ─── */
+
+.prose-nutricion thead th {
+  background-color: var(--color-nutricion-light);
+}
+.prose-ciencia thead th {
+  background-color: var(--color-ciencia-light);
+}
+.prose-entrenamiento thead th {
+  background-color: var(--color-entrenamiento-light);
+}
+
+/* ─── Article card editorial styles ─── */
+
+.article-card-gradient {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .article-card-gradient {
+  transform: scale(1.03);
+}
+
+/* ─── Checkmark animation for newsletter ─── */
+
+@keyframes checkmark-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-checkmark {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: checkmark-draw 0.4s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes success-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-success {
+  animation: success-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Nav underline animation ─── */
+
+.nav-link-animated {
+  position: relative;
+}
+
+.nav-link-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link-animated:hover::after {
+  transform: scaleX(1);
+}
+
+/* ─── Scroll progress bar ─── */
+
+.scroll-progress {
+  transform-origin: left;
+  background: var(--color-text);
+}
+
+.dark .scroll-progress {
+  background: #E5E7EB;
+}
+
+/* ─── Hero speed lines ─── */
+
+.speed-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: speed-lines linear infinite;
+}
+
+/* ─── Selection color ─── */
+
+::selection {
+  background-color: #1A1D23;
+  color: white;
+}
+
+.dark ::selection {
+  background-color: #E5E7EB;
+  color: #0F0F14;
+}
+
+/* ─── Dark mode prose adjustments ─── */
+
+.dark .prose code:not(pre code) {
+  background-color: var(--color-border);
+}
+
+.dark .prose thead th {
+  background-color: var(--color-border);
+}
+
+.dark .prose tbody tr:hover {
+  background-color: var(--color-border-light);
+}
+
+.dark .prose blockquote {
+  background: linear-gradient(to right, #1F2937, transparent 70%);
 }

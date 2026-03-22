@@ -1,65 +1,155 @@
-import Image from "next/image";
+import Link from "next/link";
+import { SECTION_IDS, SECTIONS, type SectionId } from "@/lib/constants";
+import { getAllArticles } from "@/lib/markdown";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { TrendingBar } from "@/components/layout/trending-bar";
+import { HeroSection } from "@/components/home/hero-section";
+import { ArticleCard } from "@/components/articles/article-card";
 
-export default function Home() {
+export default async function HomePage() {
+  const allArticles = getAllArticles();
+
+  // Slugs used in the hero (top 3 most recent) — exclude from sections
+  const heroSlugs = new Set(allArticles.slice(0, 3).map((a) => a.slug));
+
+  // Group articles by section, excluding hero articles
+  const articlesBySection: Record<SectionId, typeof allArticles> = {
+    nutricion: [],
+    ciencia: [],
+    entrenamiento: [],
+    competencia: [],
+  };
+
+  for (const article of allArticles) {
+    if (article.section in articlesBySection && !heroSlugs.has(article.slug)) {
+      articlesBySection[article.section].push(article);
+    }
+  }
+
+  // Destacados: skip the 3 hero articles to avoid repetition
+  const destacados = allArticles.slice(3, 8);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <Header />
+      <TrendingBar />
+      <main className="flex-1">
+        {/* Hero — 3 most recent articles */}
+        <HeroSection />
+
+        {/* Divider */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="h-px bg-[var(--color-border)]" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* Por Sección + Destacados sidebar */}
+        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-10">
+            {/* Main content: articles by section */}
+            <div className="space-y-16 lg:col-span-3">
+              {SECTION_IDS.map((sectionId) => {
+                const section = SECTIONS[sectionId];
+                const sectionArticles = articlesBySection[sectionId].slice(0, 3);
+
+                if (sectionArticles.length === 0) return null;
+
+                return (
+                  <div key={sectionId}>
+                    {/* Section header with thick colored border */}
+                    <div
+                      className="mb-6 border-t-[6px] pt-4"
+                      style={{ borderColor: section.color }}
+                    >
+                      <div className="flex items-baseline justify-between">
+                        <h2
+                          className="text-[11px] font-semibold uppercase tracking-[0.2em]"
+                          style={{ color: section.color }}
+                        >
+                          {section.name}
+                        </h2>
+                        <Link
+                          href={`/${section.slug}`}
+                          className="text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                        >
+                          Ver todos &rarr;
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Articles grid */}
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                      {sectionArticles.map((article, i) => (
+                        <ArticleCard
+                          key={article.slug}
+                          title={article.title}
+                          excerpt={article.excerpt ?? ""}
+                          date={article.date}
+                          readingTime={article.readingTime}
+                          slug={article.slug}
+                          section={article.section}
+                          coverImage={article.coverImage}
+                          variant="standard"
+                          className={`animate-fade-in-up stagger-${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Sidebar: Destacados */}
+            <aside className="lg:col-span-1">
+              <div className="sticky top-24">
+                <div className="mb-6 border-t-[6px] border-[var(--color-text)] pt-4">
+                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                    Destacados
+                  </h2>
+                </div>
+
+                <div className="space-y-1">
+                  {destacados.map((article, i) => (
+                    <ArticleCard
+                      key={article.slug}
+                      title={article.title}
+                      excerpt={article.excerpt ?? ""}
+                      date={article.date}
+                      readingTime={article.readingTime}
+                      slug={article.slug}
+                      section={article.section}
+                      coverImage={article.coverImage}
+                      variant="compact"
+                      index={i}
+                    />
+                  ))}
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        {/* Nota editorial */}
+        <section className="border-t border-[var(--color-border)]">
+          <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="flex items-start gap-4">
+              <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                  Nota editorial
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                  Cada artículo es investigado, redactado y verificado utilizando modelos de
+                  lenguaje avanzados con fuentes científicas reales. Contenido impulsado por
+                  inteligencia artificial, revisado con rigor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
