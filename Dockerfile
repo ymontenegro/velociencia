@@ -3,7 +3,6 @@ FROM node:22-slim AS deps
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY package.json package-lock.json ./
-ENV NODE_ENV=development
 RUN npm ci
 
 # Stage 2: Build
@@ -13,9 +12,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN mkdir -p data content/nutricion content/ciencia content/entrenamiento content/competencia
-ENV NODE_ENV=development
 ENV OPENAI_API_KEY=build-placeholder
-RUN npx next build --webpack
+RUN npm run build
 
 # Stage 3: Runner
 FROM node:22-slim AS runner
