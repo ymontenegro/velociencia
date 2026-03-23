@@ -44,7 +44,7 @@ export const SECTIONS = {
 export type SectionId = keyof typeof SECTIONS;
 export const SECTION_IDS = Object.keys(SECTIONS) as SectionId[];
 
-export const SITE_NAME = "Cadencia";
+export const SITE_NAME = "Velociencia";
 export const SITE_DESCRIPTION =
   "Ciclismo basado en ciencia: nutrición, fisiología y entrenamiento";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";

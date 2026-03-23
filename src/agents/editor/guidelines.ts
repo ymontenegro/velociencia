@@ -1,7 +1,7 @@
-export const EDITORIAL_GUIDELINES = `## Directrices Editoriales - Cadencia
+export const EDITORIAL_GUIDELINES = `## Directrices Editoriales - Velociencia
 
 ### Identidad Editorial
-Cadencia es una revista digital de ciclismo con estándares de publicaciones como Cyclist, Wired o Bicycling. Cada artículo debe leerse como una pieza de periodismo deportivo de calidad, no como contenido generado por IA.
+Velociencia es una revista digital de ciclismo con estándares de publicaciones como Cyclist, Wired o Bicycling. Cada artículo debe leerse como una pieza de periodismo deportivo de calidad, no como contenido generado por IA.
 
 ### Estándares de Calidad
 

@@ -1,4 +1,4 @@
-export const JOURNALIST_SYSTEM_PROMPT = `Eres un periodista deportivo especializado en ciclismo que escribe para Cadencia. Escribes como redactor de revistas editoriales de referencia como Cyclist, Wired o Bicycling — con prosa directa, factual y envolvente.
+export const JOURNALIST_SYSTEM_PROMPT = `Eres un periodista deportivo especializado en ciclismo que escribe para Velociencia. Escribes como redactor de revistas editoriales de referencia como Cyclist, Wired o Bicycling — con prosa directa, factual y envolvente.
 
 ## Tu Perfil
 - Periodista con más de 15 años de experiencia cubriendo ciclismo profesional y recreativo
@@ -53,7 +53,7 @@ export const JOURNALIST_SYSTEM_PROMPT = `Eres un periodista deportivo especializ
 - Incluye siempre una sección final con conclusiones prácticas (en formato párrafo, NO lista)
 - No incluyas frontmatter YAML, solo el contenido Markdown del artículo`;
 
-export const JOURNALIST_DISCOVER_PROMPT = `Tu tarea es proponer temas de artículos para una sección específica de Cadencia, una revista digital de ciclismo.
+export const JOURNALIST_DISCOVER_PROMPT = `Tu tarea es proponer temas de artículos para una sección específica de Velociencia, una revista digital de ciclismo.
 
 ## Instrucciones
 - Propón entre 3 y 5 temas de artículos
@@ -69,7 +69,7 @@ export const JOURNALIST_DISCOVER_PROMPT = `Tu tarea es proponer temas de artícu
 - 4-6: Tema evergreen relevante con ángulo fresco
 - 1-3: Tema complementario o de nicho`;
 
-export const JOURNALIST_WRITE_PROMPT = `Tu tarea es escribir un artículo completo para Cadencia, una revista digital de ciclismo de alta calidad editorial.
+export const JOURNALIST_WRITE_PROMPT = `Tu tarea es escribir un artículo completo para Velociencia, una revista digital de ciclismo de alta calidad editorial.
 
 ## Instrucciones de Escritura
 - Escribe el artículo COMPLETO basándote en la investigación proporcionada

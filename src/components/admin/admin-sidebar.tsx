@@ -46,7 +46,7 @@ export function AdminSidebar() {
     <aside className="fixed top-0 left-0 h-full w-[250px] bg-[#1A1D23] dark:bg-[#13151A] text-white flex flex-col z-50">
       <div className="px-6 py-6 border-b border-white/10">
         <Link href="/admin" className="block">
-          <h1 className="text-lg font-bold tracking-wide">CICLISMO</h1>
+          <h1 className="text-lg font-bold tracking-wide">VELOCIENCIA</h1>
           <span className="text-xs text-white/50 uppercase tracking-widest">Admin</span>
         </Link>
       </div>
