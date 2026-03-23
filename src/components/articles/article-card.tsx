@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SECTIONS, type SectionId } from "@/lib/constants";
 import { formatDate, cn } from "@/lib/utils";
+import { AuthorAvatar } from "@/components/shared/author-avatar";
 
 interface ArticleCardProps {
   title: string;
@@ -13,6 +14,8 @@ interface ArticleCardProps {
   variant?: "hero" | "standard" | "compact";
   index?: number;
   className?: string;
+  author?: string;
+  authorColor?: string;
 }
 
 const SECTION_GRADIENTS: Record<SectionId, { from: string; to: string }> = {
@@ -45,6 +48,8 @@ export function ArticleCard({
   variant = "standard",
   index,
   className,
+  author,
+  authorColor,
 }: ArticleCardProps) {
   const sectionConfig = SECTIONS[section];
   const gradient = SECTION_GRADIENTS[section];
@@ -99,6 +104,13 @@ export function ArticleCard({
             </p>
 
             <div className="mt-4 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-white/50">
+              {author && (
+                <>
+                  <AuthorAvatar name={author} color={authorColor ?? sectionConfig.color} size="sm" />
+                  <span className="normal-case tracking-normal">Por {author}</span>
+                  <span>&middot;</span>
+                </>
+              )}
               <time>{formatDate(date)}</time>
               <span>&middot;</span>
               <span>{readingTime} min de lectura</span>
@@ -213,7 +225,14 @@ export function ArticleCard({
           </p>
 
           {/* Meta */}
-          <div className="mt-4 flex items-center gap-2 border-t border-[var(--color-border-light)] pt-3 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
+          <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-[var(--color-border-light)] pt-3 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
+            {author && (
+              <>
+                <AuthorAvatar name={author} color={authorColor ?? sectionConfig.color} size="sm" />
+                <span className="normal-case tracking-normal">Por {author}</span>
+                <span>&middot;</span>
+              </>
+            )}
             <time>{formatDate(date)}</time>
             <span>&middot;</span>
             <span>{readingTime} min de lectura</span>

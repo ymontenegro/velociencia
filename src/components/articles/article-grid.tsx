@@ -1,5 +1,5 @@
 import { ArticleCard } from "@/components/articles/article-card";
-import type { SectionId } from "@/lib/constants";
+import { SECTIONS, type SectionId } from "@/lib/constants";
 
 interface ArticleData {
   title: string;
@@ -39,6 +39,8 @@ export function ArticleGrid({ articles }: ArticleGridProps) {
           key={`${hero.section}-${hero.slug}`}
           {...hero}
           variant="hero"
+          author={SECTIONS[hero.section].journalist}
+          authorColor={SECTIONS[hero.section].color}
           className="animate-fade-in-up"
         />
       )}
@@ -51,6 +53,8 @@ export function ArticleGrid({ articles }: ArticleGridProps) {
               key={`${article.section}-${article.slug}`}
               {...article}
               variant="standard"
+              author={SECTIONS[article.section].journalist}
+              authorColor={SECTIONS[article.section].color}
               className={`animate-fade-in-up ${staggerClasses[i % 3]}`}
             />
           ))}

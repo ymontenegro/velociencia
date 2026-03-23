@@ -90,6 +90,8 @@ export default async function HomePage() {
                           section={article.section}
                           coverImage={article.coverImage}
                           variant="standard"
+                          author={section.journalist}
+                          authorColor={section.color}
                           className={`animate-fade-in-up stagger-${i + 1}`}
                         />
                       ))}

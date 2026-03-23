@@ -1,6 +1,6 @@
 import { getAllArticles } from "@/lib/markdown";
 import { ArticleCard } from "@/components/articles/article-card";
-import { SITE_NAME } from "@/lib/constants";
+import { SECTIONS, SITE_NAME } from "@/lib/constants";
 
 export async function HeroSection() {
   const articles = getAllArticles();
@@ -59,6 +59,8 @@ export async function HeroSection() {
               section={heroArticle.section}
               coverImage={heroArticle.coverImage}
               variant="hero"
+              author={SECTIONS[heroArticle.section].journalist}
+              authorColor={SECTIONS[heroArticle.section].color}
             />
           </div>
 
@@ -75,6 +77,8 @@ export async function HeroSection() {
                   section={article.section}
                   coverImage={article.coverImage}
                   variant="standard"
+                  author={SECTIONS[article.section].journalist}
+                  authorColor={SECTIONS[article.section].color}
                 />
               </div>
             ))}

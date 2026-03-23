@@ -11,6 +11,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SECTIONS } from "@/lib/constants";
 import { formatDate, getReadingTime } from "@/lib/utils";
+import { getAllArticles } from "@/lib/markdown";
+import { ArticleCard } from "@/components/articles/article-card";
+import { AuthorAvatar } from "@/components/shared/author-avatar";
 
 const section = SECTIONS.ciencia;
 const CONTENT_DIR = path.join(process.cwd(), "content", "ciencia");
@@ -61,6 +64,10 @@ export default async function CienciaArticlePage({ params }: ArticlePageProps) {
   });
 
   const sources = (frontmatter.sources as { title: string; url: string; type: string }[]) || [];
+
+  const relatedArticles = getAllArticles("ciencia")
+    .filter((a) => a.slug !== slug)
+    .slice(0, 3);
 
   return (
     <article>
@@ -121,15 +128,12 @@ export default async function CienciaArticlePage({ params }: ArticlePageProps) {
 
           {/* Meta row */}
           <div className="animate-fade-in-up stagger-2 mt-6 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wider text-white/60">
+            <AuthorAvatar name={(frontmatter.author as string) || section.journalist} color={section.color} size="sm" />
+            <span className="normal-case tracking-normal">Por {(frontmatter.author as string) || section.journalist}</span>
+            <span>&middot;</span>
             {frontmatter.date && <time>{formatDate(frontmatter.date)}</time>}
             <span>&middot;</span>
             <span>{readingTime} min de lectura</span>
-            {frontmatter.author && (
-              <>
-                <span>&middot;</span>
-                <span>Por {frontmatter.author}</span>
-              </>
-            )}
           </div>
         </div>
       </div>
@@ -184,6 +188,36 @@ export default async function CienciaArticlePage({ params }: ArticlePageProps) {
             </ol>
           </section>
         </div>
+      )}
+
+      {/* Sigue leyendo */}
+      {relatedArticles.length > 0 && (
+        <section className="border-t border-[var(--color-border)]">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+            <div className="mb-6 border-t-[4px] pt-4" style={{ borderColor: section.color }}>
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: section.color }}>
+                Sigue leyendo
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedArticles.map((article) => (
+                <ArticleCard
+                  key={article.slug}
+                  title={article.title}
+                  excerpt={article.excerpt ?? ""}
+                  date={article.date}
+                  readingTime={article.readingTime}
+                  slug={article.slug}
+                  section={article.section}
+                  coverImage={article.coverImage}
+                  variant="standard"
+                  author={SECTIONS[article.section].journalist}
+                  authorColor={SECTIONS[article.section].color}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* Back link */}
