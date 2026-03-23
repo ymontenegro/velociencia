@@ -2,7 +2,7 @@
 title: "Periodización Nutricional para Ciclistas: Combustible Según la Demanda"
 subtitle: "El modelo 'fuel for the work required' ajusta los carbohidratos al objetivo de cada sesión, no al día de la semana"
 section: "nutricion"
-date: "2026-03-23"
+date: "2026-03-22"
 author: "Martín Velasco"
 tags: ["periodización", "carbohidratos", "train low", "nutrición deportiva", "ciclismo"]
 sources:

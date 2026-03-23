@@ -2,7 +2,7 @@
 title: "Economía de Pedaleo: Por Qué Dos Ciclistas con el Mismo VO2max No Rinden Igual"
 subtitle: "La gross efficiency varía entre el 18% en recreativos y el 25% en profesionales, una diferencia que equivale a decenas de vatios"
 section: "ciencia"
-date: "2026-03-23"
+date: "2026-03-22"
 author: "Sofía Müller"
 tags: ["eficiencia", "economía de pedaleo", "gross efficiency", "cadencia", "fisiología"]
 sources:

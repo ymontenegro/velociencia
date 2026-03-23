@@ -2,7 +2,7 @@
 title: "Fuerza en Pretemporada: El Bloque Que Transforma Tu Pedaleo"
 subtitle: "Rønnestad demostró que 25 semanas de fuerza mejoran la potencia media un 7% sin aumentar el peso corporal"
 section: "entrenamiento"
-date: "2026-03-23"
+date: "2026-03-22"
 author: "Tomás Herrera"
 tags: ["fuerza", "pretemporada", "gimnasio", "periodización", "potencia"]
 sources:
