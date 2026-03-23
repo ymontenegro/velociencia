@@ -18,27 +18,27 @@
   --color-border-light: #F0F0EA;
 
   /* Section colors — differentiated by section */
-  --color-nutricion: #16A34A;
-  --color-nutricion-light: #DCFCE7;
-  --color-nutricion-dark: #14532D;
+  --color-nutricion: #0D9488;
+  --color-nutricion-light: #CCFBF1;
+  --color-nutricion-dark: #134E4A;
 
-  --color-ciencia: #2563EB;
-  --color-ciencia-light: #DBEAFE;
-  --color-ciencia-dark: #1E3A8A;
+  --color-ciencia: #7C3AED;
+  --color-ciencia-light: #EDE9FE;
+  --color-ciencia-dark: #4C1D95;
 
-  --color-entrenamiento: #EA580C;
-  --color-entrenamiento-light: #FFEDD5;
-  --color-entrenamiento-dark: #7C2D12;
+  --color-entrenamiento: #D97706;
+  --color-entrenamiento-light: #FEF3C7;
+  --color-entrenamiento-dark: #78350F;
 
-  --color-competencia: #DC2626;
-  --color-competencia-light: #FEE2E2;
-  --color-competencia-dark: #7F1D1D;
+  --color-competencia: #E11D48;
+  --color-competencia-light: #FFE4E6;
+  --color-competencia-dark: #881337;
 
   /* Accent for links/interactions */
   --color-accent: hsl(0, 0%, 20%);
 
   /* Typography */
-  --font-heading: var(--font-playfair), "Georgia", serif;
+  --font-heading: var(--font-space-grotesk), "Inter", sans-serif;
   --font-body: var(--font-dm-sans), "Helvetica Neue", sans-serif;
 }
 
@@ -183,21 +183,21 @@
   --color-border-light: #232730;
 
   /* Section colors — differentiated for dark mode (light/dark inverted) */
-  --color-nutricion: #4ADE80;
-  --color-nutricion-light: #14532D;
-  --color-nutricion-dark: #BBF7D0;
+  --color-nutricion: #2DD4BF;
+  --color-nutricion-light: #134E4A;
+  --color-nutricion-dark: #99F6E4;
 
-  --color-ciencia: #60A5FA;
-  --color-ciencia-light: #1E3A8A;
-  --color-ciencia-dark: #BFDBFE;
+  --color-ciencia: #A78BFA;
+  --color-ciencia-light: #4C1D95;
+  --color-ciencia-dark: #DDD6FE;
 
-  --color-entrenamiento: #FB923C;
-  --color-entrenamiento-light: #7C2D12;
-  --color-entrenamiento-dark: #FED7AA;
+  --color-entrenamiento: #FBBF24;
+  --color-entrenamiento-light: #78350F;
+  --color-entrenamiento-dark: #FDE68A;
 
-  --color-competencia: #F87171;
-  --color-competencia-light: #7F1D1D;
-  --color-competencia-dark: #FECACA;
+  --color-competencia: #FB7185;
+  --color-competencia-light: #881337;
+  --color-competencia-dark: #FECDD3;
 }
 
 /* ─── Base Styles ─── */
