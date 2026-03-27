@@ -101,7 +101,7 @@ export const EditorReviewSchema = z.object({
     .describe("Lista de mejoras sugeridas para el artículo"),
   rejectionReason: z
     .string()
-    .optional()
+    .nullable()
     .describe(
       "Razón principal del rechazo (solo si la decisión es rechazar)"
     ),
