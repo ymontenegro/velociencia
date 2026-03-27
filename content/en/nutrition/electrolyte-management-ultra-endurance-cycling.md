@@ -19,7 +19,7 @@ tags:
   - sports performance
   - muscle function
   - fatigue
-coverImage: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+coverImage: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 sources:
   - title: 'Sawka et al. (2007) ACSM Position Stand: Exercise and Fluid Replacement'
     url: 'https://pubmed.ncbi.nlm.nih.gov/17277604/'

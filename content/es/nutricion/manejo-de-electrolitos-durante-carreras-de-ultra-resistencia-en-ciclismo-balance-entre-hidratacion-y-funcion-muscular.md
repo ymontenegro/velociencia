@@ -5,7 +5,7 @@ section: nutricion
 date: "2026-03-27"
 author: "Martín Velasco"
 tags: ["nutrición deportiva","electrolitos","ultra resistencia","ciclismo","hidratación","calambres musculares","suplementación","rendimiento deportivo","función muscular","fatiga"]
-coverImage: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+coverImage: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 sources:
   - title: "Sawka et al. (2007) ACSM Position Stand: Exercise and Fluid Replacement"
     url: "https://pubmed.ncbi.nlm.nih.gov/17277604/"
