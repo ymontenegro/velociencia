@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { SECTIONS, type SectionId } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N, type SectionId } from "@/lib/constants";
 import { formatDate, cn } from "@/lib/utils";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
+import type { Locale } from "@/lib/i18n";
 
 interface ArticleCardProps {
   title: string;
@@ -16,6 +17,9 @@ interface ArticleCardProps {
   className?: string;
   author?: string;
   authorColor?: string;
+  locale?: Locale;
+  byLabel?: string;
+  minReadLabel?: string;
 }
 
 const SECTION_GRADIENTS: Record<SectionId, { from: string; to: string }> = {
@@ -50,14 +54,19 @@ export function ArticleCard({
   className,
   author,
   authorColor,
+  locale = "es",
+  byLabel = "Por",
+  minReadLabel = "min de lectura",
 }: ArticleCardProps) {
   const sectionConfig = SECTIONS[section];
+  const sectionI18n = SECTIONS_I18N[locale][section];
+  const sectionSlug = sectionI18n.slug;
   const gradient = SECTION_GRADIENTS[section];
 
   if (variant === "hero") {
     return (
       <Link
-        href={`/${section}/${slug}`}
+        href={`/${sectionSlug}/${slug}`}
         className={cn("group block h-full", className)}
       >
         <article className="relative h-full min-h-[300px] overflow-hidden rounded-lg md:min-h-[400px]">
@@ -89,7 +98,7 @@ export function ArticleCard({
               className="inline-block rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white"
               style={{ backgroundColor: sectionConfig.color }}
             >
-              {sectionConfig.name}
+              {sectionI18n.name}
             </span>
           </div>
 
@@ -107,13 +116,13 @@ export function ArticleCard({
               {author && (
                 <>
                   <AuthorAvatar name={author} color={authorColor ?? sectionConfig.color} size="sm" />
-                  <span className="normal-case tracking-normal">Por {author}</span>
+                  <span className="normal-case tracking-normal">{byLabel} {author}</span>
                   <span>&middot;</span>
                 </>
               )}
-              <time>{formatDate(date)}</time>
+              <time>{formatDate(date, locale)}</time>
               <span>&middot;</span>
-              <span>{readingTime} min de lectura</span>
+              <span>{readingTime} {minReadLabel}</span>
             </div>
           </div>
         </article>
@@ -124,7 +133,7 @@ export function ArticleCard({
   if (variant === "compact") {
     return (
       <Link
-        href={`/${section}/${slug}`}
+        href={`/${sectionSlug}/${slug}`}
         className={cn("group block", className)}
       >
         <article className="relative flex items-center gap-3 rounded-lg px-2 py-2 transition-colors duration-300 hover:bg-[var(--color-border-light)]">
@@ -167,7 +176,7 @@ export function ArticleCard({
   // variant === "standard"
   return (
     <Link
-      href={`/${section}/${slug}`}
+      href={`/${sectionSlug}/${slug}`}
       className={cn("group block h-full", className)}
     >
       <article className="relative flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
@@ -205,7 +214,7 @@ export function ArticleCard({
             className="inline-block w-fit rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white"
             style={{ backgroundColor: sectionConfig.color }}
           >
-            {sectionConfig.name}
+            {sectionI18n.name}
           </span>
 
           {/* Title */}
@@ -229,13 +238,13 @@ export function ArticleCard({
             {author && (
               <>
                 <AuthorAvatar name={author} color={authorColor ?? sectionConfig.color} size="sm" />
-                <span className="normal-case tracking-normal">Por {author}</span>
+                <span className="normal-case tracking-normal">{byLabel} {author}</span>
                 <span>&middot;</span>
               </>
             )}
-            <time>{formatDate(date)}</time>
+            <time>{formatDate(date, locale)}</time>
             <span>&middot;</span>
-            <span>{readingTime} min de lectura</span>
+            <span>{readingTime} {minReadLabel}</span>
           </div>
         </div>
       </article>

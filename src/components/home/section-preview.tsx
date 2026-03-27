@@ -1,17 +1,21 @@
 import Link from "next/link";
 import type { SectionId } from "@/lib/constants";
-import { SECTIONS } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N } from "@/lib/constants";
+import type { Locale } from "@/lib/i18n";
 
 interface SectionPreviewProps {
   sectionId: SectionId;
+  locale?: Locale;
+  exploreLabel?: string;
 }
 
-export function SectionPreview({ sectionId }: SectionPreviewProps) {
+export function SectionPreview({ sectionId, locale = "es", exploreLabel = "Explorar artículos" }: SectionPreviewProps) {
   const section = SECTIONS[sectionId];
-  const initial = section.name.charAt(0);
+  const sectionI18n = SECTIONS_I18N[locale][sectionId];
+  const initial = sectionI18n.name.charAt(0);
 
   return (
-    <Link href={`/${section.slug}`} className="group block">
+    <Link href={`/${sectionI18n.slug}`} className="group block">
       <article className="relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-8 transition-all duration-500 ease-out hover:shadow-xl hover:scale-[1.02]">
         {/* Subtle gradient background from section color */}
         <div
@@ -72,16 +76,16 @@ export function SectionPreview({ sectionId }: SectionPreviewProps) {
             className="text-[10px] font-semibold uppercase tracking-[0.2em]"
             style={{ color: section.color }}
           >
-            {section.name}
+            {sectionI18n.name}
           </span>
         </div>
 
         {/* Title in serif */}
         <h3 className="font-serif text-2xl font-bold leading-tight text-[var(--color-text)]">
-          {section.name}
+          {sectionI18n.name}
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-          {section.description}
+          {sectionI18n.description}
         </p>
 
         {/* CTA link */}
@@ -89,7 +93,7 @@ export function SectionPreview({ sectionId }: SectionPreviewProps) {
           className="mt-8 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider transition-colors"
           style={{ color: section.color }}
         >
-          Explorar artículos
+          {exploreLabel}
           <svg
             className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1.5"
             fill="none"

@@ -1,0 +1,76 @@
+{
+  "siteName": "Velociencia",
+  "siteDescription": "Ciclismo basado en ciencia: nutricion, fisiologia y entrenamiento",
+  "tagline": "Ciencia \u00b7 Nutrici\u00f3n \u00b7 Entrenamiento",
+  "header": {
+    "menu": "Men\u00fa",
+    "closeMenu": "Cerrar men\u00fa",
+    "openMenu": "Abrir men\u00fa",
+    "about": "Sobre"
+  },
+  "footer": {
+    "sections": "Secciones",
+    "site": "Sitio",
+    "newsletter": "Newsletter",
+    "aboutUs": "Sobre nosotros",
+    "home": "Inicio",
+    "privacy": "Pol\u00edtica de privacidad",
+    "contact": "Contacto",
+    "poweredByAI": "Impulsado por IA",
+    "newsletterCTA": "Recibe los mejores art\u00edculos en tu correo.",
+    "allRightsReserved": "Todos los derechos reservados.",
+    "editorialDesign": "Dise\u00f1o editorial premium"
+  },
+  "trending": {
+    "latest": "Lo \u00faltimo"
+  },
+  "home": {
+    "latest": "Lo \u00faltimo",
+    "comingSoon": "Contenido pr\u00f3ximamente",
+    "viewAll": "Ver todos",
+    "featured": "Destacados",
+    "editorialNote": "Nota editorial"
+  },
+  "article": {
+    "by": "Por",
+    "minRead": "min de lectura",
+    "references": "Referencias",
+    "keepReading": "Sigue leyendo",
+    "backTo": "Volver a",
+    "breadcrumbHome": "Inicio",
+    "section": "Secci\u00f3n"
+  },
+  "newsletter": {
+    "thanks": "\u00a1Gracias! Te mantendremos informado.",
+    "thanksTitle": "\u00a1Gracias por suscribirte!",
+    "thanksSubtitle": "Te mantendremos informado con el mejor contenido.",
+    "subscribe": "Suscribirse",
+    "stayUpdated": "Mantente al d\u00eda",
+    "description": "Recibe los mejores art\u00edculos sobre nutrici\u00f3n, ciencia y entrenamiento en ciclismo directamente en tu correo.",
+    "placeholder": "tu@email.com"
+  },
+  "sections": {
+    "explore": "Explorar art\u00edculos"
+  },
+  "error": {
+    "somethingWrong": "Algo sali\u00f3 mal",
+    "tryAgain": "Intentar de nuevo"
+  },
+  "about": {
+    "badge": "Sobre nosotros",
+    "intro": "Medio digital de ciclismo que combina inteligencia artificial con fuentes cient\u00edficas reales. Cada art\u00edculo es investigado, redactado y verificado con rigor period\u00edstico.",
+    "whatWeDo": "Qu\u00e9 hacemos",
+    "whatWeDoP1": "Velociencia nace de una premisa: el ciclismo merece periodismo fundamentado en evidencia. No opiniones disfrazadas de ciencia, no titulares sensacionalistas. Datos, estudios y fuentes verificables.",
+    "whatWeDoP2": "Utilizamos modelos de lenguaje avanzados para investigar, redactar y editar cada art\u00edculo. Nuestros agentes period\u00edsticos consultan bases de datos cient\u00edficas como PubMed y Semantic Scholar, recopilan fuentes primarias y producen contenido con est\u00e1ndares editoriales estrictos.",
+    "whatWeDoP3": "Todo art\u00edculo pasa por un proceso de revisi\u00f3n editorial automatizado antes de ser publicado. Las fuentes se citan de forma expl\u00edcita para que el lector pueda verificar la informaci\u00f3n por s\u00ed mismo.",
+    "ourSections": "Nuestras secciones",
+    "journalist": "Periodista",
+    "transparency": "Transparencia",
+    "transparencyText": "Los periodistas de Velociencia son agentes de inteligencia artificial. Los nombres asociados a cada secci\u00f3n representan identidades editoriales, no personas reales. Creemos que la transparencia sobre nuestro proceso es fundamental para la confianza del lector."
+  },
+  "localeBanner": {
+    "suggestion": "This content is also available in English at pedalsci.com",
+    "switch": "Switch",
+    "stay": "Quedarme aqu\u00ed"
+  }
+}

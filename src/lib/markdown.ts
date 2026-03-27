@@ -13,9 +13,10 @@ const CONTENT_DIR = path.join(process.cwd(), "content");
  */
 export function getArticleBySlug(
   section: string,
-  slug: string
+  slug: string,
+  locale: string = "es"
 ): Article | null {
-  const filePath = path.join(CONTENT_DIR, section, `${slug}.md`);
+  const filePath = path.join(CONTENT_DIR, locale, section, `${slug}.md`);
 
   if (!fs.existsSync(filePath)) {
     return null;
@@ -38,7 +39,7 @@ export function getArticleBySlug(
  * Get all articles, optionally filtered by section.
  * Returns ArticleCard[] sorted by date descending.
  */
-export function getAllArticles(section?: string): ArticleCard[] {
+export function getAllArticles(section?: string, locale: string = "es"): ArticleCard[] {
   const sections = section
     ? [section]
     : SECTION_IDS;
@@ -46,7 +47,7 @@ export function getAllArticles(section?: string): ArticleCard[] {
   const articles: ArticleCard[] = [];
 
   for (const sec of sections) {
-    const sectionDir = path.join(CONTENT_DIR, sec);
+    const sectionDir = path.join(CONTENT_DIR, locale, sec);
 
     if (!fs.existsSync(sectionDir)) {
       continue;
@@ -89,9 +90,10 @@ export function writeArticle(
   section: string,
   slug: string,
   frontmatter: Record<string, unknown>,
-  content: string
+  content: string,
+  locale: string = "es"
 ): string {
-  const sectionDir = path.join(CONTENT_DIR, section);
+  const sectionDir = path.join(CONTENT_DIR, locale, section);
 
   if (!fs.existsSync(sectionDir)) {
     fs.mkdirSync(sectionDir, { recursive: true });
@@ -107,8 +109,8 @@ export function writeArticle(
 /**
  * Get all slugs for a given section (useful for generateStaticParams).
  */
-export function getArticleSlugs(section: string): string[] {
-  const sectionDir = path.join(CONTENT_DIR, section);
+export function getArticleSlugs(section: string, locale: string = "es"): string[] {
+  const sectionDir = path.join(CONTENT_DIR, locale, section);
 
   if (!fs.existsSync(sectionDir)) {
     return [];

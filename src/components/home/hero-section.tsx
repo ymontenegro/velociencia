@@ -1,9 +1,13 @@
 import { getAllArticles } from "@/lib/markdown";
 import { ArticleCard } from "@/components/articles/article-card";
-import { SECTIONS, SITE_NAME } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N, type SectionId } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 
 export async function HeroSection() {
-  const articles = getAllArticles();
+  const locale = await getLocale();
+  const dict = await getDictionary(locale);
+  const articles = getAllArticles(undefined, locale);
   const featured = articles.slice(0, 3);
 
   if (featured.length === 0) {
@@ -11,7 +15,7 @@ export async function HeroSection() {
       <section className="border-b border-[var(--color-border)] bg-[var(--color-bg)]">
         <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8">
           <h1 className="font-serif text-6xl font-bold tracking-[0.06em] uppercase text-[var(--color-text)] sm:text-7xl lg:text-8xl">
-            {SITE_NAME}
+            {dict.siteName}
           </h1>
           <div className="mx-auto mt-8 flex items-center justify-center gap-4">
             <span
@@ -28,7 +32,7 @@ export async function HeroSection() {
             />
           </div>
           <p className="mx-auto mt-6 max-w-md text-sm text-[var(--color-text-muted)]">
-            Contenido próximamente
+            {dict.home.comingSoon}
           </p>
         </div>
       </section>
@@ -43,7 +47,7 @@ export async function HeroSection() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
         {/* Section label */}
         <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
-          Lo último
+          {dict.home.latest}
         </p>
 
         {/* Article grid: 2/3 hero + 1/3 stacked */}
@@ -59,8 +63,11 @@ export async function HeroSection() {
               section={heroArticle.section}
               coverImage={heroArticle.coverImage}
               variant="hero"
-              author={SECTIONS[heroArticle.section].journalist}
-              authorColor={SECTIONS[heroArticle.section].color}
+              author={SECTIONS_I18N[locale][heroArticle.section as SectionId].journalist}
+              authorColor={SECTIONS[heroArticle.section as SectionId].color}
+              locale={locale}
+              byLabel={dict.article.by}
+              minReadLabel={dict.article.minRead}
             />
           </div>
 
@@ -77,8 +84,11 @@ export async function HeroSection() {
                   section={article.section}
                   coverImage={article.coverImage}
                   variant="standard"
-                  author={SECTIONS[article.section].journalist}
-                  authorColor={SECTIONS[article.section].color}
+                  author={SECTIONS_I18N[locale][article.section as SectionId].journalist}
+                  authorColor={SECTIONS[article.section as SectionId].color}
+                  locale={locale}
+                  byLabel={dict.article.by}
+                  minReadLabel={dict.article.minRead}
                 />
               </div>
             ))}

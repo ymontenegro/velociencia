@@ -3,24 +3,28 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SECTIONS, SECTION_IDS, SITE_NAME } from "@/lib/constants";
+import { SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
-
-const NAV_ITEMS = [
-  ...SECTION_IDS.map((id) => ({
-    href: `/${id}`,
-    label: SECTIONS[id].name,
-    sectionId: id,
-  })),
-  { href: "/sobre", label: "Sobre", sectionId: null },
-] as const;
+import { useLocale, useDictionary } from "@/components/locale-provider";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
+  const dict = useDictionary();
+  const sections = SECTIONS_I18N[locale];
+
+  const NAV_ITEMS = [
+    ...SECTION_IDS.map((id) => ({
+      href: `/${sections[id].slug}`,
+      label: sections[id].name,
+      sectionId: id,
+    })),
+    { href: locale === "en" ? "/about" : "/sobre", label: dict.header.about, sectionId: null },
+  ] as const;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,12 +99,12 @@ export function Header() {
               <line x1="13.41" y1="10.59" x2="19.07" y2="4.93" />
             </svg>
             <div className="flex flex-col">
-              <span>{SITE_NAME}</span>
+              <span>{dict.siteName}</span>
               <span className={cn(
                 "text-[9px] font-sans font-normal tracking-wider text-[var(--color-text-muted)] transition-all duration-300",
                 isScrolled ? "hidden" : "block"
               )}>
-                Ciencia · Nutrición · Entrenamiento
+                {dict.tagline}
               </span>
             </div>
           </Link>
@@ -135,7 +139,7 @@ export function Header() {
               type="button"
               className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-label={isMenuOpen ? dict.header.closeMenu : dict.header.openMenu}
               aria-expanded={isMenuOpen}
             >
               <svg
@@ -183,13 +187,13 @@ export function Header() {
       >
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-6 py-5">
           <span className="font-serif text-lg font-bold tracking-[0.2em] uppercase text-[var(--color-text)]">
-            Menú
+            {dict.header.menu}
           </span>
           <button
             type="button"
             className="flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
             onClick={() => setIsMenuOpen(false)}
-            aria-label="Cerrar menú"
+            aria-label={dict.header.closeMenu}
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

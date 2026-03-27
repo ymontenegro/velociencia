@@ -1,12 +1,23 @@
-import { SECTIONS, SECTION_IDS, SITE_NAME } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N, SECTION_IDS, SITE_NAME_I18N } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 
-export const metadata = {
-  title: `Sobre ${SITE_NAME} — Ciclismo basado en ciencia`,
-  description:
-    "Velociencia es un medio digital que combina inteligencia artificial con fuentes científicas reales para cubrir nutrición, ciencia y entrenamiento en ciclismo.",
-};
+export async function generateMetadata() {
+  const locale = await getLocale();
+  const dict = await getDictionary(locale);
+  const siteName = SITE_NAME_I18N[locale];
 
-export default function SobrePage() {
+  return {
+    title: `${dict.about.badge} ${siteName}`,
+    description: dict.about.intro,
+  };
+}
+
+export default async function SobrePage() {
+  const locale = await getLocale();
+  const dict = await getDictionary(locale);
+  const siteName = SITE_NAME_I18N[locale];
+
   return (
     <div>
       {/* Hero */}
@@ -17,61 +28,46 @@ export default function SobrePage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="relative z-10">
             <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-              Sobre nosotros
+              {dict.about.badge}
             </span>
             <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              {SITE_NAME}
+              {siteName}
             </h1>
             <div className="mt-4 h-[2px] w-16 bg-white/40" />
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
-              Medio digital de ciclismo que combina inteligencia artificial con
-              fuentes científicas reales. Cada artículo es investigado, redactado
-              y verificado con rigor periodístico.
+              {dict.about.intro}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Qué es Velociencia */}
+      {/* What we do */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="border-t-[6px] border-[var(--color-text)] pt-4">
           <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-            Qué hacemos
+            {dict.about.whatWeDo}
           </h2>
         </div>
         <div className="mt-8 space-y-5 text-[var(--color-text-secondary)]">
-          <p className="text-base leading-relaxed">
-            Velociencia nace de una premisa: el ciclismo merece periodismo
-            fundamentado en evidencia. No opiniones disfrazadas de ciencia, no
-            titulares sensacionalistas. Datos, estudios y fuentes verificables.
-          </p>
-          <p className="text-base leading-relaxed">
-            Utilizamos modelos de lenguaje avanzados para investigar, redactar y
-            editar cada artículo. Nuestros agentes periodísticos consultan bases
-            de datos científicas como PubMed y Semantic Scholar, recopilan
-            fuentes primarias y producen contenido con estándares editoriales
-            estrictos.
-          </p>
-          <p className="text-base leading-relaxed">
-            Todo artículo pasa por un proceso de revisión editorial automatizado
-            antes de ser publicado. Las fuentes se citan de forma explícita para
-            que el lector pueda verificar la información por sí mismo.
-          </p>
+          <p className="text-base leading-relaxed">{dict.about.whatWeDoP1}</p>
+          <p className="text-base leading-relaxed">{dict.about.whatWeDoP2}</p>
+          <p className="text-base leading-relaxed">{dict.about.whatWeDoP3}</p>
         </div>
       </section>
 
-      {/* Secciones y periodistas */}
+      {/* Sections and journalists */}
       <section className="border-t border-[var(--color-border)]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="border-t-[6px] border-[var(--color-text)] pt-4">
             <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-              Nuestras secciones
+              {dict.about.ourSections}
             </h2>
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {SECTION_IDS.map((id) => {
               const section = SECTIONS[id];
+              const sectionI18n = SECTIONS_I18N[locale][id];
               return (
                 <div
                   key={id}
@@ -84,12 +80,12 @@ export default function SobrePage() {
                         className="font-serif text-lg font-bold"
                         style={{ color: section.color }}
                       >
-                        {section.name}
+                        {sectionI18n.name}
                       </h3>
                     </div>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                    {section.description}
+                    {sectionI18n.description}
                   </p>
                   <div className="mt-4 flex items-center gap-2">
                     <div
@@ -97,7 +93,7 @@ export default function SobrePage() {
                       style={{ backgroundColor: section.color }}
                     />
                     <span className="text-xs text-[var(--color-text-muted)]">
-                      Periodista: {section.journalist}
+                      {dict.about.journalist}: {sectionI18n.journalist}
                     </span>
                   </div>
                 </div>
@@ -107,21 +103,17 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* Nota de transparencia */}
+      {/* Transparency note */}
       <section className="border-t border-[var(--color-border)]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex items-start gap-4">
             <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
-                Transparencia
+                {dict.about.transparency}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                Los periodistas de Velociencia son agentes de inteligencia
-                artificial. Los nombres asociados a cada sección representan
-                identidades editoriales, no personas reales. Creemos que la
-                transparencia sobre nuestro proceso es fundamental para la
-                confianza del lector.
+                {dict.about.transparencyText}
               </p>
             </div>
           </div>

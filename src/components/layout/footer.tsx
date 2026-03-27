@@ -1,8 +1,12 @@
 import Link from "next/link";
-import { SECTIONS, SECTION_IDS, SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
+import { SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
+import { getLocale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import { NewsletterForm } from "@/components/shared/newsletter-form";
 
-export function Footer() {
+export async function Footer() {
+  const locale = await getLocale();
+  const dict = await getDictionary(locale);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -17,7 +21,7 @@ export function Footer() {
         {/* Large decorative title */}
         <div className="mb-6 select-none" aria-hidden="true">
           <span className="font-serif text-3xl font-bold tracking-[0.2em] uppercase text-white/[0.07] sm:text-4xl">
-            {SITE_NAME}
+            {dict.siteName}
           </span>
         </div>
 
@@ -28,32 +32,32 @@ export function Footer() {
               href="/"
               className="font-serif text-xl font-bold tracking-[0.15em] uppercase text-white"
             >
-              {SITE_NAME}
+              {dict.siteName}
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-white/60">
-              {SITE_DESCRIPTION}
+              {dict.siteDescription}
             </p>
             <p className="mt-4 text-[10px] font-medium uppercase tracking-[0.2em] text-white/30">
-              Impulsado por IA
+              {dict.footer.poweredByAI}
             </p>
           </div>
 
           {/* Sections column */}
           <div>
             <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">
-              Secciones
+              {dict.footer.sections}
             </h3>
             <ul className="mt-4 space-y-3">
               {SECTION_IDS.map((id) => (
                 <li key={id}>
                   <Link
-                    href={`/${id}`}
+                    href={`/${SECTIONS_I18N[locale][id].slug}`}
                     className="group flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
                   >
                     <span
                       className="inline-block h-1.5 w-1.5 rounded-full bg-white/50 transition-transform group-hover:scale-125"
                     />
-                    {SECTIONS[id].name}
+                    {SECTIONS_I18N[locale][id].name}
                   </Link>
                 </li>
               ))}
@@ -63,15 +67,15 @@ export function Footer() {
           {/* Links column */}
           <div>
             <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">
-              Sitio
+              {dict.footer.site}
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
                 <Link
-                  href="/sobre"
+                  href={locale === "en" ? "/about" : "/sobre"}
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >
-                  Sobre nosotros
+                  {dict.footer.aboutUs}
                 </Link>
               </li>
               <li>
@@ -79,23 +83,23 @@ export function Footer() {
                   href="/"
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >
-                  Inicio
+                  {dict.footer.home}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/privacidad"
+                  href={locale === "en" ? "/privacy" : "/privacidad"}
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >
-                  Política de privacidad
+                  {dict.footer.privacy}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contacto"
+                  href={locale === "en" ? "/contact" : "/contacto"}
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >
-                  Contacto
+                  {dict.footer.contact}
                 </Link>
               </li>
             </ul>
@@ -104,10 +108,10 @@ export function Footer() {
           {/* Newsletter column */}
           <div>
             <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">
-              Newsletter
+              {dict.footer.newsletter}
             </h3>
             <p className="mt-4 text-sm text-white/60">
-              Recibe los mejores artículos en tu correo.
+              {dict.footer.newsletterCTA}
             </p>
             <div className="mt-4">
               <NewsletterForm compact />
@@ -118,10 +122,10 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[11px] tracking-wide text-white/30">
-            &copy; {currentYear} {SITE_NAME}. Todos los derechos reservados.
+            &copy; {currentYear} {dict.siteName}. {dict.footer.allRightsReserved}
           </p>
           <p className="text-[11px] tracking-wide text-white/20">
-            Diseño editorial premium
+            {dict.footer.editorialDesign}
           </p>
         </div>
       </div>

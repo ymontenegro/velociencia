@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { useDictionary } from "@/components/locale-provider";
 
 interface NewsletterFormProps {
   compact?: boolean;
 }
 
 export function NewsletterForm({ compact = false }: NewsletterFormProps) {
+  const dict = useDictionary();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -28,7 +29,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
             <path className="animate-checkmark" strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
           <p className="text-sm font-medium text-[var(--color-nutricion)]">
-            ¡Gracias! Te mantendremos informado.
+            {dict.newsletter.thanks}
           </p>
         </div>
       );
@@ -40,7 +41,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="tu@email.com"
+          placeholder={dict.newsletter.placeholder}
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-white px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-ciencia)] focus:outline-none focus:ring-1 focus:ring-[var(--color-ciencia)] transition-colors"
         />
@@ -48,7 +49,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
           type="submit"
           className="w-full rounded-md bg-[var(--color-text)] px-4 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-[0.98]"
         >
-          Suscribirse
+          {dict.newsletter.subscribe}
         </button>
       </form>
     );
@@ -69,10 +70,10 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
             </svg>
           </div>
           <p className="mt-4 font-serif text-2xl font-bold text-white">
-            ¡Gracias por suscribirte!
+            {dict.newsletter.thanksTitle}
           </p>
           <p className="mt-2 text-sm text-white/60">
-            Te mantendremos informado con el mejor contenido.
+            {dict.newsletter.thanksSubtitle}
           </p>
         </div>
       </section>
@@ -88,11 +89,11 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
 
       <div className="relative z-10 mx-auto max-w-lg text-center">
         <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
-          Mantente al día
+          {dict.newsletter.stayUpdated}
         </h2>
         <div className="mx-auto mt-3 h-[2px] w-12 bg-white/30" />
         <p className="mt-4 text-base leading-relaxed text-white/60">
-          Recibe los mejores artículos sobre nutrición, ciencia y entrenamiento en ciclismo directamente en tu correo.
+          {dict.newsletter.description}
         </p>
 
         <form
@@ -103,7 +104,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="tu@email.com"
+            placeholder={dict.newsletter.placeholder}
             required
             className="flex-1 rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors backdrop-blur-sm"
           />
@@ -111,7 +112,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
             type="submit"
             className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-[var(--color-text)] transition-all hover:bg-white/90 hover:shadow-lg active:scale-[0.98]"
           >
-            Suscribirse
+            {dict.newsletter.subscribe}
           </button>
         </form>
       </div>
