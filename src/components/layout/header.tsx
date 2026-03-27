@@ -129,11 +129,35 @@ export function Header() {
                 </Link>
               );
             })}
+            <a
+              href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
+              className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
+              title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              {locale === "es" ? "EN" : "ES"}
+            </a>
             <ThemeToggle />
           </nav>
 
-          {/* Mobile: theme toggle + menu button */}
+          {/* Mobile: locale + theme toggle + menu button */}
           <div className="flex items-center gap-2 md:hidden">
+            <a
+              href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
+              className="flex items-center gap-1 rounded-full border border-[var(--color-border)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
+              title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
+            >
+              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              {locale === "es" ? "EN" : "ES"}
+            </a>
             <ThemeToggle />
             <button
               type="button"
