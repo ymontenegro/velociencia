@@ -23,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const siteName = SITE_NAME_I18N[locale] ?? SITE_NAME;
   const siteDescription = SITE_DESCRIPTION_I18N[locale] ?? SITE_DESCRIPTION;
+  const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
 
   return {
     title: {
@@ -30,6 +31,38 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${siteName}`,
     },
     description: siteDescription,
+    metadataBase: new URL(siteUrl),
+    openGraph: {
+      type: "website",
+      locale: locale === "en" ? "en_US" : "es_CL",
+      siteName,
+      title: siteName,
+      description: siteDescription,
+      url: siteUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteName,
+      description: siteDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: siteUrl,
+      languages: {
+        es: "https://velociencia.cl",
+        en: "https://pedalsci.com",
+      },
+    },
   };
 }
 
@@ -59,15 +92,10 @@ export default async function RootLayout({
         <script
           async
           src="https://fundingchoicesmessages.google.com/i/pub-3852673931467935?ers=1"
-          nonce=""
         />
-        <script nonce="" dangerouslySetInnerHTML={{ __html: `(function() {function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){const e=document.createElement('iframe');e.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;';e.style.display='none';e.name='googlefcPresent';document.body.appendChild(e);}else{setTimeout(signalGooglefcPresent,0);}}};signalGooglefcPresent();})();` }} />
-        {/* Google AdSense */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"
-          crossOrigin="anonymous"
-        />
+        <script dangerouslySetInnerHTML={{ __html: `(function() {function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){const e=document.createElement('iframe');e.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;';e.style.display='none';e.name='googlefcPresent';document.body.appendChild(e);}else{setTimeout(signalGooglefcPresent,0);}}};signalGooglefcPresent();})();` }} />
+        {/* Google AdSense — loads conditionally based on cookie consent */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var c=localStorage.getItem('cookie-consent');if(c==='rejected')return;var s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935';document.head.appendChild(s);}catch(e){}})();` }} />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
