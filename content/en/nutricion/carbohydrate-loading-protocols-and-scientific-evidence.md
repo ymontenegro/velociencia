@@ -46,6 +46,8 @@ Sherman et al. (1981) simplified the process by eliminating the depletion phase.
 
 Biopsy results showed that this protocol achieved glycogen levels of 700-800 mmol/kg of dry weight, approximately 85-90% of the values achieved with the classic method, but without the negative effects of depletion. The cyclist arrived at competition rested, well-fueled, and mentally sharp. This protocol became the standard recommendation for two decades.
 
+![Professional cyclist racing — starting with full glycogen stores defines the final kilometers](https://images.unsplash.com/photo-1504025468847-0e438279542c?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## The rapid Bussau protocol (2002)
 
 Bussau et al. (2002) demonstrated that supercompensation could be achieved in a single day. Their protocol consisted of a brief session of high-intensity exercise (2 minutes and 30 seconds of sprint on a cycle ergometer) followed by 24 hours on an extremely high-carbohydrate diet (10-12 g/kg/day). Biopsies taken 24 hours later showed glycogen levels comparable to those of the classic six-day protocol.
@@ -117,6 +119,8 @@ The third error is failing to practice. Gastrointestinal tolerance to high carbo
 Most cyclists focus on muscle glycogen, but hepatic glycogen is equally important. The liver stores between 80 and 120 grams of glycogen, whose primary function is to maintain stable blood glucose during exercise. When liver glycogen is depleted, blood glucose drops and the classic symptoms of the "bonk" appear: dizziness, confusion, generalized weakness, and performance collapse.
 
 Gonzalez et al. (2016) demonstrated that liver glycogen is replenished more efficiently with a combination of glucose and fructose than with glucose alone. Fructose is preferentially metabolized in the liver, where it is converted to hepatic glycogen, while glucose is directed primarily to muscle. This has practical implications: during the pre-race loading phase, including fructose (fruit, honey, drinks with a glucose-fructose blend) optimizes the replenishment of both stores simultaneously.
+
+![Sports nutrition preparation — including fructose alongside glucose optimizes both hepatic and muscle glycogen replenishment](https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Loading in professional practice
 

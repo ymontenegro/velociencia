@@ -62,6 +62,8 @@ Los resultados fueron inequívocos. El grupo polarizado fue el único que mejor�
 
 Stöggl y Sperlich (2014) concluyeron que el modelo polarizado producía un "mayor impacto en las variables clave del rendimiento en resistencia que los modelos de umbral, alta intensidad o alto volumen". La diferencia no era marginal. El grupo polarizado superó ampliamente las mejoras del grupo umbral en VO2max y triplicó las del grupo de alto volumen en potencia pico.
 
+![Ciclista profesional en ruta aplicando distribución de intensidad controlada durante sesión de entrenamiento](https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 <ChartLine
   title="Progresión de VO2max por modelo de entrenamiento (9 semanas)"
   caption="Fuente: Stöggl & Sperlich (2014), PMID: 24550842"
@@ -96,6 +98,8 @@ El modelo piramidal ha recibido menos atención en estudios controlados que el p
 La diferencia práctica entre el piramidal y el polarizado es sutil pero importante. En el piramidal, las sesiones de zona 2 representan un 15% del volumen, frente al 5% del polarizado. Esto se traduce en una o dos sesiones semanales adicionales de ritmo moderado. Según Seiler y Kjerland (2006), esta distribución puede ser efectiva en atletas con alto volumen semanal (más de 15 horas), donde las sesiones de tempo funcionan como estímulo complementario sin comprometer la recuperación.
 
 Stöggl (2014) no incluyó un grupo piramidal específico en su diseño, lo que dificulta la comparación directa. Sin embargo, análisis retrospectivos de datos de entrenamiento en esquiadores de fondo y ciclistas profesionales sugieren que el piramidal y el polarizado producen resultados similares cuando el volumen total es alto. La divergencia aparece en atletas con menos horas disponibles: con 8-10 horas semanales, el polarizado parece superior porque maximiza la calidad de las sesiones intensas al eliminar la fatiga residual de la zona media.
+
+![Pantalla con datos analíticos de rendimiento para monitorizar la distribución de intensidad en ciclismo](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Respuesta individual y contexto competitivo
 

@@ -62,6 +62,8 @@ The results were unequivocal. The polarized group was the only one to improve si
 
 Stöggl and Sperlich (2014) concluded that the polarized model produced "greater impact on key endurance performance variables than threshold, high intensity, or high volume training." The difference was not marginal. The polarized group far exceeded the threshold group's VO2max improvements and tripled the high volume group's peak power gains.
 
+![Professional cyclist on the road applying controlled intensity distribution during a training session](https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 <ChartLine
   title="Progresión de VO2max por modelo de entrenamiento (9 semanas)"
   caption="Fuente: Stöggl & Sperlich (2014), PMID: 24550842"
@@ -96,6 +98,8 @@ The pyramidal model has received less attention in controlled studies than the p
 The practical difference between pyramidal and polarized is subtle but important. In the pyramidal model, zone 2 sessions represent 15% of volume, compared to 5% in the polarized model. This translates to one or two additional moderate-pace sessions per week. According to Seiler and Kjerland (2006), this distribution can be effective in athletes with high weekly volume (more than 15 hours), where tempo sessions function as a complementary stimulus without compromising recovery.
 
 Stöggl (2014) did not include a specific pyramidal group in his design, which makes direct comparison difficult. However, retrospective analyses of training data from cross-country skiers and professional cyclists suggest that pyramidal and polarized produce similar results when total volume is high. The divergence appears in athletes with fewer available hours: with 8-10 weekly hours, the polarized model appears superior because it maximizes the quality of intense sessions by eliminating residual fatigue from the middle zone.
+
+![Analytics dashboard displaying performance data for monitoring intensity distribution in cycling](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Individual response and competitive context
 

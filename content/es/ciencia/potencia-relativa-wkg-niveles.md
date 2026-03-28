@@ -73,6 +73,8 @@ La tabla completa de Coggan incluye rangos para hombres y mujeres. Las diferenci
 
 Estos rangos son orientativos. Un ciclista puede estar en el extremo superior de un nivel y funcionar competitivamente en la categoría siguiente. Además, el FTP no lo es todo: un ciclista con 3.8 W/kg de FTP pero excelente capacidad anaeróbica (alto W') puede ganar criteriums contra rivales con 4.2 W/kg que carecen de sprint.
 
+![Dashboard de análisis de datos deportivos — los W/kg cobran sentido cuando se comparan entre niveles y duraciones](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Más allá del FTP: potencia relativa por duración
 
 El FTP captura solo un punto de la curva de potencia. Para un perfil completo, es necesario examinar los W/kg en múltiples duraciones. Sanders y Heijboer (2019) documentaron los rangos de potencia relativa en ciclistas profesionales para esfuerzos de 5 segundos a 60 minutos. Las diferencias entre duraciones revelan el perfil metabólico del ciclista.
@@ -113,6 +115,8 @@ La primera palanca es el entrenamiento aeróbico. Seiler y Kjerland (2006) demos
 La segunda palanca es la composición corporal. Reducir grasa corporal sin perder masa muscular mejora directamente los W/kg. Mujika y Padilla (2001) documentaron que los ciclistas del Tour de Francia alcanzaban su pico de rendimiento con un 6-8% de grasa corporal en hombres. Sin embargo, llevar la restricción calórica demasiado lejos compromete la recuperación, la función inmune y el rendimiento. Mountjoy et al. (2018) describieron el síndrome RED-S (Relative Energy Deficiency in Sport) como una consecuencia frecuente de la búsqueda obsesiva de ligereza en ciclistas.
 
 La tercera palanca es la eficiencia mecánica. Un bike fitting adecuado, una cadencia óptima y una técnica de pedaleo depurada pueden mejorar la eficiencia entre un 1% y un 3% según Bini et al. (2011). Parece poco, pero a 300 vatios, un 2% de mejora en eficiencia equivale a producir esos 300 vatios con un costo metabólico un 2% menor, lo que a lo largo de una hora se traduce en menor fatiga acumulada.
+
+![Ciclista profesional escalando un puerto — en subida, los W/kg son el factor determinante del rendimiento](https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## La trampa del número único
 

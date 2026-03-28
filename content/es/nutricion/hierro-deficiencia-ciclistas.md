@@ -40,6 +40,8 @@ Los deportistas de resistencia tienen un balance de hierro crónicamente comprom
 
 La hepcidina, hormona reguladora de la absorción de hierro, se eleva durante las 3-6 horas posteriores al ejercicio intenso según Peeling et al. (2009). Este aumento bloquea temporalmente la absorción intestinal de hierro, creando una paradoja: el momento en que el ciclista más necesita reponer hierro (post-entrenamiento) es precisamente cuando su cuerpo menos lo absorbe. En mujeres premenopáusicas, la pérdida menstrual añade 15-30 mg adicionales por ciclo, lo que explica la mayor prevalencia de deficiencia en ciclistas femeninas.
 
+![Ciclista en ruta — el sudor durante esfuerzos prolongados elimina entre 0.3 y 0.5 mg de hierro por litro](https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Prevalencia: un problema más común de lo que se cree
 
 Sim et al. (2019) realizaron una revisión sistemática de la prevalencia de deficiencia de hierro en deportistas y encontraron cifras alarmantes. La deficiencia sin anemia (ferritina baja con hemoglobina normal) afecta a un porcentaje sustancial de deportistas, con diferencias marcadas entre sexos y disciplinas.
@@ -118,6 +120,8 @@ Si la vía oral es la elegida, varios factores modulan la absorción. Moretti et
 La vitamina C potencia la absorción al reducir el hierro férrico (Fe³⁺) a ferroso (Fe²⁺), la forma que el intestino absorbe preferentemente. Tomar el suplemento con 200 mg de vitamina C (un vaso de zumo de naranja) duplica la absorción según Hallberg et al. (1989). En sentido contrario, el calcio, los taninos del té y café, y los fitatos de cereales integrales inhiben la absorción. La recomendación práctica es tomar el hierro en ayunas, acompañado de vitamina C y separado al menos dos horas de productos lácteos, café y té.
 
 El momento del día también importa. Peeling et al. (2017) recomendaron tomar el hierro por la mañana antes del entrenamiento, no después, para evitar la ventana de hepcidina elevada post-ejercicio. Si el ciclista entrena por la mañana, la mejor opción es tomarlo al despertar con al menos 30 minutos de margen antes de comer y entrenar.
+
+![Suplementos de hierro — la suplementación oral cada 48 horas mejora la absorción fraccionada hasta un 40%](https://images.unsplash.com/photo-1505576399279-0d309272b890?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Monitorización continua
 

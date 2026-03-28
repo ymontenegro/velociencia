@@ -40,6 +40,8 @@ Endurance athletes operate with a chronically compromised iron balance driven by
 
 Hepcidin, the hormone that regulates iron absorption, rises during the 3-6 hours following intense exercise according to Peeling et al. (2009). This surge temporarily blocks intestinal iron absorption, creating a paradox: the moment when a cyclist most needs to replenish iron (post-training) is precisely when the body absorbs it least. In premenopausal women, menstrual losses add 15-30 mg per cycle, which explains the higher prevalence of deficiency among female cyclists.
 
+![Cyclist on the road — sweat during prolonged efforts eliminates between 0.3 and 0.5 mg of iron per liter](https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Prevalence: a more common problem than most assume
 
 Sim et al. (2019) conducted a systematic review of iron deficiency prevalence in athletes and found alarming figures. Deficiency without anemia (low ferritin with normal hemoglobin) affects a substantial percentage of athletes, with marked differences between sexes and disciplines.
@@ -118,6 +120,8 @@ If the oral route is chosen, several factors modulate absorption. Moretti et al.
 Vitamin C enhances absorption by reducing ferric iron (Fe3+) to ferrous iron (Fe2+), the form the intestine preferentially absorbs. Taking the supplement with 200 mg of vitamin C (a glass of orange juice) doubles absorption according to Hallberg et al. (1989). Conversely, calcium, tannins from tea and coffee, and phytates from whole grains inhibit absorption. The practical recommendation is to take iron on an empty stomach, accompanied by vitamin C, and separated by at least two hours from dairy products, coffee, and tea.
 
 The time of day also matters. Peeling et al. (2017) recommended taking iron in the morning before training, not after, to avoid the post-exercise hepcidin elevation window. If the cyclist trains in the morning, the best option is to take it upon waking with at least a 30-minute gap before eating and training.
+
+![Iron supplements — alternate-day oral supplementation improves fractional absorption by up to 40%](https://images.unsplash.com/photo-1505576399279-0d309272b890?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Ongoing monitoring
 

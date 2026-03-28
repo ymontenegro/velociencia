@@ -82,6 +82,8 @@ En competición, W' funciona como un depósito de energía que se gasta y se rec
 
 Un ciclista con un W' grande (25-30 kJ) puede permitirse múltiples ataques en un puerto porque tiene más "cerillas" que quemar. Uno con un W' pequeño (10-15 kJ) pero un CP muy alto preferirá imponer un ritmo sostenido que agote las reservas anaeróbicas de sus rivales. El primero gana con explosividad repetida. El segundo gana por desgaste. La estrategia óptima depende de conocer ambos parámetros.
 
+![Ciclista profesional atacando en carrera — cada aceleración consume W' como reserva táctica finita](https://images.unsplash.com/photo-1504025468847-0e438279542c?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Cómo determinar tu CP y W'
 
 Existen varios protocolos validados. El método clásico requiere entre 3 y 5 esfuerzos máximos de diferente duración (típicamente 2, 5, 10 y 20 minutos) realizados en días separados. Se ajusta la curva hiperbólica a los datos y se extraen CP y W'. Vanhatalo et al. (2007) validaron un protocolo más práctico: el test de 3 minutos "all-out", donde el ciclista pedalea a máxima intensidad durante 3 minutos. La potencia media de los últimos 30 segundos estima CP, y el trabajo total por encima de esa potencia estima W'.
@@ -109,6 +111,8 @@ Conocer tu curva de potencia permite identificar la zona que más limita tu rend
 Sylta et al. (2014) encontraron que la distribución de intensidad óptima varía según el perfil individual. No existe una receta universal. Lo que la curva de potencia ofrece es un diagnóstico preciso: muestra exactamente dónde está el cuello de botella y, por tanto, dónde el entrenamiento tendrá el mayor retorno.
 
 La curva también evoluciona con el tiempo. Comparar la curva actual con la de hace tres o seis meses permite evaluar si el entrenamiento está produciendo las adaptaciones deseadas en la zona correcta. Un aumento de CP con W' estable indica mejora aeróbica. Un aumento de W' con CP estable indica mejora anaeróbica. Ambos subiéndose simultáneamente es la señal de que el programa de entrenamiento está funcionando de forma integral.
+
+![Panel de datos y métricas de rendimiento — la curva de potencia traduce la fisiología en decisiones de entrenamiento](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## No es solo un número
 

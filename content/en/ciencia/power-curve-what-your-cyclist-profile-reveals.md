@@ -82,6 +82,8 @@ In competition, W' functions as an energy reservoir that is spent and recharged.
 
 A cyclist with a large W' (25-30 kJ) can afford multiple attacks on a climb because they have more "matches" to burn. One with a small W' (10-15 kJ) but a very high CP will prefer to impose a sustained pace that drains the anaerobic reserves of their rivals. The first wins through repeated explosivity. The second wins through attrition. The optimal strategy depends on knowing both parameters.
 
+![Professional cyclist attacking in a race — every acceleration consumes W' as a finite tactical reserve](https://images.unsplash.com/photo-1504025468847-0e438279542c?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## How to determine your CP and W'
 
 Several validated protocols exist. The classic method requires 3 to 5 maximal efforts of different durations (typically 2, 5, 10, and 20 minutes) performed on separate days. The hyperbolic curve is fitted to the data and CP and W' are extracted. Vanhatalo et al. (2007) validated a more practical protocol: the 3-minute all-out test, where the cyclist pedals at maximum intensity for 3 minutes. The average power of the final 30 seconds estimates CP, and the total work above that power estimates W'.
@@ -109,6 +111,8 @@ Knowing your power curve allows you to identify the zone that most limits your p
 Sylta et al. (2014) found that the optimal intensity distribution varies according to the individual's profile. There is no universal recipe. What the power curve offers is a precise diagnosis: it shows exactly where the bottleneck lies and, therefore, where training will yield the greatest return.
 
 The curve also evolves over time. Comparing the current curve with one from three or six months ago allows you to assess whether training is producing the desired adaptations in the correct zone. An increase in CP with stable W' indicates aerobic improvement. An increase in W' with stable CP indicates anaerobic improvement. Both rising simultaneously is the signal that the training program is working in an integrated manner.
+
+![Performance data and metrics dashboard — the power curve translates physiology into training decisions](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## It is not just a number
 

@@ -95,6 +95,8 @@ Las mesetas típicas aparecen alrededor de los meses 5-6 y nuevamente entre los 
 
 Romper una meseta requiere modificar al menos una variable del entrenamiento. Las estrategias más respaldadas por evidencia incluyen aumentar la frecuencia de sesiones de alta intensidad (pasar de una a dos sesiones de intervalos por semana), incorporar trabajo de fuerza en gimnasio para mejorar la economía de pedaleo, o añadir volumen de zona 1 si las horas disponibles lo permiten.
 
+![Ciclista entrenando en rodillo indoor para superar mesetas de rendimiento con sesiones estructuradas de intervalos](https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Factores que modifican la curva
 
 La edad afecta la tasa de adaptación pero menos de lo que se cree. Coggan y DeVore compilaron datos de miles de ciclistas y observaron que la capacidad de mejora se mantiene relativamente constante hasta los 50-55 años, con una reducción gradual después. Un ciclista de 45 años puede esperar entre un 85% y un 90% de la tasa de mejora de uno de 25 años, asumiendo igual volumen y estructura de entrenamiento.
@@ -108,6 +110,8 @@ El sueño y la nutrición funcionan como multiplicadores de la respuesta adaptat
 Después de 12 meses de entrenamiento estructurado, los rangos esperados de FTP para un hombre de 70 kg se alinean con las categorías de Coggan. El principiante que partió de 150 W debería estar entre 210 y 230 W (3.0-3.3 W/kg), lo que lo sitúa en el rango superior de categoría 5 o inferior de categoría 4. El intermedio pasaría de 200 W a 260-280 W (3.7-4.0 W/kg), correspondiente a categoría 3-4. El avanzado alcanzaría 300-320 W (4.3-4.6 W/kg), zona de categoría 3 alta o categoría 2 baja.
 
 Estas cifras no son garantías. Son promedios basados en respuestas poblacionales. Bouchard et al. (1999) mostraron que el rango de respuesta individual puede variar hasta un factor de tres entre sujetos sometidos al mismo estímulo. Lo que sí es garantía es la forma de la curva: rápida al inicio, progresivamente más lenta, con mesetas que requieren cambios de enfoque.
+
+![Dashboard de métricas de entrenamiento mostrando datos de potencia y progresión del rendimiento ciclista](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## El segundo año y más allá
 

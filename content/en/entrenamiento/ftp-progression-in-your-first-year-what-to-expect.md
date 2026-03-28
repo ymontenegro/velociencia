@@ -95,6 +95,8 @@ Typical plateaus appear around months 5-6 and again between months 9-10. The fir
 
 Breaking through a plateau requires modifying at least one training variable. The most evidence-supported strategies include increasing the frequency of high-intensity sessions (going from one to two interval sessions per week), incorporating gym-based strength work to improve pedaling economy, or adding zone 1 volume if available hours permit.
 
+![Cyclist training on an indoor trainer to break through performance plateaus with structured interval sessions](https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Factors that modify the curve
 
 Age affects the rate of adaptation but less than commonly believed. Coggan and DeVore compiled data from thousands of cyclists and observed that the capacity for improvement remains relatively constant until ages 50-55, with a gradual reduction afterward. A 45-year-old cyclist can expect between 85% and 90% of the improvement rate of a 25-year-old, assuming equal volume and training structure.
@@ -108,6 +110,8 @@ Sleep and nutrition function as multipliers of the adaptive response. Halson (20
 After 12 months of structured training, expected FTP ranges for a 70 kg male align with Coggan's categories. The beginner who started at 150 W should be between 210 and 230 W (3.0-3.3 W/kg), placing them in the upper range of category 5 or lower category 4. The intermediate would go from 200 W to 260-280 W (3.7-4.0 W/kg), corresponding to category 3-4. The advanced rider would reach 300-320 W (4.3-4.6 W/kg), high category 3 or low category 2 territory.
 
 These figures are not guarantees. They are averages based on population responses. Bouchard et al. (1999) showed that the range of individual response can vary by up to a factor of three among subjects exposed to the same stimulus. What is guaranteed is the shape of the curve: fast at the start, progressively slower, with plateaus that require shifts in approach.
+
+![Training metrics dashboard showing power data and cyclist performance progression](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## The second year and beyond
 

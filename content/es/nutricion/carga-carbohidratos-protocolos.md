@@ -46,6 +46,8 @@ Sherman et al. (1981) simplificaron el proceso eliminando la fase de depleción.
 
 Los resultados de las biopsias mostraron que este protocolo alcanzaba niveles de glucógeno de 700-800 mmol/kg de peso seco, un 85-90% de los valores logrados con el método clásico, pero sin los efectos negativos de la depleción. El ciclista llegaba a la competición descansado, bien alimentado y mentalmente fresco. Este protocolo se convirtió en la recomendación estándar durante dos décadas.
 
+![Ciclista profesional en competición — partir con los depósitos de glucógeno llenos define los kilómetros finales](https://images.unsplash.com/photo-1504025468847-0e438279542c?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## El protocolo rápido de Bussau (2002)
 
 Bussau et al. (2002) demostraron que la supercompensación podía lograrse en un solo día. Su protocolo consistía en una sesión breve de ejercicio de alta intensidad (2 minutos y 30 segundos de sprint en cicloergómetro) seguida de 24 horas con una dieta extremadamente alta en carbohidratos (10-12 g/kg/día). Las biopsias 24 horas después mostraron niveles de glucógeno comparables a los del protocolo clásico de seis días.
@@ -117,6 +119,8 @@ El tercer error es no practicar. La tolerancia gastrointestinal a ingestas altas
 La mayoría de los ciclistas se enfocan en el glucógeno muscular, pero el hepático es igualmente importante. El hígado almacena entre 80 y 120 gramos de glucógeno, cuya función principal es mantener la glucemia estable durante el ejercicio. Cuando el glucógeno hepático se agota, la glucosa sanguínea cae y aparecen los síntomas clásicos de la "pájara": mareo, confusión, debilidad generalizada y colapso del rendimiento.
 
 Gonzalez et al. (2016) demostraron que el glucógeno hepático se repone de forma más eficiente con una combinación de glucosa y fructosa que con glucosa sola. La fructosa se metaboliza preferentemente en el hígado, donde se convierte en glucógeno hepático, mientras que la glucosa se dirige prioritariamente al músculo. Esto tiene implicaciones prácticas: durante la carga previa, incluir fructosa (fruta, miel, bebidas con mezcla de glucosa y fructosa) optimiza la reposición de ambos depósitos simultáneamente.
+
+![Preparación de nutrición deportiva — incluir fructosa junto con glucosa optimiza la reposición de glucógeno hepático y muscular](https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## La carga en la práctica profesional
 

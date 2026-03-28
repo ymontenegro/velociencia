@@ -73,6 +73,8 @@ The complete Coggan table includes ranges for men and women. The differences bet
 
 These ranges are indicative. A cyclist at the upper end of one level can function competitively in the next category. Moreover, FTP is not everything: a cyclist with 3.8 W/kg FTP but excellent anaerobic capacity (high W') can win criteriums against rivals with 4.2 W/kg who lack a sprint.
 
+![Sports data analytics dashboard — W/kg gains meaning when compared across levels and durations](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+
 ## Beyond FTP: relative power by duration
 
 FTP captures only a single point on the power curve. For a complete profile, it is necessary to examine W/kg across multiple durations. Sanders and Heijboer (2019) documented relative power ranges in professional cyclists for efforts from 5 seconds to 60 minutes. The differences between durations reveal the cyclist's metabolic profile.
@@ -113,6 +115,8 @@ The first lever is aerobic training. Seiler and Kjerland (2006) demonstrated tha
 The second lever is body composition. Reducing body fat without losing muscle mass directly improves W/kg. Mujika and Padilla (2001) documented that Tour de France cyclists reached their peak performance at 6-8% body fat in men. However, pushing caloric restriction too far compromises recovery, immune function, and performance. Mountjoy et al. (2018) described RED-S (Relative Energy Deficiency in Sport) as a frequent consequence of the obsessive pursuit of lightness in cyclists.
 
 The third lever is mechanical efficiency. Proper bike fitting, optimal cadence, and refined pedaling technique can improve efficiency by 1% to 3% according to Bini et al. (2011). That sounds modest, but at 300 watts, a 2% improvement in efficiency means producing those 300 watts at a 2% lower metabolic cost, which over the course of an hour translates into less accumulated fatigue.
+
+![Professional cyclist climbing a mountain pass — on gradients, W/kg is the determining performance factor](https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## The single-number trap
 
