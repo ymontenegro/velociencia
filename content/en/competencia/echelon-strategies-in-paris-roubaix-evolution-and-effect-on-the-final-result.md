@@ -13,10 +13,10 @@ tags:
   - Professional cycling
   - Aerodynamics
   - Race strategies
-coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
   - Crosswind
   - Ineos Grenadiers
   - Classics
+coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 sources:
   - title: Blocken et al. (2018) - Aerodynamic drag in cycling pelotons
     url: 'https://doi.org/10.1016/j.jweia.2018.06.011'
