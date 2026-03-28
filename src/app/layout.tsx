@@ -55,6 +55,14 @@ export default async function RootLayout({
         <link rel="alternate" hrefLang="es" href="https://velociencia.cl" />
         <link rel="alternate" hrefLang="en" href="https://pedalsci.com" />
         <link rel="alternate" hrefLang="x-default" href="https://velociencia.cl" />
+        {/* Google Funding Choices (CMP) — consent management */}
+        <script
+          async
+          src="https://fundingchoicesmessages.google.com/i/pub-3852673931467935?ers=1"
+          nonce=""
+        />
+        <script nonce="" dangerouslySetInnerHTML={{ __html: `(function() {function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){const e=document.createElement('iframe');e.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;';e.style.display='none';e.name='googlefcPresent';document.body.appendChild(e);}else{setTimeout(signalGooglefcPresent,0);}}};signalGooglefcPresent();})();` }} />
+        {/* Google AdSense */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"

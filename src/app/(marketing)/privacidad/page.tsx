@@ -47,8 +47,19 @@ export default async function PrivacidadPage() {
             <section>
               <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">Cookies</h2>
               <div className="mt-4 space-y-4 text-sm leading-relaxed">
-                <p>This site uses technical cookies necessary for its operation, such as theme preference (light/dark). We may use third-party analytics cookies to understand how the site is used and improve the experience.</p>
+                <p>This site uses technical cookies necessary for its operation, such as theme preference (light/dark) and cookie consent status.</p>
+                <p>We also use third-party cookies from the following services:</p>
+                <p><strong className="text-[var(--color-text)]">Google Analytics:</strong> To understand how visitors use the site and improve the experience. Google may collect information about your browsing behavior. More information at{" "}<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">How Google uses data</a>.</p>
+                <p><strong className="text-[var(--color-text)]">Google AdSense:</strong> We use Google AdSense to display advertising on this site. Google and its advertising partners may use cookies to serve ads based on your prior visits to this site or other websites. You can opt out of personalized advertising by visiting{" "}<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">Google Ads Settings</a>.</p>
+                <p>Third-party vendors, including Google, use cookies to serve ads based on a user&apos;s prior visits to this website or other websites. You may opt out of the use of cookies for personalized advertising by visiting{" "}<a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">www.aboutads.info</a>.</p>
                 <p>You can configure your browser to reject cookies or receive an alert before they are installed. Note that some site features may not work properly without cookies.</p>
+              </div>
+            </section>
+            <section>
+              <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">Third-party advertising</h2>
+              <div className="mt-4 space-y-4 text-sm leading-relaxed">
+                <p>We use third-party advertising companies, including Google, to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+                <p>For more information about this practice and to know your options for preventing this information from being used by these companies, visit{" "}<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">Google Privacy Policy</a>.</p>
               </div>
             </section>
             <section>
@@ -97,7 +108,19 @@ export default async function PrivacidadPage() {
           <section>
             <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">Cookies</h2>
             <div className="mt-4 space-y-4 text-sm leading-relaxed">
-              <p>Este sitio utiliza cookies técnicas necesarias para su funcionamiento, como la preferencia de tema (claro/oscuro). Podemos utilizar cookies analíticas de terceros para comprender cómo se utiliza el sitio y mejorar la experiencia.</p>
+              <p>Este sitio utiliza cookies técnicas necesarias para su funcionamiento, como la preferencia de tema (claro/oscuro) y el estado de consentimiento de cookies.</p>
+              <p>También utilizamos cookies de terceros de los siguientes servicios:</p>
+              <p><strong className="text-[var(--color-text)]">Google Analytics:</strong> Para comprender cómo los visitantes usan el sitio y mejorar la experiencia. Google puede recopilar información sobre tu comportamiento de navegación. Más información en{" "}<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">Cómo usa Google los datos</a>.</p>
+              <p><strong className="text-[var(--color-text)]">Google AdSense:</strong> Utilizamos Google AdSense para mostrar publicidad en este sitio. Google y sus socios publicitarios pueden usar cookies para mostrar anuncios basados en tus visitas previas a este sitio u otros sitios web. Puedes desactivar la publicidad personalizada visitando{" "}<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">Configuración de anuncios de Google</a>.</p>
+              <p>Proveedores externos, incluido Google, utilizan cookies para mostrar anuncios basados en las visitas previas del usuario a este sitio web u otros sitios. Puedes desactivar el uso de cookies para publicidad personalizada visitando{" "}<a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">www.aboutads.info</a>.</p>
+              <p>Puedes configurar tu navegador para rechazar cookies o recibir un aviso antes de que se instalen. Ten en cuenta que algunas funciones del sitio pueden no funcionar correctamente sin cookies.</p>
+            </div>
+          </section>
+          <section>
+            <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">Publicidad de terceros</h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed">
+              <p>Utilizamos empresas de publicidad de terceros, incluido Google, para mostrar anuncios cuando visitas nuestro sitio. Estas empresas pueden usar información (sin incluir tu nombre, dirección, correo electrónico o número de teléfono) sobre tus visitas a este y otros sitios web para proporcionar anuncios sobre bienes y servicios de tu interés.</p>
+              <p>Para más información sobre esta práctica y para conocer tus opciones para evitar que esta información sea utilizada por estas empresas, visita la{" "}<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]">Política de Privacidad de Google</a>.</p>
             </div>
           </section>
           <section>
