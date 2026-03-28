@@ -25,7 +25,7 @@ export const SECTIONS = {
     id: "entrenamiento",
     name: "Entrenamiento",
     description: "Metodologías, planes y tendencias de entrenamiento",
-    color: "#D97706",
+    color: "#0891B2",
     colorVar: "--color-entrenamiento",
     icon: "🚴",
     slug: "entrenamiento",
