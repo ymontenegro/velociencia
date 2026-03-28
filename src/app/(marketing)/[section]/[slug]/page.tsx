@@ -16,6 +16,8 @@ import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { ArticleCard } from "@/components/articles/article-card";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
+import { ViewTracker } from "@/components/articles/view-tracker";
+import { AdUnit } from "@/components/ads/ad-unit";
 
 interface ArticlePageProps {
   params: Promise<{ section: string; slug: string }>;
@@ -80,6 +82,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <article>
+      <ViewTracker slug={slug} section={sectionId} />
       {/* Breadcrumb */}
       <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
@@ -191,6 +194,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </section>
         </div>
       )}
+
+      {/* Ad: after article content */}
+      <div className="mx-auto max-w-[68ch] px-4 pb-8 sm:px-6 lg:px-8">
+        <AdUnit slot="ARTICLE_BOTTOM" format="horizontal" />
+      </div>
 
       {/* Keep reading */}
       {relatedArticles.length > 0 && (

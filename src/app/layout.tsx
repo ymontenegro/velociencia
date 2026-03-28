@@ -55,6 +55,11 @@ export default async function RootLayout({
         <link rel="alternate" hrefLang="es" href="https://velociencia.cl" />
         <link rel="alternate" hrefLang="en" href="https://pedalsci.com" />
         <link rel="alternate" hrefLang="x-default" href="https://velociencia.cl" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>

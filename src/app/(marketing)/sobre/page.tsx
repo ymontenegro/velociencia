@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { SECTIONS, SECTIONS_I18N, SECTION_IDS, SITE_NAME_I18N } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { AuthorAvatar } from "@/components/shared/author-avatar";
+import { getAllArticles } from "@/lib/markdown";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -64,39 +67,57 @@ export default async function SobrePage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
             {SECTION_IDS.map((id) => {
               const section = SECTIONS[id];
               const sectionI18n = SECTIONS_I18N[locale][id];
+              const articleCount = getAllArticles(id, locale).length;
               return (
-                <div
+                <Link
                   key={id}
-                  className="group rounded-lg border border-[var(--color-border)] p-6 transition-colors hover:border-[var(--color-border-dark)]"
+                  href={`/${sectionI18n.slug}`}
+                  className="group relative overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{section.icon}</span>
-                    <div>
-                      <h3
-                        className="font-serif text-lg font-bold"
-                        style={{ color: section.color }}
-                      >
-                        {sectionI18n.name}
-                      </h3>
+                  {/* Top accent bar */}
+                  <div
+                    className="h-1 w-full"
+                    style={{ backgroundColor: section.color }}
+                  />
+
+                  {/* Subtle corner gradient */}
+                  <div
+                    className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.12]"
+                    style={{ background: `radial-gradient(circle, ${section.color} 0%, transparent 70%)` }}
+                  />
+
+                  <div className="p-6">
+                    {/* Section name */}
+                    <h3
+                      className="font-serif text-xl font-bold"
+                      style={{ color: section.color }}
+                    >
+                      {sectionI18n.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                      {sectionI18n.description}
+                    </p>
+
+                    {/* Footer: journalist + article count */}
+                    <div className="mt-5 flex items-center justify-between border-t border-[var(--color-border-light)] pt-4">
+                      <div className="flex items-center gap-2">
+                        <AuthorAvatar name={sectionI18n.journalist} color={section.color} size="sm" />
+                        <span className="text-xs text-[var(--color-text-muted)]">
+                          {sectionI18n.journalist}
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-medium text-[var(--color-text-muted)]">
+                        {articleCount} {articleCount === 1 ? (locale === "es" ? "artículo" : "article") : (locale === "es" ? "artículos" : "articles")}
+                      </span>
                     </div>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                    {sectionI18n.description}
-                  </p>
-                  <div className="mt-4 flex items-center gap-2">
-                    <div
-                      className="h-1.5 w-1.5 rounded-full"
-                      style={{ backgroundColor: section.color }}
-                    />
-                    <span className="text-xs text-[var(--color-text-muted)]">
-                      {dict.about.journalist}: {sectionI18n.journalist}
-                    </span>
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </div>

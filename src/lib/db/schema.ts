@@ -144,6 +144,24 @@ export const rssItems = sqliteTable(
   ]
 );
 
+export const articleViews = sqliteTable(
+  "article_views",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    slug: text("slug").notNull(),
+    section: text("section", {
+      enum: ["nutricion", "ciencia", "entrenamiento", "competencia"],
+    }).notNull(),
+    viewedAt: integer("viewed_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (table) => [
+    index("idx_article_views_slug").on(table.slug),
+    index("idx_article_views_section").on(table.section),
+  ]
+);
+
 export const topics = sqliteTable(
   "topics",
   {

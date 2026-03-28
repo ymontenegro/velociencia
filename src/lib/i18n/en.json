@@ -29,6 +29,7 @@
     "comingSoon": "Content coming soon",
     "viewAll": "View all",
     "featured": "Featured",
+    "mostRead": "Most read",
     "editorialNote": "Editorial note"
   },
   "article": {
@@ -59,10 +60,10 @@
   "about": {
     "badge": "About us",
     "intro": "A digital cycling publication that combines artificial intelligence with real scientific sources. Every article is researched, written and verified with journalistic rigor.",
-    "whatWeDo": "What we do",
-    "whatWeDoP1": "PedalSci is built on a premise: cycling deserves evidence-based journalism. No opinions disguised as science, no sensationalist headlines. Data, studies and verifiable sources.",
-    "whatWeDoP2": "We use advanced language models to research, write and edit every article. Our AI journalists query scientific databases like PubMed and Semantic Scholar, gather primary sources and produce content with strict editorial standards.",
-    "whatWeDoP3": "Every article goes through an automated editorial review process before publication. Sources are cited explicitly so readers can verify the information themselves.",
+    "whatWeDo": "How PedalSci started",
+    "whatWeDoP1": "PedalSci is built on a premise: cycling deserves science-based journalism grounded in evidence. No opinions disguised as science, no sensationalist headlines. Data, studies and verifiable sources.",
+    "whatWeDoP2": "To get there, we use artificial intelligence as a research and writing tool. Every article starts from real scientific sources \u2014 studies from PubMed, Semantic Scholar and peer-reviewed journals. AI speeds up the process; editorial judgment decides what gets published and how.",
+    "whatWeDoP3": "Before publication, every article goes through editorial review. Sources are cited explicitly so any reader can verify the information on their own.",
     "ourSections": "Our sections",
     "journalist": "Journalist",
     "transparency": "Transparency",

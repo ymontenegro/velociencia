@@ -12,7 +12,7 @@ interface ArticleCardProps {
   slug: string;
   section: SectionId;
   coverImage?: string;
-  variant?: "hero" | "standard" | "compact";
+  variant?: "hero" | "standard" | "compact" | "headline";
   index?: number;
   className?: string;
   author?: string;
@@ -120,6 +120,38 @@ export function ArticleCard({
                   <span>&middot;</span>
                 </>
               )}
+              <time>{formatDate(date, locale)}</time>
+              <span>&middot;</span>
+              <span>{readingTime} {minReadLabel}</span>
+            </div>
+          </div>
+        </article>
+      </Link>
+    );
+  }
+
+  if (variant === "headline") {
+    return (
+      <Link
+        href={`/${sectionSlug}/${slug}`}
+        className={cn("group block", className)}
+      >
+        <article className="flex items-start gap-3 py-3 transition-colors duration-200 hover:bg-[var(--color-border-light)]/50">
+          {/* Section color indicator */}
+          <div
+            className="mt-1.5 h-2 w-2 flex-none rounded-full"
+            style={{ backgroundColor: sectionConfig.color }}
+          />
+
+          {/* Content */}
+          <div className="min-w-0 flex-1">
+            <h3
+              className="font-serif text-[15px] font-semibold leading-snug text-[var(--color-text)] transition-colors duration-200 group-hover:text-[var(--color-text-secondary)]"
+              style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+            >
+              {title}
+            </h3>
+            <div className="mt-1 flex items-center gap-1.5 text-[11px] text-[var(--color-text-muted)]">
               <time>{formatDate(date, locale)}</time>
               <span>&middot;</span>
               <span>{readingTime} {minReadLabel}</span>

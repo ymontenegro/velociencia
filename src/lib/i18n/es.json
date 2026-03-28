@@ -29,6 +29,7 @@
     "comingSoon": "Contenido pr\u00f3ximamente",
     "viewAll": "Ver todos",
     "featured": "Destacados",
+    "mostRead": "Lo más leído",
     "editorialNote": "Nota editorial"
   },
   "article": {
@@ -59,10 +60,10 @@
   "about": {
     "badge": "Sobre nosotros",
     "intro": "Medio digital de ciclismo que combina inteligencia artificial con fuentes cient\u00edficas reales. Cada art\u00edculo es investigado, redactado y verificado con rigor period\u00edstico.",
-    "whatWeDo": "Qu\u00e9 hacemos",
-    "whatWeDoP1": "Velociencia nace de una premisa: el ciclismo merece periodismo fundamentado en evidencia. No opiniones disfrazadas de ciencia, no titulares sensacionalistas. Datos, estudios y fuentes verificables.",
-    "whatWeDoP2": "Utilizamos modelos de lenguaje avanzados para investigar, redactar y editar cada art\u00edculo. Nuestros agentes period\u00edsticos consultan bases de datos cient\u00edficas como PubMed y Semantic Scholar, recopilan fuentes primarias y producen contenido con est\u00e1ndares editoriales estrictos.",
-    "whatWeDoP3": "Todo art\u00edculo pasa por un proceso de revisi\u00f3n editorial automatizado antes de ser publicado. Las fuentes se citan de forma expl\u00edcita para que el lector pueda verificar la informaci\u00f3n por s\u00ed mismo.",
+    "whatWeDo": "C\u00f3mo nace Velociencia",
+    "whatWeDoP1": "Velociencia nace de una premisa: el ciclismo merece periodismo cient\u00edfico fundamentado en evidencia. No opiniones disfrazadas de ciencia, no titulares sensacionalistas. Datos, estudios y fuentes verificables.",
+    "whatWeDoP2": "Para lograrlo, usamos inteligencia artificial como herramienta de investigaci\u00f3n y redacci\u00f3n. Cada art\u00edculo parte de fuentes cient\u00edficas reales \u2014 estudios de PubMed, Semantic Scholar y revistas especializadas. La IA acelera el proceso; el criterio editorial decide qu\u00e9 se publica y c\u00f3mo.",
+    "whatWeDoP3": "Antes de publicar, cada art\u00edculo pasa por revisi\u00f3n editorial. Las fuentes se citan de forma expl\u00edcita para que cualquier lector pueda verificar la informaci\u00f3n por cuenta propia.",
     "ourSections": "Nuestras secciones",
     "journalist": "Periodista",
     "transparency": "Transparencia",

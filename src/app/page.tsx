@@ -8,6 +8,8 @@ import { Footer } from "@/components/layout/footer";
 import { TrendingBar } from "@/components/layout/trending-bar";
 import { HeroSection } from "@/components/home/hero-section";
 import { ArticleCard } from "@/components/articles/article-card";
+import { MostRead } from "@/components/home/most-read";
+import { AdUnit } from "@/components/ads/ad-unit";
 
 export default async function HomePage() {
   const locale = await getLocale();
@@ -31,6 +33,16 @@ export default async function HomePage() {
     }
   }
 
+  // Sort sections by most recent article date
+  const sortedSectionIds = [...SECTION_IDS].sort((a, b) => {
+    const aDate = articlesBySection[a][0]?.date;
+    const bDate = articlesBySection[b][0]?.date;
+    if (!aDate && !bDate) return 0;
+    if (!aDate) return 1;
+    if (!bDate) return -1;
+    return new Date(bDate).getTime() - new Date(aDate).getTime();
+  });
+
   // Featured: skip the 3 hero articles to avoid repetition
   const featured = allArticles.slice(3, 8);
 
@@ -42,6 +54,9 @@ export default async function HomePage() {
         {/* Hero — 3 most recent articles */}
         <HeroSection />
 
+        {/* Ad: below hero */}
+        <AdUnit slot="HERO_BOTTOM" format="horizontal" className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8" />
+
         {/* Divider */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="h-px bg-[var(--color-border)]" />
@@ -52,18 +67,21 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-10">
             {/* Main content: articles by section */}
             <div className="space-y-16 lg:col-span-3">
-              {SECTION_IDS.map((sectionId) => {
+              {sortedSectionIds.map((sectionId) => {
                 const section = SECTIONS[sectionId];
                 const sectionI18n = SECTIONS_I18N[locale][sectionId];
-                const sectionArticles = articlesBySection[sectionId].slice(0, 3);
+                const sectionArticles = articlesBySection[sectionId].slice(0, 6);
 
                 if (sectionArticles.length === 0) return null;
+
+                const leadArticle = sectionArticles[0];
+                const headlineArticles = sectionArticles.slice(1);
 
                 return (
                   <div key={sectionId}>
                     {/* Section header with thick colored border */}
                     <div
-                      className="mb-6 border-t-[6px] pt-4"
+                      className="mb-5 border-t-[6px] pt-4"
                       style={{ borderColor: section.color }}
                     >
                       <div className="flex items-baseline justify-between">
@@ -82,27 +100,47 @@ export default async function HomePage() {
                       </div>
                     </div>
 
-                    {/* Articles grid */}
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                      {sectionArticles.map((article, i) => (
-                        <ArticleCard
-                          key={article.slug}
-                          title={article.title}
-                          excerpt={article.excerpt ?? ""}
-                          date={article.date}
-                          readingTime={article.readingTime}
-                          slug={article.slug}
-                          section={article.section}
-                          coverImage={article.coverImage}
-                          variant="standard"
-                          author={sectionI18n.journalist}
-                          authorColor={section.color}
-                          locale={locale}
-                          byLabel={dict.article.by}
-                          minReadLabel={dict.article.minRead}
-                          className={`animate-fade-in-up stagger-${i + 1}`}
-                        />
-                      ))}
+                    {/* Lead article + headline list */}
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      {/* Lead article with image */}
+                      <ArticleCard
+                        key={leadArticle.slug}
+                        title={leadArticle.title}
+                        excerpt={leadArticle.excerpt ?? ""}
+                        date={leadArticle.date}
+                        readingTime={leadArticle.readingTime}
+                        slug={leadArticle.slug}
+                        section={leadArticle.section}
+                        coverImage={leadArticle.coverImage}
+                        variant="standard"
+                        author={sectionI18n.journalist}
+                        authorColor={section.color}
+                        locale={locale}
+                        byLabel={dict.article.by}
+                        minReadLabel={dict.article.minRead}
+                        className="animate-fade-in-up stagger-1"
+                      />
+
+                      {/* Headline list */}
+                      {headlineArticles.length > 0 && (
+                        <div className="flex flex-col divide-y divide-[var(--color-border-light)] animate-fade-in-up stagger-2">
+                          {headlineArticles.map((article) => (
+                            <ArticleCard
+                              key={article.slug}
+                              title={article.title}
+                              excerpt={article.excerpt ?? ""}
+                              date={article.date}
+                              readingTime={article.readingTime}
+                              slug={article.slug}
+                              section={article.section}
+                              coverImage={article.coverImage}
+                              variant="headline"
+                              locale={locale}
+                              minReadLabel={dict.article.minRead}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -135,6 +173,16 @@ export default async function HomePage() {
                     />
                   ))}
                 </div>
+
+                {/* Ad: sidebar */}
+                <AdUnit slot="SIDEBAR" format="rectangle" className="mt-8" />
+
+                {/* Most Read */}
+                <MostRead
+                  allArticles={allArticles}
+                  label={dict.home.mostRead}
+                  locale={locale}
+                />
               </div>
             </aside>
           </div>
