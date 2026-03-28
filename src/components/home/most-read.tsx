@@ -22,10 +22,14 @@ export function MostRead({ allArticles, label, locale }: MostReadProps) {
 
   useEffect(() => {
     fetch("/api/views?limit=5")
-      .then((r) => r.json())
-      .then((rows: ViewRow[]) => {
+      .then((r) => {
+        if (!r.ok) throw new Error("Failed to fetch views");
+        return r.json();
+      })
+      .then((rows: unknown) => {
+        if (!Array.isArray(rows)) return;
         const articleMap = new Map(allArticles.map((a) => [`${a.section}/${a.slug}`, a]));
-        const matched = rows
+        const matched = (rows as ViewRow[])
           .map((r) => articleMap.get(`${r.section}/${r.slug}`))
           .filter((a): a is ArticleCardType => !!a);
         setTopArticles(matched);

@@ -25,7 +25,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/25017111/"
     type: pubmed
 excerpt: "La deficiencia de hierro es la carencia nutricional más frecuente entre ciclistas, especialmente en mujeres. Sus efectos sobre el VO2max y la capacidad de resistencia son significativos, pero la detección temprana y el tratamiento adecuado pueden revertir la situación en semanas."
-coverImage: "https://images.unsplash.com/photo-1582719471384-894fbb16564e?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+coverImage: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## El mineral del rendimiento aeróbico
