@@ -2,7 +2,7 @@
 title: "W/kg: Rangos por Nivel Competitivo y Cómo Mejorarlos"
 subtitle: "La métrica universal del ciclismo de rendimiento, explicada con datos reales"
 section: "ciencia"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Sofía Müller"
 tags: ["W/kg", "potencia relativa", "FTP", "niveles Coggan", "rendimiento ciclismo"]
 sources:

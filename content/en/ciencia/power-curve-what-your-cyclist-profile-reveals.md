@@ -2,7 +2,7 @@
 title: "Power Curve: What Your Cyclist Profile Reveals"
 subtitle: "The complete map of your neuromuscular and metabolic capabilities in a single graph"
 section: "ciencia"
-date: "2026-03-28"
+date: "2026-03-26"
 author: "Sofía Müller"
 tags: ["power curve", "critical power", "W prime", "cyclist profile", "power profiling"]
 sources:

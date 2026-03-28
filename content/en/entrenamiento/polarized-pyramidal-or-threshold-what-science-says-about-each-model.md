@@ -2,7 +2,7 @@
 title: "Polarized, Pyramidal, or Threshold: What Science Says About Each Intensity Model"
 subtitle: "Comparative analysis with data from Stöggl, Neal, and Seiler on zone distribution and physiological response"
 section: "entrenamiento"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Tomás Herrera"
 tags: ["intensity", "polarized", "pyramidal", "threshold", "distribution", "zones", "VO2max"]
 sources:

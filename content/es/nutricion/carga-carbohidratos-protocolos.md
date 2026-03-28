@@ -2,7 +2,7 @@
 title: "Carga de Carbohidratos: Protocolos y Evidencia Científica"
 subtitle: "De Bergström a Bussau — cómo la ciencia ha simplificado la supercompensación de glucógeno"
 section: "nutricion"
-date: "2026-03-28"
+date: "2026-03-24"
 author: "Martín Velasco"
 tags: ["carbohidratos", "glucógeno", "supercompensación", "nutrición carrera", "carga CHO"]
 sources:

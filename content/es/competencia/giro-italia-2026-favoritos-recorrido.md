@@ -2,7 +2,7 @@
 title: "Giro de Italia 2026: Favoritos, Recorrido y Análisis de las Etapas Clave"
 subtitle: "De Bulgaria a Roma con 7 finales en alto, el Blockhaus, los Dolomitas y una CRI de 40 km en Toscana"
 section: "competencia"
-date: "2026-03-28"
+date: "2026-03-26"
 author: "Diego Araya"
 tags: ["Giro de Italia", "2026", "Roglič", "Tiberi", "del Toro", "recorrido", "Dolomitas", "Grand Tour"]
 sources:

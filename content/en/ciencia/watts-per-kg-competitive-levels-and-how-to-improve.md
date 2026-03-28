@@ -2,7 +2,7 @@
 title: "W/kg: Competitive Level Ranges and How to Improve Them"
 subtitle: "The universal metric of performance cycling, explained with real data"
 section: "ciencia"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Sofía Müller"
 tags: ["W/kg", "relative power", "FTP", "Coggan levels", "cycling performance"]
 sources:

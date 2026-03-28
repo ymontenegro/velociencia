@@ -63,7 +63,7 @@ export function ChartLine({
             }}
           />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          {lines.map((line) => (
+          {(lines ?? []).map((line) => (
             <Line
               key={line.key}
               type="monotone"

@@ -2,7 +2,7 @@
 title: "Curva de Potencia: Qué Revela Tu Perfil de Ciclista"
 subtitle: "El mapa completo de tus capacidades neuromusculares y metabólicas en una sola gráfica"
 section: "ciencia"
-date: "2026-03-28"
+date: "2026-03-26"
 author: "Sofía Müller"
 tags: ["curva de potencia", "potencia crítica", "W prime", "perfil ciclista", "power profiling"]
 sources:

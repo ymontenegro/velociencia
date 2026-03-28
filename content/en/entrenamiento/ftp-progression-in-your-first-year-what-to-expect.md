@@ -2,7 +2,7 @@
 title: "FTP Progression in Your First Year: What to Expect Based on Your Starting Point"
 subtitle: "Realistic adaptation curves for beginners, intermediates, and advanced riders with month-by-month data"
 section: "entrenamiento"
-date: "2026-03-28"
+date: "2026-03-24"
 author: "Tomás Herrera"
 tags: ["FTP", "progression", "beginner", "power", "adaptation", "plateau", "first year"]
 sources:

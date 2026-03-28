@@ -2,7 +2,7 @@
 title: "Vatios en los Puertos del Tour: La Era de los Súper-Escaladores"
 subtitle: "De Armstrong a Pogačar: cómo han evolucionado los W/kg en las grandes ascensiones del ciclismo"
 section: "competencia"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Diego Araya"
 tags: ["Tour de France", "escalada", "vatios", "W/kg", "Pogačar", "Vingegaard", "Alpe d'Huez", "potencia"]
 sources:

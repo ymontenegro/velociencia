@@ -63,7 +63,7 @@ export function ChartArea({
             }}
           />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          {areas.map((area) => (
+          {(areas ?? []).map((area) => (
             <Area
               key={area.key}
               type="monotone"

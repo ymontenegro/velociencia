@@ -92,7 +92,7 @@ export function ChartBar({
             }}
           />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          {bars.map((bar) => (
+          {(bars ?? []).map((bar) => (
             <Bar
               key={bar.key}
               dataKey={bar.key}

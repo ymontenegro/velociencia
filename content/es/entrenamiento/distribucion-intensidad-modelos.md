@@ -2,7 +2,7 @@
 title: "Polarizado, Piramidal o Umbral: Qué Dice la Ciencia Sobre Cada Modelo de Intensidad"
 subtitle: "Análisis comparativo con datos de Stöggl, Neal y Seiler sobre distribución de zonas y respuesta fisiológica"
 section: "entrenamiento"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Tomás Herrera"
 tags: ["intensidad", "polarizado", "piramidal", "umbral", "distribución", "zonas", "VO2max"]
 sources:

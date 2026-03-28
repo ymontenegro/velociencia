@@ -2,7 +2,7 @@
 title: "Progresión del FTP en el Primer Año: Qué Esperar Según Tu Punto de Partida"
 subtitle: "Curvas de adaptación realistas para principiantes, intermedios y avanzados con datos mes a mes"
 section: "entrenamiento"
-date: "2026-03-28"
+date: "2026-03-24"
 author: "Tomás Herrera"
 tags: ["FTP", "progresión", "principiante", "potencia", "adaptación", "meseta", "primer año"]
 sources:

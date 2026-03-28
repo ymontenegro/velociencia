@@ -2,7 +2,7 @@
 title: "Carbohydrate Loading: Protocols and Scientific Evidence"
 subtitle: "From Bergstrom to Bussau — how science has simplified glycogen supercompensation"
 section: "nutricion"
-date: "2026-03-28"
+date: "2026-03-24"
 author: "Martín Velasco"
 tags: ["carbohydrates", "glycogen", "supercompensation", "race nutrition", "carb loading"]
 sources:

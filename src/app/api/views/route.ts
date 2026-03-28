@@ -17,21 +17,25 @@ export async function POST(req: NextRequest) {
 
 // GET — top viewed articles (last 30 days)
 export async function GET(req: NextRequest) {
-  const limit = Number(req.nextUrl.searchParams.get("limit") ?? "5");
-  const thirtyDaysAgo = Math.floor((Date.now() - 30 * 24 * 60 * 60 * 1000) / 1000);
+  try {
+    const limit = Number(req.nextUrl.searchParams.get("limit") ?? "5");
+    const thirtyDaysAgo = Math.floor((Date.now() - 30 * 24 * 60 * 60 * 1000) / 1000);
 
-  const rows = db
-    .select({
-      slug: schema.articleViews.slug,
-      section: schema.articleViews.section,
-      views: sql<number>`count(*)`.as("views"),
-    })
-    .from(schema.articleViews)
-    .where(sql`${schema.articleViews.viewedAt} >= ${thirtyDaysAgo}`)
-    .groupBy(schema.articleViews.slug, schema.articleViews.section)
-    .orderBy(sql`count(*) desc`)
-    .limit(limit)
-    .all();
+    const rows = db
+      .select({
+        slug: schema.articleViews.slug,
+        section: schema.articleViews.section,
+        views: sql<number>`count(*)`.as("views"),
+      })
+      .from(schema.articleViews)
+      .where(sql`${schema.articleViews.viewedAt} >= ${thirtyDaysAgo}`)
+      .groupBy(schema.articleViews.slug, schema.articleViews.section)
+      .orderBy(sql`count(*) desc`)
+      .limit(limit)
+      .all();
 
-  return NextResponse.json(rows);
+    return NextResponse.json(rows);
+  } catch {
+    return NextResponse.json([]);
+  }
 }

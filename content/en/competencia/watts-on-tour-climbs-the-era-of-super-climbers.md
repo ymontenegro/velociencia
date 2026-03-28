@@ -2,7 +2,7 @@
 title: "Watts on Tour Climbs: The Era of the Super-Climbers"
 subtitle: "From Armstrong to Pogačar: how W/kg have evolved on cycling's greatest ascents"
 section: "competencia"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Diego Araya"
 tags: ["Tour de France", "climbing", "watts", "W/kg", "Pogačar", "Vingegaard", "Alpe d'Huez", "power"]
 sources:

@@ -2,7 +2,7 @@
 title: "Iron and Performance: Deficiency, Detection, and Supplementation in Cyclists"
 subtitle: "The oxygen-carrying mineral that half of female cyclists have at suboptimal levels"
 section: "nutricion"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Martín Velasco"
 tags: ["iron", "ferritin", "iron deficiency", "supplementation", "sports anemia"]
 sources:

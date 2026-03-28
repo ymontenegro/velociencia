@@ -2,7 +2,7 @@
 title: "Giro d'Italia 2026: Favorites, Route and Key Stage Analysis"
 subtitle: "From Bulgaria to Rome with 7 summit finishes, the Blockhaus, the Dolomites and a 40 km time trial in Tuscany"
 section: "competencia"
-date: "2026-03-28"
+date: "2026-03-26"
 author: "Diego Araya"
 tags: ["Giro d'Italia", "2026", "Roglič", "Tiberi", "del Toro", "route", "Dolomites", "Grand Tour"]
 sources:

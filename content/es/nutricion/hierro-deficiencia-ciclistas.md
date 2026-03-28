@@ -2,7 +2,7 @@
 title: "Hierro y Rendimiento: Deficiencia, Detección y Suplementación en Ciclistas"
 subtitle: "El mineral que transporta oxígeno y que la mitad de las ciclistas tiene en niveles subóptimos"
 section: "nutricion"
-date: "2026-03-28"
+date: "2026-03-25"
 author: "Martín Velasco"
 tags: ["hierro", "ferritina", "deficiencia hierro", "suplementación", "anemia deportista"]
 sources:
