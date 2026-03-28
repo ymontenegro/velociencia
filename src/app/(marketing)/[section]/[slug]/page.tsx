@@ -197,7 +197,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       {/* Ad: after article content */}
       <div className="mx-auto max-w-[68ch] px-4 pb-8 sm:px-6 lg:px-8">
-        <AdUnit slot="ARTICLE_BOTTOM" format="horizontal" />
+        <AdUnit slot="1161395850" />
       </div>
 
       {/* Keep reading */}

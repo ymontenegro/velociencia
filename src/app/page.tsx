@@ -52,9 +52,6 @@ export default async function HomePage() {
         {/* Hero — 3 most recent articles */}
         <HeroSection />
 
-        {/* Ad: below hero */}
-        <AdUnit slot="HERO_BOTTOM" format="horizontal" className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8" />
-
         {/* Divider */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="h-px bg-[var(--color-border)]" />
@@ -155,7 +152,7 @@ export default async function HomePage() {
                 />
 
                 {/* Ad: sidebar */}
-                <AdUnit slot="SIDEBAR" format="rectangle" className="mt-8" />
+                <AdUnit slot="5236372234" className="mt-8" />
               </div>
             </aside>
           </div>
