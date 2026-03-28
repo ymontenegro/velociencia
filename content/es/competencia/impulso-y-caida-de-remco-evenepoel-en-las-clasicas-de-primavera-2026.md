@@ -4,7 +4,7 @@ subtitle: "Del triple triunfo en Mallorca al golpe en Catalunya: la montaña rus
 section: competencia
 date: "2026-03-28"
 author: "Diego Araya"
-coverImage: "https://cdn.mos.cms.futurecdn.net/6Lgu8EDK4L9zq7kRzRYfjj-1200-80.jpg"
+coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 tags: ["Remco Evenepoel", "Clásicas de primavera", "Red Bull-BORA-hansgrohe", "Volta a Catalunya", "Ciclismo profesional", "Lieja-Bastoña-Lieja", "Challenge Mallorca"]
 sources:
   - title: "CyclingNews - Evenepoel sweeps Challenge Mallorca"
