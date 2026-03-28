@@ -145,8 +145,8 @@ ${externalSources || "No hay fuentes externas disponibles."}
 
     const fullMarkdown = `${frontmatter}\n\n${result.content}`;
 
-    // Write the markdown file
-    const contentDir = path.join(process.cwd(), "content", section);
+    // Write the markdown file (ES locale)
+    const contentDir = path.join(process.cwd(), "content", "es", section);
     if (!fs.existsSync(contentDir)) {
       fs.mkdirSync(contentDir, { recursive: true });
     }
@@ -154,7 +154,7 @@ ${externalSources || "No hay fuentes externas disponibles."}
     const filePath = path.join(contentDir, `${slug}.md`);
     fs.writeFileSync(filePath, fullMarkdown, "utf-8");
 
-    const contentPath = `content/${section}/${slug}.md`;
+    const contentPath = `content/es/${section}/${slug}.md`;
 
     console.log(`[WRITE] Archivo creado: ${contentPath}`);
 

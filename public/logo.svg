@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" fill="none">
+  <!-- Wheel icon -->
+  <g stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="24" r="18"/>
+    <circle cx="24" cy="24" r="3"/>
+    <line x1="24" y1="6" x2="24" y2="21"/>
+    <line x1="24" y1="27" x2="24" y2="42"/>
+    <line x1="6" y1="24" x2="21" y2="24"/>
+    <line x1="27" y1="24" x2="42" y2="24"/>
+    <line x1="11.27" y1="11.27" x2="21.88" y2="21.88"/>
+    <line x1="26.12" y1="26.12" x2="36.73" y2="36.73"/>
+    <line x1="11.27" y1="36.73" x2="21.88" y2="26.12"/>
+    <line x1="26.12" y1="21.88" x2="36.73" y2="11.27"/>
+  </g>
+  <!-- Text -->
+  <text x="52" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" letter-spacing="3" fill="#1A1A1A">VELOCIENCIA</text>
+</svg>

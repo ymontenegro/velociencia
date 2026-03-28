@@ -2,8 +2,8 @@ import { openai, MODELS } from "@/lib/openai";
 import { db } from "@/lib/db";
 import { topics, sources, agentRuns } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { getSectionPrompt } from "../prompts";
-import { JOURNALIST_SYSTEM_PROMPT } from "../prompts";
+import { getSectionPrompt, JOURNALIST_SYSTEM_PROMPT } from "../prompts";
+import type { SectionId } from "@/lib/constants";
 
 export async function researchTopic(topicId: number): Promise<void> {
   const startTime = Date.now();
@@ -43,7 +43,7 @@ export async function researchTopic(topicId: number): Promise<void> {
     .returning();
 
   try {
-    const sectionPrompt = getSectionPrompt(topic.section as "nutricion" | "ciencia" | "entrenamiento");
+    const sectionPrompt = getSectionPrompt(topic.section as SectionId);
     const keywords = topic.suggestedKeywords
       ? JSON.parse(topic.suggestedKeywords).join(", ")
       : "";

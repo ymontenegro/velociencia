@@ -78,8 +78,8 @@ async function translateArticle(spanishPath: string, section: string): Promise<v
     .replace(/^-|-$/g, "")
     .slice(0, 80);
 
-  const englishSection = SECTION_MAP[section];
-  const outDir = path.join("content", "en", englishSection);
+  // Use internal section ID for directory (not English name)
+  const outDir = path.join("content", "en", section);
   fs.mkdirSync(outDir, { recursive: true });
 
   const newFrontmatter = {
@@ -88,7 +88,6 @@ async function translateArticle(spanishPath: string, section: string): Promise<v
     subtitle: translatedFm.subtitle || frontmatter.subtitle,
     excerpt: translatedFm.excerpt || frontmatter.excerpt,
     tags: translatedFm.tags || frontmatter.tags,
-    section: englishSection,
   };
 
   const outPath = path.join(outDir, `${englishSlug}.md`);
