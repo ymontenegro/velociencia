@@ -3,7 +3,7 @@ title: 'Sweet Spot Training: The Zone That Maximizes Your FTP with Less Fatigue'
 subtitle: >-
   Between 88 and 94% of FTP there is a point where the adaptive stimulus is high
   and fatigue doesn't destroy you
-section: training
+section: entrenamiento
 date: '2026-03-23'
 author: Tomás Herrera
 tags:

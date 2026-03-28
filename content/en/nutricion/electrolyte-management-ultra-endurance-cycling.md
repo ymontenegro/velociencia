@@ -5,7 +5,7 @@ title: >-
 subtitle: >-
   Nutritional Strategies to Maintain Electrolyte Balance and Prevent Cramps in
   Ultra Cycling Events
-section: nutrition
+section: nutricion
 date: '2026-03-27'
 author: Martín Velasco
 tags:

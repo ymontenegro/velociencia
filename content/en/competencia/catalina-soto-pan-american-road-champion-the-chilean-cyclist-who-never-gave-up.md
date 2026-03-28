@@ -5,7 +5,7 @@ title: >-
 subtitle: >-
   The Laboral Kutxa rider won gold in Cereté after a 2026 season that already
   includes three national titles and victories in El Salvador
-section: competition
+section: competencia
 date: '2026-03-21'
 author: Diego Araya
 tags:

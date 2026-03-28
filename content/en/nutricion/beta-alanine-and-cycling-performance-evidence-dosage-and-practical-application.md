@@ -5,7 +5,7 @@ title: >-
 subtitle: >-
   Muscle carnosine acts as an H+ ion buffer and improves performance in efforts
   lasting 1 to 4 minutes
-section: nutrition
+section: nutricion
 date: '2026-03-23'
 author: Martín Velasco
 tags:

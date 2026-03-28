@@ -3,7 +3,7 @@ title: 'HRV in Cycling: What Your Heart Says About Your Fatigue Before You Know 
 subtitle: >-
   A coefficient of variation of LnRMSSD above 10% may indicate accumulated
   overload
-section: science
+section: ciencia
 date: '2026-03-23'
 author: Sofía Müller
 tags:

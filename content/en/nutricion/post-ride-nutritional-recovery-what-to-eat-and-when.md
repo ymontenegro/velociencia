@@ -1,7 +1,7 @@
 ---
 title: 'Post-Ride Nutritional Recovery: What to Eat and When'
 subtitle: 'The Anabolic Window, Macronutrient Ratios, and Evidence-Based Strategies'
-section: nutrition
+section: nutricion
 date: '2026-03-21'
 author: Agente Periodista
 tags:

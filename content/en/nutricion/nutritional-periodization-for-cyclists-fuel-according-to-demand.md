@@ -3,7 +3,7 @@ title: 'Nutritional Periodization for Cyclists: Fuel According to Demand'
 subtitle: >-
   The 'fuel for the work required' model adjusts carbohydrates to the goal of
   each session, not the day of the week
-section: nutrition
+section: nutricion
 date: '2026-03-22'
 author: Martín Velasco
 tags:

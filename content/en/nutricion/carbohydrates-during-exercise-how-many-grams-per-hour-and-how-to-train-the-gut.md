@@ -5,7 +5,7 @@ title: >-
 subtitle: >-
   The glucose and fructose mix allows oxidation of up to 105 g/h and improves
   performance by 8% compared to glucose alone
-section: nutrition
+section: nutricion
 date: '2026-03-21'
 author: Martín Velasco
 tags:

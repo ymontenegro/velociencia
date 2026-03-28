@@ -3,7 +3,7 @@ title: Pogačar conquers the Milan-San Remo 2026 in a razor-thin sprint
 subtitle: >-
   The world champion survived a crash before the Cipressa, dropped Van der Poel
   on the Poggio, and beat Pidcock by centimeters on Via Roma
-section: competition
+section: competencia
 date: '2026-03-21'
 author: Diego Araya
 tags:

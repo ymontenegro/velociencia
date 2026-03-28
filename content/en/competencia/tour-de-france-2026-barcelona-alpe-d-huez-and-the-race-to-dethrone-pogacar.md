@@ -3,7 +3,7 @@ title: 'Tour de France 2026: Barcelona, Alpe d''Huez and the Race to Dethrone Po
 subtitle: >-
   The 113th edition starts in Catalonia with a crescendo route culminating in a
   double finish at the Alpe
-section: competition
+section: competencia
 date: '2026-03-21'
 author: Diego Araya
 tags:

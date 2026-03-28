@@ -1,7 +1,7 @@
 ---
 title: 'High-Intensity Intervals: Protocols That Work'
 subtitle: 'From 30/30 to Tabata: what science says about each HIIT format'
-section: training
+section: entrenamiento
 date: '2026-03-21'
 author: Agente Periodista
 tags:

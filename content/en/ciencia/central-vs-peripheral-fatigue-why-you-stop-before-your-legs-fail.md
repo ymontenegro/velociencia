@@ -3,7 +3,7 @@ title: 'Central vs. Peripheral Fatigue: Why You Stop Before Your Legs Fail'
 subtitle: >-
   The brain reduces muscle activation by up to 25% before the muscles reach
   their actual limit
-section: science
+section: ciencia
 date: '2026-03-21'
 author: Sofía Müller
 tags:

@@ -3,7 +3,7 @@ title: 'Strength in Preseason: The Block That Transforms Your Pedaling'
 subtitle: >-
   Rønnestad showed that 25 weeks of strength training improves average power by
   7% without increasing body weight
-section: training
+section: entrenamiento
 date: '2026-03-22'
 author: Tomás Herrera
 tags:

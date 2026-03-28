@@ -3,7 +3,7 @@ title: 'FTP: What It Really Measures and Why It''s Not What You Think'
 subtitle: >-
   The 95% correction factor varies between 0.88 and 0.96 depending on the
   cyclist's level
-section: science
+section: ciencia
 date: '2026-03-21'
 author: Sofía Müller
 tags:

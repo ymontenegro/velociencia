@@ -1,7 +1,7 @@
 ---
 title: 'Gym Strength for Cyclists: Which Exercises Work and When to Do Them'
 subtitle: 10 Weeks of Heavy Squats Improve Average Power in 40-Minute Time Trials
-section: training
+section: entrenamiento
 date: '2026-03-21'
 author: Tomás Herrera
 tags:

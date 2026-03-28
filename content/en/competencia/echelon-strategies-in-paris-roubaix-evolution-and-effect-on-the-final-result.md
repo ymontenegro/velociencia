@@ -3,7 +3,7 @@ title: 'Echelon Strategies in Paris-Roubaix: Evolution and Effect on the Final R
 subtitle: >-
   Technical analysis on the influence of echelon tactics in recent editions of
   Paris-Roubaix with race data and aerodynamic studies
-section: competition
+section: competencia
 date: '2026-03-27'
 author: Diego Araya
 tags:

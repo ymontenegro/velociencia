@@ -3,7 +3,7 @@ title: 'Pedaling Economy: Why Two Cyclists with the Same VO2max Perform Differen
 subtitle: >-
   Gross efficiency ranges from 18% in recreational cyclists to 25% in
   professionals, a difference equivalent to dozens of watts
-section: science
+section: ciencia
 date: '2026-03-22'
 author: Sofía Müller
 tags:

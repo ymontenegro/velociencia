@@ -1,7 +1,7 @@
 ---
 title: 'Block Periodization: Concentrate the Load to Improve Faster'
 subtitle: How to structure your training with concentrated load blocks
-section: training
+section: entrenamiento
 date: '2026-03-19'
 author: Agente Periodista
 tags:

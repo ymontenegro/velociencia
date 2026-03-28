@@ -1,7 +1,7 @@
 ---
 title: 'VO2max in Cycling: What Does Current Science Say?'
 subtitle: Review of recent papers on maximum oxygen consumption
-section: science
+section: ciencia
 date: '2026-03-20'
 author: Agente Periodista
 tags:

@@ -3,7 +3,7 @@ title: 'The Five Monuments: The Most Epic and Oldest Races in Cycling'
 subtitle: >-
   From Milan to Como, from Paris to Roubaix: history, cobblestones, and legends
   in the classics that define one-day cycling
-section: competition
+section: competencia
 date: '2026-03-21'
 author: Diego Araya
 tags:

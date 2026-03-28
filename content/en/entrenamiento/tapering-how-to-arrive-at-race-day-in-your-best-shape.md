@@ -1,7 +1,7 @@
 ---
 title: 'Tapering: How to Arrive at Race Day in Your Best Shape'
 subtitle: Reducing volume by 50% for two weeks improves performance by 2% to 6%
-section: training
+section: entrenamiento
 date: '2026-03-21'
 author: Tomás Herrera
 tags:

@@ -1,7 +1,7 @@
 ---
 title: 'Electrolytes and Cycling: The Chemistry Behind Hydration'
 subtitle: 'Sodium, potassium, and magnesium: what you need and how much during long rides'
-section: nutrition
+section: nutricion
 date: '2026-03-21'
 author: Agente Periodista
 tags:

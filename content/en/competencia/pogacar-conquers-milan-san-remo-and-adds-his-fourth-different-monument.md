@@ -3,7 +3,7 @@ title: Pogačar conquers Milan-San Remo and adds his fourth different monument
 subtitle: >-
   The Slovenian won the sprint against Pidcock after surviving a crash 32 km
   from the finish
-section: competition
+section: competencia
 date: '2026-03-21'
 author: Diego Araya
 tags:

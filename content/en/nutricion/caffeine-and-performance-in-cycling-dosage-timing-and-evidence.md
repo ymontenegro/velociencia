@@ -3,7 +3,7 @@ title: 'Caffeine and Performance in Cycling: Dosage, Timing, and Evidence'
 subtitle: >-
   A meta-analysis of 46 studies confirms that 3-6 mg/kg improves average power
   by 3%
-section: nutrition
+section: nutricion
 date: '2026-03-21'
 author: Martín Velasco
 tags:
