@@ -94,7 +94,7 @@ async function translateArticle(spanishPath: string, section: string): Promise<v
   const fileContent = matter.stringify(translatedContent!, newFrontmatter);
   fs.writeFileSync(outPath, fileContent, "utf-8");
 
-  console.log(`✓ ${section}/${path.basename(spanishPath)} → ${englishSection}/${englishSlug}.md`);
+  console.log(`✓ ${section}/${path.basename(spanishPath)} → en/${section}/${englishSlug}.md`);
 }
 
 async function main() {
