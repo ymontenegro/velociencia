@@ -36,7 +36,7 @@ export function MostRead({ allArticles, label, locale }: MostReadProps) {
   if (topArticles.length === 0) return null;
 
   return (
-    <div className="mt-10">
+    <div>
       <div className="mb-6 border-t-[6px] border-[var(--color-text)] pt-4">
         <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
           {label}

@@ -43,8 +43,6 @@ export default async function HomePage() {
     return new Date(bDate).getTime() - new Date(aDate).getTime();
   });
 
-  // Featured: skip the 3 hero articles to avoid repetition
-  const featured = allArticles.slice(3, 8);
 
   return (
     <>
@@ -147,42 +145,17 @@ export default async function HomePage() {
               })}
             </div>
 
-            {/* Sidebar: Featured */}
+            {/* Sidebar: Most Read */}
             <aside className="lg:col-span-1">
               <div className="sticky top-24">
-                <div className="mb-6 border-t-[6px] border-[var(--color-text)] pt-4">
-                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-                    {dict.home.featured}
-                  </h2>
-                </div>
-
-                <div className="space-y-1">
-                  {featured.map((article, i) => (
-                    <ArticleCard
-                      key={article.slug}
-                      title={article.title}
-                      excerpt={article.excerpt ?? ""}
-                      date={article.date}
-                      readingTime={article.readingTime}
-                      slug={article.slug}
-                      section={article.section}
-                      coverImage={article.coverImage}
-                      variant="compact"
-                      index={i}
-                      locale={locale}
-                    />
-                  ))}
-                </div>
-
-                {/* Ad: sidebar */}
-                <AdUnit slot="SIDEBAR" format="rectangle" className="mt-8" />
-
-                {/* Most Read */}
                 <MostRead
                   allArticles={allArticles}
                   label={dict.home.mostRead}
                   locale={locale}
                 />
+
+                {/* Ad: sidebar */}
+                <AdUnit slot="SIDEBAR" format="rectangle" className="mt-8" />
               </div>
             </aside>
           </div>
