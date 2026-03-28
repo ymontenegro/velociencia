@@ -18,6 +18,7 @@ import { ArticleCard } from "@/components/articles/article-card";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
 import { ViewTracker } from "@/components/articles/view-tracker";
 import { AdUnit } from "@/components/ads/ad-unit";
+import { ChartLine, ChartBar, ChartArea } from "@/components/charts";
 
 interface ArticlePageProps {
   params: Promise<{ section: string; slug: string }>;
@@ -36,9 +37,32 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data: frontmatter } = matter(fileContent);
 
+  const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
+  const articleUrl = `${siteUrl}/${sectionSlug}/${slug}`;
+
   return {
     title: frontmatter.title,
     description: frontmatter.excerpt,
+    alternates: {
+      canonical: articleUrl,
+    },
+    openGraph: {
+      type: "article",
+      title: frontmatter.title,
+      description: frontmatter.excerpt,
+      url: articleUrl,
+      publishedTime: frontmatter.date,
+      authors: [frontmatter.author],
+      ...(frontmatter.coverImage && {
+        images: [{ url: frontmatter.coverImage, width: 1200, height: 630 }],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.title,
+      description: frontmatter.excerpt,
+      ...(frontmatter.coverImage && { images: [frontmatter.coverImage] }),
+    },
   };
 }
 
@@ -60,8 +84,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const { data: frontmatter, content } = matter(fileContent);
   const readingTime = getReadingTime(content);
 
+  const mdxComponents = { ChartLine, ChartBar, ChartArea };
+
   const { content: mdxContent } = await compileMDX({
     source: content,
+    components: mdxComponents,
     options: {
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkMath],

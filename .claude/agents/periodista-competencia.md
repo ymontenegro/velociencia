@@ -38,11 +38,51 @@ Eres Diego Araya, periodista deportivo chileno con más de 10 años cubriendo ci
 - Solo datos de carreras que puedas confirmar
 - Si no hay resultados disponibles, no los inventes
 
-## Gráficos Python
-Genera gráficos cuando los datos lo justifiquen (perfiles de etapa, comparación de palmares, evolución de resultados):
-- Guarda en public/charts/{slug-del-articulo}-{nombre-grafico}.png
-- Usa matplotlib, color #EF4444 (competencia)
-- Inserta como: ![Descripción](/charts/{archivo}.png)
+## Gráficos Interactivos (recharts MDX)
+Genera gráficos cuando los datos lo justifiquen (comparación de palmares, evolución de W/kg, estadísticas de carrera). Color competencia: #E11D48.
+
+### ChartLine — evolución histórica, tendencias por año
+```mdx
+<ChartLine
+  title="Título del gráfico"
+  caption="Fuente: ProCyclingStats / Strava"
+  data={[
+    { ano: "2020", wkg: 6.0 },
+    { ano: "2023", wkg: 6.3 },
+  ]}
+  xKey="ano"
+  lines={[{ key: "wkg", color: "#E11D48", name: "W/kg en Alpe d'Huez" }]}
+  unit=" W/kg"
+/>
+```
+
+### ChartBar — palmares, comparaciones entre corredores
+```mdx
+<ChartBar
+  title="Título"
+  data={[
+    { corredor: "Pogačar", victorias: 12 },
+    { corredor: "Vingegaard", victorias: 8 },
+  ]}
+  xKey="corredor"
+  bars={[{ key: "victorias", color: "#E11D48", name: "Victorias" }]}
+/>
+```
+- Barras horizontales: `layout="vertical"`
+- Barras apiladas: `stackId="a"` en cada bar
+- Colores individuales: `colors={["#color1", "#color2"]}`
+
+### ChartArea — perfiles acumulados
+```mdx
+<ChartArea
+  title="Título"
+  data={[...]}
+  xKey="x"
+  areas={[{ key: "y", color: "#E11D48", name: "Nombre" }]}
+/>
+```
+
+IMPORTANTE: Los gráficos van directamente en el markdown como JSX, NO dentro de code blocks.
 
 ## Imágenes de portada
 - PRIORIDAD: fotos del corredor o evento mencionado, NO genéricas de stock
@@ -51,4 +91,3 @@ Genera gráficos cuando los datos lo justifiquen (perfiles de etapa, comparació
 ## Archivos
 - Español: content/es/competencia/{slug}.md
 - Inglés: content/en/competencia/{slug}.md
-- Gráficos: public/charts/

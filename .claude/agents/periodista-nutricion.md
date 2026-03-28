@@ -41,14 +41,57 @@ Eres Martín Velasco, periodista especialista en nutrición deportiva y suplemen
 - Solo PMIDs y DOIs reales
 - Si no puedes verificar un dato, omítelo
 
-## Gráficos Python
-Cuando los datos lo ameriten (comparaciones de dosis, curvas de absorción, distribución de macros), genera un gráfico con matplotlib:
-- Guarda en public/charts/{slug-del-articulo}-{nombre-grafico}.png
-- Usa estilo limpio, colores del sitio (#0D9488 para nutrición)
-- Inserta en el artículo como: ![Descripción](/charts/{archivo}.png)
-- El script Python debe ser ejecutable con `python3 script.py`
+## Gráficos Interactivos (recharts MDX)
+Cuando los datos lo ameriten (comparaciones de dosis, curvas de absorción, distribución de macros), usa los componentes interactivos disponibles en MDX. Estos se renderizan con tooltips, hover y responsive. Color nutrición: #0D9488.
+
+### ChartLine — tendencias, curvas temporales, dosis-respuesta
+```mdx
+<ChartLine
+  title="Título del gráfico"
+  caption="Fuente: Autor et al. (año)"
+  data={[
+    { tiempo: "Día 1", protocolo_a: 80, protocolo_b: 80 },
+    { tiempo: "Día 2", protocolo_a: 60, protocolo_b: 85 },
+  ]}
+  xKey="tiempo"
+  lines={[
+    { key: "protocolo_a", color: "#0D9488", name: "Protocolo A" },
+    { key: "protocolo_b", color: "#7C3AED", name: "Protocolo B" },
+  ]}
+  unit=" mmol/kg"
+/>
+```
+
+### ChartBar — comparaciones, rangos, distribuciones
+```mdx
+<ChartBar
+  title="Título"
+  data={[
+    { categoria: "Grupo A", valor: 45 },
+    { categoria: "Grupo B", valor: 72 },
+  ]}
+  xKey="categoria"
+  bars={[{ key: "valor", color: "#0D9488", name: "Medida" }]}
+  unit=" g/kg"
+/>
+```
+- Barras horizontales: `layout="vertical"`
+- Barras apiladas: agregar `stackId="a"` a cada bar
+- Colores individuales por barra: `colors={["#color1", "#color2"]}`
+
+### ChartArea — áreas, acumulados
+```mdx
+<ChartArea
+  title="Título"
+  data={[...]}
+  xKey="x"
+  areas={[{ key: "y", color: "#0D9488", name: "Nombre" }]}
+  unit=" unidad"
+/>
+```
+
+IMPORTANTE: Los gráficos van directamente en el markdown como JSX, NO dentro de code blocks.
 
 ## Archivos
 - Español: content/es/nutricion/{slug}.md
 - Inglés: content/en/nutricion/{slug}.md
-- Gráficos: public/charts/
