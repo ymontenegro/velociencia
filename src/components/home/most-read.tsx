@@ -18,7 +18,8 @@ interface ViewRow {
 }
 
 export function MostRead({ allArticles, label, locale }: MostReadProps) {
-  const [topArticles, setTopArticles] = useState<ArticleCardType[]>([]);
+  const fallback = allArticles.slice(0, 5);
+  const [topArticles, setTopArticles] = useState<ArticleCardType[]>(fallback);
 
   useEffect(() => {
     fetch("/api/views?limit=5")
@@ -27,17 +28,15 @@ export function MostRead({ allArticles, label, locale }: MostReadProps) {
         return r.json();
       })
       .then((rows: unknown) => {
-        if (!Array.isArray(rows)) return;
+        if (!Array.isArray(rows) || rows.length === 0) return;
         const articleMap = new Map(allArticles.map((a) => [`${a.section}/${a.slug}`, a]));
         const matched = (rows as ViewRow[])
           .map((r) => articleMap.get(`${r.section}/${r.slug}`))
           .filter((a): a is ArticleCardType => !!a);
-        setTopArticles(matched);
+        if (matched.length > 0) setTopArticles(matched);
       })
       .catch(() => {});
   }, [allArticles]);
-
-  if (topArticles.length === 0) return null;
 
   return (
     <div>
