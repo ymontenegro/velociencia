@@ -45,7 +45,7 @@ export function ChartBar({
 }: ChartBarProps) {
   return (
     <ChartWrapper title={title} caption={caption} height={height}>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={height}>
         <BarChart
           data={data}
           layout={layout}

@@ -90,6 +90,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     source: content,
     components: mdxComponents,
     options: {
+      blockJS: false,
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkMath],
         rehypePlugins: [
