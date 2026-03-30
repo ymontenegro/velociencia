@@ -40,7 +40,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/20609257/"
     type: pubmed
 excerpt: "Creatine boosts mean power in repeated cycling sprints (δ = 0.61), but has zero effect on steady-state endurance performance. A meta-analysis of 13 studies in trained athletes confirms no benefit for sustained efforts. Its real value for cyclists lies in attacks, sprint finishes, and repeated high-intensity surges."
-coverImage: "https://images.unsplash.com/photo-1593095948071-474c5cc2c358?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+coverImage: "https://images.unsplash.com/photo-1594882645126-14020914d58d?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## The world's most studied supplement arrives in the peloton with caveats

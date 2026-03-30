@@ -40,7 +40,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/20609257/"
     type: pubmed
 excerpt: "La creatina mejora la potencia media en sprints repetidos en ciclismo (δ = 0.61), pero no tiene efecto sobre el rendimiento en estado estable. Un meta-análisis de 13 estudios en deportistas entrenados confirma que su beneficio en resistencia pura es nulo. El valor real para ciclistas está en los ataques, embalajes y esfuerzos intermitentes de alta intensidad."
-coverImage: "https://images.unsplash.com/photo-1593095948071-474c5cc2c358?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+coverImage: "https://images.unsplash.com/photo-1594882645126-14020914d58d?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## El suplemento más estudiado del mundo llega al pelotón con matices
