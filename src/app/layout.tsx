@@ -94,8 +94,12 @@ export default async function RootLayout({
           src="https://fundingchoicesmessages.google.com/i/pub-3852673931467935?ers=1"
         />
         <script dangerouslySetInnerHTML={{ __html: `(function() {function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){const e=document.createElement('iframe');e.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;';e.style.display='none';e.name='googlefcPresent';document.body.appendChild(e);}else{setTimeout(signalGooglefcPresent,0);}}};signalGooglefcPresent();})();` }} />
-        {/* Google AdSense — loads conditionally based on cookie consent */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var c=localStorage.getItem('cookie-consent');if(c==='rejected')return;var s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935';document.head.appendChild(s);}catch(e){}})();` }} />
+        {/* Google AdSense — consent managed by Google Funding Choices (CMP) */}
+        <script
+          async
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"
+        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
