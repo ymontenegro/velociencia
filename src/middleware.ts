@@ -57,6 +57,6 @@ export const config = {
      * - favicon, sitemap, robots
      * - admin routes
      */
-    "/((?!api|_next|favicon|sitemap|robots|admin).*)",
+    "/((?!api|_next|favicon|sitemap|robots|ads\\.txt|admin).*)",
   ],
 };
