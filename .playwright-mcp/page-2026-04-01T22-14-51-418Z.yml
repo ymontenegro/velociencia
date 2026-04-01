@@ -1,0 +1,473 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Velociencia Ciencia · Nutrición · Entrenamiento" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - generic [ref=e13]:
+          - generic [ref=e14]: Velociencia
+          - generic [ref=e15]: Ciencia · Nutrición · Entrenamiento
+      - navigation [ref=e16]:
+        - link "Nutrición" [ref=e17] [cursor=pointer]:
+          - /url: /nutricion
+        - link "Ciencia" [ref=e18] [cursor=pointer]:
+          - /url: /ciencia
+        - link "Entrenamiento" [ref=e19] [cursor=pointer]:
+          - /url: /entrenamiento
+        - link "Competencia" [ref=e20] [cursor=pointer]:
+          - /url: /competencia
+        - link "Sobre" [ref=e21] [cursor=pointer]:
+          - /url: /sobre
+        - link "EN" [ref=e22] [cursor=pointer]:
+          - /url: https://pedalsci.com
+          - img [ref=e23]
+          - text: EN
+        - button "Cambiar a modo oscuro" [ref=e26]:
+          - img [ref=e27]
+  - generic [ref=e30]:
+    - generic [ref=e31]: Lo último
+    - generic [ref=e33]:
+      - 'link "Nutrición Creatina en Ciclismo: Evidencia, Dosis y Cuándo Ti…" [ref=e34] [cursor=pointer]':
+        - /url: /nutricion/creatina-ciclismo-evidencia-dosis
+        - generic [ref=e35]: Nutrición
+        - generic [ref=e36]: "Creatina en Ciclismo: Evidencia, Dosis y Cuándo Ti…"
+      - 'link "Ciencia Sueño y Rendimiento Ciclista: Lo Que Dice la Evide…" [ref=e38] [cursor=pointer]':
+        - /url: /ciencia/sueno-rendimiento-ciclista
+        - generic [ref=e39]: Ciencia
+        - generic [ref=e40]: "Sueño y Rendimiento Ciclista: Lo Que Dice la Evide…"
+      - 'link "Competencia Tour de Flandes 2026: Pogačar defiende corona ante…" [ref=e42] [cursor=pointer]':
+        - /url: /competencia/tour-de-flandes-2026-previa-favoritos
+        - generic [ref=e43]: Competencia
+        - generic [ref=e44]: "Tour de Flandes 2026: Pogačar defiende corona ante…"
+      - 'link "Nutrición Vegetarianismo y rendimiento en ciclismo: planific…" [ref=e46] [cursor=pointer]':
+        - /url: /nutricion/vegetarianismo-y-rendimiento-en-ciclismo-planificacion-nutricional-para-evitar-deficiencias
+        - generic [ref=e47]: Nutrición
+        - generic [ref=e48]: "Vegetarianismo y rendimiento en ciclismo: planific…"
+      - link "Ciencia Impacto del microbioma intestinal en la recuperaci…" [ref=e50] [cursor=pointer]:
+        - /url: /ciencia/impacto-del-microbioma-intestinal-en-la-recuperacion-y-rendimiento-ciclista
+        - generic [ref=e51]: Ciencia
+        - generic [ref=e52]: Impacto del microbioma intestinal en la recuperaci…
+  - main [ref=e53]:
+    - generic [ref=e55]:
+      - paragraph [ref=e56]: Lo último
+      - generic [ref=e57]:
+        - link [ref=e59] [cursor=pointer]:
+          - /url: /nutricion/creatina-ciclismo-evidencia-dosis
+          - article [ref=e60]:
+            - 'img "Creatina en Ciclismo: Evidencia, Dosis y Cuándo Tiene Sentido Usarla" [ref=e63]'
+            - generic [ref=e66]: Nutrición
+            - generic [ref=e67]:
+              - 'heading "Creatina en Ciclismo: Evidencia, Dosis y Cuándo Tiene Sentido Usarla" [level=3] [ref=e68]'
+              - paragraph [ref=e69]: La creatina mejora la potencia media en sprints repetidos en ciclismo (δ = 0.61), pero no tiene efecto sobre el rendimiento en estado estable. Un meta-análisis de 13 estudios en deportistas entrenados confirma que su beneficio en resistencia pura es nulo. El valor real para ciclistas está en los ataques, embalajes y esfuerzos intermitentes de alta intensidad.
+              - generic [ref=e70]:
+                - generic [ref=e71]: MV
+                - generic [ref=e72]: Por Martín Velasco
+                - generic [ref=e73]: ·
+                - time [ref=e74]: 30 de marzo de 2026
+                - generic [ref=e75]: ·
+                - generic [ref=e76]: 14 min de lectura
+        - generic [ref=e77]:
+          - link [ref=e79] [cursor=pointer]:
+            - /url: /ciencia/sueno-rendimiento-ciclista
+            - article [ref=e80]:
+              - 'img "Sueño y Rendimiento Ciclista: Lo Que Dice la Evidencia Sobre Dormir Para Recuperar" [ref=e85]'
+              - generic [ref=e87]:
+                - generic [ref=e88]: Ciencia
+                - 'heading "Sueño y Rendimiento Ciclista: Lo Que Dice la Evidencia Sobre Dormir Para Recuperar" [level=3] [ref=e89]'
+                - paragraph [ref=e90]: Una sola noche de privación de sueño puede reducir la potencia en un 10%. La ciencia explica por qué dormir es la herramienta de recuperación más subestimada del ciclismo.
+                - generic [ref=e91]:
+                  - generic [ref=e92]: SM
+                  - generic [ref=e93]: Por Sofía Müller
+                  - generic [ref=e94]: ·
+                  - time [ref=e95]: 30 de marzo de 2026
+                  - generic [ref=e96]: ·
+                  - generic [ref=e97]: 13 min de lectura
+          - link [ref=e99] [cursor=pointer]:
+            - /url: /competencia/tour-de-flandes-2026-previa-favoritos
+            - article [ref=e100]:
+              - 'img "Tour de Flandes 2026: Pogačar defiende corona ante Van der Poel y Van Aert en los muros de Flandes" [ref=e105]'
+              - generic [ref=e107]:
+                - generic [ref=e108]: Competencia
+                - 'heading "Tour de Flandes 2026: Pogačar defiende corona ante Van der Poel y Van Aert en los muros de Flandes" [level=3] [ref=e109]'
+                - paragraph [ref=e110]: La 110ª edición del Tour de Flandes enfrenta a Pogačar, Van der Poel y Van Aert en 271 km con 16 muros. Pogačar defiende título tras ganar Strade Bianche y Milán-San Remo. Van der Poel busca un récord de cuatro victorias después de su solo en la E3.
+                - generic [ref=e111]:
+                  - generic [ref=e112]: DA
+                  - generic [ref=e113]: Por Diego Araya
+                  - generic [ref=e114]: ·
+                  - time [ref=e115]: 30 de marzo de 2026
+                  - generic [ref=e116]: ·
+                  - generic [ref=e117]: 12 min de lectura
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic [ref=e125]:
+            - heading "Nutrición" [level=2] [ref=e126]
+            - link "Ver todos→" [ref=e127] [cursor=pointer]:
+              - /url: /nutricion
+          - generic [ref=e128]:
+            - link [ref=e129] [cursor=pointer]:
+              - /url: /nutricion/vegetarianismo-y-rendimiento-en-ciclismo-planificacion-nutricional-para-evitar-deficiencias
+              - article [ref=e130]:
+                - 'img "Vegetarianismo y rendimiento en ciclismo: planificación nutricional para evitar deficiencias" [ref=e135]'
+                - generic [ref=e137]:
+                  - generic [ref=e138]: Nutrición
+                  - 'heading "Vegetarianismo y rendimiento en ciclismo: planificación nutricional para evitar deficiencias" [level=3] [ref=e139]'
+                  - paragraph [ref=e140]: La ciencia respalda que los ciclistas vegetarianos pueden mantener rendimiento y masa muscular con planificación nutricional adecuada, suplementación estratégica de B12, hierro, creatina y omega-3, y controles periódicos.
+                  - generic [ref=e141]:
+                    - generic [ref=e142]: MV
+                    - generic [ref=e143]: Por Martín Velasco
+                    - generic [ref=e144]: ·
+                    - time [ref=e145]: 28 de marzo de 2026
+                    - generic [ref=e146]: ·
+                    - generic [ref=e147]: 9 min de lectura
+            - generic [ref=e148]:
+              - link [ref=e149] [cursor=pointer]:
+                - /url: /nutricion/manejo-de-electrolitos-durante-carreras-de-ultra-resistencia-en-ciclismo-balance-entre-hidratacion-y-funcion-muscular
+                - article [ref=e150]:
+                  - generic [ref=e152]:
+                    - 'heading "Manejo de electrolitos durante carreras de ultra resistencia en ciclismo: balance entre hidratación y función muscular" [level=3] [ref=e153]'
+                    - generic [ref=e154]:
+                      - time [ref=e155]: 27 de marzo de 2026
+                      - generic [ref=e156]: ·
+                      - generic [ref=e157]: 10 min de lectura
+              - link [ref=e158] [cursor=pointer]:
+                - /url: /nutricion/hierro-deficiencia-ciclistas
+                - article [ref=e159]:
+                  - generic [ref=e161]:
+                    - 'heading "Hierro y Rendimiento: Deficiencia, Detección y Suplementación en Ciclistas" [level=3] [ref=e162]'
+                    - generic [ref=e163]:
+                      - time [ref=e164]: 25 de marzo de 2026
+                      - generic [ref=e165]: ·
+                      - generic [ref=e166]: 9 min de lectura
+              - link [ref=e167] [cursor=pointer]:
+                - /url: /nutricion/carga-carbohidratos-protocolos
+                - article [ref=e168]:
+                  - generic [ref=e170]:
+                    - 'heading "Carga de Carbohidratos: Protocolos y Evidencia Científica" [level=3] [ref=e171]'
+                    - generic [ref=e172]:
+                      - time [ref=e173]: 24 de marzo de 2026
+                      - generic [ref=e174]: ·
+                      - generic [ref=e175]: 9 min de lectura
+              - link [ref=e176] [cursor=pointer]:
+                - /url: /nutricion/beta-alanina-rendimiento-ciclismo
+                - article [ref=e177]:
+                  - generic [ref=e179]:
+                    - 'heading "Beta-alanina y Rendimiento en Ciclismo: Evidencia, Dosis y Aplicación Práctica" [level=3] [ref=e180]'
+                    - generic [ref=e181]:
+                      - time [ref=e182]: 23 de marzo de 2026
+                      - generic [ref=e183]: ·
+                      - generic [ref=e184]: 8 min de lectura
+              - link [ref=e185] [cursor=pointer]:
+                - /url: /nutricion/periodizacion-nutricional-ciclismo
+                - article [ref=e186]:
+                  - generic [ref=e188]:
+                    - 'heading "Periodización Nutricional para Ciclistas: Combustible Según la Demanda" [level=3] [ref=e189]'
+                    - generic [ref=e190]:
+                      - time [ref=e191]: 22 de marzo de 2026
+                      - generic [ref=e192]: ·
+                      - generic [ref=e193]: 9 min de lectura
+        - generic [ref=e194]:
+          - generic [ref=e196]:
+            - heading "Ciencia" [level=2] [ref=e197]
+            - link "Ver todos→" [ref=e198] [cursor=pointer]:
+              - /url: /ciencia
+          - generic [ref=e199]:
+            - link [ref=e200] [cursor=pointer]:
+              - /url: /ciencia/impacto-del-microbioma-intestinal-en-la-recuperacion-y-rendimiento-ciclista
+              - article [ref=e201]:
+                - img "Impacto del microbioma intestinal en la recuperación y rendimiento ciclista" [ref=e206]
+                - generic [ref=e208]:
+                  - generic [ref=e209]: Ciencia
+                  - heading "Impacto del microbioma intestinal en la recuperación y rendimiento ciclista" [level=3] [ref=e210]
+                  - paragraph [ref=e211]: Estudios en Nature Medicine y Gut revelan que bacterias específicas como Veillonella y Prevotella modulan el lactato, la inflamación y la recuperación en ciclistas de resistencia.
+                  - generic [ref=e212]:
+                    - generic [ref=e213]: SM
+                    - generic [ref=e214]: Por Sofía Müller
+                    - generic [ref=e215]: ·
+                    - time [ref=e216]: 28 de marzo de 2026
+                    - generic [ref=e217]: ·
+                    - generic [ref=e218]: 10 min de lectura
+            - generic [ref=e219]:
+              - link [ref=e220] [cursor=pointer]:
+                - /url: /ciencia/curva-potencia-perfil-ciclista
+                - article [ref=e221]:
+                  - generic [ref=e223]:
+                    - 'heading "Curva de Potencia: Qué Revela Tu Perfil de Ciclista" [level=3] [ref=e224]'
+                    - generic [ref=e225]:
+                      - time [ref=e226]: 26 de marzo de 2026
+                      - generic [ref=e227]: ·
+                      - generic [ref=e228]: 8 min de lectura
+              - link [ref=e229] [cursor=pointer]:
+                - /url: /ciencia/potencia-relativa-wkg-niveles
+                - article [ref=e230]:
+                  - generic [ref=e232]:
+                    - 'heading "W/kg: Rangos por Nivel Competitivo y Cómo Mejorarlos" [level=3] [ref=e233]'
+                    - generic [ref=e234]:
+                      - time [ref=e235]: 25 de marzo de 2026
+                      - generic [ref=e236]: ·
+                      - generic [ref=e237]: 7 min de lectura
+              - link [ref=e238] [cursor=pointer]:
+                - /url: /ciencia/hrv-fatiga-recuperacion-ciclismo
+                - article [ref=e239]:
+                  - generic [ref=e241]:
+                    - 'heading "HRV en Ciclismo: Lo Que Tu Corazón Dice Sobre Tu Fatiga Antes de Que Tú Lo Sepas" [level=3] [ref=e242]'
+                    - generic [ref=e243]:
+                      - time [ref=e244]: 23 de marzo de 2026
+                      - generic [ref=e245]: ·
+                      - generic [ref=e246]: 10 min de lectura
+              - link [ref=e247] [cursor=pointer]:
+                - /url: /ciencia/economia-pedaleo-eficiencia-ciclismo
+                - article [ref=e248]:
+                  - generic [ref=e250]:
+                    - 'heading "Economía de Pedaleo: Por Qué Dos Ciclistas con el Mismo VO2max No Rinden Igual" [level=3] [ref=e251]'
+                    - generic [ref=e252]:
+                      - time [ref=e253]: 22 de marzo de 2026
+                      - generic [ref=e254]: ·
+                      - generic [ref=e255]: 11 min de lectura
+              - link [ref=e256] [cursor=pointer]:
+                - /url: /ciencia/aerodinamica-posicion-ciclismo
+                - article [ref=e257]:
+                  - generic [ref=e259]:
+                    - 'heading "Aerodinámica en Ciclismo: Lo Que Tu Posición Le Cuesta en Watts" [level=3] [ref=e260]'
+                    - generic [ref=e261]:
+                      - time [ref=e262]: 21 de marzo de 2026
+                      - generic [ref=e263]: ·
+                      - generic [ref=e264]: 7 min de lectura
+        - generic [ref=e265]:
+          - generic [ref=e267]:
+            - heading "Entrenamiento" [level=2] [ref=e268]
+            - link "Ver todos→" [ref=e269] [cursor=pointer]:
+              - /url: /entrenamiento
+          - generic [ref=e270]:
+            - link [ref=e271] [cursor=pointer]:
+              - /url: /entrenamiento/entrenamiento-polarizado-en-ciclistas-amateurs-evidencia-y-aplicacion-practica
+              - article [ref=e272]:
+                - 'img "Entrenamiento polarizado en ciclistas amateurs: evidencia y aplicación práctica" [ref=e277]'
+                - generic [ref=e279]:
+                  - generic [ref=e280]: Entrenamiento
+                  - 'heading "Entrenamiento polarizado en ciclistas amateurs: evidencia y aplicación práctica" [level=3] [ref=e281]'
+                  - paragraph [ref=e282]: Un 11,7% de mejora en VO2max en nueve semanas. Eso es lo que obtuvo el grupo polarizado en el estudio de Stöggl y Sperlich frente a quienes entrenaron por umbrales o volumen. La pregunta es si funciona igual para quien pedalea 8 horas a la semana.
+                  - generic [ref=e283]:
+                    - generic [ref=e284]: TH
+                    - generic [ref=e285]: Por Tomás Herrera
+                    - generic [ref=e286]: ·
+                    - time [ref=e287]: 28 de marzo de 2026
+                    - generic [ref=e288]: ·
+                    - generic [ref=e289]: 12 min de lectura
+            - generic [ref=e290]:
+              - link [ref=e291] [cursor=pointer]:
+                - /url: /entrenamiento/distribucion-intensidad-modelos
+                - article [ref=e292]:
+                  - generic [ref=e294]:
+                    - 'heading "Polarizado, Piramidal o Umbral: Qué Dice la Ciencia Sobre Cada Modelo de Intensidad" [level=3] [ref=e295]'
+                    - generic [ref=e296]:
+                      - time [ref=e297]: 25 de marzo de 2026
+                      - generic [ref=e298]: ·
+                      - generic [ref=e299]: 9 min de lectura
+              - link [ref=e300] [cursor=pointer]:
+                - /url: /entrenamiento/progresion-ftp-primer-ano
+                - article [ref=e301]:
+                  - generic [ref=e303]:
+                    - 'heading "Progresión del FTP en el Primer Año: Qué Esperar Según Tu Punto de Partida" [level=3] [ref=e304]'
+                    - generic [ref=e305]:
+                      - time [ref=e306]: 24 de marzo de 2026
+                      - generic [ref=e307]: ·
+                      - generic [ref=e308]: 9 min de lectura
+              - link [ref=e309] [cursor=pointer]:
+                - /url: /entrenamiento/sweet-spot-training-ciclismo
+                - article [ref=e310]:
+                  - generic [ref=e312]:
+                    - 'heading "Sweet Spot Training: La Zona Que Maximiza Tu FTP con Menos Fatiga" [level=3] [ref=e313]'
+                    - generic [ref=e314]:
+                      - time [ref=e315]: 23 de marzo de 2026
+                      - generic [ref=e316]: ·
+                      - generic [ref=e317]: 9 min de lectura
+              - link [ref=e318] [cursor=pointer]:
+                - /url: /entrenamiento/fuerza-pretemporada-ciclistas
+                - article [ref=e319]:
+                  - generic [ref=e321]:
+                    - 'heading "Fuerza en Pretemporada: El Bloque Que Transforma Tu Pedaleo" [level=3] [ref=e322]'
+                    - generic [ref=e323]:
+                      - time [ref=e324]: 22 de marzo de 2026
+                      - generic [ref=e325]: ·
+                      - generic [ref=e326]: 9 min de lectura
+              - link [ref=e327] [cursor=pointer]:
+                - /url: /entrenamiento/entrenamiento-polarizado-ciclismo
+                - article [ref=e328]:
+                  - generic [ref=e330]:
+                    - 'heading "Entrenamiento Polarizado: Por Qué Ir Lento Te Hace Más Rápido" [level=3] [ref=e331]'
+                    - generic [ref=e332]:
+                      - time [ref=e333]: 21 de marzo de 2026
+                      - generic [ref=e334]: ·
+                      - generic [ref=e335]: 7 min de lectura
+        - generic [ref=e336]:
+          - generic [ref=e338]:
+            - heading "Competencia" [level=2] [ref=e339]
+            - link "Ver todos→" [ref=e340] [cursor=pointer]:
+              - /url: /competencia
+          - generic [ref=e341]:
+            - link [ref=e342] [cursor=pointer]:
+              - /url: /competencia/impulso-y-caida-de-remco-evenepoel-en-las-clasicas-de-primavera-2026
+              - article [ref=e343]:
+                - img "Impulso y caída de Remco Evenepoel en las clásicas de primavera 2026" [ref=e348]
+                - generic [ref=e350]:
+                  - generic [ref=e351]: Competencia
+                  - heading "Impulso y caída de Remco Evenepoel en las clásicas de primavera 2026" [level=3] [ref=e352]
+                  - paragraph [ref=e353]: Seis victorias en ocho días de competición abrieron la temporada 2026 de Remco Evenepoel con Red Bull-BORA-hansgrohe, pero una caída en la Volta a Catalunya y las dificultades en montaña frenaron su impulso de cara a las clásicas de las Ardenas.
+                  - generic [ref=e354]:
+                    - generic [ref=e355]: DA
+                    - generic [ref=e356]: Por Diego Araya
+                    - generic [ref=e357]: ·
+                    - time [ref=e358]: 28 de marzo de 2026
+                    - generic [ref=e359]: ·
+                    - generic [ref=e360]: 9 min de lectura
+            - generic [ref=e361]:
+              - link [ref=e362] [cursor=pointer]:
+                - /url: /competencia/estrategias-de-abanicos-en-paris-roubaix-evolucion-y-efecto-en-el-resultado-final
+                - article [ref=e363]:
+                  - generic [ref=e365]:
+                    - 'heading "Estrategias de abanicos en París-Roubaix: evolución y efecto en el resultado final" [level=3] [ref=e366]'
+                    - generic [ref=e367]:
+                      - time [ref=e368]: 27 de marzo de 2026
+                      - generic [ref=e369]: ·
+                      - generic [ref=e370]: 9 min de lectura
+              - link [ref=e371] [cursor=pointer]:
+                - /url: /competencia/giro-italia-2026-favoritos-recorrido
+                - article [ref=e372]:
+                  - generic [ref=e374]:
+                    - 'heading "Giro de Italia 2026: Favoritos, Recorrido y Análisis de las Etapas Clave" [level=3] [ref=e375]'
+                    - generic [ref=e376]:
+                      - time [ref=e377]: 26 de marzo de 2026
+                      - generic [ref=e378]: ·
+                      - generic [ref=e379]: 9 min de lectura
+              - link [ref=e380] [cursor=pointer]:
+                - /url: /competencia/vatios-puertos-tour-super-escaladores
+                - article [ref=e381]:
+                  - generic [ref=e383]:
+                    - 'heading "Vatios en los Puertos del Tour: La Era de los Súper-Escaladores" [level=3] [ref=e384]'
+                    - generic [ref=e385]:
+                      - time [ref=e386]: 25 de marzo de 2026
+                      - generic [ref=e387]: ·
+                      - generic [ref=e388]: 9 min de lectura
+              - link [ref=e389] [cursor=pointer]:
+                - /url: /competencia/cata-soto-campeona-panamericana-ruta
+                - article [ref=e390]:
+                  - generic [ref=e392]:
+                    - 'heading "Catalina Soto, campeona panamericana de ruta: la ciclista chilena que no se rindió" [level=3] [ref=e393]'
+                    - generic [ref=e394]:
+                      - time [ref=e395]: 21 de marzo de 2026
+                      - generic [ref=e396]: ·
+                      - generic [ref=e397]: 7 min de lectura
+              - link [ref=e398] [cursor=pointer]:
+                - /url: /competencia/cinco-monumentos-ciclismo-clasicas
+                - article [ref=e399]:
+                  - generic [ref=e401]:
+                    - 'heading "Los Cinco Monumentos: Las Carreras Más Épicas y Antiguas del Ciclismo" [level=3] [ref=e402]'
+                    - generic [ref=e403]:
+                      - time [ref=e404]: 21 de marzo de 2026
+                      - generic [ref=e405]: ·
+                      - generic [ref=e406]: 13 min de lectura
+      - complementary [ref=e407]:
+        - generic [ref=e408]:
+          - generic [ref=e409]:
+            - heading "Lo más leído" [level=2] [ref=e411]
+            - generic [ref=e412]:
+              - link [ref=e413] [cursor=pointer]:
+                - /url: /nutricion/creatina-ciclismo-evidencia-dosis
+                - article [ref=e414]:
+                  - generic [ref=e415]: "01"
+                  - 'img "Creatina en Ciclismo: Evidencia, Dosis y Cuándo Tiene Sentido Usarla" [ref=e417]'
+                  - generic [ref=e418]:
+                    - 'heading "Creatina en Ciclismo: Evidencia, Dosis y Cuándo Tiene Sentido Usarla" [level=3] [ref=e419]'
+                    - time [ref=e420]: 29 de marzo de 2026
+              - link [ref=e421] [cursor=pointer]:
+                - /url: /ciencia/sueno-rendimiento-ciclista
+                - article [ref=e422]:
+                  - generic [ref=e423]: "02"
+                  - 'img "Sueño y Rendimiento Ciclista: Lo Que Dice la Evidencia Sobre Dormir Para Recuperar" [ref=e425]'
+                  - generic [ref=e426]:
+                    - 'heading "Sueño y Rendimiento Ciclista: Lo Que Dice la Evidencia Sobre Dormir Para Recuperar" [level=3] [ref=e427]'
+                    - time [ref=e428]: 29 de marzo de 2026
+              - link [ref=e429] [cursor=pointer]:
+                - /url: /competencia/tour-de-flandes-2026-previa-favoritos
+                - article [ref=e430]:
+                  - generic [ref=e431]: "03"
+                  - 'img "Tour de Flandes 2026: Pogačar defiende corona ante Van der Poel y Van Aert en los muros de Flandes" [ref=e433]'
+                  - generic [ref=e434]:
+                    - 'heading "Tour de Flandes 2026: Pogačar defiende corona ante Van der Poel y Van Aert en los muros de Flandes" [level=3] [ref=e435]'
+                    - time [ref=e436]: 29 de marzo de 2026
+              - link [ref=e437] [cursor=pointer]:
+                - /url: /nutricion/vegetarianismo-y-rendimiento-en-ciclismo-planificacion-nutricional-para-evitar-deficiencias
+                - article [ref=e438]:
+                  - generic [ref=e439]: "04"
+                  - 'img "Vegetarianismo y rendimiento en ciclismo: planificación nutricional para evitar deficiencias" [ref=e441]'
+                  - generic [ref=e442]:
+                    - 'heading "Vegetarianismo y rendimiento en ciclismo: planificación nutricional para evitar deficiencias" [level=3] [ref=e443]'
+                    - time [ref=e444]: 27 de marzo de 2026
+              - link [ref=e445] [cursor=pointer]:
+                - /url: /ciencia/impacto-del-microbioma-intestinal-en-la-recuperacion-y-rendimiento-ciclista
+                - article [ref=e446]:
+                  - generic [ref=e447]: "05"
+                  - img "Impacto del microbioma intestinal en la recuperación y rendimiento ciclista" [ref=e449]
+                  - generic [ref=e450]:
+                    - heading "Impacto del microbioma intestinal en la recuperación y rendimiento ciclista" [level=3] [ref=e451]
+                    - time [ref=e452]: 27 de marzo de 2026
+          - insertion [ref=e454]:
+            - iframe [ref=e456]:
+              
+    - generic [ref=e461]:
+      - paragraph [ref=e462]: Nota editorial
+      - paragraph [ref=e463]: Cada artículo es investigado, redactado y verificado utilizando modelos de lenguaje avanzados con fuentes científicas reales. Contenido impulsado por inteligencia artificial, revisado con rigor.
+  - contentinfo [ref=e464]:
+    - generic [ref=e466]:
+      - generic [ref=e467]: Velociencia
+      - generic [ref=e468]:
+        - generic [ref=e469]:
+          - link "Velociencia" [ref=e470] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e471]: "Ciclismo basado en ciencia: nutricion, fisiologia y entrenamiento"
+          - paragraph [ref=e472]: Impulsado por IA
+        - generic [ref=e473]:
+          - heading "Secciones" [level=3] [ref=e474]
+          - list [ref=e475]:
+            - listitem [ref=e476]:
+              - link "Nutrición" [ref=e477] [cursor=pointer]:
+                - /url: /nutricion
+                - text: Nutrición
+            - listitem [ref=e479]:
+              - link "Ciencia" [ref=e480] [cursor=pointer]:
+                - /url: /ciencia
+                - text: Ciencia
+            - listitem [ref=e482]:
+              - link "Entrenamiento" [ref=e483] [cursor=pointer]:
+                - /url: /entrenamiento
+                - text: Entrenamiento
+            - listitem [ref=e485]:
+              - link "Competencia" [ref=e486] [cursor=pointer]:
+                - /url: /competencia
+                - text: Competencia
+        - generic [ref=e488]:
+          - heading "Sitio" [level=3] [ref=e489]
+          - list [ref=e490]:
+            - listitem [ref=e491]:
+              - link "Sobre nosotros" [ref=e492] [cursor=pointer]:
+                - /url: /sobre
+            - listitem [ref=e493]:
+              - link "Inicio" [ref=e494] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e495]:
+              - link "Política de privacidad" [ref=e496] [cursor=pointer]:
+                - /url: /privacidad
+            - listitem [ref=e497]:
+              - link "Contacto" [ref=e498] [cursor=pointer]:
+                - /url: /contacto
+        - generic [ref=e499]:
+          - heading "Newsletter" [level=3] [ref=e500]
+          - paragraph [ref=e501]: Recibe los mejores artículos en tu correo.
+          - generic [ref=e503]:
+            - textbox "tu@email.com" [ref=e504]
+            - button "Suscribirse" [ref=e505]
+      - generic [ref=e506]:
+        - paragraph [ref=e507]: © 2026 Velociencia. Todos los derechos reservados.
+        - paragraph [ref=e508]: Diseño editorial premium
+  - alert [ref=e509]

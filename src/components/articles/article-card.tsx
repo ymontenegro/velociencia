@@ -197,7 +197,7 @@ export function ArticleCard({
               {title}
             </h3>
             <time className="mt-1 block text-xs text-[var(--color-text-muted)]">
-              {formatDate(date)}
+              {formatDate(date, locale)}
             </time>
           </div>
         </article>

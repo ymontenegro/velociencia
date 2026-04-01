@@ -1,0 +1,473 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "PedalSci Science · Nutrition · Training" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+        - generic [ref=e13]:
+          - generic [ref=e14]: PedalSci
+          - generic [ref=e15]: Science · Nutrition · Training
+      - navigation [ref=e16]:
+        - link "Nutrition" [ref=e17] [cursor=pointer]:
+          - /url: /nutrition
+        - link "Science" [ref=e18] [cursor=pointer]:
+          - /url: /science
+        - link "Training" [ref=e19] [cursor=pointer]:
+          - /url: /training
+        - link "Competition" [ref=e20] [cursor=pointer]:
+          - /url: /competition
+        - link "About" [ref=e21] [cursor=pointer]:
+          - /url: /about
+        - link "ES" [ref=e22] [cursor=pointer]:
+          - /url: https://velociencia.cl
+          - img [ref=e23]
+          - text: ES
+        - button "Cambiar a modo oscuro" [ref=e26]:
+          - img [ref=e27]
+  - generic [ref=e30]:
+    - generic [ref=e31]: Latest
+    - generic [ref=e33]:
+      - 'link "Nutrition Creatine in Cycling: Evidence, Dosage, and When It…" [ref=e34] [cursor=pointer]':
+        - /url: /nutrition/creatine-cycling-evidence-dosage
+        - generic [ref=e35]: Nutrition
+        - generic [ref=e36]: "Creatine in Cycling: Evidence, Dosage, and When It…"
+      - 'link "Science Sleep and Cycling Performance: What the Evidence S…" [ref=e38] [cursor=pointer]':
+        - /url: /science/sleep-performance-cycling
+        - generic [ref=e39]: Science
+        - generic [ref=e40]: "Sleep and Cycling Performance: What the Evidence S…"
+      - 'link "Competition Tour of Flanders 2026: Pogačar Defends Title Again…" [ref=e42] [cursor=pointer]':
+        - /url: /competition/tour-of-flanders-2026-preview-favorites
+        - generic [ref=e43]: Competition
+        - generic [ref=e44]: "Tour of Flanders 2026: Pogačar Defends Title Again…"
+      - 'link "Nutrition Vegetarianism and Performance in Cycling: Nutritio…" [ref=e46] [cursor=pointer]':
+        - /url: /nutrition/vegetarianism-and-performance-in-cycling-nutritional-planning-to-avoid-deficienc
+        - generic [ref=e47]: Nutrition
+        - generic [ref=e48]: "Vegetarianism and Performance in Cycling: Nutritio…"
+      - link "Science Impact of the Gut Microbiome on Cyclist Recovery a…" [ref=e50] [cursor=pointer]:
+        - /url: /science/impact-of-the-gut-microbiome-on-cyclist-recovery-and-performance
+        - generic [ref=e51]: Science
+        - generic [ref=e52]: Impact of the Gut Microbiome on Cyclist Recovery a…
+  - main [ref=e53]:
+    - generic [ref=e55]:
+      - paragraph [ref=e56]: Latest
+      - generic [ref=e57]:
+        - link [ref=e59] [cursor=pointer]:
+          - /url: /nutrition/creatine-cycling-evidence-dosage
+          - article [ref=e60]:
+            - 'img "Creatine in Cycling: Evidence, Dosage, and When It Actually Makes Sense" [ref=e63]'
+            - generic [ref=e66]: Nutrition
+            - generic [ref=e67]:
+              - 'heading "Creatine in Cycling: Evidence, Dosage, and When It Actually Makes Sense" [level=3] [ref=e68]'
+              - paragraph [ref=e69]: Creatine boosts mean power in repeated cycling sprints (δ = 0.61), but has zero effect on steady-state endurance performance. A meta-analysis of 13 studies in trained athletes confirms no benefit for sustained efforts. Its real value for cyclists lies in attacks, sprint finishes, and repeated high-intensity surges.
+              - generic [ref=e70]:
+                - generic [ref=e71]: MV
+                - generic [ref=e72]: By Martin Velasco
+                - generic [ref=e73]: ·
+                - time [ref=e74]: March 30, 2026
+                - generic [ref=e75]: ·
+                - generic [ref=e76]: 13 min read
+        - generic [ref=e77]:
+          - link [ref=e79] [cursor=pointer]:
+            - /url: /science/sleep-performance-cycling
+            - article [ref=e80]:
+              - 'img "Sleep and Cycling Performance: What the Evidence Says About Resting to Recover" [ref=e85]'
+              - generic [ref=e87]:
+                - generic [ref=e88]: Science
+                - 'heading "Sleep and Cycling Performance: What the Evidence Says About Resting to Recover" [level=3] [ref=e89]'
+                - paragraph [ref=e90]: A single night of sleep deprivation can cut power output by 10%. Science explains why sleep is cycling's most underrated recovery tool.
+                - generic [ref=e91]:
+                  - generic [ref=e92]: SM
+                  - generic [ref=e93]: By Sofia Muller
+                  - generic [ref=e94]: ·
+                  - time [ref=e95]: March 30, 2026
+                  - generic [ref=e96]: ·
+                  - generic [ref=e97]: 11 min read
+          - link [ref=e99] [cursor=pointer]:
+            - /url: /competition/tour-of-flanders-2026-preview-favorites
+            - article [ref=e100]:
+              - 'img "Tour of Flanders 2026: Pogačar Defends Title Against Van der Poel and Van Aert on the Flemish Walls" [ref=e105]'
+              - generic [ref=e107]:
+                - generic [ref=e108]: Competition
+                - 'heading "Tour of Flanders 2026: Pogačar Defends Title Against Van der Poel and Van Aert on the Flemish Walls" [level=3] [ref=e109]'
+                - paragraph [ref=e110]: The 110th Tour of Flanders pits Pogačar, Van der Poel and Van Aert against each other across 271 km with 16 hellingen. Pogačar defends his title after winning Strade Bianche and Milan-San Remo. Van der Poel chases a record fourth victory after his E3 solo.
+                - generic [ref=e111]:
+                  - generic [ref=e112]: DA
+                  - generic [ref=e113]: By Diego Araya
+                  - generic [ref=e114]: ·
+                  - time [ref=e115]: March 30, 2026
+                  - generic [ref=e116]: ·
+                  - generic [ref=e117]: 11 min read
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic [ref=e125]:
+            - heading "Nutrition" [level=2] [ref=e126]
+            - link "View all→" [ref=e127] [cursor=pointer]:
+              - /url: /nutrition
+          - generic [ref=e128]:
+            - link [ref=e129] [cursor=pointer]:
+              - /url: /nutrition/vegetarianism-and-performance-in-cycling-nutritional-planning-to-avoid-deficienc
+              - article [ref=e130]:
+                - 'img "Vegetarianism and Performance in Cycling: Nutritional Planning to Avoid Deficiencies" [ref=e135]'
+                - generic [ref=e137]:
+                  - generic [ref=e138]: Nutrition
+                  - 'heading "Vegetarianism and Performance in Cycling: Nutritional Planning to Avoid Deficiencies" [level=3] [ref=e139]'
+                  - paragraph [ref=e140]: Science supports that vegetarian cyclists can maintain performance and muscle mass with proper nutritional planning, strategic B12, iron, creatine and omega-3 supplementation, and regular blood work.
+                  - generic [ref=e141]:
+                    - generic [ref=e142]: MV
+                    - generic [ref=e143]: By Martin Velasco
+                    - generic [ref=e144]: ·
+                    - time [ref=e145]: March 28, 2026
+                    - generic [ref=e146]: ·
+                    - generic [ref=e147]: 8 min read
+            - generic [ref=e148]:
+              - link [ref=e149] [cursor=pointer]:
+                - /url: /nutrition/electrolyte-management-ultra-endurance-cycling
+                - article [ref=e150]:
+                  - generic [ref=e152]:
+                    - 'heading "Electrolyte Management During Ultra-Endurance Cycling Races: Balance Between Hydration and Muscle Function" [level=3] [ref=e153]'
+                    - generic [ref=e154]:
+                      - time [ref=e155]: March 27, 2026
+                      - generic [ref=e156]: ·
+                      - generic [ref=e157]: 8 min read
+              - link [ref=e158] [cursor=pointer]:
+                - /url: /nutrition/iron-deficiency-detection-and-supplementation-in-cyclists
+                - article [ref=e159]:
+                  - generic [ref=e161]:
+                    - 'heading "Iron and Performance: Deficiency, Detection, and Supplementation in Cyclists" [level=3] [ref=e162]'
+                    - generic [ref=e163]:
+                      - time [ref=e164]: March 25, 2026
+                      - generic [ref=e165]: ·
+                      - generic [ref=e166]: 9 min read
+              - link [ref=e167] [cursor=pointer]:
+                - /url: /nutrition/carbohydrate-loading-protocols-and-scientific-evidence
+                - article [ref=e168]:
+                  - generic [ref=e170]:
+                    - 'heading "Carbohydrate Loading: Protocols and Scientific Evidence" [level=3] [ref=e171]'
+                    - generic [ref=e172]:
+                      - time [ref=e173]: March 24, 2026
+                      - generic [ref=e174]: ·
+                      - generic [ref=e175]: 8 min read
+              - link [ref=e176] [cursor=pointer]:
+                - /url: /nutrition/beta-alanine-and-cycling-performance-evidence-dosage-and-practical-application
+                - article [ref=e177]:
+                  - generic [ref=e179]:
+                    - 'heading "Beta-Alanine and Cycling Performance: Evidence, Dosage, and Practical Application" [level=3] [ref=e180]'
+                    - generic [ref=e181]:
+                      - time [ref=e182]: March 23, 2026
+                      - generic [ref=e183]: ·
+                      - generic [ref=e184]: 7 min read
+              - link [ref=e185] [cursor=pointer]:
+                - /url: /nutrition/nutritional-periodization-for-cyclists-fuel-according-to-demand
+                - article [ref=e186]:
+                  - generic [ref=e188]:
+                    - 'heading "Nutritional Periodization for Cyclists: Fuel According to Demand" [level=3] [ref=e189]'
+                    - generic [ref=e190]:
+                      - time [ref=e191]: March 22, 2026
+                      - generic [ref=e192]: ·
+                      - generic [ref=e193]: 8 min read
+        - generic [ref=e194]:
+          - generic [ref=e196]:
+            - heading "Science" [level=2] [ref=e197]
+            - link "View all→" [ref=e198] [cursor=pointer]:
+              - /url: /science
+          - generic [ref=e199]:
+            - link [ref=e200] [cursor=pointer]:
+              - /url: /science/impact-of-the-gut-microbiome-on-cyclist-recovery-and-performance
+              - article [ref=e201]:
+                - img "Impact of the Gut Microbiome on Cyclist Recovery and Performance" [ref=e206]
+                - generic [ref=e208]:
+                  - generic [ref=e209]: Science
+                  - heading "Impact of the Gut Microbiome on Cyclist Recovery and Performance" [level=3] [ref=e210]
+                  - paragraph [ref=e211]: Studies in Nature Medicine and Gut reveal that specific bacteria like Veillonella and Prevotella modulate lactate, inflammation, and recovery in endurance cyclists.
+                  - generic [ref=e212]:
+                    - generic [ref=e213]: SM
+                    - generic [ref=e214]: By Sofia Muller
+                    - generic [ref=e215]: ·
+                    - time [ref=e216]: March 28, 2026
+                    - generic [ref=e217]: ·
+                    - generic [ref=e218]: 8 min read
+            - generic [ref=e219]:
+              - link [ref=e220] [cursor=pointer]:
+                - /url: /science/power-curve-what-your-cyclist-profile-reveals
+                - article [ref=e221]:
+                  - generic [ref=e223]:
+                    - 'heading "Power Curve: What Your Cyclist Profile Reveals" [level=3] [ref=e224]'
+                    - generic [ref=e225]:
+                      - time [ref=e226]: March 26, 2026
+                      - generic [ref=e227]: ·
+                      - generic [ref=e228]: 8 min read
+              - link [ref=e229] [cursor=pointer]:
+                - /url: /science/watts-per-kg-competitive-levels-and-how-to-improve
+                - article [ref=e230]:
+                  - generic [ref=e232]:
+                    - 'heading "W/kg: Competitive Level Ranges and How to Improve Them" [level=3] [ref=e233]'
+                    - generic [ref=e234]:
+                      - time [ref=e235]: March 25, 2026
+                      - generic [ref=e236]: ·
+                      - generic [ref=e237]: 7 min read
+              - link [ref=e238] [cursor=pointer]:
+                - /url: /science/hrv-in-cycling-what-your-heart-says-about-your-fatigue-before-you-know-it
+                - article [ref=e239]:
+                  - generic [ref=e241]:
+                    - 'heading "HRV in Cycling: What Your Heart Says About Your Fatigue Before You Know It" [level=3] [ref=e242]'
+                    - generic [ref=e243]:
+                      - time [ref=e244]: March 23, 2026
+                      - generic [ref=e245]: ·
+                      - generic [ref=e246]: 8 min read
+              - link [ref=e247] [cursor=pointer]:
+                - /url: /science/pedaling-economy-why-two-cyclists-with-the-same-vo2max-perform-differently
+                - article [ref=e248]:
+                  - generic [ref=e250]:
+                    - 'heading "Pedaling Economy: Why Two Cyclists with the Same VO2max Perform Differently" [level=3] [ref=e251]'
+                    - generic [ref=e252]:
+                      - time [ref=e253]: March 22, 2026
+                      - generic [ref=e254]: ·
+                      - generic [ref=e255]: 9 min read
+              - link [ref=e256] [cursor=pointer]:
+                - /url: /science/aerodynamics-in-cycling-what-your-position-costs-in-watts
+                - article [ref=e257]:
+                  - generic [ref=e259]:
+                    - 'heading "Aerodynamics in Cycling: What Your Position Costs in Watts" [level=3] [ref=e260]'
+                    - generic [ref=e261]:
+                      - time [ref=e262]: March 21, 2026
+                      - generic [ref=e263]: ·
+                      - generic [ref=e264]: 6 min read
+        - generic [ref=e265]:
+          - generic [ref=e267]:
+            - heading "Training" [level=2] [ref=e268]
+            - link "View all→" [ref=e269] [cursor=pointer]:
+              - /url: /training
+          - generic [ref=e270]:
+            - link [ref=e271] [cursor=pointer]:
+              - /url: /training/polarized-training-in-amateur-cyclists-evidence-and-practical-application
+              - article [ref=e272]:
+                - 'img "Polarized Training in Amateur Cyclists: Evidence and Practical Application" [ref=e277]'
+                - generic [ref=e279]:
+                  - generic [ref=e280]: Training
+                  - 'heading "Polarized Training in Amateur Cyclists: Evidence and Practical Application" [level=3] [ref=e281]'
+                  - paragraph [ref=e282]: An 11.7% improvement in VO2max in nine weeks. That is what the polarized group achieved in the Stöggl and Sperlich study compared to those who trained by threshold or volume. The question is whether it works the same for someone pedaling 8 hours a week.
+                  - generic [ref=e283]:
+                    - generic [ref=e284]: TH
+                    - generic [ref=e285]: By Tomas Herrera
+                    - generic [ref=e286]: ·
+                    - time [ref=e287]: March 28, 2026
+                    - generic [ref=e288]: ·
+                    - generic [ref=e289]: 11 min read
+            - generic [ref=e290]:
+              - link [ref=e291] [cursor=pointer]:
+                - /url: /training/polarized-pyramidal-or-threshold-what-science-says-about-each-model
+                - article [ref=e292]:
+                  - generic [ref=e294]:
+                    - 'heading "Polarized, Pyramidal, or Threshold: What Science Says About Each Intensity Model" [level=3] [ref=e295]'
+                    - generic [ref=e296]:
+                      - time [ref=e297]: March 25, 2026
+                      - generic [ref=e298]: ·
+                      - generic [ref=e299]: 8 min read
+              - link [ref=e300] [cursor=pointer]:
+                - /url: /training/ftp-progression-in-your-first-year-what-to-expect
+                - article [ref=e301]:
+                  - generic [ref=e303]:
+                    - 'heading "FTP Progression in Your First Year: What to Expect Based on Your Starting Point" [level=3] [ref=e304]'
+                    - generic [ref=e305]:
+                      - time [ref=e306]: March 24, 2026
+                      - generic [ref=e307]: ·
+                      - generic [ref=e308]: 8 min read
+              - link [ref=e309] [cursor=pointer]:
+                - /url: /training/sweet-spot-training-the-zone-that-maximizes-your-ftp-with-less-fatigue
+                - article [ref=e310]:
+                  - generic [ref=e312]:
+                    - 'heading "Sweet Spot Training: The Zone That Maximizes Your FTP with Less Fatigue" [level=3] [ref=e313]'
+                    - generic [ref=e314]:
+                      - time [ref=e315]: March 23, 2026
+                      - generic [ref=e316]: ·
+                      - generic [ref=e317]: 8 min read
+              - link [ref=e318] [cursor=pointer]:
+                - /url: /training/strength-in-preseason-the-block-that-transforms-your-pedaling
+                - article [ref=e319]:
+                  - generic [ref=e321]:
+                    - 'heading "Strength in Preseason: The Block That Transforms Your Pedaling" [level=3] [ref=e322]'
+                    - generic [ref=e323]:
+                      - time [ref=e324]: March 22, 2026
+                      - generic [ref=e325]: ·
+                      - generic [ref=e326]: 8 min read
+              - link [ref=e327] [cursor=pointer]:
+                - /url: /training/gym-strength-for-cyclists-which-exercises-work-and-when-to-do-them
+                - article [ref=e328]:
+                  - generic [ref=e330]:
+                    - 'heading "Gym Strength for Cyclists: Which Exercises Work and When to Do Them" [level=3] [ref=e331]'
+                    - generic [ref=e332]:
+                      - time [ref=e333]: March 21, 2026
+                      - generic [ref=e334]: ·
+                      - generic [ref=e335]: 8 min read
+        - generic [ref=e336]:
+          - generic [ref=e338]:
+            - heading "Competition" [level=2] [ref=e339]
+            - link "View all→" [ref=e340] [cursor=pointer]:
+              - /url: /competition
+          - generic [ref=e341]:
+            - link [ref=e342] [cursor=pointer]:
+              - /url: /competition/rise-and-fall-of-remco-evenepoel-in-the-2026-spring-classics
+              - article [ref=e343]:
+                - img "Rise and Fall of Remco Evenepoel in the 2026 Spring Classics" [ref=e348]
+                - generic [ref=e350]:
+                  - generic [ref=e351]: Competition
+                  - heading "Rise and Fall of Remco Evenepoel in the 2026 Spring Classics" [level=3] [ref=e352]
+                  - paragraph [ref=e353]: Six victories in eight racing days opened Remco Evenepoel's 2026 season with Red Bull-BORA-hansgrohe, but a crash at Volta a Catalunya and climbing struggles halted his momentum ahead of the Ardennes classics.
+                  - generic [ref=e354]:
+                    - generic [ref=e355]: DA
+                    - generic [ref=e356]: By Diego Araya
+                    - generic [ref=e357]: ·
+                    - time [ref=e358]: March 28, 2026
+                    - generic [ref=e359]: ·
+                    - generic [ref=e360]: 8 min read
+            - generic [ref=e361]:
+              - link [ref=e362] [cursor=pointer]:
+                - /url: /competition/echelon-strategies-in-paris-roubaix-evolution-and-effect-on-the-final-result
+                - article [ref=e363]:
+                  - generic [ref=e365]:
+                    - 'heading "Echelon Strategies in Paris-Roubaix: Evolution and Effect on the Final Result" [level=3] [ref=e366]'
+                    - generic [ref=e367]:
+                      - time [ref=e368]: March 27, 2026
+                      - generic [ref=e369]: ·
+                      - generic [ref=e370]: 7 min read
+              - link [ref=e371] [cursor=pointer]:
+                - /url: /competition/giro-d-italia-2026-favorites-route-and-key-stage-analysis
+                - article [ref=e372]:
+                  - generic [ref=e374]:
+                    - 'heading "Giro d''Italia 2026: Favorites, Route and Key Stage Analysis" [level=3] [ref=e375]'
+                    - generic [ref=e376]:
+                      - time [ref=e377]: March 26, 2026
+                      - generic [ref=e378]: ·
+                      - generic [ref=e379]: 8 min read
+              - link [ref=e380] [cursor=pointer]:
+                - /url: /competition/watts-on-tour-climbs-the-era-of-super-climbers
+                - article [ref=e381]:
+                  - generic [ref=e383]:
+                    - 'heading "Watts on Tour Climbs: The Era of the Super-Climbers" [level=3] [ref=e384]'
+                    - generic [ref=e385]:
+                      - time [ref=e386]: March 25, 2026
+                      - generic [ref=e387]: ·
+                      - generic [ref=e388]: 9 min read
+              - link [ref=e389] [cursor=pointer]:
+                - /url: /competition/catalina-soto-pan-american-road-champion-the-chilean-cyclist-who-never-gave-up
+                - article [ref=e390]:
+                  - generic [ref=e392]:
+                    - 'heading "Catalina Soto, Pan American Road Champion: The Chilean Cyclist Who Never Gave Up" [level=3] [ref=e393]'
+                    - generic [ref=e394]:
+                      - time [ref=e395]: March 21, 2026
+                      - generic [ref=e396]: ·
+                      - generic [ref=e397]: 7 min read
+              - link [ref=e398] [cursor=pointer]:
+                - /url: /competition/pogacar-conquers-milan-san-remo-and-adds-his-fourth-different-monument
+                - article [ref=e399]:
+                  - generic [ref=e401]:
+                    - heading "Pogačar conquers Milan-San Remo and adds his fourth different monument" [level=3] [ref=e402]
+                    - generic [ref=e403]:
+                      - time [ref=e404]: March 21, 2026
+                      - generic [ref=e405]: ·
+                      - generic [ref=e406]: 7 min read
+      - complementary [ref=e407]:
+        - generic [ref=e408]:
+          - generic [ref=e409]:
+            - heading "Most read" [level=2] [ref=e411]
+            - generic [ref=e412]:
+              - link [ref=e413] [cursor=pointer]:
+                - /url: /nutrition/creatine-cycling-evidence-dosage
+                - article [ref=e414]:
+                  - generic [ref=e415]: "01"
+                  - 'img "Creatine in Cycling: Evidence, Dosage, and When It Actually Makes Sense" [ref=e417]'
+                  - generic [ref=e418]:
+                    - 'heading "Creatine in Cycling: Evidence, Dosage, and When It Actually Makes Sense" [level=3] [ref=e419]'
+                    - time [ref=e420]: 29 de marzo de 2026
+              - link [ref=e421] [cursor=pointer]:
+                - /url: /science/sleep-performance-cycling
+                - article [ref=e422]:
+                  - generic [ref=e423]: "02"
+                  - 'img "Sleep and Cycling Performance: What the Evidence Says About Resting to Recover" [ref=e425]'
+                  - generic [ref=e426]:
+                    - 'heading "Sleep and Cycling Performance: What the Evidence Says About Resting to Recover" [level=3] [ref=e427]'
+                    - time [ref=e428]: 29 de marzo de 2026
+              - link [ref=e429] [cursor=pointer]:
+                - /url: /competition/tour-of-flanders-2026-preview-favorites
+                - article [ref=e430]:
+                  - generic [ref=e431]: "03"
+                  - 'img "Tour of Flanders 2026: Pogačar Defends Title Against Van der Poel and Van Aert on the Flemish Walls" [ref=e433]'
+                  - generic [ref=e434]:
+                    - 'heading "Tour of Flanders 2026: Pogačar Defends Title Against Van der Poel and Van Aert on the Flemish Walls" [level=3] [ref=e435]'
+                    - time [ref=e436]: 29 de marzo de 2026
+              - link [ref=e437] [cursor=pointer]:
+                - /url: /nutrition/vegetarianism-and-performance-in-cycling-nutritional-planning-to-avoid-deficienc
+                - article [ref=e438]:
+                  - generic [ref=e439]: "04"
+                  - 'img "Vegetarianism and Performance in Cycling: Nutritional Planning to Avoid Deficiencies" [ref=e441]'
+                  - generic [ref=e442]:
+                    - 'heading "Vegetarianism and Performance in Cycling: Nutritional Planning to Avoid Deficiencies" [level=3] [ref=e443]'
+                    - time [ref=e444]: 27 de marzo de 2026
+              - link [ref=e445] [cursor=pointer]:
+                - /url: /science/impact-of-the-gut-microbiome-on-cyclist-recovery-and-performance
+                - article [ref=e446]:
+                  - generic [ref=e447]: "05"
+                  - img "Impact of the Gut Microbiome on Cyclist Recovery and Performance" [ref=e449]
+                  - generic [ref=e450]:
+                    - heading "Impact of the Gut Microbiome on Cyclist Recovery and Performance" [level=3] [ref=e451]
+                    - time [ref=e452]: 27 de marzo de 2026
+          - insertion [ref=e454]:
+            - iframe [ref=e456]:
+              
+    - generic [ref=e461]:
+      - paragraph [ref=e462]: Editorial note
+      - paragraph [ref=e463]: Every article is researched, written and verified using advanced language models with real scientific sources. Content powered by artificial intelligence, reviewed with rigor.
+  - contentinfo [ref=e464]:
+    - generic [ref=e466]:
+      - generic [ref=e467]: PedalSci
+      - generic [ref=e468]:
+        - generic [ref=e469]:
+          - link "PedalSci" [ref=e470] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e471]: "Science-based cycling: nutrition, physiology and training"
+          - paragraph [ref=e472]: Powered by AI
+        - generic [ref=e473]:
+          - heading "Sections" [level=3] [ref=e474]
+          - list [ref=e475]:
+            - listitem [ref=e476]:
+              - link "Nutrition" [ref=e477] [cursor=pointer]:
+                - /url: /nutrition
+                - text: Nutrition
+            - listitem [ref=e479]:
+              - link "Science" [ref=e480] [cursor=pointer]:
+                - /url: /science
+                - text: Science
+            - listitem [ref=e482]:
+              - link "Training" [ref=e483] [cursor=pointer]:
+                - /url: /training
+                - text: Training
+            - listitem [ref=e485]:
+              - link "Competition" [ref=e486] [cursor=pointer]:
+                - /url: /competition
+                - text: Competition
+        - generic [ref=e488]:
+          - heading "Site" [level=3] [ref=e489]
+          - list [ref=e490]:
+            - listitem [ref=e491]:
+              - link "About us" [ref=e492] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e493]:
+              - link "Home" [ref=e494] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e495]:
+              - link "Privacy policy" [ref=e496] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e497]:
+              - link "Contact" [ref=e498] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e499]:
+          - heading "Newsletter" [level=3] [ref=e500]
+          - paragraph [ref=e501]: Get the best articles delivered to your inbox.
+          - generic [ref=e503]:
+            - textbox "you@email.com" [ref=e504]
+            - button "Subscribe" [ref=e505]
+      - generic [ref=e506]:
+        - paragraph [ref=e507]: © 2026 PedalSci. All rights reserved.
+        - paragraph [ref=e508]: Premium editorial design
+  - alert [ref=e509]

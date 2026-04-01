@@ -3,6 +3,7 @@ import { Space_Grotesk, DM_Sans } from "next/font/google";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_NAME_I18N, SITE_DESCRIPTION_I18N } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LocaleProvider } from "@/components/locale-provider";
+import { GoogleFcSignal } from "@/components/ads/google-fc-signal";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import "./globals.css";
@@ -93,7 +94,6 @@ export default async function RootLayout({
           async
           src="https://fundingchoicesmessages.google.com/i/pub-3852673931467935?ers=1"
         />
-        <script dangerouslySetInnerHTML={{ __html: `(function() {function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){const e=document.createElement('iframe');e.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;';e.style.display='none';e.name='googlefcPresent';document.body.appendChild(e);}else{setTimeout(signalGooglefcPresent,0);}}};signalGooglefcPresent();})();` }} />
         {/* Google AdSense — consent managed by Google Funding Choices (CMP) */}
         <script
           async
@@ -102,6 +102,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <GoogleFcSignal />
         <ThemeProvider>
           <LocaleProvider locale={locale} dict={dict}>
             {children}
