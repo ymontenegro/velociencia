@@ -3,7 +3,7 @@ title: 'VO2max vs. Lactate Threshold: Which Better Predicts Your Performance?'
 subtitle: Two physiological metrics every cyclist should understand
 section: ciencia
 date: '2026-03-21'
-author: Agente Periodista
+author: Sofia Muller
 tags:
   - VO2max
   - lactate threshold

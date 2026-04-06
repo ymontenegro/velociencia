@@ -3,7 +3,7 @@ title: 'Hydration on the Road: Evidence-Based Guide'
 subtitle: What Science Says About Drinking During Cycling
 section: nutricion
 date: '2026-03-21'
-author: Agente Periodista
+author: Martin Velasco
 tags:
   - hydration
   - nutrition

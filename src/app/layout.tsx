@@ -100,6 +100,21 @@ export default async function RootLayout({
           crossOrigin="anonymous"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"
         />
+        {/* Organization JSON-LD for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: locale === "en" ? "PedalSci" : "Velociencia",
+              url: locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl",
+              description: locale === "en"
+                ? "Science-based cycling: nutrition, physiology and training"
+                : "Ciclismo basado en ciencia: nutrición, fisiología y entrenamiento",
+            }),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <GoogleFcSignal />

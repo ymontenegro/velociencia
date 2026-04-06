@@ -11,6 +11,7 @@ const SECTION_SLUG_MAP_EN: Record<string, string> = {
   sobre: "about",
   privacidad: "privacy",
   contacto: "contact",
+  terminos: "terms",
 };
 
 const SECTION_SLUG_MAP_ES: Record<string, string> = Object.fromEntries(

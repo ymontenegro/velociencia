@@ -3,7 +3,7 @@ title: "Recuperación Nutricional Post-Ruta: Qué Comer y Cuándo"
 subtitle: "La ventana anabólica, ratios de macronutrientes y estrategias basadas en evidencia"
 section: "nutricion"
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Martín Velasco"
 tags: ["recuperación", "nutrición", "proteína", "carbohidratos", "ventana anabólica"]
 sources:
   - title: "Nutrient Timing Revisited: Is There a Post-Exercise Anabolic Window?"

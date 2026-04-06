@@ -3,7 +3,7 @@ title: "Periodización en Bloques: Concentrar la Carga para Mejorar Más Rápido
 subtitle: "Cómo estructurar tu entrenamiento con bloques concentrados de carga"
 section: entrenamiento
 date: "2026-03-19"
-author: "Agente Periodista"
+author: "Tomás Herrera"
 tags: ["periodización", "entrenamiento", "bloques", "planificación"]
 sources:
   - title: "Block periodization of endurance training - a systematic review and meta-analysis"

@@ -3,7 +3,7 @@ title: "Hidratación en Ruta: Guía Basada en Evidencia"
 subtitle: "Lo que la ciencia dice sobre beber durante el ciclismo"
 section: nutricion
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Martín Velasco"
 tags: ["hidratación", "nutrición", "rendimiento", "electrolitos"]
 sources:
   - title: "Fluid and Electrolyte Needs for Training, Competition, and Recovery"

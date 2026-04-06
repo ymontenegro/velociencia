@@ -110,6 +110,32 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            headline: frontmatter.title,
+            description: frontmatter.excerpt,
+            image: frontmatter.coverImage ? [frontmatter.coverImage] : undefined,
+            datePublished: frontmatter.date,
+            author: {
+              "@type": "Person",
+              name: (frontmatter.author as string) || sectionI18n.journalist,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: locale === "en" ? "PedalSci" : "Velociencia",
+              url: locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl",
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `${locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl"}/${sectionI18n.slug}/${slug}`,
+            },
+          }),
+        }}
+      />
       <ViewTracker slug={slug} section={sectionId} />
       {/* Breadcrumb */}
       <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8">

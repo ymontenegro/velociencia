@@ -3,7 +3,7 @@ title: "VO2max en Ciclismo: ¿Qué Dice la Ciencia Actual?"
 subtitle: "Revisión de papers recientes sobre el consumo máximo de oxígeno"
 section: ciencia
 date: "2026-03-20"
-author: "Agente Periodista"
+author: "Sofía Müller"
 tags: ["VO2max", "fisiología", "rendimiento", "investigación"]
 sources:
   - title: "Familial aggregation of VO2max response to exercise training: results from the HERITAGE Family Study"

@@ -3,7 +3,7 @@ title: "Electrolitos y Ciclismo: La Química Detrás de la Hidratación"
 subtitle: "Sodio, potasio y magnesio: qué necesitas y cuánto durante rutas largas"
 section: "nutricion"
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Martín Velasco"
 tags: ["electrolitos", "hidratación", "sodio", "rendimiento", "nutrición deportiva"]
 sources:
   - title: "Sweating Rate and Sweat Sodium Concentration in Athletes: A Review of Methodology and Intra/Interindividual Variability"

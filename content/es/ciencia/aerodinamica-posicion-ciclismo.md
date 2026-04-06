@@ -3,7 +3,7 @@ title: "Aerodinámica en Ciclismo: Lo Que Tu Posición Le Cuesta en Watts"
 subtitle: "La resistencia al aire representa el 90% de las fuerzas a vencer sobre los 30 km/h"
 section: "ciencia"
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Sofía Müller"
 tags: ["aerodinámica", "CdA", "posición", "rendimiento", "biomecánica"]
 sources:
   - title: "Aerodynamic study of different cyclist positions: CFD analysis and full-scale wind-tunnel tests"

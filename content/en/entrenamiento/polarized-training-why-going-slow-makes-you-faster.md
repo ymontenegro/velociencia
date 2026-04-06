@@ -3,7 +3,7 @@ title: 'Polarized Training: Why Going Slow Makes You Faster'
 subtitle: The 80/20 Model Used by the World's Best Cyclists
 section: entrenamiento
 date: '2026-03-21'
-author: Agente Periodista
+author: Tomas Herrera
 tags:
   - polarized
   - training

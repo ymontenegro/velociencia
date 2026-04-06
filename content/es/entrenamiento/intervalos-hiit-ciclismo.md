@@ -3,7 +3,7 @@ title: "Intervalos de Alta Intensidad: Protocolos Que Funcionan"
 subtitle: "Del 30/30 al Tabata: qué dice la ciencia sobre cada formato de HIIT"
 section: "entrenamiento"
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Tomás Herrera"
 tags: ["HIIT", "intervalos", "intensidad", "VO2max", "potencia"]
 sources:
   - title: "High-intensity interval training, solutions to the programming puzzle: Part I: cardiopulmonary emphasis"

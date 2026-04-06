@@ -75,5 +75,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   });
 
+  entries.push({
+    url: `${ES_BASE}/terminos`,
+    lastModified: new Date("2026-04-01"),
+    changeFrequency: "yearly",
+    priority: 0.3,
+    alternates: {
+      languages: {
+        es: `${ES_BASE}/terminos`,
+        en: `${EN_BASE}/terms`,
+      },
+    },
+  });
+
   return entries;
 }

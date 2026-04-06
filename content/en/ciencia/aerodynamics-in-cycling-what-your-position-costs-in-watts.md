@@ -3,7 +3,7 @@ title: 'Aerodynamics in Cycling: What Your Position Costs in Watts'
 subtitle: Air resistance accounts for 90% of the forces to overcome above 30 km/h
 section: ciencia
 date: '2026-03-21'
-author: Agente Periodista
+author: Sofia Muller
 tags:
   - aerodynamics
   - CdA

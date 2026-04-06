@@ -3,7 +3,7 @@ title: "Entrenamiento Polarizado: Por Qué Ir Lento Te Hace Más Rápido"
 subtitle: "El modelo 80/20 que usan los mejores ciclistas del mundo"
 section: "entrenamiento"
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Tomás Herrera"
 tags: ["polarizado", "entrenamiento", "zonas", "intensidad", "resistencia"]
 sources:
   - title: "Polarized training has greater impact on key endurance variables than threshold, high intensity, or high volume training"

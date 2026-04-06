@@ -3,7 +3,7 @@ title: "VO2max vs. Umbral de Lactato: ¿Cuál Predice Mejor Tu Rendimiento?"
 subtitle: "Dos métricas fisiológicas que todo ciclista debería entender"
 section: "ciencia"
 date: "2026-03-21"
-author: "Agente Periodista"
+author: "Sofía Müller"
 tags: ["VO2max", "umbral de lactato", "FTP", "fisiología", "rendimiento"]
 sources:
   - title: "Lactate threshold concepts: how valid are they?"
