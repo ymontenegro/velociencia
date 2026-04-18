@@ -5,7 +5,7 @@ section: entrenamiento
 slug: pogacar-method-training-broke-rules
 date: "2026-04-18"
 author: "Tomás Herrera"
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Tadej_Poga%C4%8Dar_leading_last_lap_%2853878069646%29.jpg/1200px-Tadej_Poga%C4%8Dar_leading_last_lap_%2853878069646%29.jpg"
+coverImage: "https://images.unsplash.com/photo-1575995330221-c20326537393?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 tags: ["Tadej Pogačar", "Iñigo San Millán", "Javier Sola", "UAE Team Emirates", "zone 2", "VO2max", "altitude training", "strength training"]
 sources:
   - title: "Berg, O. K. (2024) – Estimating Pogačar's VO2max through Tour de France uphill data (Journal of Science and Cycling)"

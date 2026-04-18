@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Space_Grotesk, DM_Sans } from "next/font/google";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_NAME_I18N, SITE_DESCRIPTION_I18N } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -89,17 +90,7 @@ export default async function RootLayout({
         <link rel="alternate" hrefLang="es" href="https://velociencia.cl" />
         <link rel="alternate" hrefLang="en" href="https://pedalsci.com" />
         <link rel="alternate" hrefLang="x-default" href="https://velociencia.cl" />
-        {/* Google Funding Choices (CMP) — consent management */}
-        <script
-          async
-          src="https://fundingchoicesmessages.google.com/i/pub-3852673931467935?ers=1"
-        />
-        {/* Google AdSense — consent managed by Google Funding Choices (CMP) */}
-        <script
-          async
-          crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"
-        />
+        {/* Google Funding Choices + AdSense loaded via next/script to avoid hydration mismatch when ad blockers remove DOM nodes */}
         {/* Organization JSON-LD for SEO */}
         <script
           type="application/ld+json"
@@ -117,6 +108,15 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <Script
+          src="https://fundingchoicesmessages.google.com/i/pub-3852673931467935?ers=1"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3852673931467935"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <GoogleFcSignal />
         <ThemeProvider>
           <LocaleProvider locale={locale} dict={dict}>

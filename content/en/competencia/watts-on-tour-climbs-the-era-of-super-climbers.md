@@ -22,7 +22,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/24791914/"
     type: pubmed
 excerpt: "Power data on the great Tour de France climbs tells the story of modern cycling. From the suspiciously high numbers of the Armstrong era to the resurgence of super-climbers with Pogačar and Vingegaard."
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Tadej_Pogacar_in_the_descent_of_Tourmalet_pass_during_stage_14_of_TDF_24.jpg/1200px-Tadej_Pogacar_in_the_descent_of_Tourmalet_pass_during_stage_14_of_TDF_24.jpg"
+coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## The numbers that define an era
@@ -71,7 +71,7 @@ Those figures turned out to be consistent with what was later confirmed about th
 
 The post-Armstrong era brought a visible correction. When Alberto Contador won the Tour in 2009, his climbing figures (estimated at 6.0-6.1 W/kg) sat significantly below the peaks of 2001-2003. Cadel Evans in 2011 and Chris Froome in 2013 showed similar values, in the 5.8-6.0 W/kg range. The biological passport, implemented by the UCI in 2008, appeared to be working.
 
-![Jonas Vingegaard wearing the yellow jersey at the 2023 Tour de France (Photo: Rene Hourdry, CC BY-SA 4.0, via Wikimedia Commons)](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Jonas_Vingegaard_-_Vainqueur_du_Tour_de_France_2023.jpg/900px-Jonas_Vingegaard_-_Vainqueur_du_Tour_de_France_2023.jpg)
+![Professional cycling peloton racing on the road](https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Froome and the Sky era: efficiency and marginal gains
 
@@ -79,7 +79,7 @@ Chris Froome won four Tours between 2013 and 2017 with an approach that prioriti
 
 Froome's ascents rarely produced record times. His dominance was built on maintaining a high tempo for longer than his rivals, not on producing explosive peaks of power. On the Ventoux in 2013, his estimated output was 5.9 W/kg over 57 minutes. At La Pierre-Saint-Martin in 2015, 6.0 W/kg over 32 minutes. Credible numbers for a clean elite athlete with an estimated VO2max of 84.6 ml/kg/min, according to data published by the team.
 
-![Tadej Pogačar celebrating a stage victory at the 2022 Tour of Slovenia, wearing the UAE Team Emirates jersey (Photo: Petar Milosevic, CC BY-SA 4.0, via Wikimedia Commons)](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/2022_Tour_of_Slovenia_%28Stage_3%2C_Tadej_Poga%C4%8Dar_celebrating_victory_on_Celje_Castle_v2%29.jpg/900px-2022_Tour_of_Slovenia_%28Stage_3%2C_Tadej_Poga%C4%8Dar_celebrating_victory_on_Celje_Castle_v2%29.jpg)
+![Two road cyclists competing intensely in a professional race](https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=900&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Pogacar and Vingegaard: the new ceiling
 

@@ -37,7 +37,7 @@ sources:
     url: "https://www.cyclingnews.com/pro-cycling/racing/i-will-come-back-for-sure-remco-evenepoel-bullish-on-cobbled-classics-after-taking-third-in-his-tour-of-flanders-debut-is-a-future-ride-in-paris-roubaix-coming/"
     type: web_search
 excerpt: "259,5 kilómetros y 4.395 metros de desnivel separan a los favoritos del velódromo imaginario de Liège. Pogačar parte como máximo favorito tras su doblete Milán-San Remo + Flandes, pero Evenepoel, Pidcock, Healy, Skjelmose y Seixas llegan con motivos para creer que la Doyenne puede cambiar de dueño."
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/2024_LBL_start_Tadej_Poga%C4%8Dar1.jpg/1200px-2024_LBL_start_Tadej_Poga%C4%8Dar1.jpg"
+coverImage: "https://images.unsplash.com/photo-1583348488360-00512a32b0f6?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 259,5 kilómetros y 4.395 metros de desnivel positivo. Once cotés oficiales. Una llegada en plano en Liège tras bajar de la Roche-aux-Faucons. La 112ª edición de Liège-Bastogne-Liège se disputa el domingo 26 de abril y vuelve a reclamar su estatus de clásica más antigua del calendario, la Doyenne, esa carrera que Eddy Merckx ganó cinco veces y que hoy tiene a un nuevo emperador intentando acercarse a ese registro.

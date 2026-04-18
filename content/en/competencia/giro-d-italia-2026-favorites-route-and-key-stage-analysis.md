@@ -22,7 +22,7 @@ sources:
     url: "https://www.eurosport.es/ciclismo/giro-de-italia/2025/presentacion-recorrido-2026-fechas-etapas-perfiles-contrarreloj-dolomitas-mapa-analisis-trazado-donde-ver-hbo-max-tv-online_sto23246305/story.shtml"
     type: web_search
 excerpt: "The 2026 Giro d'Italia departs from Bulgaria on May 8 and finishes in Rome on May 31. With 3,459 km, 7 summit finishes, the Blockhaus, the Dolomites and a 40 km ITT, the route favors complete climbers. Roglič, Tiberi and Del Toro lead the betting."
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/GIRO5021_gruppo_maglia_rosa.jpg/1200px-GIRO5021_gruppo_maglia_rosa.jpg"
+coverImage: "https://images.unsplash.com/photo-1592182811189-87f6ae2f3407?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## Bulgaria as the starting point
