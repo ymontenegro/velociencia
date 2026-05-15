@@ -1,6 +1,6 @@
 ---
 title: "Carga de Carbohidratos: Protocolos y Evidencia Científica"
-subtitle: "De Bergström a Bussau — cómo la ciencia ha simplificado la supercompensación de glucógeno"
+subtitle: "De Bergström a Fairchild — cómo la ciencia ha simplificado la supercompensación de glucógeno"
 section: "nutricion"
 date: "2026-03-24"
 author: "Martín Velasco"
@@ -48,15 +48,15 @@ Los resultados de las biopsias mostraron que este protocolo alcanzaba niveles de
 
 ![Ciclista profesional en competición — partir con los depósitos de glucógeno llenos define los kilómetros finales](https://images.unsplash.com/photo-1504025468847-0e438279542c?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
-## El protocolo rápido de Bussau (2002)
+## El protocolo rápido de Fairchild (2002)
 
-Bussau et al. (2002) demostraron que la supercompensación podía lograrse en un solo día. Su protocolo consistía en una sesión breve de ejercicio de alta intensidad (2 minutos y 30 segundos de sprint en cicloergómetro) seguida de 24 horas con una dieta extremadamente alta en carbohidratos (10-12 g/kg/día). Las biopsias 24 horas después mostraron niveles de glucógeno comparables a los del protocolo clásico de seis días.
+Fairchild et al. (2002), en *Medicine & Science in Sports & Exercise*, demostraron que la supercompensación podía lograrse en un solo día. Su protocolo consistía en una sesión breve de ejercicio de alta intensidad —aproximadamente 3 minutos de sprint en cicloergómetro— seguida de 24 horas con una dieta extremadamente alta en carbohidratos (10-12 g/kg/día). Las biopsias 24 horas después mostraron niveles de glucógeno comparables a los del protocolo clásico de seis días. El trabajo paralelo de Bussau et al. (2002, PMID 12111292) confirmó que incluso sin el sprint previo, una carga de 10 g/kg/día durante 24 horas en condiciones de reposo bastaba para alcanzar niveles máximos de glucógeno en ciclistas entrenados.
 
 La explicación fisiológica es que el ejercicio de alta intensidad activa la enzima glucógeno sintasa de forma potente y rápida, creando una "ventana de supercompensación" que permite al músculo absorber glucosa a tasas muy elevadas durante las horas siguientes. No es necesario vaciar completamente los depósitos; basta con activar la señalización molecular correcta.
 
 <ChartLine
   title="Glucógeno muscular por protocolo de carga (mmol/kg peso seco)"
-  caption="Fuente: Adaptado de Bergström (1966), Sherman (1981), Bussau (2002)"
+  caption="Fuente: Adaptado de Bergström (1966), Sherman (1981), Fairchild (2002), Bussau (2002)"
   data={[
     { dia: "Día -6", clasico: 450, modificado: 450, rapido: 450 },
     { dia: "Día -5", clasico: 280, modificado: 430, rapido: 450 },
@@ -70,7 +70,7 @@ La explicación fisiológica es que el ejercicio de alta intensidad activa la en
   lines={[
     { key: "clasico", color: "#E11D48", name: "Clásico (Bergström 1966)" },
     { key: "modificado", color: "#7C3AED", name: "Modificado (Sherman 1981)" },
-    { key: "rapido", color: "#0D9488", name: "Rápido (Bussau 2002)" }
+    { key: "rapido", color: "#0D9488", name: "Rápido (Fairchild/Bussau 2002)" }
   ]}
   unit=" mmol/kg"
 />
@@ -128,4 +128,4 @@ En el pelotón profesional, la carga de carbohidratos está integrada en la plan
 
 La periodización de carbohidratos durante las grandes vueltas es un acto de equilibrio. Stellingwerff (2012) documentó que los ciclistas del Tour de Francia consumían entre 6 y 12 g/kg/día dependiendo de la etapa, con los valores más altos reservados para las jornadas de montaña y contrarreloj. En los días de descanso, la ingesta bajaba a 4-6 g/kg/día para evitar ganancia de peso innecesaria.
 
-Para el ciclista amateur que prepara su granfondo o su carrera por etapas, la estrategia más práctica y respaldada por la evidencia es el protocolo rápido de Bussau modificado: una sesión de intervalos de alta intensidad el día previo (como parte del último entrenamiento del taper), seguida de 10-12 g/kg de carbohidratos durante las siguientes 24 horas. Sin sufrimiento, sin planificación de una semana y con resultados equivalentes a los protocolos más elaborados.
+Para el ciclista amateur que prepara su granfondo o su carrera por etapas, la estrategia más práctica y respaldada por la evidencia es el protocolo rápido de Fairchild modificado: una sesión de intervalos de alta intensidad el día previo (como parte del último entrenamiento del taper), seguida de 10-12 g/kg de carbohidratos durante las siguientes 24 horas. Sin sufrimiento, sin planificación de una semana y con resultados equivalentes a los protocolos más elaborados.

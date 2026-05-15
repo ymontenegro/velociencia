@@ -1,6 +1,6 @@
 ---
 title: "Carbohydrate Loading: Protocols and Scientific Evidence"
-subtitle: "From Bergstrom to Bussau — how science has simplified glycogen supercompensation"
+subtitle: "From Bergstrom to Fairchild — how science has simplified glycogen supercompensation"
 section: "nutricion"
 date: "2026-03-24"
 author: "Martín Velasco"
@@ -48,15 +48,15 @@ Biopsy results showed that this protocol achieved glycogen levels of 700-800 mmo
 
 ![Professional cyclist racing — starting with full glycogen stores defines the final kilometers](https://images.unsplash.com/photo-1504025468847-0e438279542c?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
-## The rapid Bussau protocol (2002)
+## The rapid Fairchild protocol (2002)
 
-Bussau et al. (2002) demonstrated that supercompensation could be achieved in a single day. Their protocol consisted of a brief session of high-intensity exercise (2 minutes and 30 seconds of sprint on a cycle ergometer) followed by 24 hours on an extremely high-carbohydrate diet (10-12 g/kg/day). Biopsies taken 24 hours later showed glycogen levels comparable to those of the classic six-day protocol.
+Fairchild et al. (2002), in *Medicine & Science in Sports & Exercise*, demonstrated that supercompensation could be achieved in a single day. Their protocol consisted of a brief session of high-intensity exercise — roughly 3 minutes of sprint on a cycle ergometer — followed by 24 hours on an extremely high-carbohydrate diet (10-12 g/kg/day). Biopsies taken 24 hours later showed glycogen levels comparable to those of the classic six-day protocol. Parallel work by Bussau et al. (2002, PMID 12111292) confirmed that even without the prior sprint, a 24-hour load of 10 g/kg/day at rest was enough to reach maximal muscle glycogen levels in trained cyclists.
 
 The physiological explanation is that high-intensity exercise activates the enzyme glycogen synthase in a potent and rapid manner, creating a "supercompensation window" that allows the muscle to absorb glucose at very high rates during the following hours. There is no need to fully deplete the stores; it is enough to activate the correct molecular signaling.
 
 <ChartLine
   title="Glucógeno muscular por protocolo de carga (mmol/kg peso seco)"
-  caption="Fuente: Adaptado de Bergström (1966), Sherman (1981), Bussau (2002)"
+  caption="Source: Adapted from Bergström (1966), Sherman (1981), Fairchild (2002), Bussau (2002)"
   data={[
     { dia: "Día -6", clasico: 450, modificado: 450, rapido: 450 },
     { dia: "Día -5", clasico: 280, modificado: 430, rapido: 450 },
@@ -70,7 +70,7 @@ The physiological explanation is that high-intensity exercise activates the enzy
   lines={[
     { key: "clasico", color: "#E11D48", name: "Clásico (Bergström 1966)" },
     { key: "modificado", color: "#7C3AED", name: "Modificado (Sherman 1981)" },
-    { key: "rapido", color: "#0D9488", name: "Rápido (Bussau 2002)" }
+    { key: "rapido", color: "#0D9488", name: "Rapid (Fairchild/Bussau 2002)" }
   ]}
   unit=" mmol/kg"
 />
@@ -128,4 +128,4 @@ In the professional peloton, carbohydrate loading is integrated into the nutriti
 
 Carbohydrate periodization during grand tours is a balancing act. Stellingwerff (2012) documented that Tour de France cyclists consumed between 6 and 12 g/kg/day depending on the stage, with the highest values reserved for mountain stages and time trials. On rest days, intake dropped to 4-6 g/kg/day to avoid unnecessary weight gain.
 
-For the amateur cyclist preparing for a granfondo or stage race, the most practical and evidence-backed strategy is the modified Bussau rapid protocol: a high-intensity interval session the day before (as part of the final taper workout), followed by 10-12 g/kg of carbohydrates over the next 24 hours. No suffering, no week-long planning, and results equivalent to the most elaborate protocols.
+For the amateur cyclist preparing for a granfondo or stage race, the most practical and evidence-backed strategy is the modified Fairchild rapid protocol: a high-intensity interval session the day before (as part of the final taper workout), followed by 10-12 g/kg of carbohydrates over the next 24 hours. No suffering, no week-long planning, and results equivalent to the most elaborate protocols.

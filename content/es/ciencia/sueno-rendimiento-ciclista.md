@@ -1,6 +1,6 @@
 ---
 title: "Sueño y Rendimiento Ciclista: Lo Que Dice la Evidencia Sobre Dormir Para Recuperar"
-subtitle: "Una sola noche de privación de sueño puede reducir la potencia en un 10% y el tiempo hasta la fatiga en un 11%. La ciencia del descanso va mucho más allá de las horas en la cama."
+subtitle: "Una sola noche de privación de sueño alarga el tiempo de una contrarreloj ciclista en torno a un 10%. La ciencia del descanso va mucho más allá de las horas en la cama."
 section: "ciencia"
 date: "2026-03-30"
 author: "Sofía Müller"
@@ -33,13 +33,13 @@ sources:
   - title: "Sleep Interventions Designed to Improve Athletic Performance and Recovery: A Systematic Review"
     url: "https://pubmed.ncbi.nlm.nih.gov/29352373/"
     type: scientific_paper
-excerpt: "Una sola noche de privación de sueño puede reducir la potencia en un 10%. La ciencia explica por qué dormir es la herramienta de recuperación más subestimada del ciclismo."
+excerpt: "Una sola noche de privación de sueño alarga el tiempo de una contrarreloj ciclista en torno a un 10%. La ciencia explica por qué dormir es la herramienta de recuperación más subestimada del ciclismo."
 coverImage: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## El costo medible de una mala noche
 
-Una sola noche sin dormir reduce el rendimiento en una contrarreloj ciclista en un 10%. Esa cifra proviene de un estudio de Roberts et al. (2019) con 13 ciclistas de resistencia en un diseño cruzado: tras una noche de privación total de sueño, el tiempo de completar una prueba contrarreloj pasó de 59 ± 4 minutos con sueño normal a 64 ± 7 minutos sin dormir (Roberts et al., 2019, *Journal of Sports Sciences*, PMID: 31526108). La percepción de esfuerzo se disparó, el tiempo de reacción medio se alargó un 8%, y el umbral anaeróbico mostró una correlación negativa fuerte (R = -0.73) con el deterioro del rendimiento. No se trata de sensaciones subjetivas ni de cansancio percibido. Es potencia perdida, medible en vatios.
+Una sola noche sin dormir alarga el tiempo de una contrarreloj ciclista en un 10%. Esa cifra proviene de un estudio de Roberts et al. (2019) con 13 ciclistas de resistencia en un diseño cruzado: tras una noche de privación total de sueño, el tiempo de completar una prueba contrarreloj pasó de 59 ± 4 minutos con sueño normal a 64 ± 7 minutos sin dormir (Roberts et al., 2019, *Journal of Sports Sciences*, PMID: 31526108). La percepción de esfuerzo se disparó, el tiempo de reacción medio se alargó un 8%, y el umbral anaeróbico mostró una correlación negativa fuerte (R = -0.73) con el deterioro del rendimiento. No se trata de sensaciones subjetivas ni de cansancio percibido. Es potencia perdida, medible en vatios.
 
 La evidencia acumulada confirma ese patrón. Un metaanálisis de Lopes et al. (2023) revisó 31 estudios con 478 participantes y encontró que la privación de sueño tiene un efecto negativo moderado sobre el rendimiento de resistencia, con un tamaño del efecto estandarizado de -0.52 (IC 95%: -0.67 a -0.38). El hallazgo más relevante para ciclistas: los ejercicios que duran más de 30 minutos son los más vulnerables. Una contrarreloj de 40 km o una etapa de montaña se resienten más que un sprint corto (Lopes et al., 2023, *European Journal of Sport Science*, PMID: 36472094). La duración del esfuerzo amplifica el daño de la falta de sueño.
 

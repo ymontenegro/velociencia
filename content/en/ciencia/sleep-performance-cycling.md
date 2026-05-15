@@ -1,6 +1,6 @@
 ---
 title: "Sleep and Cycling Performance: What the Evidence Says About Resting to Recover"
-subtitle: "A single night of sleep deprivation can cut power output by 10% and time to fatigue by 11%. The science of rest goes far beyond hours in bed."
+subtitle: "A single night of sleep deprivation lengthens a cycling time trial by roughly 10%. The science of rest goes far beyond hours in bed."
 section: "ciencia"
 date: "2026-03-30"
 author: "Sofía Müller"
@@ -33,13 +33,13 @@ sources:
   - title: "Sleep Interventions Designed to Improve Athletic Performance and Recovery: A Systematic Review"
     url: "https://pubmed.ncbi.nlm.nih.gov/29352373/"
     type: scientific_paper
-excerpt: "A single night of sleep deprivation can cut power output by 10%. Science explains why sleep is cycling's most underrated recovery tool."
+excerpt: "A single night of sleep deprivation lengthens a cycling time trial by roughly 10%. Science explains why sleep is cycling's most underrated recovery tool."
 coverImage: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
 ## The measurable cost of a bad night
 
-A single night without sleep reduces cycling time trial performance by 10%. That figure comes from a study by Roberts et al. (2019) with 13 endurance cyclists in a crossover design: after one night of total sleep deprivation, time trial completion rose from 59 ± 4 minutes with normal sleep to 64 ± 7 minutes without it (Roberts et al., 2019, *Journal of Sports Sciences*, PMID: 31526108). Perceived exertion spiked, mean reaction time increased by 8%, and anaerobic threshold showed a strong negative correlation (R = -0.73) with performance deterioration. These are not subjective feelings. This is power lost, measurable in watts.
+A single night without sleep lengthens a cycling time trial by 10%. That figure comes from a study by Roberts et al. (2019) with 13 endurance cyclists in a crossover design: after one night of total sleep deprivation, time trial completion rose from 59 ± 4 minutes with normal sleep to 64 ± 7 minutes without it (Roberts et al., 2019, *Journal of Sports Sciences*, PMID: 31526108). Perceived exertion spiked, mean reaction time increased by 8%, and anaerobic threshold showed a strong negative correlation (R = -0.73) with performance deterioration. These are not subjective feelings. This is power lost, measurable in watts.
 
 The accumulated evidence confirms that pattern. A meta-analysis by Lopes et al. (2023) reviewed 31 studies with 478 participants and found that sleep deprivation has a moderate negative effect on endurance performance, with a standardized mean difference of -0.52 (95% CI: -0.67 to -0.38). The most relevant finding for cyclists: exercises lasting more than 30 minutes are the most vulnerable. A 40 km time trial or a mountain stage suffers more than a short sprint (Lopes et al., 2023, *European Journal of Sport Science*, PMID: 36472094). Effort duration amplifies the damage of sleep loss.
 

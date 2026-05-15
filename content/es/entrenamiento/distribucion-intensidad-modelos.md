@@ -87,7 +87,7 @@ Stöggl y Sperlich (2014) concluyeron que el modelo polarizado producía un "may
 
 Un año antes del estudio de Stöggl, Neal et al. (2013) habían publicado resultados convergentes en una población específica de ciclistas entrenados. Su diseño comparó directamente el modelo polarizado contra el modelo umbral durante seis semanas en ciclistas con una potencia media de entre 3.5 y 4.0 W/kg.
 
-El grupo polarizado mejoró la potencia pico un 8% y la potencia en umbral de lactato un 5.3%. El grupo umbral mejoró la potencia en umbral de lactato un 3.7% pero no mostró cambios significativos en potencia pico ni en VO2max. Neal et al. (2013) destacaron un hallazgo particularmente relevante para ciclistas: el modelo polarizado mejoró tanto la capacidad aeróbica máxima como el umbral de lactato, mientras que el modelo umbral solo impactó el umbral.
+El grupo polarizado mejoró la potencia pico un 8% y la potencia en umbral de lactato un 9%. El grupo umbral mejoró la potencia en umbral de lactato apenas un 2% y no mostró cambios significativos en potencia pico ni en VO2max. Neal et al. (2013) destacaron un hallazgo particularmente relevante para ciclistas: el modelo polarizado mejoró tanto la capacidad aeróbica máxima como el umbral de lactato, mientras que el modelo umbral casi no se movió en ninguna de las dos métricas.
 
 La explicación fisiológica propuesta por los autores es que las sesiones de alta intensidad del modelo polarizado (intervalos a 90-100% del VO2max) generan un estímulo adaptativo que la zona de tempo no puede replicar. Al mismo tiempo, el alto volumen de zona 1 permite la recuperación necesaria para absorber esas sesiones duras sin acumular fatiga crónica.
 

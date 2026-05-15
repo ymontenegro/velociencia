@@ -26,25 +26,21 @@ El modelo tradicional, heredado de la escuela soviética de Matveyev en los año
 
 La secuencia clásica del modelo en bloques se divide en tres fases con funciones diferenciadas. El bloque de acumulación dura entre 2 y 3 semanas y prioriza la construcción de base aeróbica. El volumen es alto —entre 15 y 20 horas semanales para un amateur avanzado— y la intensidad se mantiene predominantemente por debajo del 80% del FTP. Las sesiones clave son salidas largas de 3 a 5 horas a ritmo conversacional, y el objetivo es maximizar las adaptaciones mitocondriales y la eficiencia metabólica.
 
-El bloque de transmutación, también de 2 a 3 semanas, reduce el volumen a 12-16 horas semanales y eleva la intensidad hacia la zona de umbral, entre el 85% y el 105% del FTP. Aquí aparecen los intervalos de sweet spot, las series de tempo y el trabajo sostenido cerca del umbral de lactato. Según Rønnestad et al. (2016) en *Scandinavian Journal of Medicine & Science in Sports*, este tipo de bloque concentrado de trabajo en umbral produjo mejoras del 4.6% en potencia a 40 minutos frente a un 1.8% en ciclistas que distribuyeron el mismo estímulo a lo largo de un período más largo.
+El bloque de transmutación, también de 2 a 3 semanas, reduce el volumen a 12-16 horas semanales y eleva la intensidad hacia la zona de umbral, entre el 85% y el 105% del FTP. Aquí aparecen los intervalos de sweet spot, las series de tempo y el trabajo sostenido cerca del umbral de lactato. Según Rønnestad et al. (2012, PMID 22646668) en *Scandinavian Journal of Medicine & Science in Sports*, un bloque de cinco sesiones de alta intensidad concentradas en la primera semana mejoró el VO2max un 4,6% en ciclistas, mientras que el grupo que distribuyó el mismo número de sesiones a lo largo de doce semanas no mostró cambios significativos.
 
 El bloque de realización cierra la secuencia con 1 a 2 semanas de volumen bajo —8 a 12 horas semanales— y esfuerzos de alta intensidad: sprints, intervalos supra-umbrales y simulaciones de competición. El volumen total cae de forma deliberada para permitir la supercompensación, el proceso fisiológico por el cual el rendimiento alcanza su pico tras un período de descarga.
 
 ![Ciclista recorriendo una carretera sinuosa entre montañas durante un bloque de entrenamiento](https://images.unsplash.com/photo-1766556578867-4b511ab7de4a?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
-## FTP +8.2% en 12 semanas frente al modelo tradicional
+## Lo que dice la evidencia controlada en ciclismo
 
 La evidencia en ciclismo ha crecido de forma consistente en la última década. Según Breil et al. (2010) en *European Journal of Applied Physiology*, un bloque de 11 días de entrenamiento HIIT concentrado en esquiadores de fondo produjo mejoras del 6% en VO2max y del 8% en potencia pico, adaptaciones que un grupo control con entrenamiento distribuido no alcanzó en el mismo período. El estudio fue de los primeros en demostrar que la concentración de carga funciona también en deportes de resistencia, no solo en disciplinas de fuerza.
 
-Según Rønnestad et al. (2023) en *International Journal of Sports Physiology and Performance*, una comparación directa de 12 semanas entre periodización en bloques y periodización tradicional en ciclistas sub-elite arrojó diferencias significativas en las tres variables principales medidas.
+Según Rønnestad et al. (2014, PMID 23134196) en *European Journal of Applied Physiology*, doce semanas de comparación entre periodización en bloques y tradicional en ciclistas bien entrenados arrojaron una mejora del VO2max del 8,8% en el grupo de bloques frente al 3,7% del grupo tradicional. Ambos hicieron el mismo número total de sesiones de alta intensidad; lo que cambió fue cómo se distribuyeron a lo largo del periodo.
 
-| Variable | Bloques | Tradicional |
-|----------|---------|------------|
-| Mejora en FTP | +8.2% | +4.7% |
-| Mejora en VO2max | +6.1% | +4.3% |
-| Mejora en TT 40km | -3.4% | -1.8% |
+La evidencia, sin embargo, no es unánime. Almquist et al. (2022) en *Frontiers in Physiology* (PMC8921659) repitieron un diseño similar igualando con más rigor la carga total entre grupos y no encontraron diferencias significativas: ambos modelos mejoraron el rendimiento en una contrarreloj de 40 minutos en torno al 8% sin cambios apreciables en VO2max. La revisión sistemática publicada en *IJSPP* (Mølmen et al., 2019) concluyó que, en ciclistas bien entrenados, no hay evidencia firme que favorezca un modelo concreto durante 8-12 semanas, aunque la concentración del estímulo puede ofrecer una ventaja cuando la organización tradicional no llega a generar adaptaciones nuevas.
 
-Los ciclistas del grupo en bloques entrenaron las mismas horas totales que el grupo tradicional. La diferencia no fue de volumen sino de organización: concentrar el trabajo de umbral en 3 semanas consecutivas produjo adaptaciones que 12 semanas de estímulos mixtos no igualaron. Según García-Pallarés et al. (2010) en *Medicine & Science in Sports & Exercise*, kayakistas de élite que cambiaron de periodización tradicional a bloques durante dos temporadas consecutivas mejoraron su VO2max en un 8.6% y su potencia en umbral de lactato en un 9.2%, valores inusuales para atletas que ya estaban cerca de su techo fisiológico.
+Según García-Pallarés et al. (2010) en *Medicine & Science in Sports & Exercise*, kayakistas de élite que cambiaron de periodización tradicional a bloques durante dos temporadas consecutivas mejoraron su VO2max en un 8,6% y su potencia en umbral de lactato en un 9,2%, valores inusuales para atletas que ya estaban cerca de su techo fisiológico.
 
 No todos los estudios son tan concluyentes. Según Grgic et al. (2018) en *Sports Medicine*, un metaanálisis de 14 estudios encontró que las diferencias entre periodización en bloques y tradicional eran estadísticamente significativas pero modestas en magnitud. Los autores señalaron que la ventaja del modelo en bloques se amplifica en atletas con más años de entrenamiento y se diluye en principiantes, para quienes casi cualquier estímulo organizado produce mejoras.
 

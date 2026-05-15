@@ -16,7 +16,8 @@
     "agents:write": "tsx scripts/run-pipeline.ts write",
     "agents:review": "tsx scripts/run-pipeline.ts review",
     "agents:full": "tsx scripts/run-pipeline.ts full",
-    "feeds:import": "tsx scripts/import-feeds.ts"
+    "feeds:import": "tsx scripts/import-feeds.ts",
+    "queue": "tsx scripts/queue.ts"
   },
   "dependencies": {
     "better-sqlite3": "^12.8.0",

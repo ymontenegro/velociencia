@@ -40,7 +40,7 @@ excerpt: "Thirty-nine minutes and forty-three seconds. That's how long Tadej Pog
 
 ## The day the textbook stopped working
 
-Thirty-nine minutes and forty-three seconds. That is how long Tadej Pogačar took on July 14, 2024, to climb the 15.8 kilometers of Plateau de Beille on stage 15 of the Tour de France. He did it at a vertical ascent rate of 1887 meters per hour and at an estimated 6.90 watts per kilogram, according to the reconstructions Lanterne Rouge published after the stage. Three minutes and thirty-five seconds faster than Marco Pantani's 1998 benchmark of 43:28, set at the peak of the EPO era.
+Thirty-nine minutes and forty-three seconds. That is how long Tadej Pogačar took on July 14, 2024, to climb the 15.8 kilometers of Plateau de Beille on stage 15 of the Tour de France. He did it at a vertical ascent rate of 1887 meters per hour and at an estimated 6.90 watts per kilogram, according to the reconstructions Lanterne Rouge published after the stage. Three minutes and forty-five seconds faster than Marco Pantani's 1998 benchmark of 43:28, set at the peak of the EPO era.
 
 The number would be strange on its own. What makes it genuinely uncomfortable for contemporary training orthodoxy is that Pogačar reached that point after 200 kilometers and 5,000 meters of climbing that day, and in a season in which he had already won the Giro a few weeks earlier. He did not just climb faster than anyone on record at the Tour; he did it inside a calendar that no modern exercise physiologist would have signed off on.
 

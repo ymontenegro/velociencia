@@ -87,11 +87,11 @@ Optimal values for athletes are more stringent than reference ranges used by lab
 
 Once a deficiency is confirmed, two treatment pathways exist. Oral supplementation with ferrous sulfate (325 mg/day, equivalent to 65 mg of elemental iron) is the first-line treatment. It is accessible, affordable, and effective. The issue is speed and tolerability. McCormick et al. (2020) documented that oral repletion takes between 8 and 12 weeks to normalize ferritin, and gastrointestinal side effects (nausea, constipation, abdominal pain) affect 30-50% of athletes, reducing adherence.
 
-Intravenous supplementation with ferric carboxymaltose (Ferinject) allows administration of 500-1000 mg of iron in a single 15-minute session. Garvican-Lewis et al. (2018) demonstrated that a 500 mg IV dose raised ferritin to optimal levels within 2-4 weeks, with significantly better tolerance than the oral route. IV infusion is particularly useful when competition is imminent and there is not enough time for a full oral cycle, or when the deficiency is severe (ferritin < 15 ng/mL).
+Intravenous supplementation with ferric carboxymaltose (Ferinject) allows administration of 500-1000 mg of iron in a single 15-minute session. Garvican-Lewis et al. (2014, PMID 23872938) demonstrated that a 500 mg IV dose raised ferritin to optimal levels within 2-4 weeks, with significantly better tolerance than the oral route. IV infusion is particularly useful when competition is imminent and there is not enough time for a full oral cycle, or when the deficiency is severe (ferritin < 15 ng/mL).
 
 <ChartLine
   title="Recuperación de ferritina: suplementación oral vs intravenosa"
-  caption="Fuente: Adaptado de Garvican-Lewis (2018), McCormick (2020)"
+  caption="Source: Adapted from Garvican-Lewis (2014), McCormick (2020)"
   data={[
     { semana: "Sem 0", oral: 20, iv: 20 },
     { semana: "Sem 1", oral: 22, iv: 55 },

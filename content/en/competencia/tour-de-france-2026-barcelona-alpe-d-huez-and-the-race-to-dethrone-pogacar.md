@@ -102,7 +102,7 @@ Remco Evenepoel faces his first season with Red Bull-BORA-hansgrohe after leavin
 
 Primož Roglič, three-time Vuelta a España winner, remains a name to consider at 36 years old. His ability in time trials and high mountains keeps him a podium candidate, although the gap with Pogačar and Vingegaard seems to widen each season. At Red Bull-BORA-hansgrohe, he will share the roster with Evenepoel, forcing the team to define a clear hierarchy before July.
 
-Among emerging names, Isaac del Toro deserves attention. The 21-year-old Mexican won the UAE Tour and Tirreno-Adriatico in 2026, confirming a qualitative leap after his second place in the 2025 Giro, where he took the young rider classification. In this Tour, he will debut under Pogačar’s tutelage at UAE Emirates-XRG, a learning process aimed at preparing him to lead his own Grand Tour campaigns in coming years.
+Among emerging names, Isaac del Toro deserves attention. The 22-year-old Mexican won the UAE Tour and Tirreno-Adriatico in 2026, confirming a qualitative leap after his second place in the 2025 Giro, where he took the young rider classification. In this Tour, he will debut under Pogačar’s tutelage at UAE Emirates-XRG, a learning process aimed at preparing him to lead his own Grand Tour campaigns in coming years.
 
 ## Where the Race Will Be Decided
 

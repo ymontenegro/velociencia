@@ -87,11 +87,11 @@ Los valores óptimos para deportistas son más exigentes que los rangos de refer
 
 Cuando se confirma una deficiencia, existen dos vías de tratamiento. La suplementación oral con sulfato ferroso (325 mg/día, equivalente a 65 mg de hierro elemental) es el tratamiento de primera línea. Es accesible, económica y efectiva. El problema es la velocidad y la tolerancia. McCormick et al. (2020) documentaron que la reposición oral tarda entre 8 y 12 semanas en normalizar la ferritina, y los efectos gastrointestinales (náusea, estreñimiento, dolor abdominal) afectan al 30-50% de los deportistas, reduciendo la adherencia.
 
-La suplementación intravenosa con carboximaltosa férrica (Ferinject) permite administrar 500-1000 mg de hierro en una sola sesión de 15 minutos. Garvican-Lewis et al. (2018) demostraron que una dosis de 500 mg IV elevaba la ferritina a niveles óptimos en 2-4 semanas, con una tolerancia significativamente mejor que la vía oral. La infusión IV es particularmente útil cuando la competición está próxima y no hay tiempo para un ciclo oral completo, o cuando la deficiencia es severa (ferritina < 15 ng/mL).
+La suplementación intravenosa con carboximaltosa férrica (Ferinject) permite administrar 500-1000 mg de hierro en una sola sesión de 15 minutos. Garvican-Lewis et al. (2014, PMID 23872938) demostraron que una dosis de 500 mg IV elevaba la ferritina a niveles óptimos en 2-4 semanas, con una tolerancia significativamente mejor que la vía oral. La infusión IV es particularmente útil cuando la competición está próxima y no hay tiempo para un ciclo oral completo, o cuando la deficiencia es severa (ferritina < 15 ng/mL).
 
 <ChartLine
   title="Recuperación de ferritina: suplementación oral vs intravenosa"
-  caption="Fuente: Adaptado de Garvican-Lewis (2018), McCormick (2020)"
+  caption="Fuente: Adaptado de Garvican-Lewis (2014), McCormick (2020)"
   data={[
     { semana: "Sem 0", oral: 20, iv: 20 },
     { semana: "Sem 1", oral: 22, iv: 55 },

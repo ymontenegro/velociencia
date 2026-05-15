@@ -36,25 +36,21 @@ The traditional model, inherited from Matveyev’s Soviet school in the 1960s, d
 
 The classic sequence of the block model is divided into three phases with distinct functions. The accumulation block lasts 2 to 3 weeks and prioritizes building aerobic base. Volume is high—between 15 and 20 hours per week for an advanced amateur—and intensity is predominantly kept below 80% of FTP. Key sessions are long rides of 3 to 5 hours at conversational pace, aiming to maximize mitochondrial adaptations and metabolic efficiency.
 
-The transmutation block, also 2 to 3 weeks, reduces volume to 12–16 hours per week and raises intensity toward the threshold zone, between 85% and 105% of FTP. This phase includes sweet spot intervals, tempo sets, and sustained work near lactate threshold. According to Rønnestad et al. (2016) in *Scandinavian Journal of Medicine & Science in Sports*, this concentrated threshold work block produced a 4.6% improvement in 40-minute power compared to 1.8% in cyclists who distributed the same stimulus over a longer period.
+The transmutation block, also 2 to 3 weeks, reduces volume to 12–16 hours per week and raises intensity toward the threshold zone, between 85% and 105% of FTP. This phase includes sweet spot intervals, tempo sets, and sustained work near lactate threshold. According to Rønnestad et al. (2012, PMID 22646668) in *Scandinavian Journal of Medicine & Science in Sports*, a block of five high-intensity sessions concentrated in the first week improved VO2max by 4.6% in cyclists, while the group that distributed the same number of sessions over twelve weeks showed no significant changes.
 
 The realization block closes the sequence with 1 to 2 weeks of low volume—8 to 12 hours per week—and high-intensity efforts: sprints, supra-threshold intervals, and race simulations. Total volume is deliberately reduced to allow supercompensation, the physiological process by which performance peaks after a recovery period.
 
 ![Cyclist riding a winding mountain road during a training block](https://images.unsplash.com/photo-1766556578867-4b511ab7de4a?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
-## FTP +8.2% in 12 Weeks Compared to the Traditional Model
+## What the Controlled Cycling Evidence Shows
 
 Evidence in cycling has grown steadily over the last decade. According to Breil et al. (2010) in *European Journal of Applied Physiology*, an 11-day concentrated HIIT block in cross-country skiers produced a 6% increase in VO2max and 8% in peak power—adaptations that a control group with distributed training did not achieve in the same period. This study was among the first to demonstrate that load concentration also works in endurance sports, not just strength disciplines.
 
-According to Rønnestad et al. (2023) in *International Journal of Sports Physiology and Performance*, a direct 12-week comparison between block periodization and traditional periodization in sub-elite cyclists revealed significant differences in the three main measured variables.
+According to Rønnestad et al. (2014, PMID 23134196) in *European Journal of Applied Physiology*, a twelve-week comparison between block and traditional periodization in well-trained cyclists yielded an 8.8% VO2max improvement in the block group versus 3.7% in the traditional group. Both performed the same total number of high-intensity sessions; what changed was how those sessions were distributed across the period.
 
-| Variable | Blocks | Traditional |
-|----------|---------|------------|
-| FTP Improvement | +8.2% | +4.7% |
-| VO2max Improvement | +6.1% | +4.3% |
-| 40km TT Improvement | -3.4% | -1.8% |
+The evidence, however, is not unanimous. Almquist et al. (2022) in *Frontiers in Physiology* (PMC8921659) repeated a similar design with stricter equalization of total load between groups and found no significant differences: both models improved 40-minute time-trial performance by roughly 8% with no appreciable VO2max change. The systematic review published in *IJSPP* (Mølmen et al., 2019) concluded that, in well-trained cyclists, there is no firm evidence favoring a specific periodization model over 8–12 weeks, although stimulus concentration may offer an advantage when the traditional layout fails to drive further adaptation.
 
-Cyclists in the block group trained the same total hours as the traditional group. The difference was not volume but organization: concentrating threshold work in 3 consecutive weeks produced adaptations that 12 weeks of mixed stimuli did not match. According to García-Pallarés et al. (2010) in *Medicine & Science in Sports & Exercise*, elite kayakers who switched from traditional to block periodization for two consecutive seasons improved their VO2max by 8.6% and lactate threshold power by 9.2%, unusual values for athletes already near their physiological ceiling.
+According to García-Pallarés et al. (2010) in *Medicine & Science in Sports & Exercise*, elite kayakers who switched from traditional to block periodization for two consecutive seasons improved their VO2max by 8.6% and lactate threshold power by 9.2%, unusual values for athletes already near their physiological ceiling.
 
 Not all studies are so conclusive. According to Grgic et al. (2018) in *Sports Medicine*, a meta-analysis of 14 studies found that differences between block and traditional periodization were statistically significant but modest in magnitude. The authors noted that the block model’s advantage amplifies in athletes with more years of training and diminishes in beginners, for whom almost any organized stimulus produces improvements.
 

@@ -70,7 +70,7 @@ La diferencia es notable en los extremos. En el sprint de 5 segundos, un sprinte
 
 ## El modelo de potencia crítica
 
-Detrás de la curva hay un modelo matemático con casi un siglo de evolución. Monod y Scherrer (1965) propusieron originalmente el concepto de potencia crítica (CP), y desde entonces se ha convertido en una de las herramientas más robustas de la fisiología del ejercicio. Jones et al. (2019) lo describieron como un "umbral fisiológico fundamental" que separa los dominios de intensidad pesada y severa.
+Detrás de la curva hay un modelo matemático con casi un siglo de evolución. Monod y Scherrer (1965) propusieron originalmente el concepto de potencia crítica (CP), y desde entonces se ha convertido en una de las herramientas más robustas de la fisiología del ejercicio. Burnley y Jones (2018, PMID 27806677) lo describieron como un "umbral fisiológico fundamental" que separa los dominios de intensidad pesada y severa.
 
 El modelo tiene dos parámetros. La potencia crítica (CP) representa la máxima potencia que teóricamente se puede sostener de forma indefinida sin acumulación progresiva de metabolitos. En la práctica, corresponde aproximadamente a un esfuerzo sostenible entre 30 y 60 minutos en ciclistas entrenados. El segundo parámetro es W' (W prima), una cantidad finita de trabajo que se puede realizar por encima de CP antes de alcanzar el agotamiento. Poole et al. (2016) demostraron que W' refleja principalmente la capacidad anaeróbica y las reservas de fosfocreatina y glucógeno disponibles para esfuerzos por encima del umbral.
 

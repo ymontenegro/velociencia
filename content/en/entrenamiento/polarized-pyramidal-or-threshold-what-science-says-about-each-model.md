@@ -87,7 +87,7 @@ Stöggl and Sperlich (2014) concluded that the polarized model produced "greater
 
 A year before Stöggl's study, Neal et al. (2013) had published converging results in a specific population of trained cyclists. Their design directly compared the polarized model against the threshold model over six weeks in cyclists with a mean power of between 3.5 and 4.0 W/kg.
 
-The polarized group improved peak power by 8% and lactate threshold power by 5.3%. The threshold group improved lactate threshold power by 3.7% but showed no significant changes in peak power or VO2max. Neal et al. (2013) highlighted a finding particularly relevant for cyclists: the polarized model improved both maximal aerobic capacity and lactate threshold, while the threshold model only impacted the threshold.
+The polarized group improved peak power by 8% and lactate threshold power by 9%. The threshold group improved lactate threshold power by only 2% and showed no significant changes in peak power or VO2max. Neal et al. (2013) highlighted a finding particularly relevant for cyclists: the polarized model improved both maximal aerobic capacity and lactate threshold, while the threshold model barely moved either metric.
 
 The physiological explanation proposed by the authors is that the high-intensity sessions of the polarized model (intervals at 90-100% of VO2max) generate an adaptive stimulus that the tempo zone cannot replicate. At the same time, the high volume of zone 1 allows the recovery necessary to absorb those hard sessions without accumulating chronic fatigue.
 

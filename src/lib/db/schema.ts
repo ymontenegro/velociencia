@@ -162,6 +162,109 @@ export const articleViews = sqliteTable(
   ]
 );
 
+export const pageViews = sqliteTable(
+  "page_views",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    sessionId: text("session_id").notNull(),
+    visitorId: text("visitor_id").notNull(),
+    path: text("path").notNull(),
+    host: text("host"),
+    locale: text("locale"),
+    section: text("section"),
+    slug: text("slug"),
+    referer: text("referer"),
+    refererDomain: text("referer_domain"),
+    utmSource: text("utm_source"),
+    utmMedium: text("utm_medium"),
+    utmCampaign: text("utm_campaign"),
+    country: text("country"),
+    countryName: text("country_name"),
+    region: text("region"),
+    city: text("city"),
+    device: text("device"), // desktop | mobile | tablet | bot
+    browser: text("browser"),
+    os: text("os"),
+    durationMs: integer("duration_ms"),
+    ipHash: text("ip_hash"),
+    viewedAt: integer("viewed_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (table) => [
+    index("idx_pv_viewed_at").on(table.viewedAt),
+    index("idx_pv_session").on(table.sessionId),
+    index("idx_pv_visitor").on(table.visitorId),
+    index("idx_pv_path").on(table.path),
+    index("idx_pv_country").on(table.country),
+  ]
+);
+
+export const ipGeoCache = sqliteTable("ip_geo_cache", {
+  ipHash: text("ip_hash").primaryKey(),
+  country: text("country"),
+  countryName: text("country_name"),
+  region: text("region"),
+  city: text("city"),
+  cachedAt: integer("cached_at", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const scheduledPosts = sqliteTable(
+  "scheduled_posts",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    title: text("title").notNull(),
+    section: text("section", {
+      enum: ["nutricion", "ciencia", "entrenamiento", "competencia"],
+    }).notNull(),
+    locale: text("locale", { enum: ["es", "en", "both"] })
+      .notNull()
+      .default("both"),
+    brief: text("brief"), // What the article should be about
+    angle: text("angle"),
+    keywords: text("keywords"), // JSON array
+    references: text("references"), // JSON array of {title, url}
+    suggestedAuthor: text("suggested_author"),
+    coverImageHint: text("cover_image_hint"),
+    status: text("status", {
+      enum: [
+        "idea",
+        "briefed",
+        "assigned",
+        "in_progress",
+        "drafted",
+        "scheduled",
+        "published",
+        "archived",
+        "failed",
+      ],
+    })
+      .notNull()
+      .default("idea"),
+    priority: integer("priority").default(5),
+    scheduledFor: integer("scheduled_for", { mode: "timestamp" }),
+    publishedAt: integer("published_at", { mode: "timestamp" }),
+    assignedTo: text("assigned_to"), // agent name or "claude-code"
+    articleId: integer("article_id"), // links to articles once produced (ES)
+    articleIdEn: integer("article_id_en"), // EN variant
+    agentNotes: text("agent_notes"),
+    lastError: text("last_error"),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (table) => [
+    index("idx_scheduled_status").on(table.status),
+    index("idx_scheduled_for").on(table.scheduledFor),
+    index("idx_scheduled_section").on(table.section),
+  ]
+);
+
 export const topics = sqliteTable(
   "topics",
   {

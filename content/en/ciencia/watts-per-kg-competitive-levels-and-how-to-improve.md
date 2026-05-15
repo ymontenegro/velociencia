@@ -77,11 +77,11 @@ These ranges are indicative. A cyclist at the upper end of one level can functio
 
 ## Beyond FTP: relative power by duration
 
-FTP captures only a single point on the power curve. For a complete profile, it is necessary to examine W/kg across multiple durations. Sanders and Heijboer (2019) documented relative power ranges in professional cyclists for efforts from 5 seconds to 60 minutes. The differences between durations reveal the cyclist's metabolic profile.
+FTP captures only a single point on the power curve. For a complete profile, it is necessary to examine W/kg across multiple durations. Sanders and Heijboer (2017, PMID 27248365) documented relative power ranges in professional cyclists for efforts from 5 seconds to 60 minutes. The differences between durations reveal the cyclist's metabolic profile.
 
 <ChartBar
   title="Potencia relativa (W/kg) por duración y nivel"
-  caption="Fuente: Sanders y Heijboer (2019), Pinot y Grappe (2015)"
+  caption="Source: Sanders & Heijboer (2017), Pinot & Grappe (2015)"
   layout="vertical"
   data={[
     { duracion: "5 seg", recreativo: 12.0, competitivo: 17.0, worldtour: 22.0 },

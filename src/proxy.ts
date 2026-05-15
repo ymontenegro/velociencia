@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getLocalFromHost, type Locale } from "@/lib/i18n";
+import { ADMIN_COOKIE, verifySessionToken } from "@/lib/admin/auth";
 
 /** Section slug redirects: Spanish slugs on English domain → English slugs, and vice versa */
 const SECTION_SLUG_MAP_EN: Record<string, string> = {
@@ -18,11 +19,36 @@ const SECTION_SLUG_MAP_ES: Record<string, string> = Object.fromEntries(
   Object.entries(SECTION_SLUG_MAP_EN).map(([es, en]) => [en, es])
 );
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const host = request.headers.get("host") ?? "localhost:3000";
   const locale: Locale = getLocalFromHost(host);
-
   const pathname = request.nextUrl.pathname;
+
+  // Admin gate — protect everything under /admin except the login page itself.
+  if (pathname.startsWith("/admin")) {
+    if (pathname === "/admin/login") {
+      const response = NextResponse.next();
+      response.headers.set("x-locale", locale);
+      response.headers.set("x-pathname", pathname);
+      return response;
+    }
+    const token = request.cookies.get(ADMIN_COOKIE)?.value;
+    const { valid } = verifySessionToken(token);
+    if (!valid) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/admin/login";
+      url.search = "";
+      if (pathname !== "/admin") {
+        url.searchParams.set("next", pathname);
+      }
+      return NextResponse.redirect(url);
+    }
+    const response = NextResponse.next();
+    response.headers.set("x-locale", locale);
+    response.headers.set("x-pathname", pathname);
+    return response;
+  }
+
   const firstSegment = pathname.split("/")[1];
 
   // Redirect wrong-locale slugs
@@ -52,12 +78,12 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except:
+     * Match every request except:
      * - api routes
-     * - _next (static files, images)
-     * - favicon, sitemap, robots
-     * - admin routes
+     * - _next static / image
+     * - favicon, sitemap, robots, ads.txt
+     * (admin IS included so we can gate it)
      */
-    "/((?!api|_next|favicon|sitemap|robots|ads\\.txt|admin).*)",
+    "/((?!api|_next|favicon|sitemap|robots|ads\\.txt).*)",
   ],
 };

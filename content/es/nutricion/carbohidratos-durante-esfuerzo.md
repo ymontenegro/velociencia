@@ -21,7 +21,7 @@ sources:
   - title: "Two weeks of repetitive gut-challenge reduce exercise-associated gastrointestinal symptoms and malabsorption"
     url: "https://pubmed.ncbi.nlm.nih.gov/28508559/"
     type: pubmed
-excerpt: "La combinación de glucosa y fructosa permite tasas de oxidación de hasta 105 g/h, frente a los 60 g/h de la glucosa sola. Entrenar el intestino durante 2 semanas reduce los síntomas gastrointestinales en un 47%."
+excerpt: "La combinación de glucosa y fructosa permite tasas de oxidación de hasta 105 g/h, frente a los 60 g/h de la glucosa sola. Entrenar el intestino durante 2 semanas reduce los síntomas gastrointestinales en un 61%."
 coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 

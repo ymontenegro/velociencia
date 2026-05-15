@@ -1,8 +1,8 @@
 ---
 title: 'Central vs. Peripheral Fatigue: Why You Stop Before Your Legs Fail'
 subtitle: >-
-  The brain reduces muscle activation by up to 25% before the muscles reach
-  their actual limit
+  After a 40 km time trial, voluntary activation falls about 10%; in short
+  sprints peripheral fatigue dominates
 section: ciencia
 date: '2026-03-21'
 author: Sofía Müller
@@ -47,9 +47,9 @@ sources:
     url: 'https://pubmed.ncbi.nlm.nih.gov/15665213/'
     type: pubmed
 excerpt: >-
-  After a 40 km time trial, the maximum voluntary activation of the quadriceps
-  drops between 15% and 25%, but peripheral muscle strength decreases by only
-  35%. The brain brakes before the muscles collapse.
+  After a 40 km time trial the quadriceps' maximal voluntary activation drops
+  about 10% and peripheral force around 29%. After a 4 km effort, peripheral
+  fatigue reaches roughly 40% while central fatigue is only 6-7%.
 coverImage: >-
   https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
 ---
@@ -67,9 +67,9 @@ This mechanism explains a recurring observation in exercise physiology labs. At 
 
 ## What Changes According to Effort Duration
 
-Thomas et al. (2015) measured central and peripheral fatigue in male cyclists immediately after 4, 20, and 40-kilometer time trials, publishing their results in *Medicine & Science in Sports & Exercise*. The findings revealed a clear pattern. After the 4 km time trial, a high-intensity short-duration effort, peripheral fatigue was dominant: quadriceps force evoked by electrical stimulation dropped by 35%, while maximal voluntary activation (an indicator of central fatigue) decreased only 8%.
+Thomas et al. (2015) measured central and peripheral fatigue in male cyclists immediately after 4, 20, and 40-kilometer time trials, publishing their results in *Medicine & Science in Sports & Exercise*. The findings revealed a clear pattern. After the 4 km time trial, a high-intensity short-duration effort, peripheral fatigue was dominant: quadriceps force evoked by electrical stimulation dropped by roughly 40%, while maximal voluntary activation (an indicator of central fatigue) decreased only 6-7%.
 
-After the 40 km time trial, the pattern reversed. Peripheral fatigue was relatively lower, but maximal voluntary activation fell between 15% and 25%. The brain had progressively restricted the motor signal during the prolonged effort, limiting the power the cyclist could produce well before the muscles reached their maximal peripheral fatigue capacity. In the 20 km time trial, the contribution of both fatigue types was more balanced.
+After the 40 km time trial, the relative pattern reversed. Peripheral fatigue was still substantial (around 29%), but maximal voluntary activation fell close to 10%, a much larger share than in the 4 km effort. The brain had progressively restricted the motor signal during the prolonged effort, limiting the power the cyclist could produce before the muscles reached their peripheral fatigue ceiling. In the 20 km time trial, both fatigue types sat in between.
 
 ![Cyclist pedaling on a mountain road with visible effort](https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 

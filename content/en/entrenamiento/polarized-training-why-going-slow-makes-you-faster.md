@@ -62,7 +62,7 @@ The gray zone is problematic because it produces cumulative fatigue without gene
 
 The most cited study supporting the polarized model was published by Thomas Stöggl and Billy Sperlich in 2014. Over nine weeks, 48 endurance athletes were assigned to four groups with different intensity distributions. The group following the polarized model achieved the greatest improvements in VO2max, peak treadmill speed, and time to exhaustion. The threshold training group, which concentrated efforts in Zone 2, showed the smallest relative gains.
 
-Neal et al. (2013) confirmed these results in trained cyclists: six weeks of polarized training produced 8% improvements in peak power and 5.3% in lactate threshold power, outperforming the group that trained with a tempo-based model.
+Neal et al. (2013) confirmed these results in trained cyclists: six weeks of polarized training produced 8% improvements in peak power and 9% in lactate threshold power, against just a 2% threshold gain in the group that trained with a tempo-based model.
 
 ## Three Models Compared
 

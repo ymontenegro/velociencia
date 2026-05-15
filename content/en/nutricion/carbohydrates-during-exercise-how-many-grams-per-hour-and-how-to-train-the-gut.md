@@ -41,7 +41,7 @@ sources:
 excerpt: >-
   The combination of glucose and fructose allows oxidation rates of up to 105
   g/h, compared to 60 g/h for glucose alone. Training the gut for 2 weeks
-  reduces gastrointestinal symptoms by 47%.
+  reduces gastrointestinal symptoms by 61%.
 coverImage: >-
   https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
 ---

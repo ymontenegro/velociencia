@@ -119,7 +119,7 @@ Van Aert sigue siendo un corredor capaz de ganar cualquier Monumento en un día 
 
 ## Isaac del Toro: la promesa que mira a las clásicas
 
-Entre los nombres que asoman en el horizonte de los Monumentos, el mexicano Isaac del Toro ocupa un lugar singular. A sus 21 años ya ha ganado el UAE Tour y la Tirreno-Adriático en 2026, y terminó segundo en el Giro de Italia 2025, donde se llevó la clasificación de jóvenes como primer norteamericano en lograrlo. Su perfil es el de un escalador con capacidad para las carreras de un día exigentes, similar al de un joven Pogačar antes de que el esloveno empezara a dominar las clásicas.
+Entre los nombres que asoman en el horizonte de los Monumentos, el mexicano Isaac del Toro ocupa un lugar singular. A sus 22 años ya ha ganado el UAE Tour y la Tirreno-Adriático en 2026, y terminó segundo en el Giro de Italia 2025, donde se llevó la clasificación de jóvenes como primer norteamericano en lograrlo. Su perfil es el de un escalador con capacidad para las carreras de un día exigentes, similar al de un joven Pogačar antes de que el esloveno empezara a dominar las clásicas.
 
 Del Toro corre en el UAE Emirates-XRG bajo la tutela directa de Pogačar, y en 2025 terminó quinto en Il Lombardía con solo 20 años. Su convocatoria para las Ardenas 2026, según reportes recientes, sugiere que el equipo lo ve como un futuro candidato a Lieja y Lombardía. No es un corredor de adoquines ni de sprints, pero las dos clásicas con más desnivel se ajustan a sus características. Si mantiene la progresión actual, el ciclismo latinoamericano podría tener su primer ganador de un Monumento en los próximos años.
 

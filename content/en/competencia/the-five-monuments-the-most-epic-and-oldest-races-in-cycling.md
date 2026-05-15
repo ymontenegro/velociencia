@@ -143,7 +143,7 @@ Van Aert remains a rider capable of winning any Monument on a favorable day. His
 
 ## Isaac del Toro: The Promise Eyeing the Classics
 
-Among the names emerging on the Monument horizon, Mexican Isaac del Toro occupies a singular place. At 21 years old, he has already won the UAE Tour and Tirreno-Adriatico in 2026 and finished second in the 2025 Giro d’Italia, where he took the young rider classification as the first North American to do so. His profile is that of a climber with the capacity for demanding one-day races, similar to a young Pogačar before the Slovenian began dominating the classics.
+Among the names emerging on the Monument horizon, Mexican Isaac del Toro occupies a singular place. At 22 years old, he has already won the UAE Tour and Tirreno-Adriatico in 2026 and finished second in the 2025 Giro d’Italia, where he took the young rider classification as the first North American to do so. His profile is that of a climber with the capacity for demanding one-day races, similar to a young Pogačar before the Slovenian began dominating the classics.
 
 Del Toro rides for UAE Emirates-XRG under Pogačar’s direct tutelage, and in 2025 he finished fifth in Il Lombardia at just 20 years old. His call-up for the 2026 Ardennes, according to recent reports, suggests the team sees him as a future candidate for Liège and Lombardia. He is not a cobblestone or sprint rider, but the two classics with the most elevation suit his characteristics. If he maintains his current progression, Latin American cycling could have its first Monument winner in the coming years.
 

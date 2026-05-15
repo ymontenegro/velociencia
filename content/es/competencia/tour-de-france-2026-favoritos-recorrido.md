@@ -83,7 +83,7 @@ Remco Evenepoel enfrenta su primera temporada con Red Bull-BORA-hansgrohe tras d
 
 Primož Roglic, tres veces ganador de la Vuelta a España, sigue siendo un nombre a considerar a sus 36 años. Su capacidad en contrarreloj y alta montaña lo mantienen como candidato al podio, aunque la distancia con Pogačar y Vingegaard parece mayor con cada temporada. En Red Bull-BORA-hansgrohe compartirá filas con Evenepoel, lo que obligará al equipo a definir una jerarquía clara antes de julio.
 
-Entre los nombres emergentes, Isaac del Toro merece atención. El mexicano de 21 años ganó el UAE Tour y la Tirreno-Adriático en 2026, confirmando un salto cualitativo tras su segundo puesto en el Giro 2025, donde se llevó la clasificación de jóvenes. En este Tour debutará bajo la tutela de Pogačar en el UAE Emirates-XRG, un proceso de aprendizaje que busca prepararlo para liderar su propia campaña en grandes vueltas en los próximos años.
+Entre los nombres emergentes, Isaac del Toro merece atención. El mexicano de 22 años ganó el UAE Tour y la Tirreno-Adriático en 2026, confirmando un salto cualitativo tras su segundo puesto en el Giro 2025, donde se llevó la clasificación de jóvenes. En este Tour debutará bajo la tutela de Pogačar en el UAE Emirates-XRG, un proceso de aprendizaje que busca prepararlo para liderar su propia campaña en grandes vueltas en los próximos años.
 
 ## Dónde se decidirá la carrera
 

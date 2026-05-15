@@ -46,7 +46,7 @@ La zona gris resulta problemática porque produce fatiga acumulativa sin generar
 
 El estudio más citado en favor del modelo polarizado fue publicado por Thomas Stöggl y Billy Sperlich en 2014. Durante nueve semanas, 48 atletas de resistencia fueron asignados a cuatro grupos con diferentes distribuciones de intensidad. El grupo que siguió el modelo polarizado obtuvo las mayores mejoras en VO2max, velocidad pico en cinta y tiempo hasta el agotamiento. El grupo de entrenamiento umbral (threshold), que concentró sus esfuerzos en zona 2, mostró las menores ganancias relativas.
 
-Neal et al. (2013) confirmaron estos resultados en ciclistas entrenados: seis semanas de entrenamiento polarizado produjeron mejoras del 8% en potencia pico y del 5.3% en potencia a umbral de lactato, superiores a las del grupo que entrenó con un modelo basado en tempo.
+Neal et al. (2013) confirmaron estos resultados en ciclistas entrenados: seis semanas de entrenamiento polarizado produjeron mejoras del 8% en potencia pico y del 9% en potencia a umbral de lactato, frente a apenas un 2% en el umbral del grupo que entrenó con un modelo basado en tempo.
 
 ## Tres modelos comparados
 

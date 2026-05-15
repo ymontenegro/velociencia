@@ -1,6 +1,6 @@
 ---
 title: "Fatiga Central vs. Periférica: Por Qué Te Detienes Antes de Que Tus Piernas Fallen"
-subtitle: "El cerebro reduce la activación muscular hasta un 25% antes de que los músculos alcancen su límite real"
+subtitle: "Tras una contrarreloj de 40 km la activación voluntaria cae cerca de un 10%; en sprints cortos manda la fatiga periférica"
 section: "ciencia"
 date: "2026-03-21"
 author: "Sofía Müller"
@@ -27,7 +27,7 @@ sources:
   - title: "From catastrophe to complexity: a novel model of integrative central neural regulation of effort and fatigue during exercise in humans"
     url: "https://pubmed.ncbi.nlm.nih.gov/15665213/"
     type: pubmed
-excerpt: "Después de una contrarreloj de 40 km, la activación voluntaria máxima del cuádriceps cae entre un 15% y un 25%, pero la fuerza muscular periférica disminuye solo un 35%. El cerebro frena antes de que los músculos colapsen."
+excerpt: "Después de una contrarreloj de 40 km, la activación voluntaria máxima del cuádriceps cae alrededor de un 10% y la fuerza periférica casi un 30%; tras un esfuerzo de 4 km, en cambio, la fatiga periférica se acerca al 40% y la central apenas al 6-7%."
 coverImage: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 ---
 
@@ -45,9 +45,9 @@ Ese mecanismo explica una observación recurrente en los laboratorios de fisiolo
 
 ## Qué cambia según la duración del esfuerzo
 
-Thomas et al. (2015) midieron la fatiga central y periférica en ciclistas masculinos inmediatamente después de contrarrelojes de 4, 20 y 40 kilómetros, publicando sus resultados en *Medicine & Science in Sports & Exercise*. Los hallazgos revelaron un patrón claro. Tras la contrarreloj de 4 km, un esfuerzo de alta intensidad y corta duración, la fatiga periférica era dominante: la fuerza evocada por estimulación eléctrica del cuádriceps caía un 35%, mientras que la activación voluntaria máxima (un indicador de fatiga central) solo se reducía un 8%.
+Thomas et al. (2015) midieron la fatiga central y periférica en ciclistas masculinos inmediatamente después de contrarrelojes de 4, 20 y 40 kilómetros, publicando sus resultados en *Medicine & Science in Sports & Exercise*. Los hallazgos revelaron un patrón claro. Tras la contrarreloj de 4 km, un esfuerzo de alta intensidad y corta duración, la fatiga periférica era dominante: la fuerza evocada por estimulación eléctrica del cuádriceps caía cerca de un 40%, mientras que la activación voluntaria máxima (un indicador de fatiga central) apenas se reducía un 6-7%.
 
-Tras la contrarreloj de 40 km, el patrón se invertía. La fatiga periférica era menor en términos relativos, pero la activación voluntaria máxima caía entre un 15% y un 25%. El cerebro había restringido progresivamente la señal motora durante el esfuerzo prolongado, limitando la potencia que el ciclista podía producir mucho antes de que los músculos alcanzaran su capacidad máxima de fatiga periférica. En la contrarreloj de 20 km, la contribución de ambos tipos de fatiga era más equilibrada.
+Tras la contrarreloj de 40 km, el patrón se invertía en términos relativos. La fatiga periférica seguía siendo importante (alrededor del 29%), pero la activación voluntaria máxima caía cerca de un 10%, una proporción mucho mayor que en el esfuerzo de 4 km. El cerebro había restringido progresivamente la señal motora durante el esfuerzo prolongado, limitando la potencia que el ciclista podía producir antes de que los músculos alcanzaran su techo de fatiga periférica. En la contrarreloj de 20 km, la contribución de ambos tipos de fatiga era intermedia.
 
 ![Ciclista pedaleando en carretera de montaña con esfuerzo visible](https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 

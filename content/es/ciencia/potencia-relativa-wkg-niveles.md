@@ -77,11 +77,11 @@ Estos rangos son orientativos. Un ciclista puede estar en el extremo superior de
 
 ## Más allá del FTP: potencia relativa por duración
 
-El FTP captura solo un punto de la curva de potencia. Para un perfil completo, es necesario examinar los W/kg en múltiples duraciones. Sanders y Heijboer (2019) documentaron los rangos de potencia relativa en ciclistas profesionales para esfuerzos de 5 segundos a 60 minutos. Las diferencias entre duraciones revelan el perfil metabólico del ciclista.
+El FTP captura solo un punto de la curva de potencia. Para un perfil completo, es necesario examinar los W/kg en múltiples duraciones. Sanders y Heijboer (2017, PMID 27248365) documentaron los rangos de potencia relativa en ciclistas profesionales para esfuerzos de 5 segundos a 60 minutos. Las diferencias entre duraciones revelan el perfil metabólico del ciclista.
 
 <ChartBar
   title="Potencia relativa (W/kg) por duración y nivel"
-  caption="Fuente: Sanders y Heijboer (2019), Pinot y Grappe (2015)"
+  caption="Fuente: Sanders y Heijboer (2017), Pinot y Grappe (2015)"
   layout="vertical"
   data={[
     { duracion: "5 seg", recreativo: 12.0, competitivo: 17.0, worldtour: 22.0 },

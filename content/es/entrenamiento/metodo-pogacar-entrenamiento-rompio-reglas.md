@@ -40,7 +40,7 @@ excerpt: "Treinta y nueve minutos y cuarenta y tres segundos. Ese fue el tiempo 
 
 ## El día que el libro de texto dejó de servir
 
-Treinta y nueve minutos y cuarenta y tres segundos. Ese fue el tiempo que Tadej Pogačar tardó el 14 de julio de 2024 en subir los 15,8 kilómetros de Plateau de Beille, en la etapa 15 del Tour de Francia. Lo hizo a 1887 metros verticales por hora y a una potencia relativa estimada en torno a 6,90 vatios por kilo, según reconstrucciones publicadas por Lanterne Rouge. Tres minutos y treinta y cinco segundos más rápido que Marco Pantani en 1998, cuando el italiano estableció el récord previo en 43:28 en pleno auge de la EPO.
+Treinta y nueve minutos y cuarenta y tres segundos. Ese fue el tiempo que Tadej Pogačar tardó el 14 de julio de 2024 en subir los 15,8 kilómetros de Plateau de Beille, en la etapa 15 del Tour de Francia. Lo hizo a 1887 metros verticales por hora y a una potencia relativa estimada en torno a 6,90 vatios por kilo, según reconstrucciones publicadas por Lanterne Rouge. Tres minutos y cuarenta y cinco segundos más rápido que Marco Pantani en 1998, cuando el italiano estableció el récord previo en 43:28 en pleno auge de la EPO.
 
 El dato ya sería raro por sí solo. Lo que lo vuelve incómodo para la ortodoxia del entrenamiento moderno es que Pogačar llegó a ese punto tras doscientos kilómetros y cinco mil metros de desnivel acumulado, y que esa misma temporada había ganado el Giro pocas semanas antes. Es decir: no solo subió más rápido que cualquiera en la historia registrada del Tour, sino que lo hizo dentro de un calendario que ningún fisiólogo contemporáneo habría aprobado en el pizarrón.
 

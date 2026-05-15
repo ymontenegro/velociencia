@@ -73,7 +73,7 @@ El domingo 31 de mayo, un circuito llano por la Ciudad Eterna cierra la carrera 
 
 Primož Roglič llega al Giro 2026 como principal favorito. El esloveno, que sumó su cuarta Vuelta a España en 2024 a sus 34 años, ha construido su calendario alrededor de la Corsa Rosa. Su capacidad como contrarrelojista le da una ventaja natural en un recorrido con una CRI de 40 km. Su punto débil sigue siendo la alta montaña extrema, pero las etapas de este Giro son exigentes sin llegar a los finales por encima de los 2.000 metros que castigan a los rodadores.
 
-Antonio Tiberi es la gran esperanza italiana. Con 24 años, fue tercero en el Giro de Italia 2025 y comenzó 2026 con una victoria convincente en el UAE Tour, donde superó a Isaac del Toro. Su perfil de escalador puro con una contrarreloj en mejora constante lo convierte en candidato legítimo al podio. Correr como líder en casa, con el apoyo del público italiano, añade un factor intangible que no se mide en vatios.
+Antonio Tiberi es la gran esperanza italiana. Con 24 años, sufrió una caída en la etapa 14 del Giro 2025 cuando marchaba tercero en la general y acabó 15° a 35 minutos del ganador. Comenzó 2026 con un subcampeonato en el UAE Tour, a solo 20 segundos del ganador Isaac del Toro. Su perfil de escalador puro con una contrarreloj en mejora constante lo convierte en candidato legítimo al podio. Correr como líder en casa, con el apoyo del público italiano, añade un factor intangible que no se mide en vatios.
 
 ![Isaac del Toro vistiendo la maglia rosa durante la etapa 16 del Giro de Italia 2025 (Foto: Filip Bossuyt, CC BY 2.0, vía Wikimedia Commons)](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Isaac_Del_Toro_maglia_rosa.jpg/900px-Isaac_Del_Toro_maglia_rosa.jpg)
 
@@ -84,8 +84,8 @@ Isaac del Toro, el mexicano de 22 años del UAE Team Emirates, llega como la inc
   caption="Mejor posición final en los últimos 4 Grand Tours disputados por cada corredor"
   data={[
     { corredor: "Roglič", mejor: 1, gt: "Vuelta 2024" },
-    { corredor: "Tiberi", mejor: 3, gt: "Giro 2025" },
-    { corredor: "Del Toro", mejor: 7, gt: "Vuelta 2025" },
+    { corredor: "Tiberi", mejor: 15, gt: "Giro 2025" },
+    { corredor: "Del Toro", mejor: 2, gt: "Giro 2025" },
     { corredor: "O'Connor", mejor: 2, gt: "Vuelta 2024" },
     { corredor: "McNulty", mejor: 9, gt: "Giro 2025" }
   ]}

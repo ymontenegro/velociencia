@@ -90,7 +90,7 @@ Lo que distingue a Seixas de otros corredores precoces no es solo la potencia en
 
 ## Las ausencias y lo que realmente cambian
 
-Tadej Pogačar, bicampeón de La Flèche Wallonne con sus victorias de 2023 y 2025, no salió en Huy el miércoles. El esloveno tiene la mira puesta en Lieja-Bastoña-Lieja del domingo y, más adelante, en el Tour de Romandía como bloque de rodaje hacia el Tour de Francia. Remco Evenepoel tomó la misma decisión: el belga de Red Bull-Bora-Hansgrohe, ganador de la Amstel Gold Race tres semanas antes, decidió reservarse íntegramente para el monumento del domingo.
+Tadej Pogačar, bicampeón de La Flèche Wallonne con sus victorias de 2023 y 2025, no salió en Huy el miércoles. El esloveno tiene la mira puesta en Lieja-Bastoña-Lieja del domingo y, más adelante, en el Tour de Romandía como bloque de rodaje hacia el Tour de Francia. Remco Evenepoel tomó la misma decisión: el belga de Red Bull-Bora-Hansgrohe, ganador de la Amstel Gold Race tres días antes, decidió reservarse íntegramente para el monumento del domingo.
 
 Es tentador ver la victoria de Seixas como el fruto natural de esas ausencias. El argumento no resiste el análisis. En primer lugar, Schmid y Tulett son corredores de nivel WorldTour que llegaron al pie del Mur con las mismas condiciones que el francés. En segundo lugar, la magnitud del tiempo de ascensión —2:43, tercer mejor registro histórico— no tiene corrección por ausencias: la rampa no discrimina entre ediciones con Pogačar y ediciones sin él. En tercer lugar, el historial de La Flèche Wallonne está lleno de victorias en escenarios parecidos: Stephen Williams ganó la edición de 2024, también sin los grandes favoritos en plena forma. El mérito de Seixas no necesita asterisco.
 

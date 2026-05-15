@@ -70,7 +70,7 @@ The difference is striking at the extremes. In a 5-second sprint, a professional
 
 ## The critical power model
 
-Behind the curve lies a mathematical model with nearly a century of evolution. Monod and Scherrer (1965) originally proposed the concept of critical power (CP), and it has since become one of the most robust tools in exercise physiology. Jones et al. (2019) described it as a "fundamental physiological threshold" separating the heavy and severe intensity domains.
+Behind the curve lies a mathematical model with nearly a century of evolution. Monod and Scherrer (1965) originally proposed the concept of critical power (CP), and it has since become one of the most robust tools in exercise physiology. Burnley and Jones (2018, PMID 27806677) described it as a "fundamental physiological threshold" separating the heavy and severe intensity domains.
 
 The model has two parameters. Critical power (CP) represents the maximum power that can theoretically be sustained indefinitely without progressive metabolite accumulation. In practice, it corresponds approximately to an effort sustainable for 30 to 60 minutes in trained cyclists. The second parameter is W' (W prime), a finite amount of work that can be performed above CP before reaching exhaustion. Poole et al. (2016) demonstrated that W' primarily reflects anaerobic capacity and the phosphocreatine and glycogen reserves available for supra-threshold efforts.
 

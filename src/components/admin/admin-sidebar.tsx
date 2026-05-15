@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "grid" },
-  { href: "/admin/articles", label: "Articulos", icon: "file-text" },
+  { href: "/admin/queue", label: "Cola editorial", icon: "calendar" },
+  { href: "/admin/articles", label: "Artículos", icon: "file-text" },
   { href: "/admin/agents", label: "Agentes", icon: "cpu" },
   { href: "/admin/feeds", label: "Feeds", icon: "rss" },
   { href: "/admin/topics", label: "Topics", icon: "layers" },
@@ -15,6 +17,11 @@ const icons: Record<string, React.ReactNode> = {
   grid: (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+    </svg>
+  ),
+  calendar: (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
     </svg>
   ),
   "file-text": (
@@ -41,6 +48,15 @@ const icons: Record<string, React.ReactNode> = {
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function logout() {
+    setLoggingOut(true);
+    await fetch("/api/admin/logout", { method: "POST" }).catch(() => {});
+    router.push("/admin/login");
+    router.refresh();
+  }
 
   return (
     <aside className="fixed top-0 left-0 h-full w-[250px] bg-[#1A1D23] dark:bg-[#13151A] text-white flex flex-col z-50">
@@ -75,16 +91,26 @@ export function AdminSidebar() {
         })}
       </nav>
 
-      <div className="px-6 py-4 border-t border-white/10">
+      <div className="px-3 py-3 border-t border-white/10 space-y-1">
         <Link
           href="/"
-          className="flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
+          className="flex items-center gap-2 px-3 py-2 text-xs text-white/40 hover:text-white/70 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
           Volver al sitio
         </Link>
+        <button
+          onClick={logout}
+          disabled={loggingOut}
+          className="w-full flex items-center gap-2 px-3 py-2 text-xs text-white/40 hover:text-white/70 transition-colors disabled:opacity-50"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+          </svg>
+          {loggingOut ? "Cerrando..." : "Cerrar sesión"}
+        </button>
       </div>
     </aside>
   );

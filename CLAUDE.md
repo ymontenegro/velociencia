@@ -23,9 +23,30 @@ npm run agents:review    # Editor reviews pending articles
 npm run agents:start     # Start cron scheduler
 
 npm run feeds:import     # Import RSS feeds
+
+npm run queue            # Editorial queue CLI (list / show / next / done / publish)
 ```
 
 No test framework is configured. There are no unit/integration tests.
+
+## Editorial queue
+
+Briefs and scheduled posts live in the `scheduled_posts` table. Yerko adds entries via the admin dashboard (`/admin/queue`); Claude Code consumes them through `npm run queue`:
+
+```bash
+npm run queue                       # list pending (idea/briefed/scheduled/assigned)
+npm run queue next                  # take the highest-priority item, auto-assigns to claude-code
+npm run queue show <id>             # full brief as markdown
+npm run queue start <id>            # mark in_progress
+npm run queue done <id> [articleId] # mark drafted (optionally link the article id)
+npm run queue publish <id>          # mark published
+```
+
+When the user says "trabaja en la cola" / "next post", run `npm run queue next`, follow the brief, then close with `npm run queue done`. The dashboard surfaces status changes in real time.
+
+## Admin dashboard
+
+`/admin` is gated by cookie auth (user `admin`, password `admin123` by default — override with `ADMIN_USER` / `ADMIN_PASSWORD` env vars). Routes inside `(admin)` are protected by `src/proxy.ts` (Next 16 renamed middleware → proxy). Tracking script (`src/components/analytics/page-tracker.tsx`) sends pageviews to `/api/track`; geo lookup uses Vercel/Cloudflare headers when available, with ip-api.com fallback cached in `ip_geo_cache`.
 
 ## Architecture
 
