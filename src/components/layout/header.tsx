@@ -25,6 +25,7 @@ export function Header() {
       label: sections[id].name,
       sectionId: id,
     })),
+    { href: locale === "en" ? "/tools" : "/herramientas", label: dict.tools.nav, sectionId: null },
     { href: locale === "en" ? "/about" : "/sobre", label: dict.header.about, sectionId: null },
   ] as const;
 

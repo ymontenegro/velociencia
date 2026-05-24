@@ -88,6 +88,14 @@ export async function Footer() {
               </li>
               <li>
                 <Link
+                  href={locale === "en" ? "/tools" : "/herramientas"}
+                  className="text-sm text-white/60 transition-colors hover:text-white"
+                >
+                  {dict.tools.nav}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={locale === "en" ? "/privacy" : "/privacidad"}
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >

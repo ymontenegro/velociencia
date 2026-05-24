@@ -111,6 +111,15 @@
     "articleCount": "artículo",
     "notFound": "Columnista no encontrado"
   },
+  "tools": {
+    "nav": "Herramientas",
+    "indexTitle": "Herramientas",
+    "indexSubtitle": "Calculadoras de ciencia del ciclismo: potencia, nutrición y rendimiento.",
+    "relatedArticles": "Artículos relacionados",
+    "backToTools": "Ver todas las herramientas",
+    "openTool": "Abrir calculadora",
+    "disclaimer": "Estas calculadoras entregan estimaciones con fines educativos y no sustituyen el consejo de un profesional."
+  },
   "error": {
     "somethingWrong": "Algo sali\u00f3 mal",
     "tryAgain": "Intentar de nuevo"

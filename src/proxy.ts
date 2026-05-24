@@ -11,6 +11,7 @@ const SECTION_SLUG_MAP_EN: Record<string, string> = {
   competencia: "competition",
   tema: "topic",
   autor: "author",
+  herramientas: "tools",
   sobre: "about",
   privacidad: "privacy",
   contacto: "contact",

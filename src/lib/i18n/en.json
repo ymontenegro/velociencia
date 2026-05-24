@@ -111,6 +111,15 @@
     "articleCount": "article",
     "notFound": "Columnist not found"
   },
+  "tools": {
+    "nav": "Tools",
+    "indexTitle": "Tools",
+    "indexSubtitle": "Cycling-science calculators: power, nutrition and performance.",
+    "relatedArticles": "Related articles",
+    "backToTools": "View all tools",
+    "openTool": "Open calculator",
+    "disclaimer": "These calculators provide educational estimates and are not a substitute for professional advice."
+  },
   "error": {
     "somethingWrong": "Something went wrong",
     "tryAgain": "Try again"
