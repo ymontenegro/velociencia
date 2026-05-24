@@ -10,6 +10,7 @@
     "db:setup": "tsx scripts/setup.ts",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
+    "db:gen-init": "node scripts/gen-init-sql.cjs",
     "agents:start": "tsx scripts/start-scheduler.ts",
     "agents:discover": "tsx scripts/run-pipeline.ts discover",
     "agents:research": "tsx scripts/run-pipeline.ts research",
