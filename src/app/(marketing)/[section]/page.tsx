@@ -3,7 +3,8 @@ import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { SECTIONS, getSectionBySlug, type SectionId } from "@/lib/constants";
 import { getAllArticles } from "@/lib/markdown";
-import { ArticleGrid } from "@/components/articles/article-grid";
+import { tagToSlug } from "@/lib/tags";
+import { SectionToolbar } from "@/components/articles/section-toolbar";
 
 interface SectionPageProps {
   params: Promise<{ section: string }>;
@@ -39,9 +40,34 @@ export default async function SectionPage({ params }: SectionPageProps) {
     excerpt: a.excerpt ?? "",
     date: a.date,
     readingTime: a.readingTime,
-    section: a.section,
+    section: a.section as SectionId,
     coverImage: a.coverImage,
+    tags: a.tags ?? [],
+    author: a.author ?? sectionI18n.journalist,
   }));
+
+  // Build the top tags for this section (server-side, top 15 by frequency)
+  const tagFreq = new Map<string, { display: string; count: number }>();
+  for (const article of articles) {
+    const seen = new Set<string>();
+    for (const raw of article.tags) {
+      const tag = raw.trim();
+      if (!tag) continue;
+      const slug = tagToSlug(tag);
+      if (!slug || seen.has(slug)) continue;
+      seen.add(slug);
+      const existing = tagFreq.get(slug);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        tagFreq.set(slug, { display: tag, count: 1 });
+      }
+    }
+  }
+  const availableTags = [...tagFreq.entries()]
+    .sort((a, b) => b[1].count - a[1].count || a[1].display.localeCompare(b[1].display))
+    .slice(0, 15)
+    .map(([slug, { display }]) => ({ slug, display }));
 
   return (
     <div>
@@ -71,9 +97,14 @@ export default async function SectionPage({ params }: SectionPageProps) {
         </div>
       </div>
 
-      {/* Articles grid */}
+      {/* Articles with filters, sort, and load-more */}
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <ArticleGrid articles={articles} />
+        <SectionToolbar
+          articles={articles}
+          sectionId={sectionId}
+          sectionColor={sectionConfig.color}
+          availableTags={availableTags}
+        />
       </div>
     </div>
   );

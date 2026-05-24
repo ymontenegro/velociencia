@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de evolución de interfaz · Velociencia / PedalSci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F0F14; --bg-card:#1A1D23; --bg-card-2:#15181e;
+    --text:#F1F5F9; --text-2:#A9B2C0; --text-muted:#6B7383;
+    --border:#2D3039; --border-light:#232730;
+    --nutricion:#2DD4BF; --ciencia:#A78BFA; --entrenamiento:#FBBF24; --competencia:#FB7185;
+    --accent:#F1F5F9;
+    --head:'Space Grotesk', system-ui, sans-serif;
+    --body:'DM Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--body);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(167,139,250,.10), transparent 60%),
+      radial-gradient(800px 500px at 100% 0%, rgba(45,212,191,.08), transparent 55%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .head-font{font-family:var(--head)}
+
+  /* ─── Hero ─── */
+  header.hero{padding:84px 0 56px;border-bottom:1px solid var(--border)}
+  .kicker{font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted)}
+  .dashes{display:flex;gap:8px;margin:22px 0}
+  .dashes span{height:3px;width:42px;border-radius:99px;display:inline-block}
+  h1{font-family:var(--head);font-weight:700;font-size:clamp(2.4rem,6vw,4rem);line-height:1.04;letter-spacing:-.02em;margin:6px 0 0}
+  .lede{font-size:1.16rem;color:var(--text-2);max-width:62ch;margin-top:22px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:44px}
+  .stat{background:var(--bg-card);padding:22px 20px}
+  .stat .n{font-family:var(--head);font-size:2rem;font-weight:700;line-height:1}
+  .stat .l{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:8px}
+
+  /* ─── Sections ─── */
+  section.block{padding:64px 0;border-bottom:1px solid var(--border-light)}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--text-muted)}
+  h2{font-family:var(--head);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.3rem);letter-spacing:-.015em;line-height:1.12}
+  h2 .num{color:var(--text-muted);font-weight:500}
+  .section-intro{color:var(--text-2);max-width:64ch;margin-top:14px;font-size:1.04rem}
+
+  /* ─── Diagnosis two-col ─── */
+  .diag{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+  @media(max-width:760px){.diag{grid-template-columns:1fr}}
+  .panel{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:26px 24px}
+  .panel h3{font-family:var(--head);font-size:1.02rem;letter-spacing:.02em;display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .panel.keep{border-top:3px solid var(--nutricion)}
+  .panel.gap{border-top:3px solid var(--competencia)}
+  .li{display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--border-light)}
+  .li:first-of-type{border-top:0}
+  .li .ic{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:2px}
+  .keep .ic{background:rgba(45,212,191,.14);color:var(--nutricion)}
+  .gap .ic{background:rgba(251,113,133,.14);color:var(--competencia)}
+  .li b{font-weight:600}
+  .li .d{color:var(--text-2);font-size:.93rem}
+
+  /* ─── Pillars ─── */
+  .pillar{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:30px 28px;margin-top:24px;position:relative;overflow:hidden}
+  .pillar::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent-c, var(--text))}
+  .pillar .ptop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .pillar h3{font-family:var(--head);font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+  .pillar .pno{font-family:var(--head);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-c, var(--text-muted));font-weight:600}
+  .pillar .why{color:var(--text-2);margin-top:10px;max-width:70ch}
+  .tag-prio{font-family:var(--head);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border-radius:99px;white-space:nowrap}
+  .prio-now{background:rgba(45,212,191,.16);color:var(--nutricion)}
+  .prio-mid{background:rgba(167,139,250,.16);color:var(--ciencia)}
+  .prio-later{background:rgba(251,191,36,.16);color:var(--entrenamiento)}
+
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  @media(max-width:680px){.feat{grid-template-columns:1fr}}
+  .card{background:var(--bg-card-2);border:1px solid var(--border-light);border-radius:13px;padding:18px}
+  .card h4{font-family:var(--head);font-size:1rem;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .card p{color:var(--text-2);font-size:.9rem;margin-top:7px}
+  .card .files{margin-top:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.74rem;color:var(--text-muted);line-height:1.7}
+  .eff{font-family:var(--head);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;white-space:nowrap;flex:none}
+  .e-s{background:rgba(45,212,191,.15);color:var(--nutricion)}
+  .e-m{background:rgba(251,191,36,.15);color:var(--entrenamiento)}
+  .e-l{background:rgba(251,113,133,.15);color:var(--competencia)}
+
+  /* ─── Mockup ─── */
+  .mock{margin-top:22px;border:1px solid var(--border);border-radius:13px;overflow:hidden;background:#0c0e12}
+  .mock .bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--border-light);background:var(--bg-card-2)}
+  .mock .bar i{width:11px;height:11px;border-radius:99px;display:inline-block;background:var(--border)}
+  .mock .bar span{font-size:.74rem;color:var(--text-muted);margin-left:8px;font-family:ui-monospace,monospace}
+  .mock pre{padding:18px 20px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;color:var(--text-2);line-height:1.75;overflow-x:auto;white-space:pre}
+  .mock pre b{color:var(--text)}
+  .mock pre .mut{color:var(--text-muted)}
+  .mock pre .acc{color:var(--ciencia)}
+
+  /* ─── Roadmap ─── */
+  .road{margin-top:32px;display:flex;flex-direction:column;gap:0}
+  .phase{display:grid;grid-template-columns:130px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--border-light)}
+  @media(max-width:640px){.phase{grid-template-columns:1fr;gap:8px}}
+  .phase .pl{font-family:var(--head);font-weight:700;letter-spacing:.04em}
+  .phase .pl small{display:block;color:var(--text-muted);font-weight:500;font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;margin-top:4px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.82rem;background:var(--bg-card);border:1px solid var(--border);border-radius:99px;padding:7px 14px;color:var(--text-2)}
+  .chip b{color:var(--text);font-weight:600}
+
+  /* ─── Recommendation ─── */
+  .reco{background:linear-gradient(135deg, rgba(167,139,250,.10), rgba(45,212,191,.06));border:1px solid var(--border);border-radius:18px;padding:34px 30px;margin-top:28px}
+  .reco h3{font-family:var(--head);font-size:1.3rem;margin-bottom:12px}
+  .reco p{color:var(--text-2);max-width:72ch;margin-top:10px}
+  .reco strong{color:var(--text)}
+
+  footer{padding:48px 0 80px;color:var(--text-muted);font-size:.85rem}
+  a{color:var(--ciencia);text-decoration:none}
+  .tagline{font-family:var(--head);letter-spacing:.06em}
+  ::selection{background:var(--accent);color:#0F0F14}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Velociencia · PedalSci — Propuesta de producto</p>
+    <div class="dashes">
+      <span style="background:var(--nutricion)"></span>
+      <span style="background:var(--ciencia)"></span>
+      <span style="background:var(--entrenamiento)"></span>
+      <span style="background:var(--competencia)"></span>
+    </div>
+    <h1>Plan de evolución<br>de la interfaz <span style="color:var(--text-muted)">v2</span></h1>
+    <p class="lede">Ya no es un sitio recién nacido: con 170 artículos publicados, el cuello de botella dejó de ser <em>producir</em> contenido y pasó a ser <em>encontrarlo, recorrerlo y profundizar en él</em>. Esta propuesta complejiza la interfaz justo donde el volumen lo exige, reutilizando datos que ya existen pero que hoy no se muestran.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">170</div><div class="l">Artículos (85 ES · 85 EN)</div></div>
+      <div class="stat"><div class="n">343</div><div class="l">Tags únicos sin usar</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Columnistas sin página</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">Buscadores en el sitio</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- DIAGNÓSTICO -->
+<section class="block">
+  <div class="wrap">
+    <p class="eyebrow">Diagnóstico</p>
+    <h2>Qué tienes, y dónde se queda corto</h2>
+    <p class="section-intro">El sistema de diseño “Velodrome Editorial” es sólido y no hay que tocarlo. El problema es de <strong>arquitectura de información</strong>: la interfaz se diseñó para pocos artículos y ahora hay que escalarla a un archivo de revista.</p>
+
+    <div class="diag">
+      <div class="panel keep">
+        <h3>✓ Lo que ya funciona — conservar</h3>
+        <div class="li"><div class="ic">✓</div><div><b>Sistema de diseño maduro.</b><div class="d">Tipografía Space Grotesk + DM Sans, colores por sección, dark mode, grano, glassmorphism, drop caps, animaciones de entrada.</div></div></div>
+        <div class="li"><div class="ic">✓</div><div><b>Motor editorial científico.</b><div class="d">MDX con KaTeX (fórmulas) y charts (recharts) embebibles. Pocos medios de ciclismo tienen esto.</div></div></div>
+        <div class="li"><div class="ic">✓</div><div><b>SEO técnico fuerte.</b><div class="d">JSON-LD (Organization + NewsArticle), hreflang ES/EN, OpenGraph, sitemap, canonical.</div></div></div>
+        <div class="li"><div class="ic">✓</div><div><b>Infraestructura propia.</b><div class="d">Tracking de vistas (<code>/api/track</code>), cola editorial con CLI y dashboard admin.</div></div></div>
+        <div class="li"><div class="ic">✓</div><div><b>Barra de progreso de scroll.</b><div class="d">Ya implementada en el header — buena base para la experiencia de lectura.</div></div></div>
+      </div>
+
+      <div class="panel gap">
+        <h3>△ Brechas que aparecen con volumen</h3>
+        <div class="li"><div class="ic">1</div><div><b>No existe búsqueda.</b><div class="d">85 artículos por idioma y ninguna forma de buscar por título, tema o autor.</div></div></div>
+        <div class="li"><div class="ic">2</div><div><b>343 tags invisibles.</b><div class="d">Cada artículo trae tags ricos en el frontmatter, pero no se renderizan en ningún lado. Taxonomía desperdiciada.</div></div></div>
+        <div class="li"><div class="ic">3</div><div><b>Secciones = muro.</b><div class="d">La página de sección vuelca los 20-26 artículos sin filtro, sin orden ni “cargar más”.</div></div></div>
+        <div class="li"><div class="ic">4</div><div><b>Lectura plana.</b><div class="d">Sin tabla de contenidos, sin compartir, sin bio de autor; “relacionados” solo por sección, no por relevancia.</div></div></div>
+        <div class="li"><div class="ic">5</div><div><b>Columnistas anónimos.</b><div class="d">Martín, Sofía, Tomás y Diego tienen voz propia, pero ningún archivo por autor (E-E-A-T desaprovechado).</div></div></div>
+        <div class="li"><div class="ic">6</div><div><b>“Trending” no es trending.</b><div class="d">La barra superior muestra lo más reciente, no lo más leído — y ya tienes los datos de vistas.</div></div></div>
+        <div class="li"><div class="ic">7</div><div><b>Cero herramientas interactivas.</b><div class="d">Raro en ciencia del ciclismo. <code>recharts</code> ya está instalado y sin usar fuera del admin.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA -->
+<section class="block">
+  <div class="wrap">
+    <p class="eyebrow">Propuesta</p>
+    <h2>Cinco pilares para escalar el archivo</h2>
+    <p class="section-intro">Cada pilar ataca una brecha concreta. Las etiquetas de prioridad indican <span style="color:var(--nutricion)">por dónde empezar</span>, y cada función trae su esfuerzo estimado y los archivos que toca.</p>
+
+    <!-- PILAR 1 -->
+    <div class="pillar" style="--accent-c:var(--nutricion)">
+      <div class="ptop">
+        <div>
+          <p class="pno">Pilar 1</p>
+          <h3>Descubrimiento</h3>
+        </div>
+        <span class="tag-prio prio-now">Empezar aquí</span>
+      </div>
+      <p class="why">El problema real que trae el volumen: el contenido existe pero no se encuentra. Estas tres piezas multiplican páginas indexables (SEO/AdSense) y tiempo en sitio reutilizando datos que ya tienes.</p>
+      <div class="feat">
+        <div class="card">
+          <h4>Búsqueda global ⌘K <span class="eff e-m">Medio</span></h4>
+          <p>Command palette con índice client-side generado en build (título, subtítulo, excerpt, tags, autor). Navegación con teclado, agrupado por sección. Sin backend.</p>
+          <div class="files">+ src/components/search/command-palette.tsx<br>+ src/lib/search-index.ts<br>~ header.tsx (botón ⌘K)</div>
+        </div>
+        <div class="card">
+          <h4>Páginas de tema / tags <span class="eff e-m">Medio</span></h4>
+          <p>Rutas <code>/tema/[tag]</code> (es) y <code>/topic/[tag]</code> (en) con todos los artículos de un tema. Chips clicables en tarjetas y artículos. Normalización (Pogačar/pogacar, clásicas).</p>
+          <div class="files">+ (marketing)/tema/[tag]/page.tsx<br>+ src/lib/tags.ts (índice + slug)<br>~ article-card.tsx · [slug]/page.tsx</div>
+        </div>
+        <div class="card">
+          <h4>Secciones con filtro y orden <span class="eff e-s">Bajo</span></h4>
+          <p>Barra de filtros por tag + orden (recientes / más leídos) + “cargar más”. Convierte el muro de 26 tarjetas en un archivo navegable.</p>
+          <div class="files">~ (marketing)/[section]/page.tsx<br>+ src/components/articles/section-toolbar.tsx</div>
+        </div>
+        <div class="card">
+          <h4>Nube de temas <span class="eff e-s">Bajo</span></h4>
+          <p>Bloque “Explora por tema” con los tags más frecuentes, dimensionados por volumen. Puerta de entrada en home y secciones.</p>
+          <div class="files">+ src/components/home/topic-cloud.tsx</div>
+        </div>
+      </div>
+
+      <div class="mock">
+        <div class="bar"><i></i><i></i><i></i><span>⌘K — búsqueda global</span></div>
+<pre><b>┌─────────────────────────────────────────────┐</b>
+<b>│</b>  🔍  <b>vo2</b><span class="mut">|</span>                                    <b>│</b>
+<b>├─────────────────────────────────────────────┤</b>
+<b>│</b> <span class="acc">CIENCIA</span>                                       <b>│</b>
+<b>│</b>  · Mismo VO₂max, distinto coste: la cinét…    <b>│</b>
+<b>│</b>  · El componente lento del VO₂ y la fatiga    <b>│</b>
+<b>│</b> <span class="acc">ENTRENAMIENTO</span>                                 <b>│</b>
+<b>│</b>  · Intervalos largos para subir el VO₂max     <b>│</b>
+<b>│</b> <span class="mut">TEMAS</span>                                         <b>│</b>
+<b>│</b>  # VO2max (13)   # zona 2 (5)   # FTP (8)      <b>│</b>
+<b>└─────────────────────────────────────────────┘</b>
+  <span class="mut">↑↓ navegar   ↵ abrir   esc cerrar</span></pre>
+      </div>
+    </div>
+
+    <!-- PILAR 2 -->
+    <div class="pillar" style="--accent-c:var(--ciencia)">
+      <div class="ptop">
+        <div>
+          <p class="pno">Pilar 2</p>
+          <h3>Profundidad de lectura</h3>
+        </div>
+        <span class="tag-prio prio-now">Quick wins</span>
+      </div>
+      <p class="why">Tus artículos son largos y técnicos. Hacer la lectura más navegable y compartible sube el tiempo en página y la circulación. Casi todo es bajo esfuerzo sobre la plantilla de artículo que ya existe.</p>
+      <div class="feat">
+        <div class="card">
+          <h4>Tabla de contenidos sticky <span class="eff e-m">Medio</span></h4>
+          <p>Sidebar de escritorio con los h2/h3 y scroll-spy que resalta la sección activa. Se autogenera del MDX (ya usas <code>rehype-slug</code>).</p>
+          <div class="files">+ src/components/articles/toc.tsx<br>~ [slug]/page.tsx (extraer headings)</div>
+        </div>
+        <div class="card">
+          <h4>Barra de compartir <span class="eff e-s">Bajo</span></h4>
+          <p>X, WhatsApp, LinkedIn y “copiar enlace”. Sticky lateral en desktop, en línea en móvil.</p>
+          <div class="files">+ src/components/articles/share-bar.tsx</div>
+        </div>
+        <div class="card">
+          <h4>Bloque de bio de autor <span class="eff e-s">Bajo</span></h4>
+          <p>Al pie del artículo: avatar, nombre, especialidad y enlace a la página de columnista. Refuerza autoría y E-E-A-T.</p>
+          <div class="files">+ src/components/articles/author-bio.tsx<br>+ src/lib/authors.ts (bios)</div>
+        </div>
+        <div class="card">
+          <h4>Relacionados por relevancia <span class="eff e-s">Bajo</span></h4>
+          <p>Priorizar artículos que comparten tags, no solo la misma sección. Mejor descubrimiento lateral con código mínimo.</p>
+          <div class="files">~ [slug]/page.tsx (ranking por tags)</div>
+        </div>
+      </div>
+      <p class="why" style="margin-top:16px;font-size:.92rem"><strong style="color:var(--text)">Nota editorial:</strong> nada de cajas de “puntos clave” con bullets tipo IA — respeta tu estilo periodístico de párrafos. Si se quiere un TL;DR, se resuelve como nota al margen sobria, no como lista.</p>
+    </div>
+
+    <!-- PILAR 3 -->
+    <div class="pillar" style="--accent-c:var(--competencia)">
+      <div class="ptop">
+        <div>
+          <p class="pno">Pilar 3</p>
+          <h3>Páginas de columnista</h3>
+        </div>
+        <span class="tag-prio prio-mid">Fase 2</span>
+      </div>
+      <p class="why">Tienes cuatro voces con personalidad (Martín · nutrición, Sofía · ciencia, Tomás · entrenamiento, Diego · competencia) pero el lector no puede seguir a ninguna. Una página por autor da identidad de revista y construye autoridad temática (E-E-A-T = ranking).</p>
+      <div class="feat">
+        <div class="card">
+          <h4>Ruta /autor/[slug] <span class="eff e-m">Medio</span></h4>
+          <p>Cabecera con avatar grande en el color de su sección, bio y especialidad, seguida del archivo completo de sus artículos.</p>
+          <div class="files">+ (marketing)/autor/[slug]/page.tsx<br>+ src/lib/authors.ts · schema.org Person</div>
+        </div>
+        <div class="card">
+          <h4>Autor enlazado en todo el sitio <span class="eff e-s">Bajo</span></h4>
+          <p>Nombre del autor clicable en tarjetas, hero y artículo. Cierra el bucle con el Pilar 2.</p>
+          <div class="files">~ article-card.tsx · author-avatar.tsx</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILAR 4 -->
+    <div class="pillar" style="--accent-c:var(--entrenamiento)">
+      <div class="ptop">
+        <div>
+          <p class="pno">Pilar 4</p>
+          <h3>Herramientas interactivas</h3>
+        </div>
+        <span class="tag-prio prio-later">Fase 3 · diferenciador</span>
+      </div>
+      <p class="why">El mayor diferenciador a mediano plazo. Calculadoras on-brand con <code>recharts</code> (ya instalado): cada una es un imán de SEO de cola larga, sube engagement, da un slot natural de monetización y se enlaza desde artículos relacionados. Convierte el sitio de “medio que se lee” a “herramienta que se usa”.</p>
+      <div class="feat">
+        <div class="card">
+          <h4>Zonas de potencia / FTP <span class="eff e-m">Medio</span></h4>
+          <p>El usuario ingresa su FTP → tabla y gráfico de las 7 zonas de Coggan.</p>
+        </div>
+        <div class="card">
+          <h4>Ingesta de carbohidratos <span class="eff e-m">Medio</span></h4>
+          <p>Duración e intensidad → g/h recomendados y plan de avituallamiento.</p>
+        </div>
+        <div class="card">
+          <h4>W/kg y percentiles <span class="eff e-m">Medio</span></h4>
+          <p>Potencia y peso → relación W/kg y dónde caes en la tabla por categoría.</p>
+        </div>
+        <div class="card">
+          <h4>Estimadores (VO₂max, TSS/CTL) <span class="eff e-l">Alto</span></h4>
+          <p>Curva de carga, fitness/fatiga/forma. El más complejo; ideal como “fase 3 tardía”.</p>
+        </div>
+      </div>
+      <p class="why" style="margin-top:16px;font-size:.92rem">Ruta sugerida: <code>/herramientas</code> (es) · <code>/tools</code> (en), con una tarjeta por calculadora y enlaces cruzados desde los artículos de cada tema.</p>
+    </div>
+
+    <!-- PILAR 5 -->
+    <div class="pillar" style="--accent-c:var(--nutricion)">
+      <div class="ptop">
+        <div>
+          <p class="pno">Pilar 5</p>
+          <h3>Home y navegación enriquecidas</h3>
+        </div>
+        <span class="tag-prio prio-mid">Fase 2</span>
+      </div>
+      <p class="why">Pequeños ajustes que aprovechan datos existentes y rematan los pilares anteriores en la portada.</p>
+      <div class="feat">
+        <div class="card">
+          <h4>Trending real (7 días) <span class="eff e-s">Bajo</span></h4>
+          <p>Conectar la barra superior y un módulo de portada a <code>/api/views</code> — ya devuelve lo más leído de los últimos 30 días.</p>
+          <div class="files">~ trending-bar.tsx (usar /api/views)</div>
+        </div>
+        <div class="card">
+          <h4>Destacado editorial <span class="eff e-s">Bajo</span></h4>
+          <p>Campo <code>featured: true</code> en frontmatter para fijar manualmente la portada, en vez de solo “lo más reciente”.</p>
+          <div class="files">~ types/article.ts · page.tsx · hero-section.tsx</div>
+        </div>
+        <div class="card">
+          <h4>Glosario científico <span class="eff e-l">Alto</span></h4>
+          <p>Términos (FTP, VLamax, τ del VO₂…) con definición, enlazables desde los artículos. Opcional, fase tardía.</p>
+          <div class="files">+ (marketing)/glosario/page.tsx</div>
+        </div>
+        <div class="card">
+          <h4>Newsletter conectada <span class="eff e-s">Bajo</span></h4>
+          <p>El formulario ya existe en UI; conectarlo a un proveedor cierra el bucle de retención.</p>
+          <div class="files">~ newsletter-form.tsx · + /api/subscribe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="block">
+  <div class="wrap">
+    <p class="eyebrow">Hoja de ruta</p>
+    <h2>Orden sugerido de implementación</h2>
+    <p class="section-intro">De menor a mayor esfuerzo y dependencia. Cada fase entrega valor por sí sola.</p>
+
+    <div class="road">
+      <div class="phase">
+        <div class="pl">Quick wins<small>1 sesión</small></div>
+        <div class="chips">
+          <span class="chip"><b>Chips de tags</b> en tarjetas + artículo</span>
+          <span class="chip"><b>Barra de compartir</b></span>
+          <span class="chip"><b>Bio de autor</b></span>
+          <span class="chip"><b>Relacionados por tag</b></span>
+          <span class="chip"><b>Trending real</b></span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="pl">Fase 1<small>Descubrimiento</small></div>
+        <div class="chips">
+          <span class="chip"><b>Búsqueda ⌘K</b></span>
+          <span class="chip"><b>Páginas de tema</b> /tema/[tag]</span>
+          <span class="chip"><b>Filtros + orden</b> en secciones</span>
+          <span class="chip"><b>Tabla de contenidos</b></span>
+          <span class="chip"><b>Nube de temas</b></span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="pl">Fase 2<small>Autoridad</small></div>
+        <div class="chips">
+          <span class="chip"><b>Páginas de columnista</b></span>
+          <span class="chip"><b>Destacado editorial</b></span>
+          <span class="chip"><b>Newsletter conectada</b></span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="pl">Fase 3<small>Diferenciación</small></div>
+        <div class="chips">
+          <span class="chip"><b>Calculadoras</b> FTP · carbos · W/kg</span>
+          <span class="chip"><b>Glosario</b></span>
+          <span class="chip"><b>Estimadores</b> VO₂ / carga</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMENDACIÓN -->
+<section class="block" style="border-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow">Mi recomendación</p>
+    <div class="reco">
+      <h3>Empieza por el descubrimiento (Pilar 1) + los quick wins del Pilar 2.</h3>
+      <p>Con 170 notas, el dolor concreto es que <strong>el buen contenido ya no se encuentra</strong>. Búsqueda, tags y filtros atacan eso directamente y, de paso, <strong>multiplican páginas indexables</strong> (cada tema y cada autor es una nueva URL para SEO y AdSense) reutilizando datos que ya están en el frontmatter y en la base de vistas — costo de datos cero.</p>
+      <p>Los <strong>quick wins de lectura</strong> (compartir, bio, relacionados por tag, TOC) son de bajo esfuerzo y suben circulación y tiempo en página de inmediato. Todo esto respeta tu identidad “Velodrome Editorial” y tu estilo periodístico — no agrega bullets ni cajas tipo IA.</p>
+      <p>Las <strong>herramientas interactivas (Pilar 4)</strong> son la apuesta de mediano plazo: el verdadero diferenciador que convierte el sitio en algo que la gente <em>usa</em>, no solo lee. Las dejaría para cuando el descubrimiento esté sólido.</p>
+      <p style="margin-top:18px;color:var(--text)"><strong>Siguiente paso:</strong> dime qué pilares te convencen y armo un equipo de agentes para implementarlos en paralelo (front, datos/SEO y QA), empezando por la Fase 1.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="tagline">VELOCIENCIA · PEDALSCI</span> — Plan de evolución de interfaz v2 · generado el 24 de mayo de 2026 · documento de trabajo interno.
+  </div>
+</footer>
+
+</body>
+</html>

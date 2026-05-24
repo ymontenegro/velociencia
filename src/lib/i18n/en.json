@@ -23,7 +23,8 @@
     "editorialDesign": "Premium editorial design"
   },
   "trending": {
-    "latest": "Latest"
+    "latest": "Latest",
+    "now": "Trending"
   },
   "home": {
     "latest": "Latest",
@@ -31,7 +32,10 @@
     "viewAll": "View all",
     "featured": "Featured",
     "mostRead": "Most read",
-    "editorialNote": "Editorial note"
+    "editorialNote": "Editorial note",
+    "exploreTopics": "Explore by topic",
+    "allTopics": "View all topics",
+    "trendingNow": "Trending"
   },
   "article": {
     "by": "By",
@@ -40,7 +44,14 @@
     "keepReading": "Keep reading",
     "backTo": "Back to",
     "breadcrumbHome": "Home",
-    "section": "Section"
+    "section": "Section",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "relatedTopics": "Topics",
+    "tableOfContents": "In this article",
+    "aboutAuthor": "About the author",
+    "moreFrom": "More from"
   },
   "newsletter": {
     "thanks": "Thanks! We'll keep you posted.",
@@ -52,7 +63,37 @@
     "placeholder": "you@email.com"
   },
   "sections": {
-    "explore": "Explore articles"
+    "explore": "Explore articles",
+    "filterByTopic": "Topic",
+    "allTopicsFilter": "All",
+    "sortBy": "Sort",
+    "sortNewest": "Newest",
+    "sortOldest": "Oldest",
+    "sortPopular": "Most read",
+    "loadMore": "Load more",
+    "showing": "Showing",
+    "articlesWord": "articles",
+    "noResults": "No results for this filter"
+  },
+  "search": {
+    "button": "Search",
+    "placeholder": "Search articles, topics, authors…",
+    "noResults": "No results",
+    "sectionsGroup": "Articles",
+    "topicsGroup": "Topics",
+    "hint": "navigate",
+    "open": "Open search",
+    "loading": "Loading…"
+  },
+  "topics": {
+    "topic": "Topic",
+    "articlesAbout": "Articles about",
+    "allTitle": "All topics",
+    "allSubtitle": "Browse the topics covered across all our articles",
+    "articlesCount": "articles",
+    "articleCount": "article",
+    "backToTopics": "View all topics",
+    "notFound": "Topic not found"
   },
   "error": {
     "somethingWrong": "Something went wrong",

@@ -23,7 +23,8 @@
     "editorialDesign": "Dise\u00f1o editorial premium"
   },
   "trending": {
-    "latest": "Lo \u00faltimo"
+    "latest": "Lo \u00faltimo",
+    "now": "Tendencia"
   },
   "home": {
     "latest": "Lo \u00faltimo",
@@ -31,7 +32,10 @@
     "viewAll": "Ver todos",
     "featured": "Destacados",
     "mostRead": "Lo más leído",
-    "editorialNote": "Nota editorial"
+    "editorialNote": "Nota editorial",
+    "exploreTopics": "Explora por tema",
+    "allTopics": "Ver todos los temas",
+    "trendingNow": "Tendencia"
   },
   "article": {
     "by": "Por",
@@ -40,7 +44,14 @@
     "keepReading": "Sigue leyendo",
     "backTo": "Volver a",
     "breadcrumbHome": "Inicio",
-    "section": "Secci\u00f3n"
+    "section": "Secci\u00f3n",
+    "share": "Compartir",
+    "copyLink": "Copiar enlace",
+    "copied": "\u00a1Copiado!",
+    "relatedTopics": "Temas",
+    "tableOfContents": "En este art\u00edculo",
+    "aboutAuthor": "Sobre el autor",
+    "moreFrom": "M\u00e1s de"
   },
   "newsletter": {
     "thanks": "\u00a1Gracias! Te mantendremos informado.",
@@ -52,7 +63,37 @@
     "placeholder": "tu@email.com"
   },
   "sections": {
-    "explore": "Explorar art\u00edculos"
+    "explore": "Explorar art\u00edculos",
+    "filterByTopic": "Tema",
+    "allTopicsFilter": "Todos",
+    "sortBy": "Ordenar",
+    "sortNewest": "M\u00e1s recientes",
+    "sortOldest": "M\u00e1s antiguos",
+    "sortPopular": "M\u00e1s le\u00eddos",
+    "loadMore": "Cargar m\u00e1s",
+    "showing": "Mostrando",
+    "articlesWord": "art\u00edculos",
+    "noResults": "Sin resultados para este filtro"
+  },
+  "search": {
+    "button": "Buscar",
+    "placeholder": "Buscar art\u00edculos, temas, autores\u2026",
+    "noResults": "Sin resultados",
+    "sectionsGroup": "Art\u00edculos",
+    "topicsGroup": "Temas",
+    "hint": "navegar",
+    "open": "Abrir b\u00fasqueda",
+    "loading": "Cargando\u2026"
+  },
+  "topics": {
+    "topic": "Tema",
+    "articlesAbout": "Art\u00edculos sobre",
+    "allTitle": "Todos los temas",
+    "allSubtitle": "Explora los temas tratados en todos nuestros art\u00edculos",
+    "articlesCount": "art\u00edculos",
+    "articleCount": "art\u00edculo",
+    "backToTopics": "Ver todos los temas",
+    "notFound": "Tema no encontrado"
   },
   "error": {
     "somethingWrong": "Algo sali\u00f3 mal",

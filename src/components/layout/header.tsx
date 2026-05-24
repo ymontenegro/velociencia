@@ -7,9 +7,11 @@ import { SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useLocale, useDictionary } from "@/components/locale-provider";
+import { CommandPalette } from "@/components/search/command-palette";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
@@ -51,7 +53,25 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
+  // Global ⌘K / Ctrl+K to open command palette
+  useEffect(() => {
+    const handleGlobalKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKey);
+    return () => window.removeEventListener("keydown", handleGlobalKey);
+  }, []);
+
   return (
+    <>
+    <CommandPalette
+      open={searchOpen}
+      onClose={() => setSearchOpen(false)}
+      locale={locale}
+    />
     <header className="sticky top-0 z-40">
       {/* Scroll progress bar */}
       <div
@@ -129,6 +149,27 @@ export function Header() {
                 </Link>
               );
             })}
+            {/* Desktop search button */}
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
+              aria-label={dict.search.open}
+            >
+              <svg
+                className="h-3.5 w-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+              </svg>
+              {dict.search.button}
+              <kbd>⌘K</kbd>
+            </button>
             <a
               href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
               className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
@@ -144,7 +185,7 @@ export function Header() {
             <ThemeToggle />
           </nav>
 
-          {/* Mobile: locale + theme toggle + menu button */}
+          {/* Mobile: locale + theme toggle + search + menu button */}
           <div className="flex items-center gap-2 md:hidden">
             <a
               href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
@@ -159,6 +200,25 @@ export function Header() {
               {locale === "es" ? "EN" : "ES"}
             </a>
             <ThemeToggle />
+            {/* Mobile search icon button */}
+            <button
+              type="button"
+              className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
+              onClick={() => setSearchOpen(true)}
+              aria-label={dict.search.open}
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+              </svg>
+            </button>
             <button
               type="button"
               className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
@@ -249,5 +309,6 @@ export function Header() {
         </div>
       </nav>
     </header>
+    </>
   );
 }

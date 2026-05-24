@@ -9,6 +9,7 @@ const SECTION_SLUG_MAP_EN: Record<string, string> = {
   ciencia: "science",
   entrenamiento: "training",
   competencia: "competition",
+  tema: "topic",
   sobre: "about",
   privacidad: "privacy",
   contacto: "contact",

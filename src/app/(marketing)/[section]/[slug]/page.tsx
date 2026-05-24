@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import GithubSlugger from "github-slugger";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -12,6 +13,7 @@ import Link from "next/link";
 import { SECTIONS, SECTIONS_I18N, getSectionBySlug, type SectionId } from "@/lib/constants";
 import { formatDate, getReadingTime } from "@/lib/utils";
 import { getAllArticles } from "@/lib/markdown";
+import { getRelatedByTags, tagToSlug } from "@/lib/tags";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { ArticleCard } from "@/components/articles/article-card";
@@ -19,6 +21,47 @@ import { AuthorAvatar } from "@/components/shared/author-avatar";
 import { ViewTracker } from "@/components/articles/view-tracker";
 import { AdUnit } from "@/components/ads/ad-unit";
 import { ChartLine, ChartBar, ChartArea } from "@/components/charts";
+import { Toc, type TocHeading } from "@/components/articles/toc";
+import { ShareBar } from "@/components/articles/share-bar";
+import { AuthorBio } from "@/components/articles/author-bio";
+
+/**
+ * Extract h2/h3 headings from raw markdown content, skipping fenced code blocks.
+ * Generates slug IDs using GithubSlugger to match rehype-slug output exactly.
+ */
+function extractHeadings(content: string): TocHeading[] {
+  const slugger = new GithubSlugger();
+  const headings: TocHeading[] = [];
+  let inCodeBlock = false;
+
+  for (const line of content.split("\n")) {
+    // Toggle code block state on opening/closing fences.
+    if (/^```/.test(line)) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+    if (inCodeBlock) continue;
+
+    const h2 = line.match(/^## (.+)/);
+    const h3 = line.match(/^### (.+)/);
+    const rawMatch = h2 ?? h3;
+    if (!rawMatch) continue;
+
+    const level: 2 | 3 = h2 ? 2 : 3;
+    // Strip inline markdown: links, bold, italic, inline code.
+    const text = rawMatch[1]
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/\*([^*]+)\*/g, "$1")
+      .replace(/`([^`]+)`/g, "$1")
+      .trim();
+
+    const id = slugger.slug(text);
+    headings.push({ id, text, level });
+  }
+
+  return headings;
+}
 
 interface ArticlePageProps {
   params: Promise<{ section: string; slug: string }>;
@@ -104,9 +147,39 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const sources = (frontmatter.sources as { title: string; url: string; type: string }[]) || [];
 
-  const relatedArticles = getAllArticles(sectionId, locale)
-    .filter((a) => a.slug !== slug)
-    .slice(0, 3);
+  const tags: string[] = (frontmatter.tags as string[]) || [];
+  const tagBase = locale === "en" ? "topic" : "tema";
+
+  // Build an ArticleCard from the current article's frontmatter for tag-based ranking.
+  const currentCard = {
+    slug,
+    section: sectionId,
+    title: frontmatter.title as string,
+    subtitle: frontmatter.subtitle as string | undefined,
+    excerpt: frontmatter.excerpt as string | undefined,
+    date: frontmatter.date as string,
+    author: (frontmatter.author as string) || sectionI18n.journalist,
+    tags,
+    readingTime,
+    coverImage: frontmatter.coverImage as string | undefined,
+  };
+
+  const authorName = (frontmatter.author as string) || sectionI18n.journalist;
+
+  // Related by shared tags; fall back to same-section recents to pad to 3.
+  const byTags = getRelatedByTags(currentCard, locale, 3);
+  const relatedArticles = byTags.length >= 3
+    ? byTags
+    : (() => {
+        const slugsSeen = new Set(byTags.map((a) => a.slug));
+        slugsSeen.add(slug);
+        const filler = getAllArticles(sectionId, locale)
+          .filter((a) => !slugsSeen.has(a.slug));
+        return [...byTags, ...filler].slice(0, 3);
+      })();
+
+  // Extract headings for the TOC (server-side, matches rehype-slug).
+  const headings = extractHeadings(content);
 
   return (
     <article>
@@ -122,7 +195,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             datePublished: frontmatter.date,
             author: {
               "@type": "Person",
-              name: (frontmatter.author as string) || sectionI18n.journalist,
+              name: authorName,
             },
             publisher: {
               "@type": "Organization",
@@ -187,20 +260,78 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           )}
 
           <div className="animate-fade-in-up stagger-2 mt-6 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wider text-white/60">
-            <AuthorAvatar name={(frontmatter.author as string) || sectionI18n.journalist} color={sectionConfig.color} size="sm" />
-            <span className="normal-case tracking-normal">{dict.article.by} {(frontmatter.author as string) || sectionI18n.journalist}</span>
+            <AuthorAvatar name={authorName} color={sectionConfig.color} size="sm" />
+            <span className="normal-case tracking-normal">{dict.article.by} {authorName}</span>
             <span>&middot;</span>
             {frontmatter.date && <time>{formatDate(frontmatter.date, locale)}</time>}
             <span>&middot;</span>
             <span>{readingTime} {dict.article.minRead}</span>
           </div>
+
+          <div className="animate-fade-in-up stagger-2 mt-5">
+            <ShareBar
+              title={frontmatter.title as string}
+              color={sectionConfig.color}
+              copyLabel={dict.article.copyLink}
+              copiedLabel={dict.article.copied}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Article body */}
-      <div className="mx-auto max-w-[68ch] px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <div className={`prose prose-lg prose-${sectionId === "nutricion" ? "nutricion" : sectionId === "ciencia" ? "ciencia" : sectionId === "entrenamiento" ? "entrenamiento" : "competencia"}`}>
-          {mdxContent}
+      {/* Article body + TOC layout */}
+      {/*
+        Layout strategy: a CSS grid on 2xl screens with three columns:
+          [auto]  [minmax(0,68ch)]  [200px]
+        The reading column stays centered at max-w-[68ch].
+        On smaller screens, collapse to a single centered column (no TOC).
+      */}
+      <div className="mx-auto w-full max-w-[calc(68ch+200px+3rem)] px-4 sm:px-6 lg:px-8">
+        <div className="2xl:grid 2xl:grid-cols-[1fr_minmax(0,68ch)_200px] 2xl:gap-x-12">
+          {/* Empty left gutter on 2xl */}
+          <div className="hidden 2xl:block" />
+
+          {/* Reading column — constrained to 68ch on all sizes; on 2xl the grid handles centering */}
+          <div className="mx-auto max-w-[68ch] py-10 sm:py-14 2xl:mx-0 2xl:max-w-none">
+            <div className={`prose prose-lg prose-${sectionId === "nutricion" ? "nutricion" : sectionId === "ciencia" ? "ciencia" : sectionId === "entrenamiento" ? "entrenamiento" : "competencia"}`}>
+              {mdxContent}
+            </div>
+
+            {/* Tag chips — after prose body, before references */}
+            {tags.length > 0 && (
+              <div className="mt-10 border-t border-[var(--color-border-light)] pt-6">
+                <p
+                  className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em]"
+                  style={{ color: sectionConfig.color }}
+                >
+                  {dict.article.relatedTopics}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/${tagBase}/${tagToSlug(tag)}`}
+                      className="tag-chip rounded-full border border-[var(--color-border)] px-3 py-1 text-[12px] font-medium text-[var(--color-text-secondary)] hover:text-[var(--tag-section-color)] hover:border-[var(--tag-section-color)]"
+                      style={{ ["--tag-section-color" as string]: sectionConfig.color }}
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* TOC aside — sticky, only visible on 2xl */}
+          <div className="hidden 2xl:block">
+            <div className="pt-10 sm:pt-14">
+              <Toc
+                headings={headings}
+                label={dict.article.tableOfContents}
+                color={sectionConfig.color}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -248,6 +379,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </section>
         </div>
       )}
+
+      {/* Author bio */}
+      <AuthorBio
+        authorName={authorName}
+        locale={locale}
+        color={sectionConfig.color}
+        label={dict.article.aboutAuthor}
+      />
 
       {/* Ad: after article content */}
       <div className="mx-auto max-w-[68ch] px-4 pb-8 sm:px-6 lg:px-8">

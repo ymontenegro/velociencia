@@ -9,6 +9,7 @@ import { TrendingBar } from "@/components/layout/trending-bar";
 import { HeroSection } from "@/components/home/hero-section";
 import { ArticleCard } from "@/components/articles/article-card";
 import { MostRead } from "@/components/home/most-read";
+import { TopicCloud } from "@/components/home/topic-cloud";
 import { AdUnit } from "@/components/ads/ad-unit";
 
 export default async function HomePage() {
@@ -157,6 +158,11 @@ export default async function HomePage() {
             </aside>
           </div>
         </section>
+
+        {/* Topic cloud */}
+        <div className="border-t border-[var(--color-border)]">
+          <TopicCloud locale={locale} dict={dict} />
+        </div>
 
         {/* Editorial note */}
         <section className="border-t border-[var(--color-border)]">

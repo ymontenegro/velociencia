@@ -12,6 +12,7 @@ interface ArticleCardProps {
   slug: string;
   section: SectionId;
   coverImage?: string;
+  tags?: string[];
   variant?: "hero" | "standard" | "compact" | "headline";
   index?: number;
   className?: string;
@@ -49,6 +50,7 @@ export function ArticleCard({
   slug,
   section,
   coverImage,
+  tags,
   variant = "standard",
   index,
   className,
@@ -264,6 +266,20 @@ export function ArticleCard({
           >
             {excerpt}
           </p>
+
+          {/* Topic chips (display-only — whole card already links to the article) */}
+          {tags && tags.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {tags.slice(0, 2).map((t) => (
+                <span
+                  key={t}
+                  className="tag-chip rounded-full border border-[var(--color-border)] px-2 py-0.5 text-[10px] font-medium text-[var(--color-text-muted)]"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Meta */}
           <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-[var(--color-border-light)] pt-3 text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)]">

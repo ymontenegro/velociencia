@@ -521,3 +521,53 @@ body {
 .dark .prose blockquote {
   background: linear-gradient(to right, #1F2937, transparent 70%);
 }
+
+/* ─── Command palette (⌘K) ─── */
+
+@keyframes cmdk-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cmdk-panel {
+  animation: cmdk-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+kbd {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 0.18em 0.42em;
+  border-radius: 0.3rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* ─── Topic / tag chips ─── */
+
+.tag-chip {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ─── Table of contents ─── */
+
+.toc-link {
+  transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hide native scrollbar on horizontal toolbars/filter rows */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
