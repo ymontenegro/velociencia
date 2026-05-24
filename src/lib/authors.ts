@@ -1,4 +1,4 @@
-import { SECTIONS_I18N, type SectionId } from "@/lib/constants";
+import { SECTIONS_I18N, SECTION_IDS, type SectionId } from "@/lib/constants";
 import type { Locale } from "@/lib/i18n";
 
 /**
@@ -105,6 +105,23 @@ export function getAuthorByName(name: string, locale: Locale = "es"): AuthorInfo
 export function getAuthorBySection(sectionId: SectionId, locale: Locale = "es"): AuthorInfo {
   const profile = AUTHOR_PROFILES.find((p) => p.sectionId === sectionId)!;
   return toInfo(profile, locale);
+}
+
+/** Resolve an author by their URL slug. Returns null if no match. */
+export function getAuthorBySlug(slug: string, locale: Locale = "es"): AuthorInfo | null {
+  const profile = AUTHOR_PROFILES.find((p) => p.slug === slug);
+  return profile ? toInfo(profile, locale) : null;
+}
+
+/**
+ * Return all authors ordered by the canonical SECTION_IDS order
+ * (nutricion → ciencia → entrenamiento → competencia) for consistent display.
+ */
+export function getAllAuthors(locale: Locale = "es"): AuthorInfo[] {
+  return SECTION_IDS.map((sectionId) => {
+    const profile = AUTHOR_PROFILES.find((p) => p.sectionId === sectionId)!;
+    return toInfo(profile, locale);
+  });
 }
 
 function toInfo(profile: AuthorProfile, locale: Locale): AuthorInfo {

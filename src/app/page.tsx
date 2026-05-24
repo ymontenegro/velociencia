@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SECTION_IDS, SECTIONS, SECTIONS_I18N, type SectionId } from "@/lib/constants";
-import { getAllArticles } from "@/lib/markdown";
+import { getAllArticles, selectHeroArticles } from "@/lib/markdown";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Header } from "@/components/layout/header";
@@ -17,8 +17,8 @@ export default async function HomePage() {
   const dict = await getDictionary(locale);
   const allArticles = getAllArticles(undefined, locale);
 
-  // Slugs used in the hero (top 3 most recent) — exclude from sections
-  const heroSlugs = new Set(allArticles.slice(0, 3).map((a) => a.slug));
+  // Slugs used in the hero — must mirror selectHeroArticles to avoid duplicates/gaps
+  const heroSlugs = new Set(selectHeroArticles(allArticles, 3).map((a) => a.slug));
 
   // Group articles by section, excluding hero articles
   const articlesBySection: Record<SectionId, typeof allArticles> = {

@@ -60,7 +60,11 @@
     "subscribe": "Subscribe",
     "stayUpdated": "Stay updated",
     "description": "Get the best articles on nutrition, science and training in cycling delivered straight to your inbox.",
-    "placeholder": "you@email.com"
+    "placeholder": "you@email.com",
+    "submitting": "Submitting…",
+    "error": "We couldn't complete your subscription. Please try again.",
+    "invalidEmail": "Enter a valid email address.",
+    "alreadySubscribed": "You're already subscribed with this email."
   },
   "sections": {
     "explore": "Explore articles",
@@ -94,6 +98,18 @@
     "articleCount": "article",
     "backToTopics": "View all topics",
     "notFound": "Topic not found"
+  },
+  "authors": {
+    "title": "Columnists",
+    "subtitle": "The four voices behind PedalSci, one for each specialty.",
+    "sectionLabel": "Section",
+    "specialtyLabel": "Specialty",
+    "articlesBy": "Articles by",
+    "viewAllBy": "View all articles by",
+    "allColumnists": "View all columnists",
+    "articlesCount": "articles",
+    "articleCount": "article",
+    "notFound": "Columnist not found"
   },
   "error": {
     "somethingWrong": "Something went wrong",

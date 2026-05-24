@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/lib/markdown";
+import { getAllArticles, selectHeroArticles } from "@/lib/markdown";
 import { ArticleCard } from "@/components/articles/article-card";
 import { SECTIONS, SECTIONS_I18N, type SectionId } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n";
@@ -8,7 +8,9 @@ export async function HeroSection() {
   const locale = await getLocale();
   const dict = await getDictionary(locale);
   const articles = getAllArticles(undefined, locale);
-  const featured = articles.slice(0, 3);
+  const featured = selectHeroArticles(articles, 3);
+  // Show "Destacados"/"Featured" eyebrow when at least one pinned article is present
+  const hasFeatured = featured.some((a) => a.featured);
 
   if (featured.length === 0) {
     return (
@@ -45,9 +47,9 @@ export async function HeroSection() {
   return (
     <section className="bg-[var(--color-bg)]">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-        {/* Section label */}
+        {/* Section label: "Destacados" when any pinned article is present, otherwise "Lo último" */}
         <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
-          {dict.home.latest}
+          {hasFeatured ? dict.home.featured : dict.home.latest}
         </p>
 
         {/* Article grid: 2/3 hero + 1/3 stacked */}

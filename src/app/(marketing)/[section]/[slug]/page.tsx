@@ -16,6 +16,7 @@ import { getAllArticles } from "@/lib/markdown";
 import { getRelatedByTags, tagToSlug } from "@/lib/tags";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { getAuthorByName } from "@/lib/authors";
 import { ArticleCard } from "@/components/articles/article-card";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
 import { ViewTracker } from "@/components/articles/view-tracker";
@@ -164,7 +165,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     coverImage: frontmatter.coverImage as string | undefined,
   };
 
+  // Resolved author name and profile (for byline link + author page).
   const authorName = (frontmatter.author as string) || sectionI18n.journalist;
+  const authorProfile = getAuthorByName(authorName, locale);
+  const authorBase = locale === "en" ? "author" : "autor";
 
   // Related by shared tags; fall back to same-section recents to pad to 3.
   const byTags = getRelatedByTags(currentCard, locale, 3);
@@ -261,7 +265,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           <div className="animate-fade-in-up stagger-2 mt-6 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wider text-white/60">
             <AuthorAvatar name={authorName} color={sectionConfig.color} size="sm" />
-            <span className="normal-case tracking-normal">{dict.article.by} {authorName}</span>
+            <span className="normal-case tracking-normal">
+              {dict.article.by}{" "}
+              {authorProfile ? (
+                <Link
+                  href={`/${authorBase}/${authorProfile.slug}`}
+                  className="transition-colors hover:underline"
+                >
+                  {authorName}
+                </Link>
+              ) : (
+                authorName
+              )}
+            </span>
             <span>&middot;</span>
             {frontmatter.date && <time>{formatDate(frontmatter.date, locale)}</time>}
             <span>&middot;</span>
@@ -386,6 +402,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         locale={locale}
         color={sectionConfig.color}
         label={dict.article.aboutAuthor}
+        viewAllLabel={dict.authors.viewAllBy}
       />
 
       {/* Ad: after article content */}

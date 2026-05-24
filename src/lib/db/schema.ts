@@ -265,6 +265,23 @@ export const scheduledPosts = sqliteTable(
   ]
 );
 
+export const subscribers = sqliteTable(
+  "subscribers",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    email: text("email").notNull().unique(),
+    locale: text("locale", { enum: ["es", "en"] }),
+    source: text("source"),
+    status: text("status", { enum: ["active", "unsubscribed"] })
+      .notNull()
+      .default("active"),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (table) => [index("idx_subscribers_email").on(table.email)]
+);
+
 export const topics = sqliteTable(
   "topics",
   {

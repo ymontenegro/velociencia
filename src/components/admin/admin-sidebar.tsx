@@ -11,6 +11,7 @@ const navItems = [
   { href: "/admin/agents", label: "Agentes", icon: "cpu" },
   { href: "/admin/feeds", label: "Feeds", icon: "rss" },
   { href: "/admin/topics", label: "Topics", icon: "layers" },
+  { href: "/admin/subscribers", label: "Newsletter", icon: "mail" },
 ];
 
 const icons: Record<string, React.ReactNode> = {
@@ -42,6 +43,11 @@ const icons: Record<string, React.ReactNode> = {
   layers: (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0L12 17.25 6.429 14.25m11.142 0l4.179 2.25L12 21.75l-9.75-5.25 4.179-2.25" />
+    </svg>
+  ),
+  mail: (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
     </svg>
   ),
 };

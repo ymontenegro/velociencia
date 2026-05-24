@@ -73,6 +73,7 @@ export function getAllArticles(section?: string, locale: string = "es"): Article
         tags: frontmatter.tags || [],
         readingTime: getReadingTime(content),
         coverImage: frontmatter.coverImage,
+        featured: frontmatter.featured ?? false,
       });
     }
   }
@@ -104,6 +105,30 @@ export function writeArticle(
   fs.writeFileSync(filePath, fileContent, "utf-8");
 
   return filePath;
+}
+
+/**
+ * Select articles for the hero/portada block.
+ *
+ * Usage in frontmatter to pin an article to the hero:
+ *   ---
+ *   featured: true
+ *   ---
+ *
+ * Logic:
+ *   - Featured articles (featured: true) appear first, preserving their
+ *     relative date order (the array is already sorted date-desc by getAllArticles).
+ *   - Remaining slots are filled with the most-recent non-featured articles.
+ *   - If no article is featured, the result is identical to articles.slice(0, count).
+ *   - count defaults to 3.
+ *
+ * This function is pure (no fs/DB access) so it can be called from both
+ * RSC pages and client-safe utilities without side effects.
+ */
+export function selectHeroArticles(articles: ArticleCard[], count = 3): ArticleCard[] {
+  const featuredArticles = articles.filter((a) => a.featured);
+  const rest = articles.filter((a) => !a.featured);
+  return [...featuredArticles, ...rest].slice(0, count);
 }
 
 /**

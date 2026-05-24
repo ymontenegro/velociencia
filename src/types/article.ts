@@ -10,6 +10,8 @@ export interface ArticleFrontmatter {
   sources?: ArticleSource[];
   excerpt?: string;
   coverImage?: string;
+  /** Set to true in frontmatter to pin this article in the hero/portada. */
+  featured?: boolean;
 }
 
 export interface Article {
@@ -31,6 +33,8 @@ export interface ArticleCard {
   tags: string[];
   readingTime: number;
   coverImage?: string;
+  /** True when the article has `featured: true` in its frontmatter. */
+  featured?: boolean;
 }
 
 export interface ArticleSource {

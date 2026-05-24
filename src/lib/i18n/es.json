@@ -60,7 +60,11 @@
     "subscribe": "Suscribirse",
     "stayUpdated": "Mantente al d\u00eda",
     "description": "Recibe los mejores art\u00edculos sobre nutrici\u00f3n, ciencia y entrenamiento en ciclismo directamente en tu correo.",
-    "placeholder": "tu@email.com"
+    "placeholder": "tu@email.com",
+    "submitting": "Enviando\u2026",
+    "error": "No pudimos completar tu suscripci\u00f3n. Intenta de nuevo.",
+    "invalidEmail": "Ingresa un correo v\u00e1lido.",
+    "alreadySubscribed": "Ya estabas suscrito con este correo."
   },
   "sections": {
     "explore": "Explorar art\u00edculos",
@@ -94,6 +98,18 @@
     "articleCount": "art\u00edculo",
     "backToTopics": "Ver todos los temas",
     "notFound": "Tema no encontrado"
+  },
+  "authors": {
+    "title": "Columnistas",
+    "subtitle": "Las cuatro voces detrás de Velociencia, una por cada especialidad.",
+    "sectionLabel": "Sección",
+    "specialtyLabel": "Especialidad",
+    "articlesBy": "Artículos de",
+    "viewAllBy": "Ver todos los artículos de",
+    "allColumnists": "Ver todos los columnistas",
+    "articlesCount": "artículos",
+    "articleCount": "artículo",
+    "notFound": "Columnista no encontrado"
   },
   "error": {
     "somethingWrong": "Algo sali\u00f3 mal",
