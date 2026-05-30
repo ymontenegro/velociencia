@@ -3,6 +3,8 @@
 import PowerZonesCalculator from "@/components/tools/power-zones-calculator";
 import CarbIntakeCalculator from "@/components/tools/carb-intake-calculator";
 import PowerToWeightCalculator from "@/components/tools/power-to-weight-calculator";
+import Vo2maxEstimatorCalculator from "@/components/tools/vo2max-estimator-calculator";
+import TrainingLoadCalculator from "@/components/tools/training-load-calculator";
 
 interface CalculatorRendererProps {
   toolId: string;
@@ -19,6 +21,8 @@ const CALCULATORS: Record<string, React.ComponentType<{ color?: string }>> = {
   "power-zones": PowerZonesCalculator,
   "carb-intake": CarbIntakeCalculator,
   "power-to-weight": PowerToWeightCalculator,
+  "vo2max-estimator": Vo2maxEstimatorCalculator,
+  "training-load": TrainingLoadCalculator,
 };
 
 export function CalculatorRenderer({ toolId, color }: CalculatorRendererProps) {

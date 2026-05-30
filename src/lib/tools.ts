@@ -79,10 +79,74 @@ export const TOOLS: ToolInfo[] = [
     sectionId: "ciencia",
     relatedTag: "potencia",
   },
+  {
+    id: "vo2max-estimator",
+    slug: { es: "estimador-vo2max", en: "vo2max-estimator" },
+    title: {
+      es: "Estimador de VO₂máx",
+      en: "VO₂max estimator",
+    },
+    tagline: {
+      es: "Tu VO₂máx a partir de tu potencia máxima.",
+      en: "Your VO₂max from your peak power.",
+    },
+    description: {
+      es: "Estima tu consumo máximo de oxígeno (VO₂máx) a partir de tu potencia aeróbica máxima, peso, edad y sexo con la ecuación de Storer para cicloergómetro, y compáralo con los valores de referencia por edad y sexo.",
+      en: "Estimate your maximal oxygen uptake (VO₂max) from your maximal aerobic power, weight, age and sex using Storer's cycle-ergometer equation, and compare it against age- and sex-based reference values.",
+    },
+    sectionId: "ciencia",
+    relatedTag: "VO2max",
+  },
+  {
+    id: "training-load",
+    slug: { es: "carga-de-entrenamiento", en: "training-load" },
+    title: {
+      es: "Calculadora de carga de entrenamiento",
+      en: "Training load calculator",
+    },
+    tagline: {
+      es: "Fitness, fatiga y forma (CTL/ATL/TSB) en el tiempo.",
+      en: "Fitness, fatigue and form (CTL/ATL/TSB) over time.",
+    },
+    description: {
+      es: "Simula tu curva de carga de entrenamiento —el Performance Management Chart— a partir de tu TSS diario: condición física crónica (CTL), fatiga aguda (ATL) y forma (TSB) a lo largo de las semanas, con la opción de un afinamiento (tapering) final.",
+      en: "Simulate your training-load curve —the Performance Management Chart— from your daily TSS: chronic fitness (CTL), acute fatigue (ATL) and form (TSB) across the weeks, with an optional end taper.",
+    },
+    sectionId: "entrenamiento",
+    relatedTag: "carga de entrenamiento",
+  },
 ];
 
 export function getAllTools(): ToolInfo[] {
   return TOOLS;
+}
+
+/** Normalize a tag/string for accent- and case-insensitive matching. */
+function normalizeTag(s: string): string {
+  return s
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+/**
+ * Suggest interactive tools relevant to an article. Prioritizes tools whose
+ * `relatedTag` matches one of the article's tags, then falls back to tools from
+ * the same section. Used to surface the calculators as original, interactive
+ * value inside article pages. Capped at `limit`.
+ */
+export function getRelatedTools(
+  sectionId: SectionId,
+  tags: string[] = [],
+  limit = 2,
+): ToolInfo[] {
+  const tagSet = new Set(tags.map(normalizeTag));
+  const byTag = TOOLS.filter((t) => tagSet.has(normalizeTag(t.relatedTag)));
+  const bySection = TOOLS.filter(
+    (t) => t.sectionId === sectionId && !byTag.includes(t),
+  );
+  return [...byTag, ...bySection].slice(0, limit);
 }
 
 export function getToolBySlug(slug: string, locale: Locale): ToolInfo | null {
