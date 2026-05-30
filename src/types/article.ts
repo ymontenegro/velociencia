@@ -12,6 +12,8 @@ export interface ArticleFrontmatter {
   coverImage?: string;
   /** Set to true in frontmatter to pin this article in the hero/portada. */
   featured?: boolean;
+  /** Set to true when the article contains affiliate links (shows the disclosure banner). */
+  affiliate?: boolean;
 }
 
 export interface Article {

@@ -20,7 +20,16 @@
     "poweredByAI": "Powered by AI",
     "newsletterCTA": "Get the best articles delivered to your inbox.",
     "allRightsReserved": "All rights reserved.",
-    "editorialDesign": "Premium editorial design"
+    "editorialDesign": "Premium editorial design",
+    "disclosure": "Affiliate disclosure"
+  },
+  "affiliate": {
+    "disclosure": "This article includes affiliate links. If you buy through them, PedalSci may earn a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
+    "disclosureShort": "Affiliate link",
+    "recommends": "Recommended",
+    "cta": "Check price",
+    "label": "Recommended gear",
+    "intro": "Gear related to this article:"
   },
   "trending": {
     "latest": "Latest",
@@ -66,7 +75,8 @@
     "submitting": "Submitting…",
     "error": "We couldn't complete your subscription. Please try again.",
     "invalidEmail": "Enter a valid email address.",
-    "alreadySubscribed": "You're already subscribed with this email."
+    "alreadySubscribed": "You're already subscribed with this email.",
+    "sponsoredBy": "Sponsored by"
   },
   "sections": {
     "explore": "Explore articles",

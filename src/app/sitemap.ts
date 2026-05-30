@@ -88,5 +88,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   });
 
+  entries.push({
+    url: `${ES_BASE}/divulgacion`,
+    lastModified: new Date("2026-05-30"),
+    changeFrequency: "yearly",
+    priority: 0.3,
+    alternates: {
+      languages: {
+        es: `${ES_BASE}/divulgacion`,
+        en: `${EN_BASE}/disclosure`,
+      },
+    },
+  });
+
   return entries;
 }

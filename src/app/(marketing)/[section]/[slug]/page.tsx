@@ -26,6 +26,9 @@ import { Toc, type TocHeading } from "@/components/articles/toc";
 import { ShareBar } from "@/components/articles/share-bar";
 import { AuthorBio } from "@/components/articles/author-bio";
 import { RelatedTools } from "@/components/articles/related-tools";
+import { AffiliateDisclosure } from "@/components/affiliates/affiliate-disclosure";
+import { ProductCard } from "@/components/affiliates/product-card";
+import { GearLink } from "@/components/affiliates/gear-link";
 
 /**
  * Extract h2/h3 headings from raw markdown content, skipping fenced code blocks.
@@ -129,7 +132,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const { data: frontmatter, content } = matter(fileContent);
   const readingTime = getReadingTime(content);
 
-  const mdxComponents = { ChartLine, ChartBar, ChartArea };
+  const affiliateLabels = {
+    cta: dict.affiliate.cta,
+    disclosureShort: dict.affiliate.disclosureShort,
+  };
+  const mdxComponents = {
+    ChartLine,
+    ChartBar,
+    ChartArea,
+    GearLink,
+    ProductCard: (props: { id?: string }) => (
+      <ProductCard {...props} locale={locale} labels={affiliateLabels} />
+    ),
+  };
 
   const { content: mdxContent } = await compileMDX({
     source: content,
@@ -310,6 +325,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Reading column — constrained to 68ch on all sizes; on 2xl the grid handles centering */}
           <div className="mx-auto max-w-[68ch] py-10 sm:py-14 2xl:mx-0 2xl:max-w-none">
+            {frontmatter.affiliate && (
+              <div className="mb-8">
+                <AffiliateDisclosure text={dict.affiliate.disclosure} />
+              </div>
+            )}
             <div className={`prose prose-lg prose-${sectionId === "nutricion" ? "nutricion" : sectionId === "ciencia" ? "ciencia" : sectionId === "entrenamiento" ? "entrenamiento" : "competencia"}`}>
               {mdxContent}
             </div>

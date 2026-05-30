@@ -3,6 +3,7 @@ import { SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { NewsletterForm } from "@/components/shared/newsletter-form";
+import { SponsorSlot } from "@/components/shared/sponsor-slot";
 
 export async function Footer() {
   const locale = await getLocale();
@@ -112,6 +113,14 @@ export async function Footer() {
               </li>
               <li>
                 <Link
+                  href={locale === "en" ? "/disclosure" : "/divulgacion"}
+                  className="text-sm text-white/60 transition-colors hover:text-white"
+                >
+                  {dict.footer.disclosure}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={locale === "en" ? "/contact" : "/contacto"}
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >
@@ -132,6 +141,7 @@ export async function Footer() {
             <div className="mt-4">
               <NewsletterForm compact />
             </div>
+            <SponsorSlot label={dict.newsletter.sponsoredBy} className="mt-4" />
           </div>
         </div>
 

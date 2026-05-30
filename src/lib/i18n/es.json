@@ -20,7 +20,16 @@
     "poweredByAI": "Impulsado por IA",
     "newsletterCTA": "Recibe los mejores art\u00edculos en tu correo.",
     "allRightsReserved": "Todos los derechos reservados.",
-    "editorialDesign": "Dise\u00f1o editorial premium"
+    "editorialDesign": "Dise\u00f1o editorial premium",
+    "disclosure": "Divulgaci\u00f3n de afiliados"
+  },
+  "affiliate": {
+    "disclosure": "Este art\u00edculo incluye enlaces de afiliado. Si compras a trav\u00e9s de ellos, Velociencia puede recibir una comisi\u00f3n sin costo adicional para ti. Solo enlazamos productos que consideramos genuinamente \u00fatiles para el ciclista.",
+    "disclosureShort": "Enlace de afiliado",
+    "recommends": "Recomendado",
+    "cta": "Ver precio",
+    "label": "Equipamiento recomendado",
+    "intro": "Material relacionado con este art\u00edculo:"
   },
   "trending": {
     "latest": "Lo \u00faltimo",
@@ -66,7 +75,8 @@
     "submitting": "Enviando\u2026",
     "error": "No pudimos completar tu suscripci\u00f3n. Intenta de nuevo.",
     "invalidEmail": "Ingresa un correo v\u00e1lido.",
-    "alreadySubscribed": "Ya estabas suscrito con este correo."
+    "alreadySubscribed": "Ya estabas suscrito con este correo.",
+    "sponsoredBy": "Patrocinado por"
   },
   "sections": {
     "explore": "Explorar art\u00edculos",
