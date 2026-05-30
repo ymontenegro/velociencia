@@ -10,6 +10,7 @@ export async function generateMetadata() {
   return {
     title: dict.topics.allTitle,
     description: dict.topics.allSubtitle,
+    robots: { index: false, follow: true },
   };
 }
 

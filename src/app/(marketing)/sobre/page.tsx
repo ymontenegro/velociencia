@@ -20,6 +20,15 @@ export default async function SobrePage() {
   const locale = await getLocale();
   const dict = await getDictionary(locale);
   const siteName = SITE_NAME_I18N[locale];
+  const email = locale === "en" ? "contact@pedalsci.com" : "contacto@velociencia.cl";
+
+  const processSteps = [
+    { title: dict.about.step1Title, text: dict.about.step1Text },
+    { title: dict.about.step2Title, text: dict.about.step2Text },
+    { title: dict.about.step3Title, text: dict.about.step3Text },
+    { title: dict.about.step4Title, text: dict.about.step4Text },
+    { title: dict.about.step5Title, text: dict.about.step5Text },
+  ];
 
   return (
     <div>
@@ -55,6 +64,38 @@ export default async function SobrePage() {
           <p className="text-base leading-relaxed">{dict.about.whatWeDoP1}</p>
           <p className="text-base leading-relaxed">{dict.about.whatWeDoP2}</p>
           <p className="text-base leading-relaxed">{dict.about.whatWeDoP3}</p>
+        </div>
+      </section>
+
+      {/* How we work — editorial process */}
+      <section className="border-t border-[var(--color-border)]">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <div className="border-t-[6px] border-[var(--color-text)] pt-4">
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+              {dict.about.editorialProcess}
+            </h2>
+          </div>
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-[var(--color-text-secondary)]">
+            {dict.about.editorialProcessIntro}
+          </p>
+
+          <ol className="mt-10 space-y-8">
+            {processSteps.map((step, i) => (
+              <li key={i} className="flex gap-5">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-text)] font-serif text-sm font-bold text-white dark:bg-white dark:text-[#0A0A0E]">
+                  {i + 1}
+                </span>
+                <div className="pt-1">
+                  <h3 className="font-serif text-lg font-bold text-[var(--color-text)]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                    {step.text}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -135,6 +176,25 @@ export default async function SobrePage() {
               </p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
                 {dict.about.transparencyText}
+              </p>
+            </div>
+          </div>
+
+          {/* Corrections & contact */}
+          <div className="mt-12 flex items-start gap-4">
+            <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                {dict.about.corrections}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                {dict.about.correctionsText}{" "}
+                <a
+                  href={`mailto:${email}`}
+                  className="font-medium text-[var(--color-text)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:decoration-[var(--color-text)]"
+                >
+                  {email}
+                </a>
               </p>
             </div>
           </div>

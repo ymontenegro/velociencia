@@ -25,6 +25,7 @@ import { ChartLine, ChartBar, ChartArea } from "@/components/charts";
 import { Toc, type TocHeading } from "@/components/articles/toc";
 import { ShareBar } from "@/components/articles/share-bar";
 import { AuthorBio } from "@/components/articles/author-bio";
+import { RelatedTools } from "@/components/articles/related-tools";
 
 /**
  * Extract h2/h3 headings from raw markdown content, skipping fenced code blocks.
@@ -395,6 +396,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </section>
         </div>
       )}
+
+      {/* Related interactive tools (original, hands-on value) */}
+      <RelatedTools
+        sectionId={sectionId}
+        tags={tags}
+        locale={locale}
+        color={sectionConfig.color}
+        label={dict.article.relatedTools}
+        intro={dict.article.relatedToolsIntro}
+      />
 
       {/* Author bio */}
       <AuthorBio

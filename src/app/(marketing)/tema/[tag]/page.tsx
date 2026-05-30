@@ -19,6 +19,8 @@ export async function generateMetadata({ params }: TagPageProps) {
   return {
     title: info.tag,
     description: `${dict.topics.articlesAbout} ${info.tag}`,
+    // Thin aggregation page: keep out of the index but let crawlers follow links.
+    robots: { index: false, follow: true },
   };
 }
 

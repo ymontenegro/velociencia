@@ -2,8 +2,11 @@ import { SECTIONS_I18N, SECTION_IDS, type SectionId } from "@/lib/constants";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Editorial author profiles. The names are AI editorial identities (see the
- * About page), one per section. Used for author bio blocks on articles.
+ * Editorial author profiles — one per section. Each name is the editorial
+ * byline under which we publish that specialty: content is AI-assisted and
+ * reviewed by the editorial team (see the About page). Bios describe the
+ * coverage and approach of each byline, not a fabricated personal biography.
+ * Used for author bio blocks on articles and the /autor pages.
  */
 interface AuthorProfile {
   sectionId: SectionId;
@@ -22,8 +25,8 @@ const AUTHOR_PROFILES: AuthorProfile[] = [
       en: "Sports nutrition and evidence-based supplementation",
     },
     bio: {
-      es: "Cubre alimentación, hidratación y suplementación para ciclistas, siempre a partir de estudios revisados por pares. Traduce la literatura en pautas concretas para entrenar y competir.",
-      en: "Covers fueling, hydration and supplementation for cyclists, always grounded in peer-reviewed research. Turns the literature into concrete guidance for training and racing.",
+      es: "La firma editorial de Velociencia en nutrición. Cubre alimentación, hidratación y suplementación para ciclistas a partir de estudios revisados por pares, y traduce esa evidencia en pautas concretas para entrenar y competir. Contenido asistido por IA y revisado por el equipo editorial.",
+      en: "PedalSci's editorial byline for nutrition. Covers fueling, hydration and supplementation for cyclists from peer-reviewed research, turning the evidence into concrete guidance for training and racing. AI-assisted content reviewed by the editorial team.",
     },
   },
   {
@@ -34,8 +37,8 @@ const AUTHOR_PROFILES: AuthorProfile[] = [
       en: "Exercise physiology and cycling biomechanics",
     },
     bio: {
-      es: "Explica la investigación científica aplicada al rendimiento: VO₂max, umbrales, cinética del oxígeno y metabolismo. Rigor de laboratorio en lenguaje claro.",
-      en: "Explains the science behind performance: VO₂max, thresholds, oxygen kinetics and metabolism. Lab-grade rigor in plain language.",
+      es: "La firma editorial de ciencia aplicada al rendimiento: VO₂máx, umbrales, cinética del oxígeno y metabolismo. Rigor de laboratorio explicado en lenguaje claro. Contenido asistido por IA y revisado por el equipo editorial.",
+      en: "The editorial byline for the science of performance: VO₂max, thresholds, oxygen kinetics and metabolism. Lab-grade rigor explained in plain language. AI-assisted content reviewed by the editorial team.",
     },
   },
   {
@@ -46,8 +49,8 @@ const AUTHOR_PROFILES: AuthorProfile[] = [
       en: "Training methodology and planning",
     },
     bio: {
-      es: "Ex-ciclista reconvertido en periodista. Analiza periodización, intervalos y las tendencias que llegan del pelotón profesional al ciclista de a pie.",
-      en: "A former racer turned journalist. Breaks down periodization, intervals and the trends moving from the pro peloton to the everyday cyclist.",
+      es: "La firma editorial de entrenamiento. Analiza periodización, intervalos, potencia y las tendencias que pasan del pelotón profesional al ciclista de a pie, siempre con base en la evidencia. Contenido asistido por IA y revisado por el equipo editorial.",
+      en: "The editorial byline for training. Breaks down periodization, intervals, power and the trends moving from the pro peloton to the everyday cyclist, always grounded in evidence. AI-assisted content reviewed by the editorial team.",
     },
   },
   {
@@ -58,8 +61,8 @@ const AUTHOR_PROFILES: AuthorProfile[] = [
       en: "Professional cycling, grand tours and classics",
     },
     bio: {
-      es: "Periodista deportivo chileno. Sigue el pelotón profesional: grandes vueltas, monumentos y la táctica que define cada carrera.",
-      en: "Chilean sports journalist. Follows the professional peloton: grand tours, monuments and the tactics that decide every race.",
+      es: "La firma editorial de competición. Sigue el pelotón profesional: grandes vueltas, monumentos y la táctica que define cada carrera. Contenido asistido por IA y revisado por el equipo editorial.",
+      en: "The editorial byline for racing. Follows the professional peloton: grand tours, monuments and the tactics that decide every race. AI-assisted content reviewed by the editorial team.",
     },
   },
 ];

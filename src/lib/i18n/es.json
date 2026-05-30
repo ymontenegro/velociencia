@@ -51,7 +51,9 @@
     "relatedTopics": "Temas",
     "tableOfContents": "En este art\u00edculo",
     "aboutAuthor": "Sobre el autor",
-    "moreFrom": "M\u00e1s de"
+    "moreFrom": "M\u00e1s de",
+    "relatedTools": "Herramientas relacionadas",
+    "relatedToolsIntro": "Pon estos conceptos a trabajar con tus propios datos:"
   },
   "newsletter": {
     "thanks": "\u00a1Gracias! Te mantendremos informado.",
@@ -126,15 +128,29 @@
   },
   "about": {
     "badge": "Sobre nosotros",
-    "intro": "Medio digital de ciclismo que combina inteligencia artificial con fuentes cient\u00edficas reales. Cada art\u00edculo es investigado, redactado y verificado con rigor period\u00edstico.",
+    "intro": "Medio digital de ciclismo que combina inteligencia artificial con fuentes cient\u00edficas reales. Cada art\u00edculo se investiga y redacta con apoyo de IA, y se edita y revisa con criterio period\u00edstico antes de publicarse.",
     "whatWeDo": "C\u00f3mo nace Velociencia",
     "whatWeDoP1": "Velociencia nace de una premisa: el ciclismo merece periodismo cient\u00edfico fundamentado en evidencia. No opiniones disfrazadas de ciencia, no titulares sensacionalistas. Datos, estudios y fuentes verificables.",
     "whatWeDoP2": "Para lograrlo, usamos inteligencia artificial como herramienta de investigaci\u00f3n y redacci\u00f3n. Cada art\u00edculo parte de fuentes cient\u00edficas reales \u2014 estudios de PubMed, Semantic Scholar y revistas especializadas. La IA acelera el proceso; el criterio editorial decide qu\u00e9 se publica y c\u00f3mo.",
     "whatWeDoP3": "Antes de publicar, cada art\u00edculo pasa por revisi\u00f3n editorial. Las fuentes se citan de forma expl\u00edcita para que cualquier lector pueda verificar la informaci\u00f3n por cuenta propia.",
     "ourSections": "Nuestras secciones",
     "journalist": "Periodista",
+    "editorialProcess": "C\u00f3mo trabajamos",
+    "editorialProcessIntro": "Velociencia se produce con un proceso editorial asistido por inteligencia artificial y supervisado por personas en cada etapa.",
+    "step1Title": "Elegimos el tema",
+    "step1Text": "El equipo editorial decide qu\u00e9 vale la pena cubrir y desde qu\u00e9 \u00e1ngulo, priorizando lo que aporta algo \u00fatil al ciclista.",
+    "step2Title": "Investigamos con fuentes reales",
+    "step2Text": "Cada art\u00edculo parte de literatura revisada por pares \u2014 estudios de PubMed, Semantic Scholar y revistas especializadas \u2014 no de un resumen gen\u00e9rico de internet.",
+    "step3Title": "Redactamos con apoyo de IA",
+    "step3Text": "Usamos inteligencia artificial como herramienta para redactar a partir de esas fuentes. Acelera el borrador; no decide qu\u00e9 es cierto ni qu\u00e9 se publica.",
+    "step4Title": "Editamos y verificamos",
+    "step4Text": "Antes de publicar, el equipo editorial revisa el texto, comprueba que cada afirmaci\u00f3n coincida con las fuentes citadas y corrige lo que haga falta.",
+    "step5Title": "Publicamos y corregimos",
+    "step5Text": "Publicamos con las fuentes citadas de forma expl\u00edcita para que cualquiera pueda verificarlas. Si detectas un error, lo corregimos.",
     "transparency": "Transparencia",
-    "transparencyText": "Los periodistas de Velociencia son agentes de inteligencia artificial. Los nombres asociados a cada secci\u00f3n representan identidades editoriales, no personas reales. Creemos que la transparencia sobre nuestro proceso es fundamental para la confianza del lector."
+    "transparencyText": "Velociencia se elabora con un proceso asistido por inteligencia artificial y supervisado por nuestro equipo editorial. La IA ayuda a investigar y a redactar a partir de fuentes cient\u00edficas reales; la decisi\u00f3n de qu\u00e9 se publica, la verificaci\u00f3n de los datos y la edici\u00f3n final son responsabilidad de personas. Los nombres de cada secci\u00f3n son las identidades editoriales con las que firmamos cada especialidad.",
+    "corrections": "Correcciones y contacto",
+    "correctionsText": "Trabajamos para que cada dato sea correcto y verificable. Si ves algo que no cuadra, escr\u00edbenos y revisaremos el art\u00edculo:"
   },
   "localeBanner": {
     "suggestion": "This content is also available in English at pedalsci.com",
