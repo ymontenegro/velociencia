@@ -84,13 +84,13 @@ The fundamental rule: no leg microdoses within 18 to 24 hours before a Z4-Z5 int
 
 | Day | Cycling session | Microdose | Duration | Exercises | Cycling zone |
 |-----|-----------------|-----------|----------|-----------|--------------|
-| Monday | Rest or easy Z1 | Core | 10 min | Plank 3×30s + Dead bug 3×10 | Z1 (<55% FTP) |
+| Monday | Rest or easy Z1 | Core | 10 min | Plank 3×30s + Dead bug 3×10 | Z1 (&lt;55% FTP) |
 | Tuesday | Z2 base endurance | Legs | 12 min | Goblet squat 3×8 + Hip thrust 3×10 | Z2 (55-75% FTP) |
 | Wednesday | Z4-Z5 intervals | None | — | — | Z4-Z5 (91-120% FTP) |
-| Thursday | Z1-Z2 recovery | Legs | 10 min | Romanian DL 3×8 + Pallof 2×12 | Z1-Z2 (<75% FTP) |
+| Thursday | Z1-Z2 recovery | Legs | 10 min | Romanian DL 3×8 + Pallof 2×12 | Z1-Z2 (&lt;75% FTP) |
 | Friday | Short Z3 threshold | Light legs | 8 min | Hip thrust 3×10 (−15% of usual load) | Z3 (76-90% FTP) |
 | Saturday | Race | None | — | — | Z2-Z6 (race) |
-| Sunday | Z1 recovery | Core | 8 min | Plank 3×30s + Pallof 3×12 | Z1 (<55% FTP) |
+| Sunday | Z1 recovery | Core | 8 min | Plank 3×30s + Pallof 3×12 | Z1 (&lt;55% FTP) |
 
 ## How to Progress and What Success Looks Like
 

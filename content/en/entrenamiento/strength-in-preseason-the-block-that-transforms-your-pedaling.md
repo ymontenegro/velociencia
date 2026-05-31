@@ -44,7 +44,7 @@ coverImage: >-
 
 Rønnestad and colleagues demonstrated that 25 weeks of heavy strength training improve average power by 7% without increasing body weight. But these gains are only built when there is room for recovery. November to January in the northern hemisphere, May to July in the southern hemisphere: these are the months when cycling volume drops to a minimum, competitions are distant, and the body can absorb a stimulus different from pedaling. The preseason is the only time of year when a cyclist can train maximal strength with the frequency and intensity necessary to produce real neuromuscular adaptations. Trying to squeeze in heavy squat sessions during the competition phase, when the body is already absorbing 15 weekly hours of cycling, is a recipe for injury or overtraining.
 
-The physiological logic is straightforward. When cycling volume is low, limited to rides in Z1-Z2 (<75% FTP) of 3 to 5 hours per week, the musculoskeletal system has recovery capacity available. That capacity allows tolerating gym loads that would be unsustainable during the season. The cyclist who takes advantage of these months to build strength enters the Build phase with a more powerful engine without having sacrificed their aerobic base.
+The physiological logic is straightforward. When cycling volume is low, limited to rides in Z1-Z2 (&lt;75% FTP) of 3 to 5 hours per week, the musculoskeletal system has recovery capacity available. That capacity allows tolerating gym loads that would be unsustainable during the season. The cyclist who takes advantage of these months to build strength enters the Build phase with a more powerful engine without having sacrificed their aerobic base.
 
 ## What the Evidence Says
 

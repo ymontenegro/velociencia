@@ -50,7 +50,7 @@ Dall'Agnol y colaboradores cuantificaron esto directamente en ciclistas en un es
 
 ## El protocolo 4×8 minutos: la evidencia más sólida
 
-El 4×8 es el protocolo más respaldado por la literatura comparativa directa. Seiler lo define como cuatro repeticiones de ocho minutos a la máxima intensidad que el ciclista puede sostener durante las cuatro series completas —lo que en términos de potencia corresponde aproximadamente a Z4 alta (91-105% FTP) a Z5 (106-120% FTP), dependiendo del nivel del atleta, con una recuperación activa de cuatro minutos entre series a Z1 (<55% FTP). La intensidad correcta en el primer intervalo es aquella que puede repetirse en el cuarto sin una caída de potencia superior al 5%. Empezar al 110% FTP y terminar al 80% es el error más frecuente y más costoso en este formato: vacía el protocolo de su efecto principal.
+El 4×8 es el protocolo más respaldado por la literatura comparativa directa. Seiler lo define como cuatro repeticiones de ocho minutos a la máxima intensidad que el ciclista puede sostener durante las cuatro series completas —lo que en términos de potencia corresponde aproximadamente a Z4 alta (91-105% FTP) a Z5 (106-120% FTP), dependiendo del nivel del atleta, con una recuperación activa de cuatro minutos entre series a Z1 (&lt;55% FTP). La intensidad correcta en el primer intervalo es aquella que puede repetirse en el cuarto sin una caída de potencia superior al 5%. Empezar al 110% FTP y terminar al 80% es el error más frecuente y más costoso en este formato: vacía el protocolo de su efecto principal.
 
 La superioridad del 4×8 sobre el 4×4 tiene una explicación mecánica precisa. A intensidades de 90-95% VO2max, el sistema cardiorrespiratorio tarda entre 90 y 120 segundos en alcanzar su consumo máximo de oxígeno desde el reposo activo. En un intervalo de 4 minutos, eso deja apenas 2-2,5 minutos de tiempo real en zona de VO2max. En un intervalo de 8 minutos, la misma latencia inicial deja 5,5-6 minutos en zona crítica por repetición, lo que en cuatro series representa 22-24 minutos de tiempo sostenido sobre el 90% VO2max por sesión. La ventaja es estructural, no de esfuerzo. El dato de Odden, Rønnestad y colaboradores publicado en 2024 en el *European Journal of Sport Science* (PMID 39385317) lo confirma desde otro ángulo: en 22 ciclistas bien entrenados realizando 21 sesiones de 5×8 minutos durante nueve semanas, el porcentaje de VO2max alcanzado durante los intervalos predijo con una R² de 0,54 la magnitud de la mejora en VO2max al final del estudio. No el esfuerzo percibido, no el lactato, sino el tiempo real que el consumo de oxígeno estuvo cerca de su máximo.
 
@@ -134,11 +134,11 @@ El siguiente plan refleja cuatro semanas de construcción de VO2max usando el 4�
 
 | Día | Sesión | Duración | Zona/Intensidad | Descripción |
 |-----|--------|----------|-----------------|-------------|
-| Lunes | Recuperación | 60 min | Z1 (<55% FTP) | Rodadura suave, <130 W/kg relativo |
+| Lunes | Recuperación | 60 min | Z1 (&lt;55% FTP) | Rodadura suave, &lt;130 W/kg relativo |
 | Martes | 4×8 min (4×8) | 90 min | Z4-Z5 (91-105% FTP) + Z1 rec | 4 series de 8 min a máxima intensidad tolerable, 4 min recuperación activa Z1 |
 | Miércoles | Fondo Z2 | 120-150 min | Z2 (55-75% FTP) | Volumen aeróbico base, cadencia libre |
 | Jueves | 4×8 min (4×8) | 90 min | Z4-Z5 (91-105% FTP) + Z1 rec | Repetición del formato del martes |
-| Viernes | Recuperación | 45-60 min | Z1 (<55% FTP) | Opcional: movilidad, estiramientos |
+| Viernes | Recuperación | 45-60 min | Z1 (&lt;55% FTP) | Opcional: movilidad, estiramientos |
 | Sábado | Fondo largo | 180-240 min | Z1-Z2 | El bloque de volumen semanal principal |
 | Domingo | Descanso o Z1 | 0-60 min | Z1 | Según sensaciones y carga acumulada |
 

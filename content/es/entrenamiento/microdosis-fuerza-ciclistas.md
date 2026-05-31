@@ -84,13 +84,13 @@ La regla fundamental es no hacer microdosis de piernas en las 18-24 horas previa
 
 | Día | Sesión en bici | Microdosis | Duración | Ejercicios | Zona bici |
 |-----|----------------|------------|----------|------------|-----------|
-| Lunes | Descanso o Z1 suave | Core | 10 min | Plancha 3×30s + Dead bug 3×10 | Z1 (<55% FTP) |
+| Lunes | Descanso o Z1 suave | Core | 10 min | Plancha 3×30s + Dead bug 3×10 | Z1 (&lt;55% FTP) |
 | Martes | Z2 fondo base | Piernas | 12 min | Sentadilla goblet 3×8 + Hip thrust 3×10 | Z2 (55-75% FTP) |
 | Miércoles | Intervalos Z4-Z5 | No | — | — | Z4-Z5 (91-120% FTP) |
-| Jueves | Z1-Z2 recuperación | Piernas | 10 min | Peso muerto rumano 3×8 + Pallof 2×12 | Z1-Z2 (<75% FTP) |
+| Jueves | Z1-Z2 recuperación | Piernas | 10 min | Peso muerto rumano 3×8 + Pallof 2×12 | Z1-Z2 (&lt;75% FTP) |
 | Viernes | Z3 umbral corto | Piernas ligero | 8 min | Hip thrust 3×10 (carga -15% respecto habitual) | Z3 (76-90% FTP) |
 | Sábado | Carrera | No | — | — | Z2-Z6 (carrera) |
-| Domingo | Z1 recuperación | Core | 8 min | Plancha 3×30s + Pallof 3×12 | Z1 (<55% FTP) |
+| Domingo | Z1 recuperación | Core | 8 min | Plancha 3×30s + Pallof 3×12 | Z1 (&lt;55% FTP) |
 
 ## Progresión durante la temporada y señales de que funciona
 

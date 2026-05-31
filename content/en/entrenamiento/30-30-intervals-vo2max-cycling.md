@@ -41,7 +41,7 @@ Rønnestad and Hansen quantified this effect specifically in elite cyclists in a
 
 ## The specific protocols and their zones
 
-The core protocol developed by Rønnestad has a well-defined structure: 3 sets of 13 repetitions of 30 seconds at Z6 (≥120% FTP) interspersed with 15 seconds of active recovery at Z1 (<55% FTP), with 3 minutes of rest between sets. This format allows a cyclist to accumulate 9 minutes and 45 seconds of high-intensity work in a session that, with warm-up and cool-down, stays under 75 minutes. The power target during the 30-second efforts corresponds to individual MAP, which in most well-trained cyclists falls between 120% and 135% of FTP.
+The core protocol developed by Rønnestad has a well-defined structure: 3 sets of 13 repetitions of 30 seconds at Z6 (≥120% FTP) interspersed with 15 seconds of active recovery at Z1 (&lt;55% FTP), with 3 minutes of rest between sets. This format allows a cyclist to accumulate 9 minutes and 45 seconds of high-intensity work in a session that, with warm-up and cool-down, stays under 75 minutes. The power target during the 30-second efforts corresponds to individual MAP, which in most well-trained cyclists falls between 120% and 135% of FTP.
 
 There is a more accessible variant for those new to this format: 3 sets of 9 repetitions with the same intensity distribution. Rønnestad uses this as the entry point before scaling to 13 repetitions. The between-set recovery interval can be extended to 4–5 minutes during the first weeks without compromising the stimulus, as long as Z6 intensity is maintained during efforts. Dropping to Z5 (106–120% FTP) to complete more repetitions is a common mistake: it reduces actual time at VO2max and turns the session into something closer to a prolonged sweet-spot effort.
 
@@ -72,12 +72,12 @@ The maximum recommended frequency is two sessions per week of 30/30 intervals, n
 
 | Week | Session 1 (Tuesday) | Session 2 (Thursday/Friday) | Effort Zone/Intensity | Intra-recovery Zone | Between-set Recovery |
 |------|---------------------|----------------------------|----------------------|--------------------|--------------------|
-| 1 | 3×9×30s — 15s rec | 3×9×30s — 15s rec | Z6 (120–130% FTP) | Z1 (<55% FTP) | 4 min |
-| 2 | 3×10×30s — 15s rec | 3×10×30s — 15s rec | Z6 (120–130% FTP) | Z1 (<55% FTP) | 4 min |
-| 3 | 3×11×30s — 15s rec | 3×11×30s — 15s rec | Z6 (120–130% FTP) | Z1 (<55% FTP) | 3.5 min |
-| 4 | 3×13×30s — 15s rec | 3×12×30s — 15s rec | Z6 (120–135% FTP) | Z1 (<55% FTP) | 3 min |
-| 5 | 3×13×30s — 15s rec | 3×13×30s — 15s rec | Z6 (120–135% FTP) | Z1 (<55% FTP) | 3 min |
-| 6 (deload) | 2×9×30s — 15s rec | Rest or Z2 60 min | Z5–Z6 (115–125% FTP) | Z1 (<55% FTP) | 4 min |
+| 1 | 3×9×30s — 15s rec | 3×9×30s — 15s rec | Z6 (120–130% FTP) | Z1 (&lt;55% FTP) | 4 min |
+| 2 | 3×10×30s — 15s rec | 3×10×30s — 15s rec | Z6 (120–130% FTP) | Z1 (&lt;55% FTP) | 4 min |
+| 3 | 3×11×30s — 15s rec | 3×11×30s — 15s rec | Z6 (120–130% FTP) | Z1 (&lt;55% FTP) | 3.5 min |
+| 4 | 3×13×30s — 15s rec | 3×12×30s — 15s rec | Z6 (120–135% FTP) | Z1 (&lt;55% FTP) | 3 min |
+| 5 | 3×13×30s — 15s rec | 3×13×30s — 15s rec | Z6 (120–135% FTP) | Z1 (&lt;55% FTP) | 3 min |
+| 6 (deload) | 2×9×30s — 15s rec | Rest or Z2 60 min | Z5–Z6 (115–125% FTP) | Z1 (&lt;55% FTP) | 4 min |
 
 <ChartLine
   title="Repetitions per set progression: 6-week block"

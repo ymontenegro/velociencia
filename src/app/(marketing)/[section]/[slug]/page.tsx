@@ -17,6 +17,7 @@ import { getRelatedByTags, tagToSlug } from "@/lib/tags";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { getAuthorByName } from "@/lib/authors";
+import { escapeStrayAngleBrackets } from "@/lib/mdx-sanitize";
 import { ArticleCard } from "@/components/articles/article-card";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
 import { ViewTracker } from "@/components/articles/view-tracker";
@@ -147,7 +148,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   };
 
   const { content: mdxContent } = await compileMDX({
-    source: content,
+    source: escapeStrayAngleBrackets(content),
     components: mdxComponents,
     options: {
       blockJS: false,

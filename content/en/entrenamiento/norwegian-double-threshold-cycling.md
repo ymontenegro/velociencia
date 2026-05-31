@@ -96,13 +96,13 @@ For the amateur cyclist without a lactate meter, an approximate version of the m
 
 | Day | Session | Duration | Zone/Intensity | Description |
 |-----|---------|----------|----------------|-------------|
-| Monday | Recovery | 60 min | Z1 (<55% FTP) | Easy spinning, target lactate <1.5 mmol/L |
+| Monday | Recovery | 60 min | Z1 (&lt;55% FTP) | Easy spinning, target lactate &lt;1.5 mmol/L |
 | Tuesday AM | Double threshold A | 75 min | Z3 (76-90% FTP) | 5×8 min with 2 min recovery, lactate 2.5-3.5 mmol/L |
 | Tuesday PM | Double threshold B | 60 min | Z3 (80-90% FTP) | 10×3 min with 1 min recovery, same lactate range |
-| Wednesday | Aerobic base | 90-120 min | Z2 (55-75% FTP) | Steady volume, <2 mmol/L |
+| Wednesday | Aerobic base | 90-120 min | Z2 (55-75% FTP) | Steady volume, &lt;2 mmol/L |
 | Thursday AM | Double threshold A | 75 min | Z3 (76-90% FTP) | 4×10 min with 2 min recovery |
 | Thursday PM | Double threshold B | 60 min | Z3 (80-90% FTP) | 8×4 min with 90 sec recovery |
-| Friday | Recovery | 45 min | Z1 (<55% FTP) | Mobility and low load |
+| Friday | Recovery | 45 min | Z1 (&lt;55% FTP) | Mobility and low load |
 | Saturday | Long ride | 180-240 min | Z1-Z2 | Main volume of the week, no exceeding Z2 |
 | Sunday | Rest or Z1 | 0-60 min | Z1 | Based on perceived recovery |
 

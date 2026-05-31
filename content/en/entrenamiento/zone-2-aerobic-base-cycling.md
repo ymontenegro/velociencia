@@ -88,7 +88,7 @@ Implementation varies by available time and experience level. San Millán recomm
 | Tuesday | Z2 ride | 1h 30min | 65-75% FTP | Cadence 85-95 rpm, steady |
 | Wednesday | Z4-Z5 intervals | 1h 15min | Z2 warmup + 4x5min at 105% FTP | Quality session, Z1 recovery |
 | Thursday | Z2 ride | 1h 15min | 65-75% FTP | Active recovery |
-| Friday | Rest or easy Z1 | 45min | <55% FTP | Optional, only if feeling fresh |
+| Friday | Rest or easy Z1 | 45min | &lt;55% FTP | Optional, only if feeling fresh |
 | Saturday | Intervals + Z2 | 1h 30min | Z2 warmup + 3x8min at 100-105% FTP | Quality session with Z2 base |
 | Sunday | Long Z2 ride | 2h 30min - 3h | 65-75% FTP | Weekly cornerstone, steady pace |
 

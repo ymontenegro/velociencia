@@ -88,7 +88,7 @@ La implementación varía según el tiempo disponible y el nivel de experiencia.
 | Martes | Rodaje Z2 | 1h 30min | 65-75% FTP | Cadencia 85-95 rpm estable |
 | Miércoles | Intervalos Z4-Z5 | 1h 15min | Calent Z2 + 4x5min al 105% FTP | Sesión de calidad, recuperación en Z1 |
 | Jueves | Rodaje Z2 | 1h 15min | 65-75% FTP | Recuperación activa |
-| Viernes | Descanso o Z1 suave | 45min | <55% FTP | Opcional, solo si hay buenas sensaciones |
+| Viernes | Descanso o Z1 suave | 45min | &lt;55% FTP | Opcional, solo si hay buenas sensaciones |
 | Sábado | Intervalos + Z2 | 1h 30min | Calent Z2 + 3x8min al 100-105% FTP | Sesión de calidad con base Z2 |
 | Domingo | Salida larga Z2 | 2h 30min - 3h | 65-75% FTP | Pilar de la semana, ritmo constante |
 

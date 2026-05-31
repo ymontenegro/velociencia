@@ -41,7 +41,7 @@ Rønnestad y Hansen cuantificaron este efecto específicamente en ciclistas de �
 
 ## Los protocolos concretos y sus zonas
 
-El protocolo central desarrollado por Rønnestad tiene una estructura bien definida: 3 series de 13 repeticiones de 30 segundos a Z6 (≥120% FTP) intercaladas con 15 segundos de recuperación activa a Z1 (<55% FTP), con 3 minutos de recuperación entre series. Este formato permite acumular 9 minutos y 45 segundos de trabajo a alta intensidad en una sesión que, con calentamiento y vuelta a la calma, no supera los 75 minutos. La potencia objetivo en los 30 segundos de esfuerzo corresponde a la potencia máxima aeróbica individual, que en la mayoría de los ciclistas bien entrenados se sitúa entre el 120% y el 135% del FTP.
+El protocolo central desarrollado por Rønnestad tiene una estructura bien definida: 3 series de 13 repeticiones de 30 segundos a Z6 (≥120% FTP) intercaladas con 15 segundos de recuperación activa a Z1 (&lt;55% FTP), con 3 minutos de recuperación entre series. Este formato permite acumular 9 minutos y 45 segundos de trabajo a alta intensidad en una sesión que, con calentamiento y vuelta a la calma, no supera los 75 minutos. La potencia objetivo en los 30 segundos de esfuerzo corresponde a la potencia máxima aeróbica individual, que en la mayoría de los ciclistas bien entrenados se sitúa entre el 120% y el 135% del FTP.
 
 Existe una variante más accesible para quienes recién incorporan este formato: 3 series de 9 repeticiones con la misma distribución de intensidades. Rønnestad lo usa como punto de entrada antes de escalar a 13 repeticiones. El intervalo de recuperación entre bloques puede alargarse a 4-5 minutos durante las primeras semanas sin comprometer el estímulo, siempre que se mantenga la intensidad en Z6 durante los esfuerzos. Bajar a Z5 (106-120% FTP) para completar más repeticiones es un error común: reduce el tiempo real en VO2max y convierte la sesión en algo parecido a un sweet-spot prolongado.
 
@@ -72,12 +72,12 @@ La frecuencia máxima recomendada es de dos sesiones por semana de 30/30, nunca 
 
 | Semana | Sesión 1 (martes) | Sesión 2 (jueves/viernes) | Zona/Intensidad esfuerzos | Zona recuperación intra | Recuperación entre series |
 |--------|-------------------|--------------------------|--------------------------|------------------------|--------------------------|
-| 1 | 3×9×30s — 15s rec | 3×9×30s — 15s rec | Z6 (120-130% FTP) | Z1 (<55% FTP) | 4 min |
-| 2 | 3×10×30s — 15s rec | 3×10×30s — 15s rec | Z6 (120-130% FTP) | Z1 (<55% FTP) | 4 min |
-| 3 | 3×11×30s — 15s rec | 3×11×30s — 15s rec | Z6 (120-130% FTP) | Z1 (<55% FTP) | 3,5 min |
-| 4 | 3×13×30s — 15s rec | 3×12×30s — 15s rec | Z6 (120-135% FTP) | Z1 (<55% FTP) | 3 min |
-| 5 | 3×13×30s — 15s rec | 3×13×30s — 15s rec | Z6 (120-135% FTP) | Z1 (<55% FTP) | 3 min |
-| 6 (descarga) | 2×9×30s — 15s rec | Descanso o Z2 60 min | Z5-Z6 (115-125% FTP) | Z1 (<55% FTP) | 4 min |
+| 1 | 3×9×30s — 15s rec | 3×9×30s — 15s rec | Z6 (120-130% FTP) | Z1 (&lt;55% FTP) | 4 min |
+| 2 | 3×10×30s — 15s rec | 3×10×30s — 15s rec | Z6 (120-130% FTP) | Z1 (&lt;55% FTP) | 4 min |
+| 3 | 3×11×30s — 15s rec | 3×11×30s — 15s rec | Z6 (120-130% FTP) | Z1 (&lt;55% FTP) | 3,5 min |
+| 4 | 3×13×30s — 15s rec | 3×12×30s — 15s rec | Z6 (120-135% FTP) | Z1 (&lt;55% FTP) | 3 min |
+| 5 | 3×13×30s — 15s rec | 3×13×30s — 15s rec | Z6 (120-135% FTP) | Z1 (&lt;55% FTP) | 3 min |
+| 6 (descarga) | 2×9×30s — 15s rec | Descanso o Z2 60 min | Z5-Z6 (115-125% FTP) | Z1 (&lt;55% FTP) | 4 min |
 
 <ChartLine
   title="Progresión de repeticiones por serie: bloque de 6 semanas"

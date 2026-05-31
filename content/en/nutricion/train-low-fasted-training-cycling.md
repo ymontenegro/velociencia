@@ -109,8 +109,8 @@ Train low makes sense as a tool in the arsenal of a trained cyclist who already 
 |---|---|---|
 | High-intensity intervals (>85% HRmax) | High (60-90 g/h during session) | Preserve stimulus quality and anaerobic glycolysis |
 | Long base ride (Z2, >3 h) | Moderate-low (25-40 g/h) | Activate fat oxidation without compromising duration |
-| Sleep low session (morning after evening depletion) | Low (fasted or <30 g carbohydrates) | Maximum AMPK/PGC-1α signaling at low intensity |
-| Active recovery (<Z2) | Unrestricted | Metabolic recovery is the priority |
+| Sleep low session (morning after evening depletion) | Low (fasted or &lt;30 g carbohydrates) | Maximum AMPK/PGC-1α signaling at low intensity |
+| Active recovery (&lt;Z2) | Unrestricted | Metabolic recovery is the priority |
 | Race or race simulation | High (>90 g/h with glucose+fructose 2:1) | Performance is the only objective |
 
 The Marquet et al. (2016) protocol provides a clear operational framework: apply sleep low two or three times per week during three-to-four-week blocks in the base period, without overlapping these weeks with high-load blocks or competition approach phases. More train low sessions per week do not produce more adaptations—they produce more accumulated fatigue and a greater risk of RED-S.

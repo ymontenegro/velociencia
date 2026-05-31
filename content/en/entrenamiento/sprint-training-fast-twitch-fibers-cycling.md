@@ -42,7 +42,7 @@ Type IIa fibers are the functional compromise: faster and more powerful than typ
 
 ## The Two Protocols with Experimental Support in Cyclists
 
-The short maximal sprint protocol is the most studied and most transferable for endurance cyclists: 5 to 10-second efforts at absolute maximum — the power meter reading 800 to 1,800 watts depending on level — with active recovery of 3 to 5 minutes at Z1 (<55% FTP). Between 6 and 10 repetitions per session. This format maximizes the stimulus on IIa and IIx fibers without generating substantial lactate accumulation, because the effort duration is insufficient to activate glycolysis in significant volume. The ample recovery allows near-complete phosphocreatine resynthesis before the next sprint.
+The short maximal sprint protocol is the most studied and most transferable for endurance cyclists: 5 to 10-second efforts at absolute maximum — the power meter reading 800 to 1,800 watts depending on level — with active recovery of 3 to 5 minutes at Z1 (&lt;55% FTP). Between 6 and 10 repetitions per session. This format maximizes the stimulus on IIa and IIx fibers without generating substantial lactate accumulation, because the effort duration is insufficient to activate glycolysis in significant volume. The ample recovery allows near-complete phosphocreatine resynthesis before the next sprint.
 
 The supramaximal medium-duration protocol — 20 to 30-second efforts at 130 to 150% of FTP — adds a glycolytic component that raises blood lactate to 8 to 14 mmol/L per repetition and requires longer recoveries of 4 to 6 minutes. It produces a more complete stimulus for total anaerobic capacity, working both the phosphocreatine system and lactate production and buffering capacity. The drawback is greater residual fatigue per session and the requirement for at least 48 hours before any quality aerobic session. For most endurance cyclists, the 6 to 10-second protocol is the more applicable: direct peak power benefit with minimal recovery cost.
 
@@ -88,7 +88,7 @@ The practical rule is to place sprint sessions on days of moderate or low aerobi
 | Tuesday | Sprint + Z2 | 75 min | Z1-Z6 | 20 min warmup Z1 + 6×6s maximal (4 min Z1 rec) + 35 min Z2 |
 | Wednesday | Z2 base | 90-120 min | Z2 (55-75% FTP) | Aerobic endurance, free cadence |
 | Thursday | Z3-Z4 threshold | 75 min | Z3-Z4 (76-105% FTP) | 3×12 min Z3-Z4, 5 min Z1 rec between sets |
-| Friday | Rest or Z1 | 45 min | Z1 (<55% FTP) | Easy active recovery pedaling |
+| Friday | Rest or Z1 | 45 min | Z1 (&lt;55% FTP) | Easy active recovery pedaling |
 | Saturday | Sprint + Z2 | 85 min | Z1-Z6 | 20 min warmup + 8×6s maximal (4 min Z1 rec) + 40 min Z2 |
 | Sunday | Long Z2 | 120-180 min | Z2 (55-75% FTP) | Long aerobic endurance, no intensity, free cadence |
 

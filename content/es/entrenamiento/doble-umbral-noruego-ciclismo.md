@@ -96,13 +96,13 @@ Para el ciclista amateur que no dispone de lactámetro, existe una versión apro
 
 | Día | Sesión | Duración | Zona/Intensidad | Descripción |
 |-----|--------|----------|-----------------|-------------|
-| Lunes | Recuperación | 60 min | Z1 (<55% FTP) | Rodadura suave, lactato objetivo <1,5 mmol/L |
+| Lunes | Recuperación | 60 min | Z1 (&lt;55% FTP) | Rodadura suave, lactato objetivo &lt;1,5 mmol/L |
 | Martes mañana | Doble umbral A | 75 min | Z3 (76-90% FTP) | 5×8 min con 2 min recuperación, lactato 2,5-3,5 mmol/L |
 | Martes tarde | Doble umbral B | 60 min | Z3 (80-90% FTP) | 10×3 min con 1 min recuperación, mismo rango de lactato |
-| Miércoles | Base aeróbica | 90-120 min | Z2 (55-75% FTP) | Volumen a intensidad estable, <2 mmol/L |
+| Miércoles | Base aeróbica | 90-120 min | Z2 (55-75% FTP) | Volumen a intensidad estable, &lt;2 mmol/L |
 | Jueves mañana | Doble umbral A | 75 min | Z3 (76-90% FTP) | 4×10 min con 2 min recuperación |
 | Jueves tarde | Doble umbral B | 60 min | Z3 (80-90% FTP) | 8×4 min con 90 seg recuperación |
-| Viernes | Recuperación | 45 min | Z1 (<55% FTP) | Movilidad y baja carga |
+| Viernes | Recuperación | 45 min | Z1 (&lt;55% FTP) | Movilidad y baja carga |
 | Sábado | Fondo | 180-240 min | Z1-Z2 | Gran parte del volumen semanal, sin superar Z2 |
 | Domingo | Descanso o Z1 | 0-60 min | Z1 | Según sensaciones |
 

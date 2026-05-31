@@ -50,7 +50,7 @@ Dall'Agnol and colleagues quantified this directly in cyclists in a 2021 study (
 
 ## The 4×8 minute protocol: the strongest evidence base
 
-The 4×8 is the format most clearly supported by direct comparative literature. Seiler defines it as four repetitions of eight minutes at the maximum intensity the cyclist can sustain across all four complete sets — which in power terms corresponds roughly to high Z4 (91-105% FTP) to Z5 (106-120% FTP), depending on athlete level, with four minutes of active recovery at Z1 (<55% FTP) between sets. The correct intensity in the first interval is whatever can be repeated in the fourth without a power drop exceeding 5%. Starting at 110% FTP and finishing at 80% is the most frequent and most costly mistake in this format: it strips the protocol of its primary effect.
+The 4×8 is the format most clearly supported by direct comparative literature. Seiler defines it as four repetitions of eight minutes at the maximum intensity the cyclist can sustain across all four complete sets — which in power terms corresponds roughly to high Z4 (91-105% FTP) to Z5 (106-120% FTP), depending on athlete level, with four minutes of active recovery at Z1 (&lt;55% FTP) between sets. The correct intensity in the first interval is whatever can be repeated in the fourth without a power drop exceeding 5%. Starting at 110% FTP and finishing at 80% is the most frequent and most costly mistake in this format: it strips the protocol of its primary effect.
 
 The superiority of 4×8 over 4×4 has a precise mechanical explanation. At 90-95% VO2max intensities, the cardiorespiratory system takes 90-120 seconds to reach its peak oxygen consumption from an active recovery state. In a 4-minute interval, that leaves barely 2-2.5 minutes of actual time in the VO2max zone. In an 8-minute interval, the same initial lag leaves 5.5-6 minutes in the critical zone per repetition — which across four sets represents 22-24 minutes of sustained time above 90% VO2max per session. The advantage is structural, not one of effort. The data from Odden, Rønnestad and colleagues published in 2024 in the *European Journal of Sport Science* (PMID 39385317) confirms this from another angle: in 22 well-trained cyclists performing 21 sessions of 5×8 minutes over nine weeks, the percentage of VO2max reached during the intervals predicted the magnitude of VO2max improvement at study end with an R² of 0.54. Not perceived effort, not blood lactate — actual time near maximal oxygen uptake.
 
@@ -132,11 +132,11 @@ The following plan reflects four weeks of VO2max building using 4×8 as the prim
 
 | Day | Session | Duration | Zone/Intensity | Description |
 |-----|---------|----------|----------------|-------------|
-| Monday | Recovery | 60 min | Z1 (<55% FTP) | Easy spin, low power |
+| Monday | Recovery | 60 min | Z1 (&lt;55% FTP) | Easy spin, low power |
 | Tuesday | Intervals (4×8) | 90 min | Z4-Z5 (91-105% FTP) + Z1 rec | 4×8 min at max tolerable intensity, 4 min Z1 recovery |
 | Wednesday | Z2 endurance | 120-150 min | Z2 (55-75% FTP) | Aerobic base volume, free cadence |
 | Thursday | Intervals (4×8) | 90 min | Z4-Z5 (91-105% FTP) + Z1 rec | Repeat Tuesday format |
-| Friday | Recovery | 45-60 min | Z1 (<55% FTP) | Optional: mobility work |
+| Friday | Recovery | 45-60 min | Z1 (&lt;55% FTP) | Optional: mobility work |
 | Saturday | Long ride | 180-240 min | Z1-Z2 | Primary weekly volume block |
 | Sunday | Rest or Z1 | 0-60 min | Z1 | Based on accumulated fatigue |
 

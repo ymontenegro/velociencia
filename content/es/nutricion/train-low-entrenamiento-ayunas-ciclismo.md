@@ -109,8 +109,8 @@ El train low tiene sentido como herramienta en el arsenal de un ciclista entrena
 |---|---|---|
 | Intervalos de alta intensidad (>85% FCmáx) | Alta (60-90 g/h durante la sesión) | Preservar calidad del estímulo y glucólisis anaeróbica |
 | Rodaje de base largo (Z2, >3 h) | Moderada-baja (25-40 g/h) | Activar oxidación de grasas sin comprometer duración |
-| Sesión sleep low (mañana tras agotamiento vespertino) | Baja (en ayunas o con <30 g carbohidratos) | Máxima señalización AMPK/PGC-1α a baja intensidad |
-| Recuperación activa (<Z2) | Sin restricción | La recuperación metabólica es prioritaria |
+| Sesión sleep low (mañana tras agotamiento vespertino) | Baja (en ayunas o con &lt;30 g carbohidratos) | Máxima señalización AMPK/PGC-1α a baja intensidad |
+| Recuperación activa (&lt;Z2) | Sin restricción | La recuperación metabólica es prioritaria |
 | Sesión de competición o simulacro | Alta (>90 g/h con glucosa+fructosa 2:1) | El rendimiento es el único objetivo |
 
 El protocolo de Marquet et al. (2016) proporciona un marco operativo claro: aplicar sleep low dos o tres veces por semana durante bloques de tres a cuatro semanas en el período base, sin solapar estas semanas con bloques de alta carga o con la aproximación a la competición. Más sesiones de train low por semana no producen más adaptaciones; producen más fatiga acumulada y más riesgo de RED-S.

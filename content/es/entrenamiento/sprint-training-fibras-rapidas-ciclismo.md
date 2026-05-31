@@ -42,7 +42,7 @@ Las fibras de tipo IIa son el compromiso funcional: más rápidas y potentes que
 
 ## Los dos protocolos con base experimental en ciclistas
 
-El protocolo de sprint maximal de duración corta es el más estudiado y el de mayor transferencia para ciclistas de resistencia: esfuerzos de 5 a 10 segundos al máximo absoluto —el potenciómetro marcando entre 800 y 1.800 vatios dependiendo del nivel del atleta—, con recuperación activa de 3 a 5 minutos a Z1 (<55% FTP). Se ejecutan entre 6 y 10 repeticiones por sesión. Este formato maximiza el estímulo sobre las fibras IIa y IIx sin generar acumulación sustancial de lactato, porque la duración del esfuerzo es insuficiente para activar la glucólisis en volumen significativo. La recuperación amplia permite que las reservas de fosfocreatina se resinteticen casi por completo antes del siguiente sprint.
+El protocolo de sprint maximal de duración corta es el más estudiado y el de mayor transferencia para ciclistas de resistencia: esfuerzos de 5 a 10 segundos al máximo absoluto —el potenciómetro marcando entre 800 y 1.800 vatios dependiendo del nivel del atleta—, con recuperación activa de 3 a 5 minutos a Z1 (&lt;55% FTP). Se ejecutan entre 6 y 10 repeticiones por sesión. Este formato maximiza el estímulo sobre las fibras IIa y IIx sin generar acumulación sustancial de lactato, porque la duración del esfuerzo es insuficiente para activar la glucólisis en volumen significativo. La recuperación amplia permite que las reservas de fosfocreatina se resinteticen casi por completo antes del siguiente sprint.
 
 El protocolo supramaximal de duración media —esfuerzos de 20 a 30 segundos al 130-150% del FTP— añade un componente glucolítico que eleva el lactato en sangre a 8-14 mmol/L por repetición y exige recuperaciones más largas, de 4 a 6 minutos. Produce un estímulo más completo de la capacidad anaeróbica total: trabaja tanto el sistema de fosfocreatina como la capacidad de producción y tamponamiento de lactato. El inconveniente es que genera mayor fatiga residual por sesión y requiere al menos 48 horas antes de cualquier sesión de calidad aeróbica. Para la mayoría de los ciclistas de resistencia, el protocolo de 6-10 segundos es el más aplicable: beneficio directo en potencia pico con coste de recuperación mínimo.
 
@@ -88,7 +88,7 @@ La regla práctica es colocar las sesiones de sprint en días de volumen aeróbi
 | Martes | Sprint + Z2 | 75 min | Z1-Z6 | 20 min calentamiento Z1 + 6×6s al máximo (4 min rec a Z1) + 35 min Z2 |
 | Miércoles | Z2 base | 90-120 min | Z2 (55-75% FTP) | Fondo aeróbico, cadencia libre |
 | Jueves | Z3-Z4 umbral | 75 min | Z3-Z4 (76-105% FTP) | 3×12 min Z3-Z4, 5 min rec Z1 entre series |
-| Viernes | Descanso o Z1 | 45 min | Z1 (<55% FTP) | Pedaleo suave de recuperación activa |
+| Viernes | Descanso o Z1 | 45 min | Z1 (&lt;55% FTP) | Pedaleo suave de recuperación activa |
 | Sábado | Sprint + Z2 | 85 min | Z1-Z6 | 20 min calentamiento + 8×6s al máximo (4 min rec Z1) + 40 min Z2 |
 | Domingo | Z2 largo | 120-180 min | Z2 (55-75% FTP) | Fondo largo, sin intensidad, cadencia libre |
 
