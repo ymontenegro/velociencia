@@ -10,6 +10,7 @@ import { HeroSection } from "@/components/home/hero-section";
 import { ArticleCard } from "@/components/articles/article-card";
 import { MostRead } from "@/components/home/most-read";
 import { TopicCloud } from "@/components/home/topic-cloud";
+import { ToolsHighlight } from "@/components/home/tools-highlight";
 import { AdUnit } from "@/components/ads/ad-unit";
 
 export default async function HomePage() {
@@ -52,6 +53,9 @@ export default async function HomePage() {
       <main className="flex-1">
         {/* Hero — 3 most recent articles */}
         <HeroSection />
+
+        {/* Interactive calculators — highlighted right below the hero */}
+        <ToolsHighlight locale={locale} dict={dict} />
 
         {/* Divider */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

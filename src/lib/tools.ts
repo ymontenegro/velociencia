@@ -121,6 +121,24 @@ export function getAllTools(): ToolInfo[] {
   return TOOLS;
 }
 
+/**
+ * Curated subset for the homepage highlight band. Picks tools from distinct
+ * sections (different accent colors) so the band reads as a colorful sampler
+ * rather than a single-hue block. Falls back to the first `limit` tools.
+ */
+export function getFeaturedTools(limit = 3): ToolInfo[] {
+  const featuredIds = ["power-zones", "carb-intake", "vo2max-estimator"];
+  const curated = featuredIds
+    .map((id) => TOOLS.find((t) => t.id === id))
+    .filter((t): t is ToolInfo => Boolean(t));
+  // Top up with any remaining tools if the curated list is short.
+  for (const tool of TOOLS) {
+    if (curated.length >= limit) break;
+    if (!curated.includes(tool)) curated.push(tool);
+  }
+  return curated.slice(0, limit);
+}
+
 /** Normalize a tag/string for accent- and case-insensitive matching. */
 function normalizeTag(s: string): string {
   return s
