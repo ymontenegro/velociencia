@@ -46,3 +46,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Notas internas del equipo de redacción (propuestas, selección, briefs)
+.work-*/
