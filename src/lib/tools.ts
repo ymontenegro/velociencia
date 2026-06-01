@@ -26,6 +26,24 @@ export interface ToolInfo {
 
 export const TOOLS: ToolInfo[] = [
   {
+    id: "training-load",
+    slug: { es: "carga-de-entrenamiento", en: "training-load" },
+    title: {
+      es: "Calculadora de carga de entrenamiento",
+      en: "Training load calculator",
+    },
+    tagline: {
+      es: "Sube tus archivos de Strava o Garmin y obtén tu TSS, NP, IF y tu curva de forma.",
+      en: "Upload your Strava or Garmin files and get your TSS, NP, IF and fitness curve.",
+    },
+    description: {
+      es: "Sube tus salidas de Strava o Garmin (.fit, .tcx, .gpx) y calcula su carga real —TSS, potencia normalizada (NP) e intensidad (IF)— para construir tu Performance Management Chart con fechas reales: condición física (CTL), fatiga (ATL) y forma (TSB). Todo se procesa en tu navegador: tus archivos nunca se suben a ningún servidor. También incluye un modo manual para planificar tu carga a futuro.",
+      en: "Upload your Strava or Garmin rides (.fit, .tcx, .gpx) and compute their real load —TSS, normalized power (NP) and intensity factor (IF)— to build your Performance Management Chart over real dates: fitness (CTL), fatigue (ATL) and form (TSB). Everything runs in your browser: your files never leave your device. A manual mode is also included to plan future load.",
+    },
+    sectionId: "entrenamiento",
+    relatedTag: "carga de entrenamiento",
+  },
+  {
     id: "power-zones",
     slug: { es: "zonas-de-potencia", en: "power-zones" },
     title: {
@@ -97,24 +115,6 @@ export const TOOLS: ToolInfo[] = [
     sectionId: "ciencia",
     relatedTag: "VO2max",
   },
-  {
-    id: "training-load",
-    slug: { es: "carga-de-entrenamiento", en: "training-load" },
-    title: {
-      es: "Calculadora de carga de entrenamiento",
-      en: "Training load calculator",
-    },
-    tagline: {
-      es: "Fitness, fatiga y forma (CTL/ATL/TSB) en el tiempo.",
-      en: "Fitness, fatigue and form (CTL/ATL/TSB) over time.",
-    },
-    description: {
-      es: "Simula tu curva de carga de entrenamiento —el Performance Management Chart— a partir de tu TSS diario: condición física crónica (CTL), fatiga aguda (ATL) y forma (TSB) a lo largo de las semanas, con la opción de un afinamiento (tapering) final.",
-      en: "Simulate your training-load curve —the Performance Management Chart— from your daily TSS: chronic fitness (CTL), acute fatigue (ATL) and form (TSB) across the weeks, with an optional end taper.",
-    },
-    sectionId: "entrenamiento",
-    relatedTag: "carga de entrenamiento",
-  },
 ];
 
 export function getAllTools(): ToolInfo[] {
@@ -127,7 +127,7 @@ export function getAllTools(): ToolInfo[] {
  * rather than a single-hue block. Falls back to the first `limit` tools.
  */
 export function getFeaturedTools(limit = 3): ToolInfo[] {
-  const featuredIds = ["power-zones", "carb-intake", "vo2max-estimator"];
+  const featuredIds = ["training-load", "carb-intake", "vo2max-estimator"];
   const curated = featuredIds
     .map((id) => TOOLS.find((t) => t.id === id))
     .filter((t): t is ToolInfo => Boolean(t));
