@@ -5,6 +5,7 @@ import { useLocale } from "@/components/locale-provider";
 import type { Locale } from "@/lib/i18n";
 import {
   parseActivityFile,
+  parseStravaExport,
   ActivityParseError,
   type ParsedActivity,
 } from "@/lib/training/activity-parse";
@@ -38,6 +39,7 @@ interface Strings {
   dropButton: string;
   formats: string;
   parsing: string;
+  parsingZip: string;
   settingsTitle: string;
   settingsHint: string;
   ftpLabel: string;
@@ -101,8 +103,10 @@ const STRINGS: Record<Locale, Strings> = {
     dropTitle: "Arrastra tus salidas de Strava o Garmin",
     dropHint: "o haz clic para seleccionarlas",
     dropButton: "Seleccionar archivos",
-    formats: "Formatos: .fit · .tcx · .gpx (y comprimidos .gz)",
+    formats:
+      "Formatos: .fit · .tcx · .gpx (y comprimidos .gz) · .zip de exportación masiva de Strava",
     parsing: "Procesando archivos…",
+    parsingZip: "Descomprimiendo el ZIP y procesando salidas",
     settingsTitle: "Tus datos",
     settingsHint:
       "Ajusta estos valores a los tuyos: se usan para calcular el TSS, las zonas y, si no hay potencia, el hrTSS. Se guardan en este navegador.",
@@ -169,8 +173,10 @@ const STRINGS: Record<Locale, Strings> = {
     dropTitle: "Drag in your Strava or Garmin rides",
     dropHint: "or click to select them",
     dropButton: "Select files",
-    formats: "Formats: .fit · .tcx · .gpx (and gzipped .gz)",
+    formats:
+      "Formats: .fit · .tcx · .gpx (and gzipped .gz) · Strava bulk-export .zip",
     parsing: "Processing files…",
+    parsingZip: "Unzipping and processing rides",
     settingsTitle: "Your data",
     settingsHint:
       "Set these to your own values: they drive TSS, zones and, when power is missing, hrTSS. They are saved in this browser.",
@@ -486,6 +492,7 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [activities, setActivities] = useState<ParsedActivity[]>([]);
   const [parsing, setParsing] = useState(false);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [fileErrors, setFileErrors] = useState<{ fileName: string; message: string }[]>([]);
   const [dragOver, setDragOver] = useState(false);
 
@@ -496,7 +503,6 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
   // defaults — reading localStorage during render would cause a hydration
   // mismatch. The post-mount setState here is intentional.
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration-safe load from localStorage
     setSettings(loadSettings());
   }, []);
 
@@ -575,21 +581,36 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
       const files = Array.from(fileList);
       if (files.length === 0) return;
       setParsing(true);
+      setProgress(null);
       const parsed: ParsedActivity[] = [];
       const errors: { fileName: string; message: string }[] = [];
+
+      const errMsg = (err: unknown) =>
+        err instanceof ActivityParseError || err instanceof Error ? err.message : String(err);
+
       for (const file of files) {
-        try {
-          parsed.push(await parseActivityFile(file));
-        } catch (err) {
-          const message =
-            err instanceof ActivityParseError
-              ? err.message
-              : err instanceof Error
-                ? err.message
-                : String(err);
-          errors.push({ fileName: file.name, message });
+        if (file.name.toLowerCase().endsWith(".zip")) {
+          // Strava bulk export → many activities. Surface live progress.
+          try {
+            const result = await parseStravaExport(file, (done, total) =>
+              setProgress({ done, total }),
+            );
+            parsed.push(...result.activities);
+            errors.push(...result.errors);
+          } catch (err) {
+            errors.push({ fileName: file.name, message: errMsg(err) });
+          } finally {
+            setProgress(null);
+          }
+        } else {
+          try {
+            parsed.push(await parseActivityFile(file));
+          } catch (err) {
+            errors.push({ fileName: file.name, message: errMsg(err) });
+          }
         }
       }
+
       setActivities((prev) => [...prev, ...parsed]);
       setFileErrors(errors);
       setParsing(false);
@@ -713,7 +734,7 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         <input
           ref={fileInputRef}
           type="file"
-          accept=".fit,.tcx,.gpx,.gz"
+          accept=".fit,.tcx,.gpx,.gz,.zip"
           multiple
           className="hidden"
           onChange={onInputChange}
@@ -726,7 +747,9 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
             className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent"
             style={{ color }}
           />
-          {s.parsing}
+          {progress
+            ? `${s.parsingZip} — ${progress.done}/${progress.total}`
+            : s.parsing}
         </p>
       )}
 

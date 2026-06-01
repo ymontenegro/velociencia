@@ -76,13 +76,23 @@ interface RawActivity {
 }
 
 // ---------------------------------------------------------------------------
-// Public entry point
+// Public API
 // ---------------------------------------------------------------------------
 
+export interface FileParseError {
+  /** Name of the file (or ZIP entry) that failed. */
+  fileName: string;
+  message: string;
+}
+
+export interface ParseResult {
+  activities: ParsedActivity[];
+  errors: FileParseError[];
+}
+
 /**
- * Detects the format by file extension (.fit, .tcx, .gpx, and .gz →
- * decompress and retry), parses it, and normalises the samples to a 1 Hz
- * timeline.
+ * Parses a single activity file (.fit, .tcx, .gpx, or any of those
+ * gzip-compressed as .gz) and normalises the samples to a 1 Hz timeline.
  *
  * Throws {@link ActivityParseError} with a clear message on unsupported
  * formats, corrupt files, or invalid XML. It does NOT throw when the file is
@@ -93,81 +103,147 @@ interface RawActivity {
 export async function parseActivityFile(file: File): Promise<ParsedActivity> {
   // only runs in the browser
   const fileName = file.name;
-  const lower = fileName.toLowerCase();
-
   try {
-    let raw: RawActivity;
-
-    if (lower.endsWith(".gz")) {
-      raw = await parseGzipped(file, lower);
-    } else if (lower.endsWith(".fit")) {
-      raw = await parseFit(await file.arrayBuffer());
-    } else if (lower.endsWith(".tcx")) {
-      raw = parseTcx(await file.text());
-    } else if (lower.endsWith(".gpx")) {
-      raw = parseGpx(await file.text());
-    } else {
-      throw new ActivityParseError(
-        "Formato no soportado. Sube un archivo .fit, .tcx o .gpx (o su versión .gz).",
-        fileName,
-      );
-    }
-
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const raw = await parseEntry(fileName, bytes);
     return normalize(fileName, raw);
   } catch (err) {
-    if (err instanceof ActivityParseError) {
-      // Ensure the file name is always attached.
-      if (!err.fileName) err.fileName = fileName;
-      throw err;
-    }
-    // Wrap any unexpected lower-level failure (corrupt buffer, decompression
-    // error, SDK throw) in a domain error with context.
-    const detail = err instanceof Error ? err.message : String(err);
-    throw new ActivityParseError(
-      `No se pudo procesar el archivo: ${detail}`,
-      fileName,
-    );
+    throw toParseError(err, fileName);
   }
 }
 
-// ---------------------------------------------------------------------------
-// .gz handling
-// ---------------------------------------------------------------------------
-
-async function parseGzipped(
+/**
+ * Parses a Strava bulk-export ZIP (or any .zip of activity files) entirely in
+ * the browser. The export contains an `activities/` folder with many mixed
+ * files (`123.fit.gz`, `123.gpx`, `123.tcx.gz`, …) plus unrelated folders
+ * (media, CSV index); only the activity files are decompressed and parsed.
+ *
+ * Per-entry failures are collected into `errors` instead of aborting the whole
+ * import. `onProgress(done, total)` is invoked as entries are processed.
+ */
+export async function parseStravaExport(
   file: File,
-  lowerName: string,
-): Promise<RawActivity> {
-  // only runs in the browser — DecompressionStream is a browser API.
-  if (typeof DecompressionStream === "undefined") {
+  onProgress?: (done: number, total: number) => void,
+): Promise<ParseResult> {
+  // only runs in the browser. fflate is dynamically imported so it stays out
+  // of the initial bundle (same treatment as the FIT SDK).
+  const { unzipSync } = await import("fflate");
+
+  let buf: Uint8Array;
+  try {
+    buf = new Uint8Array(await file.arrayBuffer());
+  } catch (err) {
+    throw new ActivityParseError(`No se pudo leer el archivo: ${errMessage(err)}`, file.name);
+  }
+
+  let entries: Record<string, Uint8Array>;
+  try {
+    // Only inflate the activity files — skip media, CSV index and other folders.
+    entries = unzipSync(buf, { filter: (f) => isSupportedActivityEntry(f.name) });
+  } catch (err) {
+    throw new ActivityParseError(`No se pudo abrir el ZIP: ${errMessage(err)}`, file.name);
+  }
+
+  const names = Object.keys(entries).filter(isSupportedActivityEntry).sort();
+
+  if (names.length === 0) {
     throw new ActivityParseError(
-      "Tu navegador no soporta la descompresión de archivos .gz.",
+      "El ZIP no contiene archivos de actividad (.fit, .tcx o .gpx).",
       file.name,
     );
   }
 
-  // Determine the real format from the extension *before* the trailing .gz,
-  // e.g. "ride.fit.gz" → ".fit", "ride.tcx.gz" → ".tcx".
-  const inner = lowerName.slice(0, -".gz".length);
+  const activities: ParsedActivity[] = [];
+  const errors: FileParseError[] = [];
 
-  const decompressedStream = file
-    .stream()
-    .pipeThrough(new DecompressionStream("gzip"));
-  const response = new Response(decompressedStream);
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    const base = baseName(name);
+    try {
+      const raw = await parseEntry(base, entries[name]);
+      activities.push(normalize(base, raw));
+    } catch (err) {
+      errors.push({ fileName: base, message: errMessage(err) });
+    }
+    onProgress?.(i + 1, names.length);
+    // Yield to the event loop periodically so the progress UI can repaint and
+    // the tab stays responsive while parsing a large export (hundreds of files).
+    if ((i + 1) % 4 === 0) await new Promise<void>((resolve) => setTimeout(resolve, 0));
+  }
 
-  if (inner.endsWith(".fit")) {
-    return parseFit(await response.arrayBuffer());
+  return { activities, errors };
+}
+
+// ---------------------------------------------------------------------------
+// Format dispatch (operates on raw bytes — shared by single-file & ZIP paths)
+// ---------------------------------------------------------------------------
+
+/** Activity extensions we can parse, optionally gzip-wrapped. */
+const ACTIVITY_ENTRY_RE = /\.(fit|tcx|gpx)(\.gz)?$/;
+
+/** True for ZIP entries that are activity files (not directories / cruft). */
+function isSupportedActivityEntry(name: string): boolean {
+  const n = name.toLowerCase();
+  if (n.endsWith("/")) return false; // directory entry
+  if (n.includes("__macosx")) return false; // macOS zip cruft
+  const base = baseName(n);
+  if (base.startsWith(".")) return false; // hidden / resource-fork files
+  return ACTIVITY_ENTRY_RE.test(n);
+}
+
+function baseName(path: string): string {
+  const parts = path.split("/");
+  return parts[parts.length - 1] || path;
+}
+
+/**
+ * Dispatches raw bytes to the right parser based on the file-name extension.
+ * `.gz` is gunzipped (fflate) and re-dispatched on the inner extension
+ * (e.g. "123.fit.gz" → FIT). Used for both single files and ZIP entries.
+ */
+async function parseEntry(fileName: string, bytes: Uint8Array): Promise<RawActivity> {
+  const lower = fileName.toLowerCase();
+
+  if (lower.endsWith(".gz")) {
+    const { gunzipSync } = await import("fflate");
+    const inner = gunzipSync(bytes);
+    return parseEntry(lower.slice(0, -".gz".length), inner);
   }
-  if (inner.endsWith(".tcx")) {
-    return parseTcx(await response.text());
+  if (lower.endsWith(".fit")) {
+    return parseFit(toArrayBuffer(bytes));
   }
-  if (inner.endsWith(".gpx")) {
-    return parseGpx(await response.text());
+  if (lower.endsWith(".tcx")) {
+    return parseTcx(decodeText(bytes));
+  }
+  if (lower.endsWith(".gpx")) {
+    return parseGpx(decodeText(bytes));
   }
   throw new ActivityParseError(
-    "Formato comprimido no soportado. Usa .fit.gz, .tcx.gz o .gpx.gz.",
-    file.name,
+    "Formato no soportado. Usa un archivo .fit, .tcx o .gpx (o su versión .gz / .zip).",
+    fileName,
   );
+}
+
+/** Exact ArrayBuffer for a Uint8Array view (fflate may return a pooled buffer). */
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer;
+}
+
+function decodeText(bytes: Uint8Array): string {
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+/** Wraps an unknown error as an ActivityParseError carrying the file name. */
+function toParseError(err: unknown, fileName: string): ActivityParseError {
+  if (err instanceof ActivityParseError) {
+    if (!err.fileName) err.fileName = fileName;
+    return err;
+  }
+  return new ActivityParseError(`No se pudo procesar el archivo: ${errMessage(err)}`, fileName);
+}
+
+function errMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
 }
 
 // ---------------------------------------------------------------------------

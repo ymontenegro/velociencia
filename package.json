@@ -24,6 +24,7 @@
     "@garmin/fitsdk": "^21.205.0",
     "better-sqlite3": "^12.8.0",
     "drizzle-orm": "^0.45.1",
+    "fflate": "^0.8.3",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.40",
     "next": "16.2.1",
