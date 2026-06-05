@@ -8,6 +8,8 @@ interface ToolsIndexProps {
   indexTitle: string;
   indexSubtitle: string;
   openTool: string;
+  /** CTA label for dataset tools (e.g. "Ver comparador"). Falls back to openTool. */
+  openDataset?: string;
 }
 
 /**
@@ -21,6 +23,7 @@ export function ToolsIndex({
   indexTitle,
   indexSubtitle,
   openTool,
+  openDataset,
 }: ToolsIndexProps) {
   const navLabel = locale === "en" ? "Tools" : "Herramientas";
 
@@ -73,7 +76,9 @@ export function ToolsIndex({
                 key={tool.id}
                 tool={tool}
                 locale={locale}
-                openTool={openTool}
+                openTool={
+                  tool.kind === "dataset" && openDataset ? openDataset : openTool
+                }
               />
             ))}
           </div>

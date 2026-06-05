@@ -352,6 +352,51 @@ export const AFFILIATE_PARTNERS: AffiliatePartner[] = [
     trackParam: "tag",
     envKey: "NEXT_PUBLIC_AMAZON_TAG",
   },
+  {
+    id: "mercado-libre-cl",
+    name: "Mercado Libre Chile",
+    category: "marketplace",
+    network: "Direct",
+    commission: "8–15%",
+    cookieWindow: null,
+    signupUrl: "https://afiliados.mercadolibre.cl/",
+    homepageUrl: "https://www.mercadolibre.cl/",
+    region: "CL",
+    blurb: {
+      es: "Marketplace líder en Chile; programa de afiliados activo para la categoría Deporte y Fitness.",
+      en: "Leading marketplace in Chile; active affiliate program for the Sports and Fitness category.",
+    },
+  },
+  {
+    id: "iherb",
+    name: "iHerb",
+    category: "nutrition",
+    network: "Direct",
+    commission: "5–10%",
+    cookieWindow: "7 días",
+    signupUrl: "https://www.iherb.com/info/affiliates",
+    homepageUrl: "https://cl.iherb.com/",
+    region: "Global",
+    blurb: {
+      es: "Suplementos deportivos con envío a Chile; comisión 5% base, hasta 10% en períodos promocionales.",
+      en: "Sports supplements shipping to Chile; 5% base commission, up to 10% during promotional periods.",
+    },
+  },
+  {
+    id: "sport-live-nutrition",
+    name: "Sport Live Nutrition",
+    category: "nutrition",
+    network: "Direct",
+    commission: null,
+    cookieWindow: null,
+    signupUrl: "https://www.sportlivenutrition.cl/",
+    homepageUrl: "https://www.sportlivenutrition.cl/",
+    region: "CL",
+    blurb: {
+      es: "Nutrición deportiva chilena con programa de afiliados directo confirmado.",
+      en: "Chilean sports nutrition retailer with a confirmed direct affiliate program.",
+    },
+  },
 ];
 
 export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [

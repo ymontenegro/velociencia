@@ -69,6 +69,14 @@ const PATHS: Record<string, React.ReactNode> = {
     </>
   ),
 
+  // Gel comparator — energy gel droplet with comparison rows (table lines).
+  "gel-comparator": (
+    <>
+      <path d="M12 3c3.5 4 5.5 6.8 5.5 9.5a5.5 5.5 0 1 1-11 0C6.5 9.8 8.5 7 12 3z" />
+      <path d="M8 13.5h8M8 16.5h5" />
+    </>
+  ),
+
   // Training load — a rising wave (CTL/ATL/TSB curve) over axes.
   "training-load": (
     <>

@@ -1,3 +1,4 @@
+// Espejo de src/app/(marketing)/tools/[tool]/page.tsx (versión EN) — sincronizar cambios en AMBOS.
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getLocale, getSiteUrl } from "@/lib/i18n";
@@ -6,7 +7,9 @@ import { TOOLS, getToolBySlug, toolColor, toolHref } from "@/lib/tools";
 import { SECTIONS, SECTIONS_I18N } from "@/lib/constants";
 import { getArticlesByTag, tagToSlug } from "@/lib/tags";
 import { CalculatorRenderer } from "@/components/tools/calculator-renderer";
+import { AffiliateDisclosure } from "@/components/affiliates/affiliate-disclosure";
 import { ArticleCard } from "@/components/articles/article-card";
+import { getAllGels, getLastUpdated } from "@/lib/datasets/gels";
 
 interface HerramientaPageProps {
   params: Promise<{ tool: string }>;
@@ -54,19 +57,50 @@ export default async function HerramientaPage({ params }: HerramientaPageProps) 
   const relatedArticles = getArticlesByTag(tagToSlug(tool.relatedTag), locale).slice(0, 3);
   const indexHref = locale === "en" ? "/tools" : "/herramientas";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: tool.title[locale],
-    description: tool.description[locale],
-    applicationCategory: "HealthApplication",
-    url: canonical,
-    publisher: {
-      "@type": "Organization",
-      name: locale === "en" ? "PedalSci" : "Velociencia",
-      url: siteUrl,
-    },
-  };
+  const isDataset = tool.kind === "dataset";
+
+  const jsonLd = isDataset
+    ? {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: tool.title[locale],
+        description: tool.description[locale],
+        url: canonical,
+        numberOfItems: getAllGels().length,
+        dateModified: getLastUpdated(),
+        publisher: {
+          "@type": "Organization",
+          name: locale === "en" ? "PedalSci" : "Velociencia",
+          url: siteUrl,
+        },
+        itemListElement: getAllGels().map((gel, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: `${gel.brand} ${gel.product_name} ${gel.variant[locale]}`.trim(),
+          url: gel.source_url,
+          description:
+            locale === "es"
+              ? `${gel.carbs_g}g carbo/ración, ${gel.sodium_mg}mg sodio${
+                  gel.caffeine_mg > 0 ? `, ${gel.caffeine_mg}mg cafeína` : ""
+                }`
+              : `${gel.carbs_g}g carbs/serving, ${gel.sodium_mg}mg sodium${
+                  gel.caffeine_mg > 0 ? `, ${gel.caffeine_mg}mg caffeine` : ""
+                }`,
+        })),
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: tool.title[locale],
+        description: tool.description[locale],
+        applicationCategory: "HealthApplication",
+        url: canonical,
+        publisher: {
+          "@type": "Organization",
+          name: locale === "en" ? "PedalSci" : "Velociencia",
+          url: siteUrl,
+        },
+      };
 
   return (
     <>
@@ -127,14 +161,32 @@ export default async function HerramientaPage({ params }: HerramientaPageProps) 
           }}
         />
 
-        {/* Calculator */}
+        {/* Affiliate disclosure — guaranteed at the route level for dataset tools */}
+        {isDataset && (
+          <div className="mb-6">
+            <AffiliateDisclosure variant="banner" text={dict.comparator.disclaimer} />
+          </div>
+        )}
+
+        {/* Tool (calculator or dataset) */}
         <CalculatorRenderer toolId={tool.id} color={color} />
 
-        {/* Disclaimer */}
+        {/* Footer note — methodology for datasets, standard disclaimer otherwise */}
         <div className="mt-8 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-5 py-4">
-          <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-            {dict.tools.disclaimer}
-          </p>
+          {isDataset ? (
+            <>
+              <h2 className="text-sm font-semibold text-[var(--color-text)]">
+                {dict.comparator.methodology}
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                {dict.comparator.methodologyText}
+              </p>
+            </>
+          ) : (
+            <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+              {dict.tools.disclaimer}
+            </p>
+          )}
         </div>
 
         {/* Related articles */}

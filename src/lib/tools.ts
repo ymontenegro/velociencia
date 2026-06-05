@@ -11,6 +11,12 @@ import { SECTIONS, type SectionId } from "@/lib/constants";
 export interface ToolInfo {
   /** Stable id — also the key used to render the matching calculator component. */
   id: string;
+  /**
+   * Discriminates interactive calculators from curated data tables. Absent =
+   * 'calculator' (default behaviour); 'dataset' entries render a comparator
+   * table and surface a different CTA. All registry helpers are agnostic to it.
+   */
+  kind?: "calculator" | "dataset";
   /** URL slug per locale (routes live under /herramientas y /tools). */
   slug: Record<Locale, string>;
   title: Record<Locale, string>;
@@ -114,6 +120,25 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "ciencia",
     relatedTag: "VO2max",
+  },
+  {
+    id: "gel-comparator",
+    kind: "dataset",
+    slug: { es: "comparador-geles", en: "gel-comparator" },
+    title: {
+      es: "Comparador de geles energéticos",
+      en: "Energy gel comparator",
+    },
+    tagline: {
+      es: "Precio por gramo de carbohidrato, sodio y ratio G:F en un solo vistazo.",
+      en: "Cost per gram of carb, sodium and G:F ratio at a glance.",
+    },
+    description: {
+      es: "Compara los geles energéticos más usados en ciclismo: carbohidratos por ración, ratio glucosa:fructosa, sodio, cafeína y precio por gramo de carbohidrato. Datos verificados de fuentes oficiales de cada fabricante.",
+      en: "Compare the most popular cycling energy gels: carbs per serving, glucose:fructose ratio, sodium, caffeine and cost per gram of carbohydrate. Data verified from each manufacturer's official sources.",
+    },
+    sectionId: "nutricion",
+    relatedTag: "geles",
   },
 ];
 

@@ -25,6 +25,7 @@ export default async function ToolsPage() {
       indexTitle={dict.tools.indexTitle}
       indexSubtitle={dict.tools.indexSubtitle}
       openTool={dict.tools.openTool}
+      openDataset={dict.tools.openDataset}
     />
   );
 }
