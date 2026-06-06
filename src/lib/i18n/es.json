@@ -168,6 +168,108 @@
     "methodology": "Metodología",
     "methodologyText": "Los datos nutricionales se verifican manualmente contra las fichas oficiales de cada fabricante. El precio por gramo de carbohidrato se calcula dividiendo el precio de venta del gel por los gramos de carbohidrato por ración."
   },
+  "evidence": {
+    "title": "Explorador de evidencia de suplementos",
+    "subtitle": "Qué dice la ciencia sobre 19 suplementos para ciclismo y resistencia, con doble eje: cuán sólida es la evidencia y hacia dónde apunta el efecto.",
+    "searchPlaceholder": "Buscar suplemento…",
+    "filterCategory": "Categoría",
+    "filterLevel": "Nivel de evidencia",
+    "filterDirection": "Dirección del efecto",
+    "filterPermitted": "Solo permitidos (WADA)",
+    "filterAll": "Todos",
+    "filterReset": "Limpiar filtros",
+    "noResults": "Ningún suplemento coincide con estos filtros.",
+    "lastReviewed": "Revisión:",
+    "citationCount": "{n} citas verificadas",
+    "supplementCount": "{n} suplementos",
+    "fieldEffect": "Efecto en el rendimiento",
+    "fieldEffectSize": "Magnitud del efecto",
+    "fieldMechanism": "Mecanismo",
+    "fieldDosage": "Dosis",
+    "fieldTiming": "Momento de uso",
+    "fieldWhoBenefits": "A quién beneficia",
+    "fieldCaveats": "Advertencias",
+    "fieldSideEffects": "Efectos secundarios",
+    "fieldPopulation": "Población estudiada",
+    "fieldSex": "Sexo en los estudios",
+    "fieldCitations": "Evidencia citada",
+    "showDetail": "Ver ficha completa",
+    "hideDetail": "Ocultar ficha",
+    "showCitations": "Ver evidencia ({n})",
+    "hideCitations": "Ocultar evidencia",
+    "openSource": "Fuente",
+    "legendTitle": "Cómo leer las etiquetas",
+    "legendAxisLevel": "Nivel de evidencia — cuán sólida es la investigación.",
+    "legendAxisDirection": "Dirección — hacia dónde apunta el efecto.",
+    "legendNote": "Importante: «fuerte» indica robustez de la evidencia, no un efecto grande. Y «en contra» significa que la evidencia muestra que no funciona o que perjudica, no que falte investigación.",
+    "confidencePrefix": "Confianza",
+    "verified": "Verificado",
+    "notVerified": "Sin verificar",
+    "methodology": "Metodología",
+    "methodologyText": "Cada suplemento se evalúa con un modelo de doble eje: el nivel de evidencia (qué tan sólida es la investigación) se mantiene separado de la dirección del efecto (si ayuda, no hace nada o perjudica). Un nivel «fuerte» indica robustez, no un efecto grande. Las 123 citas se verificaron una a una contra PubMed y las extrapolaciones (de otros deportes o de un sexo al otro) se declaran de forma explícita. Los estatus WADA y AIS se contrastaron con las fuentes oficiales.",
+    "disclaimer": "Información educativa, no consejo médico ni nutricional. Consulta a un profesional antes de suplementarte, sobre todo si compites bajo normativa antidopaje.",
+    "categoryLabels": {
+      "estimulante_snc": "Estimulante del SNC",
+      "nitrico_vasodilatador": "Óxido nítrico / vasodilatador",
+      "tampon_ph": "Tampón de pH",
+      "metabolico_energetico": "Metabólico / energético",
+      "recuperacion_antioxidante": "Recuperación / antioxidante",
+      "aminoacido": "Aminoácido",
+      "micronutriente": "Micronutriente",
+      "otro": "Otro"
+    },
+    "levelLabels": {
+      "fuerte": "Evidencia fuerte",
+      "moderada": "Evidencia moderada",
+      "limitada": "Evidencia limitada",
+      "en_contra": "Evidencia en contra"
+    },
+    "levelDesc": {
+      "fuerte": "Evidencia sólida y consistente (varios ECA o meta-análisis). Robustez alta, no necesariamente efecto grande.",
+      "moderada": "Evidencia razonable pero con heterogeneidad o lagunas. Efecto probable.",
+      "limitada": "Evidencia escasa, preliminar o indirecta. Incierto.",
+      "en_contra": "La evidencia indica que no funciona o que perjudica. No es «falta de estudios»."
+    },
+    "directionLabels": {
+      "ergogenico": "Ergogénico",
+      "contextual": "Contextual",
+      "nulo": "Sin efecto",
+      "perjudicial": "Perjudicial"
+    },
+    "directionDesc": {
+      "ergogenico": "Mejora el rendimiento de resistencia.",
+      "contextual": "Solo ayuda en un contexto concreto (calor, deficiencia, sprints repetidos…).",
+      "nulo": "Sin efecto sobre el rendimiento.",
+      "perjudicial": "Puede perjudicar el rendimiento o las adaptaciones del entrenamiento."
+    },
+    "confidenceLabels": {
+      "alta": "alta",
+      "media": "media"
+    },
+    "populationLabels": {
+      "ciclistas": "Ciclistas",
+      "resistencia_general": "Resistencia (general)",
+      "extrapolado_otros_deportes": "Extrapolado de otros deportes"
+    },
+    "sexLabels": {
+      "mixto": "Ambos sexos",
+      "mayormente_hombres": "Mayormente hombres",
+      "mayormente_mujeres": "Mayormente mujeres"
+    },
+    "wadaPrefix": "WADA",
+    "wadaLabels": {
+      "permitido": "Permitido",
+      "monitoreo": "En monitoreo",
+      "matiz": "Permitido con matices"
+    },
+    "aisPrefix": "AIS",
+    "aisLabels": {
+      "A": "Grupo A",
+      "B": "Grupo B",
+      "C": "Grupo C",
+      "no_verificado": "No verificado"
+    }
+  },
   "error": {
     "somethingWrong": "Algo sali\u00f3 mal",
     "tryAgain": "Intentar de nuevo"

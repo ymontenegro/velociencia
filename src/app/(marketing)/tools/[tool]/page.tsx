@@ -9,7 +9,7 @@ import { getArticlesByTag, tagToSlug } from "@/lib/tags";
 import { CalculatorRenderer } from "@/components/tools/calculator-renderer";
 import { AffiliateDisclosure } from "@/components/affiliates/affiliate-disclosure";
 import { ArticleCard } from "@/components/articles/article-card";
-import { getAllGels, getLastUpdated } from "@/lib/datasets/gels";
+import { buildDatasetJsonLd } from "@/lib/datasets/dataset-jsonld";
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
@@ -59,48 +59,29 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   const isDataset = tool.kind === "dataset";
 
-  const jsonLd = isDataset
-    ? {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
+  const datasetLd = isDataset
+    ? buildDatasetJsonLd(tool.id, locale, {
         name: tool.title[locale],
         description: tool.description[locale],
         url: canonical,
-        numberOfItems: getAllGels().length,
-        dateModified: getLastUpdated(),
-        publisher: {
-          "@type": "Organization",
-          name: locale === "en" ? "PedalSci" : "Velociencia",
-          url: siteUrl,
-        },
-        itemListElement: getAllGels().map((gel, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          name: `${gel.brand} ${gel.product_name} ${gel.variant[locale]}`.trim(),
-          url: gel.source_url,
-          description:
-            locale === "es"
-              ? `${gel.carbs_g}g carbo/ración, ${gel.sodium_mg}mg sodio${
-                  gel.caffeine_mg > 0 ? `, ${gel.caffeine_mg}mg cafeína` : ""
-                }`
-              : `${gel.carbs_g}g carbs/serving, ${gel.sodium_mg}mg sodium${
-                  gel.caffeine_mg > 0 ? `, ${gel.caffeine_mg}mg caffeine` : ""
-                }`,
-        })),
-      }
-    : {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        name: tool.title[locale],
-        description: tool.description[locale],
-        applicationCategory: "HealthApplication",
-        url: canonical,
-        publisher: {
-          "@type": "Organization",
-          name: locale === "en" ? "PedalSci" : "Velociencia",
-          url: siteUrl,
-        },
-      };
+        siteUrl,
+        publisherName: locale === "en" ? "PedalSci" : "Velociencia",
+      })
+    : null;
+
+  const jsonLd = datasetLd ?? {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: tool.title[locale],
+    description: tool.description[locale],
+    applicationCategory: "HealthApplication",
+    url: canonical,
+    publisher: {
+      "@type": "Organization",
+      name: locale === "en" ? "PedalSci" : "Velociencia",
+      url: siteUrl,
+    },
+  };
 
   return (
     <>
@@ -161,10 +142,17 @@ export default async function ToolPage({ params }: ToolPageProps) {
           }}
         />
 
-        {/* Affiliate disclosure — guaranteed at the route level for dataset tools */}
+        {/* Disclosure banner — guaranteed at the route level for dataset tools */}
         {isDataset && (
           <div className="mb-6">
-            <AffiliateDisclosure variant="banner" text={dict.comparator.disclaimer} />
+            <AffiliateDisclosure
+              variant="banner"
+              text={
+                tool.id === "evidence-explorer"
+                  ? dict.evidence.disclaimer
+                  : dict.comparator.disclaimer
+              }
+            />
           </div>
         )}
 
@@ -176,10 +164,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
           {isDataset ? (
             <>
               <h2 className="text-sm font-semibold text-[var(--color-text)]">
-                {dict.comparator.methodology}
+                {tool.id === "evidence-explorer"
+                  ? dict.evidence.methodology
+                  : dict.comparator.methodology}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                {dict.comparator.methodologyText}
+                {tool.id === "evidence-explorer"
+                  ? dict.evidence.methodologyText
+                  : dict.comparator.methodologyText}
               </p>
             </>
           ) : (

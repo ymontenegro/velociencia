@@ -6,6 +6,7 @@ import PowerToWeightCalculator from "@/components/tools/power-to-weight-calculat
 import Vo2maxEstimatorCalculator from "@/components/tools/vo2max-estimator-calculator";
 import TrainingLoadCalculator from "@/components/tools/training-load-calculator";
 import GelComparatorTable from "@/components/tools/gel-comparator";
+import EvidenceExplorer from "@/components/tools/evidence-explorer";
 
 interface CalculatorRendererProps {
   toolId: string;
@@ -32,6 +33,7 @@ const CALCULATORS: Record<string, React.ComponentType<{ color?: string }>> = {
  */
 const DATASETS: Record<string, React.ComponentType<{ color?: string }>> = {
   "gel-comparator": GelComparatorTable,
+  "evidence-explorer": EvidenceExplorer,
 };
 
 export function CalculatorRenderer({ toolId, color }: CalculatorRendererProps) {

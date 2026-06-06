@@ -202,6 +202,13 @@
 
 /* ─── Base Styles ─── */
 
+/* Offset anchor jumps so the sticky header (top-0, z-40) doesn't cover the
+   target — applies to dataset anchors (#supplement-id) and article heading
+   anchors alike. */
+html {
+  scroll-padding-top: 5rem;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);

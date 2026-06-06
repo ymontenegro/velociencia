@@ -140,6 +140,25 @@ export const TOOLS: ToolInfo[] = [
     sectionId: "nutricion",
     relatedTag: "geles",
   },
+  {
+    id: "evidence-explorer",
+    kind: "dataset",
+    slug: { es: "evidencia-suplementos", en: "supplement-evidence" },
+    title: {
+      es: "Explorador de evidencia de suplementos",
+      en: "Supplement evidence explorer",
+    },
+    tagline: {
+      es: "Qué funciona y qué no en 19 suplementos para ciclismo, con su nivel de evidencia.",
+      en: "What works and what doesn't across 19 cycling supplements, with their evidence level.",
+    },
+    description: {
+      es: "Explora la evidencia científica de 19 suplementos y ayudas ergogénicas para ciclismo y resistencia con un modelo de doble eje —cuán sólida es la evidencia y hacia dónde apunta el efecto—, además de dosis, mecanismo, estatus WADA/AIS y 123 citas verificadas.",
+      en: "Explore the scientific evidence for 19 supplements and ergogenic aids for cycling and endurance with a dual-axis model —how solid the evidence is and which way the effect points— plus dosage, mechanism, WADA/AIS status and 123 verified citations.",
+    },
+    sectionId: "nutricion",
+    relatedTag: "suplementos",
+  },
 ];
 
 export function getAllTools(): ToolInfo[] {

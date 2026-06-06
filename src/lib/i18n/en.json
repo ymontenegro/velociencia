@@ -168,6 +168,108 @@
     "methodology": "Methodology",
     "methodologyText": "Nutrition data is manually verified against each manufacturer's official product pages. Cost per gram of carbohydrate is calculated by dividing the gel's retail price by the grams of carbohydrate per serving."
   },
+  "evidence": {
+    "title": "Supplement evidence explorer",
+    "subtitle": "What the science says about 19 supplements for cycling and endurance, on a dual axis: how solid the evidence is and which way the effect points.",
+    "searchPlaceholder": "Search supplement…",
+    "filterCategory": "Category",
+    "filterLevel": "Evidence level",
+    "filterDirection": "Effect direction",
+    "filterPermitted": "Permitted only (WADA)",
+    "filterAll": "All",
+    "filterReset": "Clear filters",
+    "noResults": "No supplement matches these filters.",
+    "lastReviewed": "Reviewed:",
+    "citationCount": "{n} verified citations",
+    "supplementCount": "{n} supplements",
+    "fieldEffect": "Performance effect",
+    "fieldEffectSize": "Effect size",
+    "fieldMechanism": "Mechanism",
+    "fieldDosage": "Dosage",
+    "fieldTiming": "Timing",
+    "fieldWhoBenefits": "Who benefits",
+    "fieldCaveats": "Caveats",
+    "fieldSideEffects": "Side effects",
+    "fieldPopulation": "Population studied",
+    "fieldSex": "Sex in the studies",
+    "fieldCitations": "Cited evidence",
+    "showDetail": "View full entry",
+    "hideDetail": "Hide entry",
+    "showCitations": "View evidence ({n})",
+    "hideCitations": "Hide evidence",
+    "openSource": "Source",
+    "legendTitle": "How to read the labels",
+    "legendAxisLevel": "Evidence level — how solid the research is.",
+    "legendAxisDirection": "Direction — which way the effect points.",
+    "legendNote": "Important: “strong” means the evidence is robust, not that the effect is large. And “against” means the evidence shows it does not work or that it harms — not that research is missing.",
+    "confidencePrefix": "Confidence",
+    "verified": "Verified",
+    "notVerified": "Unverified",
+    "methodology": "Methodology",
+    "methodologyText": "Each supplement is rated on a dual-axis model: the evidence level (how solid the research is) is kept separate from the effect direction (whether it helps, does nothing, or harms). A “strong” level means robustness, not a large effect. All 123 citations were verified one by one against PubMed, and extrapolations (from other sports or from one sex to the other) are stated explicitly. WADA and AIS statuses were checked against official sources.",
+    "disclaimer": "Educational information, not medical or nutritional advice. Consult a professional before supplementing, especially if you compete under anti-doping rules.",
+    "categoryLabels": {
+      "estimulante_snc": "CNS stimulant",
+      "nitrico_vasodilatador": "Nitric oxide / vasodilator",
+      "tampon_ph": "pH buffer",
+      "metabolico_energetico": "Metabolic / energy",
+      "recuperacion_antioxidante": "Recovery / antioxidant",
+      "aminoacido": "Amino acid",
+      "micronutriente": "Micronutrient",
+      "otro": "Other"
+    },
+    "levelLabels": {
+      "fuerte": "Strong evidence",
+      "moderada": "Moderate evidence",
+      "limitada": "Limited evidence",
+      "en_contra": "Evidence against"
+    },
+    "levelDesc": {
+      "fuerte": "Solid, consistent evidence (several RCTs or meta-analyses). High robustness, not necessarily a large effect.",
+      "moderada": "Reasonable evidence but with heterogeneity or gaps. Effect likely.",
+      "limitada": "Sparse, preliminary or indirect evidence. Uncertain.",
+      "en_contra": "Evidence shows it does not work or that it harms. Not “lack of studies”."
+    },
+    "directionLabels": {
+      "ergogenico": "Ergogenic",
+      "contextual": "Contextual",
+      "nulo": "No effect",
+      "perjudicial": "Harmful"
+    },
+    "directionDesc": {
+      "ergogenico": "Improves endurance performance.",
+      "contextual": "Only helps in a specific context (heat, deficiency, repeated sprints…).",
+      "nulo": "No effect on performance.",
+      "perjudicial": "May impair performance or training adaptations."
+    },
+    "confidenceLabels": {
+      "alta": "high",
+      "media": "medium"
+    },
+    "populationLabels": {
+      "ciclistas": "Cyclists",
+      "resistencia_general": "Endurance (general)",
+      "extrapolado_otros_deportes": "Extrapolated from other sports"
+    },
+    "sexLabels": {
+      "mixto": "Both sexes",
+      "mayormente_hombres": "Mostly men",
+      "mayormente_mujeres": "Mostly women"
+    },
+    "wadaPrefix": "WADA",
+    "wadaLabels": {
+      "permitido": "Permitted",
+      "monitoreo": "Monitored",
+      "matiz": "Permitted with caveats"
+    },
+    "aisPrefix": "AIS",
+    "aisLabels": {
+      "A": "Group A",
+      "B": "Group B",
+      "C": "Group C",
+      "no_verificado": "Not verified"
+    }
+  },
   "error": {
     "somethingWrong": "Something went wrong",
     "tryAgain": "Try again"
