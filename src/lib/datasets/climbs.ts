@@ -102,6 +102,14 @@ export interface ClimbEntry {
   profile?: ClimbProfilePoint[];
   /** Per-km gradient segments derived from `profile`. */
   gradient_segments?: GradientSegment[];
+  /**
+   * Provenance of `profile`. `dem` = sampled from open DEM elevation along the
+   * real road geometry (the anti-AI moat). `synthetic` = a coherent curve
+   * reconstructed from the curated length/gain/avg/max when routing or the DEM
+   * failed for this climb. Absent when there is no profile. The UI must surface
+   * a synthetic profile honestly — never present it as measured.
+   */
+  profile_source?: "dem" | "synthetic";
 
   /* --- Editorial --- */
   /** What makes it iconic — grand-tour history, milestones. Localized. */
@@ -292,7 +300,14 @@ export function getPresentCountries(): string[] {
   return [...new Set(CLIMBS.map((c) => c.country))].sort();
 }
 
-/** Number of climbs whose elevation profile has been computed. */
+/** Number of climbs whose elevation profile has been computed (any source). */
 export function getProfiledCount(): number {
   return CLIMBS.filter((c) => c.profile && c.profile.length > 0).length;
+}
+
+/** Number of climbs whose profile was sampled from the DEM (the measured moat). */
+export function getDemProfiledCount(): number {
+  return CLIMBS.filter(
+    (c) => c.profile && c.profile.length > 0 && c.profile_source === "dem",
+  ).length;
 }

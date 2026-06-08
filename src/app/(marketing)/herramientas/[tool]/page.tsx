@@ -59,6 +59,16 @@ export default async function HerramientaPage({ params }: HerramientaPageProps) 
 
   const isDataset = tool.kind === "dataset";
 
+  // Per-dataset dictionary section for the disclosure banner + methodology note.
+  const datasetDict =
+    tool.id === "evidence-explorer"
+      ? dict.evidence
+      : tool.id === "climbs-database"
+        ? dict.climbs
+        : tool.id === "race-calendar"
+          ? dict.races
+          : dict.comparator;
+
   const datasetLd = isDataset
     ? buildDatasetJsonLd(tool.id, locale, {
         name: tool.title[locale],
@@ -145,14 +155,7 @@ export default async function HerramientaPage({ params }: HerramientaPageProps) 
         {/* Disclosure banner — guaranteed at the route level for dataset tools */}
         {isDataset && (
           <div className="mb-6">
-            <AffiliateDisclosure
-              variant="banner"
-              text={
-                tool.id === "evidence-explorer"
-                  ? dict.evidence.disclaimer
-                  : dict.comparator.disclaimer
-              }
-            />
+            <AffiliateDisclosure variant="banner" text={datasetDict.disclaimer} />
           </div>
         )}
 
@@ -164,14 +167,10 @@ export default async function HerramientaPage({ params }: HerramientaPageProps) 
           {isDataset ? (
             <>
               <h2 className="text-sm font-semibold text-[var(--color-text)]">
-                {tool.id === "evidence-explorer"
-                  ? dict.evidence.methodology
-                  : dict.comparator.methodology}
+                {datasetDict.methodology}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                {tool.id === "evidence-explorer"
-                  ? dict.evidence.methodologyText
-                  : dict.comparator.methodologyText}
+                {datasetDict.methodologyText}
               </p>
             </>
           ) : (

@@ -7,6 +7,8 @@ import Vo2maxEstimatorCalculator from "@/components/tools/vo2max-estimator-calcu
 import TrainingLoadCalculator from "@/components/tools/training-load-calculator";
 import GelComparatorTable from "@/components/tools/gel-comparator";
 import EvidenceExplorer from "@/components/tools/evidence-explorer";
+import ClimbsDatabase from "@/components/tools/climbs-database";
+import RaceCalendar from "@/components/tools/race-calendar";
 
 interface CalculatorRendererProps {
   toolId: string;
@@ -34,6 +36,8 @@ const CALCULATORS: Record<string, React.ComponentType<{ color?: string }>> = {
 const DATASETS: Record<string, React.ComponentType<{ color?: string }>> = {
   "gel-comparator": GelComparatorTable,
   "evidence-explorer": EvidenceExplorer,
+  "climbs-database": ClimbsDatabase,
+  "race-calendar": RaceCalendar,
 };
 
 export function CalculatorRenderer({ toolId, color }: CalculatorRendererProps) {

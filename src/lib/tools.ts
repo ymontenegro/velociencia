@@ -159,6 +159,44 @@ export const TOOLS: ToolInfo[] = [
     sectionId: "nutricion",
     relatedTag: "suplementos",
   },
+  {
+    id: "climbs-database",
+    kind: "dataset",
+    slug: { es: "puertos", en: "climbs" },
+    title: {
+      es: "Base de datos de puertos del mundo",
+      en: "World climbs database",
+    },
+    tagline: {
+      es: "51 puertos icónicos con su índice FIETS y perfil de altitud calculado desde el DEM.",
+      en: "51 iconic climbs with their FIETS index and a DEM-computed elevation profile.",
+    },
+    description: {
+      es: "Explora 51 puertos icónicos del ciclismo de todo el mundo —de los Alpes y Dolomitas a los Andes, Norteamérica, Asia y Oceanía— con su índice FIETS de dificultad, datos verificados (longitud, desnivel, pendiente, altitud) y un perfil de altitud calculado punto a punto desde el modelo digital de elevación abierto SRTM 30 m sobre el trazado real de la carretera. Filtra por continente, país, dificultad, longitud y pendiente.",
+      en: "Explore 51 iconic cycling climbs from around the world —from the Alps and Dolomites to the Andes, North America, Asia and Oceania— with their FIETS difficulty index, verified data (length, gain, gradient, altitude) and an elevation profile sampled point by point from the open SRTM 30 m digital elevation model along the real road geometry. Filter by continent, country, difficulty, length and gradient.",
+    },
+    sectionId: "entrenamiento",
+    relatedTag: "puertos",
+  },
+  {
+    id: "race-calendar",
+    kind: "dataset",
+    slug: { es: "calendario", en: "calendar" },
+    title: {
+      es: "Calendario UCI 2026",
+      en: "2026 UCI calendar",
+    },
+    tagline: {
+      es: "111 carreras de la temporada 2026: WorldTour, ProSeries y continentales, masculino y femenino.",
+      en: "111 races of the 2026 season: WorldTour, ProSeries and continental, men's and women's.",
+    },
+    description: {
+      es: "El calendario internacional de ciclismo en ruta 2026: 111 carreras del UCI WorldTour y Women's WorldTour, la ProSeries y una selección de pruebas continentales de cada continente, incluida Latinoamérica. Agrupadas por mes, con su clase UCI, género, tipo de prueba y enlace a la web oficial, con badge de carrera en curso o de esta semana. Calendario curado y verificado a mano contra fuentes públicas.",
+      en: "The 2026 international road-cycling calendar: 111 races from the UCI WorldTour and Women's WorldTour, the ProSeries and a selection of continental races from every continent, including Latin America. Grouped by month, with their UCI class, gender, race type and a link to the official site, plus an ongoing / this-week badge. Hand-curated and verified against public sources.",
+    },
+    sectionId: "competencia",
+    relatedTag: "calendario",
+  },
 ];
 
 export function getAllTools(): ToolInfo[] {
