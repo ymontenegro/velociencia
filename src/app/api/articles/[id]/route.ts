@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { articles } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { getArticleBySlug } from "@/lib/markdown";
+import { requireAdmin } from "@/lib/admin/auth";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -52,6 +53,9 @@ export async function GET(request: NextRequest, context: RouteContext) {
 }
 
 export async function PATCH(request: NextRequest, context: RouteContext) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const { id } = await context.params;
     const articleId = parseInt(id, 10);
@@ -117,6 +121,9 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
 }
 
 export async function DELETE(request: NextRequest, context: RouteContext) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const { id } = await context.params;
     const articleId = parseInt(id, 10);

@@ -4,6 +4,14 @@ import { eq } from "drizzle-orm";
 
 const IP_SALT =
   process.env.IP_HASH_SALT ?? "velociencia-ip-hash-salt-default-2026";
+
+// Con el salt por defecto los hashes de IP son reversibles por fuerza bruta;
+// no rompemos el arranque (la analítica no es crítica) pero sí avisamos.
+if (process.env.NODE_ENV === "production" && !process.env.IP_HASH_SALT) {
+  console.warn(
+    "[analytics] IP_HASH_SALT no está configurado: los hashes de IP usan el salt por defecto. Configúralo en producción (openssl rand -hex 32)."
+  );
+}
 const CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 export type GeoInfo = {

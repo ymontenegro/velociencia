@@ -3,6 +3,7 @@ import { db, schema } from "@/lib/db";
 import { eq, and } from "drizzle-orm";
 import { parseUserAgent } from "@/lib/analytics/ua";
 import { extractIp, resolveGeo } from "@/lib/analytics/geo";
+import { rateLimit, clientKeyFromHeaders } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,6 +52,17 @@ export function OPTIONS(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const origin = req.headers.get("origin");
+
+  // Una persona navegando genera unas pocas peticiones por minuto; 60/min
+  // por IP deja margen amplio y corta el spam de pageviews.
+  const client = clientKeyFromHeaders(req.headers);
+  if (!rateLimit(`track:${client}`, { limit: 60, windowMs: 60_000 })) {
+    return NextResponse.json(
+      { error: "rate limited" },
+      { status: 429, headers: corsHeaders(origin) }
+    );
+  }
+
   let body: TrackBody;
   try {
     body = (await req.json()) as TrackBody;

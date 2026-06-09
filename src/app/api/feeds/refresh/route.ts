@@ -1,8 +1,12 @@
 import { refreshAllFeeds } from "@/lib/rss";
 import { NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/admin/auth";
 
 // POST /api/feeds/refresh – Trigger a full feed refresh
 export async function POST() {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const result = await refreshAllFeeds();
 
