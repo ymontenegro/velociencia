@@ -200,21 +200,38 @@ export default async function HomePage() {
           <TopicCloud locale={locale} dict={dict} />
         </div>
 
-        {/* Editorial note */}
+        {/* Editorial note — HUD panel for E-E-A-T visibility */}
         <section className="border-t border-[var(--color-border)]">
-          <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="flex items-start gap-4">
-              <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
-              <div>
-                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
-                  {dict.home.editorialNote}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                  {locale === "es"
-                    ? "Cada artículo es investigado, redactado y verificado utilizando modelos de lenguaje avanzados con fuentes científicas reales. Contenido impulsado por inteligencia artificial, revisado con rigor."
-                    : "Every article is researched, written and verified using advanced language models with real scientific sources. Content powered by artificial intelligence, reviewed with rigor."}
-                </p>
-              </div>
+          <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+            <div className="tool-scope tool-panel rounded-lg px-6 py-5">
+              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                {dict.home.editorialNote}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                {locale === "es"
+                  ? "Cada artículo es investigado, redactado y verificado utilizando modelos de lenguaje avanzados con fuentes científicas reales. Contenido impulsado por inteligencia artificial, revisado con rigor."
+                  : "Every article is researched, written and verified using advanced language models with real scientific sources. Content powered by artificial intelligence, reviewed with rigor."}
+              </p>
+              <Link
+                href={locale === "es" ? "/sobre" : "/about"}
+                className="mt-4 inline-flex items-center gap-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--color-text)] transition-colors hover:text-[var(--color-text-secondary)]"
+              >
+                {dict.home.editorialHowWeWork}
+                <svg
+                  aria-hidden="true"
+                  className="h-3 w-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </Link>
             </div>
           </div>
         </section>

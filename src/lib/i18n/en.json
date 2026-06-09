@@ -10,7 +10,8 @@
     "toolsGroupCalc": "Calculators",
     "toolsGroupData": "Datasets",
     "toolsViewAll": "View all tools",
-    "toolsMenuLabel": "Open tools menu"
+    "toolsMenuLabel": "Open tools menu",
+    "localeSwitchAriaLabel": "Spanish version — velociencia.cl"
   },
   "footer": {
     "sections": "Sections",
@@ -27,7 +28,9 @@
     "allRightsReserved": "All rights reserved.",
     "editorialDesign": "Premium editorial design",
     "disclosure": "Affiliate disclosure",
-    "tools": "Tools"
+    "tools": "Tools",
+    "aiTransparency": "AI-assisted content, fact-checked against scientific sources by our editorial team.",
+    "aiTransparencyLink": "How we work"
   },
   "affiliate": {
     "disclosure": "This article includes affiliate links. If you buy through them, PedalSci earns a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
@@ -58,7 +61,9 @@
     "archiveLanguages": "languages",
     "toolsCalculators": "Calculators",
     "toolsDatasets": "Data",
-    "sectionArticles": "articles"
+    "sectionArticles": "articles",
+    "toolsViewAll": "View all tools",
+    "editorialHowWeWork": "How we work"
   },
   "article": {
     "by": "By",

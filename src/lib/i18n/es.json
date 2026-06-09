@@ -10,7 +10,8 @@
     "toolsGroupCalc": "Calculadoras",
     "toolsGroupData": "Datos",
     "toolsViewAll": "Ver todas las herramientas",
-    "toolsMenuLabel": "Abrir menú de herramientas"
+    "toolsMenuLabel": "Abrir menú de herramientas",
+    "localeSwitchAriaLabel": "Versión en inglés — pedalsci.com"
   },
   "footer": {
     "sections": "Secciones",
@@ -27,7 +28,9 @@
     "allRightsReserved": "Todos los derechos reservados.",
     "editorialDesign": "Diseño editorial premium",
     "disclosure": "Divulgación de afiliados",
-    "tools": "Herramientas"
+    "tools": "Herramientas",
+    "aiTransparency": "Contenido asistido por IA, verificado con fuentes científicas por nuestro equipo editorial.",
+    "aiTransparencyLink": "Cómo trabajamos"
   },
   "affiliate": {
     "disclosure": "Este artículo incluye enlaces de afiliado. Si compras a través de ellos, Velociencia recibe una comisión sin costo adicional para ti. Solo enlazamos productos que consideramos genuinamente útiles para el ciclista.",
@@ -58,7 +61,9 @@
     "archiveLanguages": "idiomas",
     "toolsCalculators": "Calculadoras",
     "toolsDatasets": "Datos",
-    "sectionArticles": "artículos"
+    "sectionArticles": "artículos",
+    "toolsViewAll": "Ver todas las herramientas",
+    "editorialHowWeWork": "Cómo trabajamos"
   },
   "article": {
     "by": "Por",

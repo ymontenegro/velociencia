@@ -119,6 +119,21 @@ export function ToolCard({ tool, locale, openTool, className }: ToolCardProps) {
             {tool.tagline[locale]}
           </p>
 
+          {/* Sample stat — pre-computed mini-result (Race Telemetry readout) */}
+          {tool.sampleStat && (
+            <div className="mt-4 flex items-center justify-between gap-2 rounded border border-[color-mix(in_srgb,var(--tool-accent)_18%,transparent)] bg-[color-mix(in_srgb,var(--tool-accent)_6%,transparent)] px-2.5 py-2">
+              <span className="font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                {tool.sampleStat.label[locale]}
+              </span>
+              <span
+                className="font-mono text-sm font-semibold tabular-nums"
+                style={{ color: "var(--tool-accent)" }}
+              >
+                {tool.sampleStat.value[locale]}
+              </span>
+            </div>
+          )}
+
           {/* CTA */}
           <div className="mt-6 flex items-center gap-1.5 border-t border-[var(--color-border-light)] pt-4">
             <span

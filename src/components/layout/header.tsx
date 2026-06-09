@@ -401,12 +401,15 @@ export function Header() {
                 <kbd>⌘K</kbd>
               </button>
 
-              {/* Locale switch */}
+              {/* Locale switch — external domain, signalled with icon */}
               <a
                 href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
+                rel="noopener"
+                aria-label={dict.header.localeSwitchAriaLabel}
+                title={dict.header.localeSwitchAriaLabel}
                 className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
-                title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
               >
+                {/* Globe icon */}
                 <svg
                   className="h-3.5 w-3.5"
                   viewBox="0 0 24 24"
@@ -422,6 +425,21 @@ export function Header() {
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                 </svg>
                 {locale === "es" ? "EN" : "ES"}
+                {/* External link indicator */}
+                <svg
+                  className="h-2.5 w-2.5 opacity-60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
               </a>
 
               <ThemeToggle />
@@ -429,11 +447,15 @@ export function Header() {
 
             {/* ── Mobile controls ────────────────────────────────────────── */}
             <div className="flex items-center gap-2 md:hidden">
+              {/* Mobile locale switch — external domain, signalled with icon */}
               <a
                 href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
+                rel="noopener"
+                aria-label={dict.header.localeSwitchAriaLabel}
+                title={dict.header.localeSwitchAriaLabel}
                 className="flex items-center gap-1 rounded-full border border-[var(--color-border)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
-                title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
               >
+                {/* Globe icon */}
                 <svg
                   className="h-3 w-3"
                   viewBox="0 0 24 24"
@@ -449,6 +471,21 @@ export function Header() {
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                 </svg>
                 {locale === "es" ? "EN" : "ES"}
+                {/* External link indicator */}
+                <svg
+                  className="h-2 w-2 opacity-60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
               </a>
               <ThemeToggle />
               <button

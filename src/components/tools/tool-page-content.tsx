@@ -237,7 +237,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
 
           {/* Related articles */}
           {relatedArticles.length > 0 && (
-            <section className="mt-14">
+            <aside className="mt-14" aria-label={dict.tools.relatedArticles}>
               {/* Mono eyebrow above section title */}
               <div className="flex items-center gap-2">
                 <div
@@ -279,7 +279,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
                   );
                 })}
               </div>
-            </section>
+            </aside>
           )}
         </div>
       </div>

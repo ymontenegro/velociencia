@@ -173,8 +173,23 @@ export async function Footer() {
           </div>
         </div>
 
+        {/* ── AI Transparency line ────────────────────────────────────── */}
+        <div className="mt-12 flex items-start gap-2 rounded-md border border-white/10 bg-white/[0.04] px-4 py-3">
+          {/* Signal dot — Race Telemetry visual cue */}
+          <span className="mt-1 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/30" aria-hidden="true" />
+          <p className="text-sm leading-relaxed text-white/50">
+            {dict.footer.aiTransparency}{" "}
+            <Link
+              href={locale === "en" ? "/about" : "/sobre"}
+              className="font-medium text-white/70 underline underline-offset-2 transition-colors hover:text-white"
+            >
+              {dict.footer.aiTransparencyLink} →
+            </Link>
+          </p>
+        </div>
+
         {/* ── Bottom bar ────────────────────────────────────────────────── */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="font-mono text-[10px] tracking-wide text-white/30">
             &copy; {currentYear} {dict.siteName}. {dict.footer.allRightsReserved}
           </p>

@@ -28,6 +28,20 @@ export interface ToolInfo {
   sectionId: SectionId;
   /** Display tag used to surface related articles on the tool page. */
   relatedTag: string;
+  /**
+   * Optional pre-computed mini-result shown as a Race Telemetry readout at the
+   * bottom of the ToolCard. Label describes the input context; value is the
+   * result. Both must be verified against the component's actual calculation
+   * logic — a wrong sample stat is worse than none.
+   *
+   * @example
+   *   { label: { es: "FTP 250 W → Z2", en: "FTP 250 W → Z2" },
+   *     value: { es: "140–188 W", en: "140–188 W" } }
+   */
+  sampleStat?: {
+    label: Record<Locale, string>;
+    value: Record<Locale, string>;
+  };
 }
 
 export const TOOLS: ToolInfo[] = [
@@ -48,6 +62,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "entrenamiento",
     relatedTag: "carga de entrenamiento",
+    // TSS = IF² × 100; 1 h @ IF 0.85 → 0.85² × 100 = 72.25 ≈ 72
+    // Source: src/lib/training/metrics.ts tssFromPower (durationSec * np * IF) / (ftp * 3600) * 100
+    sampleStat: {
+      label: { es: "1 h @ IF 0.85", en: "1 h @ IF 0.85" },
+      value: { es: "≈72 TSS", en: "≈72 TSS" },
+    },
   },
   {
     id: "power-zones",
@@ -66,6 +86,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "entrenamiento",
     relatedTag: "FTP",
+    // Z2 pctLow=56, pctHigh=75 → Math.round(56/100*250)=140, Math.round(75/100*250)=188
+    // Source: src/lib/training/zones.ts POWER_ZONES + power-zones-calculator.tsx computeZones()
+    sampleStat: {
+      label: { es: "FTP 250 W → Z2", en: "FTP 250 W → Z2" },
+      value: { es: "140–188 W", en: "140–188 W" },
+    },
   },
   {
     id: "carb-intake",
@@ -84,6 +110,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "nutricion",
     relatedTag: "carbohidratos",
+    // zone4 (>2.5 h): [65, 90]; high intensity factor=1 → Math.round(65+(90-65)*1) = 90
+    // Source: carb-intake-calculator.tsx getRecommendation() / ZONE_RANGES / intensityFactor()
+    sampleStat: {
+      label: { es: "3 h · alta intensidad", en: "3 h · high intensity" },
+      value: { es: "90 g/h", en: "90 g/h" },
+    },
   },
   {
     id: "power-to-weight",
@@ -102,6 +134,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "ciencia",
     relatedTag: "potencia",
+    // 250/70 = 3.5714... → toFixed(2) = "3.57"; men 3.0–3.9 = "Entrenado"
+    // Source: power-to-weight-calculator.tsx CATEGORIES_MEN + wkg.toFixed(2)
+    sampleStat: {
+      label: { es: "250 W / 70 kg", en: "250 W / 70 kg" },
+      value: { es: "3.57 W/kg", en: "3.57 W/kg" },
+    },
   },
   {
     id: "vo2max-estimator",
@@ -120,6 +158,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "ciencia",
     relatedTag: "VO2max",
+    // Storer men: 10.51×300 + 6.35×70 − 10.49×35 + 519.3 = 3749.65 ml/min ÷ 70 = 53.566 → "53.6"
+    // Source: vo2max-estimator-calculator.tsx computeVo2() with defaults wmax=300, weight=70, age=35, m
+    sampleStat: {
+      label: { es: "300 W · 70 kg · 35 a", en: "300 W · 70 kg · 35 y" },
+      value: { es: "53.6 ml/kg/min", en: "53.6 ml/kg/min" },
+    },
   },
   {
     id: "gel-comparator",
@@ -139,6 +183,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "nutricion",
     relatedTag: "geles",
+    // 15 gels in GELS array; carbs_g range: min 21 (GU Roctane), max 90 (PF90)
+    // Source: src/lib/datasets/gels.ts GELS[] — all entries with format "gel"
+    sampleStat: {
+      label: { es: "15 geles · carbohidratos", en: "15 gels · carbohydrates" },
+      value: { es: "21–90 g / gel", en: "21–90 g / gel" },
+    },
   },
   {
     id: "evidence-explorer",
@@ -158,6 +208,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "nutricion",
     relatedTag: "suplementos",
+    // EVIDENCE.length = 19, getCitationCount() = 123 (verified: running reduce over evidence-data.ts)
+    // Source: src/lib/datasets/evidence.ts getCitationCount() + evidence-data.ts EVIDENCE array
+    sampleStat: {
+      label: { es: "19 suplementos", en: "19 supplements" },
+      value: { es: "123 citas verificadas", en: "123 verified citations" },
+    },
   },
   {
     id: "climbs-database",
@@ -177,6 +233,13 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "entrenamiento",
     relatedTag: "puertos",
+    // Alpe d'Huez: base = 1120² / (13800×10) = 9.090; altBonus = (1860−1000)/1000 = 0.860
+    // FIETS = 9.950 → toFixed(1) = "9.9"  (difficultyBand: "mitica", f ≥ 9)
+    // Source: climbs-data.ts alpe-dhuez entry + climbs.ts fietsIndex() formula
+    sampleStat: {
+      label: { es: "Alpe d'Huez", en: "Alpe d'Huez" },
+      value: { es: "FIETS 9.9", en: "FIETS 9.9" },
+    },
   },
   {
     id: "race-calendar",
@@ -196,6 +259,12 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "competencia",
     relatedTag: "calendario",
+    // RACES.length = 111 (verified: grep -c '"id"' races-data.ts = 111), RACES_SEASON = 2026
+    // Source: src/lib/datasets/races.ts getRaceCount() + races-data.ts RACES array
+    sampleStat: {
+      label: { es: "Temporada 2026", en: "2026 season" },
+      value: { es: "111 carreras", en: "111 races" },
+    },
   },
 ];
 
