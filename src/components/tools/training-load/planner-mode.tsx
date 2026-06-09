@@ -1,10 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type CSSProperties } from "react";
 import { useLocale } from "@/components/locale-provider";
 import type { Locale } from "@/lib/i18n";
 import { runEwma, getTsbBand, type TsbBand } from "@/lib/training/pmc";
 import { PmcChart } from "@/components/tools/training-load/pmc-chart";
+import {
+  RangeField,
+  ReadoutPanel,
+  Readout,
+  mixAlpha,
+} from "@/components/tools/ui";
 
 // ─── i18n ────────────────────────────────────────────────────────────────────
 
@@ -67,9 +73,7 @@ type Strings = (typeof STRINGS)["es"];
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-/** One data point per day for the chart.
- *  A `type` alias (not an `interface`) so it stays assignable to the
- *  `Record<string, unknown>` that PmcChart's `data` prop intersects. */
+/** One data point per day for the chart. */
 type ChartPoint = {
   day: number; // 1-indexed day number
   ctl: number; // Chronic Training Load (Fitness)
@@ -127,75 +131,23 @@ function getTsbText(band: TsbBand, s: Strings): string {
 }
 
 const TSB_BAND_COLOR: Record<TsbBand, string> = {
-  fresh: "#0891B2",  // cyan — fresh
-  race:  "#16A34A",  // green — race ready
-  train: "#D97706",  // amber — productive training
-  over:  "#DC2626",  // red — overload
+  fresh: "#0891B2", // cyan — fresh
+  race:  "#16A34A", // green — race ready
+  train: "#D97706", // amber — productive training
+  over:  "#DC2626", // red — overload
 };
 
-// ─── Chart colors ─────────────────────────────────────────────────────────────
+const ATL_COLOR = "#E11D48"; // rose — fatigue (shared with pmc-chart)
 
-const ATL_COLOR = "#E11D48";  // rose — fatigue
-
-// ─── Slider row (outside component to avoid React hook closure issues) ────────
-
-interface SliderRowProps {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  suffix: string;
-  color: string;
-  onChange: (v: number) => void;
-}
-
-function SliderRow({ label, value, min, max, step, suffix, color, onChange }: SliderRowProps) {
-  return (
-    <div>
-      <div
-        className="mb-2 flex items-center justify-between text-sm font-medium"
-        style={{ color: "var(--color-text)" }}
-      >
-        <span>{label}</span>
-        <span
-          className="rounded px-2 py-0.5 text-sm font-semibold tabular-nums"
-          style={{ backgroundColor: color + "22", color }}
-        >
-          {value} {suffix}
-        </span>
-      </div>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full cursor-pointer"
-        style={{ accentColor: color }}
-      />
-      <div
-        className="mt-1 flex justify-between text-xs"
-        style={{ color: "var(--color-text-muted)" }}
-      >
-        <span>{min} {suffix}</span>
-        <span>{max} {suffix}</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Toggle row (outside component) ──────────────────────────────────────────
+// ─── ToggleRow — no color prop, reads --tool-accent from ToolPanel context ────
 
 interface ToggleRowProps {
   label: string;
   checked: boolean;
-  color: string;
   onChange: (v: boolean) => void;
 }
 
-function ToggleRow({ label, checked, color, onChange }: ToggleRowProps) {
+function ToggleRow({ label, checked, onChange }: ToggleRowProps) {
   return (
     <label className="flex cursor-pointer items-start gap-3">
       {/* Hidden native checkbox for a11y */}
@@ -209,14 +161,16 @@ function ToggleRow({ label, checked, color, onChange }: ToggleRowProps) {
       <div className="relative mt-0.5 flex-shrink-0">
         <div
           className="h-5 w-9 rounded-full transition-colors duration-200"
-          style={{ backgroundColor: checked ? color : "var(--color-border)" }}
+          style={{
+            backgroundColor: checked ? "var(--tool-accent)" : "var(--color-border)",
+          }}
         />
         <div
           className="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform duration-200"
           style={{ transform: checked ? "translateX(16px)" : "translateX(2px)" }}
         />
       </div>
-      <span className="text-sm leading-snug" style={{ color: "var(--color-text-secondary)" }}>
+      <span className="text-sm leading-snug text-[var(--color-text-secondary)]">
         {label}
       </span>
     </label>
@@ -226,10 +180,12 @@ function ToggleRow({ label, checked, color, onChange }: ToggleRowProps) {
 // ─── Planner mode (manual simulation) ─────────────────────────────────────────
 
 export default function PlannerMode({
-  color = "#0891B2",
+  accent = "#0891B2",
+  accentVar = "--color-entrenamiento",
 }: {
-  color?: string;
-}): React.ReactElement {
+  accent?: string;
+  accentVar?: string;
+}) {
   const locale = useLocale() as Locale;
   const s = STRINGS[locale] as Strings;
 
@@ -240,7 +196,7 @@ export default function PlannerMode({
   const [taper, setTaper]           = useState<boolean>(false);
   const [restDay, setRestDay]       = useState<boolean>(true);
 
-  // ── Simulation (shared EWMA module) ──
+  // ── Simulation (shared EWMA module — logic unchanged) ──
   const chartData = useMemo<ChartPoint[]>(() => {
     const dailyTssArray = buildDailyTss(dailyTss, weeks, taper, restDay);
     const points = runEwma(dailyTssArray, ctlInitial); // seedAtl defaults to ctlInitial
@@ -268,59 +224,55 @@ export default function PlannerMode({
     [weeks],
   );
 
-  // ─── Render (inner content only — container provides card + header) ──────────
+  // ─── Render (inner content only — ToolPanel + header come from the container) ──
 
   return (
-    <div className="p-5">
+    <div className="p-5 sm:p-7">
       {/* ── Inputs ── */}
       <div className="mb-6 grid gap-5 sm:grid-cols-2">
-        <SliderRow
+        <RangeField
+          id="planner-tss"
           label={s.tssLabel}
           value={dailyTss}
+          onChange={setDailyTss}
           min={0}
           max={150}
           step={5}
-          suffix={s.tssSuffix}
-          color={color}
-          onChange={setDailyTss}
+          display={`${dailyTss} ${s.tssSuffix}`}
+          minLabel={`0 ${s.tssSuffix}`}
+          maxLabel={`150 ${s.tssSuffix}`}
         />
-        <SliderRow
+        <RangeField
+          id="planner-weeks"
           label={s.weeksLabel}
           value={weeks}
+          onChange={setWeeks}
           min={4}
           max={24}
           step={1}
-          suffix={s.weeksSuffix}
-          color={color}
-          onChange={setWeeks}
+          display={`${weeks} ${s.weeksSuffix}`}
+          minLabel={`4 ${s.weeksSuffix}`}
+          maxLabel={`24 ${s.weeksSuffix}`}
         />
-        <SliderRow
+        <RangeField
+          id="planner-ctl-init"
           label={s.ctlInitLabel}
           value={ctlInitial}
+          onChange={setCtlInitial}
           min={0}
           max={100}
           step={5}
-          suffix={s.tssSuffix}
-          color={color}
-          onChange={setCtlInitial}
+          display={`${ctlInitial} ${s.tssSuffix}`}
+          minLabel={`0 ${s.tssSuffix}`}
+          maxLabel={`100 ${s.tssSuffix}`}
         />
         <div className="flex flex-col gap-4 pt-1">
-          <ToggleRow
-            label={s.taperLabel}
-            checked={taper}
-            color={color}
-            onChange={setTaper}
-          />
-          <ToggleRow
-            label={s.restDayLabel}
-            checked={restDay}
-            color={color}
-            onChange={setRestDay}
-          />
+          <ToggleRow label={s.taperLabel} checked={taper} onChange={setTaper} />
+          <ToggleRow label={s.restDayLabel} checked={restDay} onChange={setRestDay} />
         </div>
       </div>
 
-      {/* ── Performance Management Chart (PmcChart provides its own card) ── */}
+      {/* ── Performance Management Chart ── */}
       <div className="mb-5">
         <PmcChart
           data={chartData}
@@ -329,75 +281,45 @@ export default function PlannerMode({
           xDomain={[1, weeks * 7]}
           xTicks={xTicks}
           xTickFormatter={(d) => `${s.semPrefix}${Math.ceil(Number(d) / 7)}`}
-          tooltipLabelFormatter={(d) => `${s.axisWeek} ${Math.ceil(Number(d) / 7)} · ${s.semPrefix}${d}`}
-          color={color}
+          tooltipLabelFormatter={(d) =>
+            `${s.axisWeek} ${Math.ceil(Number(d) / 7)} · ${s.semPrefix}${d}`
+          }
+          color={accent}
+          accentVar={accentVar}
           labels={{ fitness: s.fitnessLabel, fatigue: s.fatigueLabel, form: s.formLabel }}
         />
       </div>
 
-      {/* ── Final values ── */}
-      <div
-        className="mb-5 rounded-lg p-4"
-        style={{
-          backgroundColor: color + "11",
-          border: `1px solid ${color}44`,
-        }}
-      >
-        <p
-          className="mb-3 text-xs font-semibold uppercase tracking-wide"
-          style={{ color: "var(--color-text-muted)" }}
-        >
+      {/* ── Final CTL / ATL / TSB readouts ── */}
+      <ReadoutPanel className="mb-5">
+        <p className="mb-4 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
           {s.finalValues}
         </p>
-
         <div className="grid grid-cols-3 gap-4">
-          {/* CTL */}
-          <div>
-            <p
-              className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-              style={{ color }}
-            >
-              {s.fitnessLabel}
-            </p>
-            <p
-              className="text-3xl font-bold tabular-nums leading-none"
-              style={{ color }}
-            >
-              {finalCtl.toFixed(1)}
-            </p>
+          {/* CTL — uses the section accent (--tool-accent) */}
+          <Readout
+            label={s.fitnessLabel}
+            value={finalCtl.toFixed(1)}
+            primary={true}
+            animateKey={finalCtl}
+          />
+          {/* ATL — override --tool-accent locally so Readout uses the fatigue rose */}
+          <div style={{ "--tool-accent": ATL_COLOR } as CSSProperties}>
+            <Readout
+              label={s.fatigueLabel}
+              value={finalAtl.toFixed(1)}
+              primary={true}
+              animateKey={finalAtl}
+            />
           </div>
-
-          {/* ATL */}
-          <div>
-            <p
-              className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-              style={{ color: ATL_COLOR }}
-            >
-              {s.fatigueLabel}
-            </p>
-            <p
-              className="text-3xl font-bold tabular-nums leading-none"
-              style={{ color: ATL_COLOR }}
-            >
-              {finalAtl.toFixed(1)}
-            </p>
-          </div>
-
-          {/* TSB */}
-          <div>
-            <p
-              className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-              style={{ color: tsbColor }}
-            >
-              {s.formLabel}
-            </p>
-            <p
-              className="text-3xl font-bold tabular-nums leading-none"
-              style={{ color: tsbColor }}
-            >
-              {finalTsb >= 0 ? "+" : ""}
-              {finalTsb.toFixed(1)}
-            </p>
+          {/* TSB — override --tool-accent with the TSB band color */}
+          <div style={{ "--tool-accent": tsbColor } as CSSProperties}>
+            <Readout
+              label={s.formLabel}
+              value={`${finalTsb >= 0 ? "+" : ""}${finalTsb.toFixed(1)}`}
+              primary={true}
+              animateKey={finalTsb}
+            />
           </div>
         </div>
 
@@ -405,21 +327,21 @@ export default function PlannerMode({
         <div
           className="mt-4 rounded-md px-3 py-2.5 text-sm leading-snug"
           style={{
-            backgroundColor: tsbColor + "14",
+            backgroundColor: mixAlpha(tsbColor, 8),
             borderLeft: `3px solid ${tsbColor}`,
           }}
         >
           <span className="font-semibold" style={{ color: tsbColor }}>
             {s.tsbInterpTitle}:{" "}
           </span>
-          <span style={{ color: "var(--color-text-secondary)" }}>
+          <span className="text-[var(--color-text-secondary)]">
             {getTsbText(tsbBand, s)}
           </span>
         </div>
-      </div>
+      </ReadoutPanel>
 
       {/* ── Footnote ── */}
-      <p className="text-xs leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+      <p className="border-t border-[var(--color-border-light)] pt-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
         {s.footnote}
       </p>
     </div>

@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+  useRef,
+  type CSSProperties,
+} from "react";
 import { useLocale } from "@/components/locale-provider";
 import type { Locale } from "@/lib/i18n";
 import {
@@ -28,6 +35,15 @@ import {
 } from "@/lib/training/pmc";
 import { POWER_ZONES, zoneName } from "@/lib/training/zones";
 import { PmcChart } from "@/components/tools/training-load/pmc-chart";
+import {
+  NumberField,
+  Segmented,
+  ReadoutPanel,
+  Readout,
+  accentAlpha,
+  accentSurface,
+  mixAlpha,
+} from "@/components/tools/ui";
 
 // ─── i18n ──────────────────────────────────────────────────────────────────────
 
@@ -320,7 +336,15 @@ function computeMetrics(
   if (activity.hasPower && ftp <= 0) {
     // Has power data but no usable FTP — surface a hint instead of silently
     // falling back to a possibly-misleading hrTSS.
-    return { activity, method: "none", np: null, if_: null, tss: null, zoneTimes: null, needsFtp: true };
+    return {
+      activity,
+      method: "none",
+      np: null,
+      if_: null,
+      tss: null,
+      zoneTimes: null,
+      needsFtp: true,
+    };
   }
 
   if (activity.hasHr) {
@@ -336,7 +360,15 @@ function computeMetrics(
     };
   }
 
-  return { activity, method: "none", np: null, if_: null, tss: null, zoneTimes: null, needsFtp: false };
+  return {
+    activity,
+    method: "none",
+    np: null,
+    if_: null,
+    tss: null,
+    zoneTimes: null,
+    needsFtp: false,
+  };
 }
 
 // ─── Formatting helpers ──────────────────────────────────────────────────────────
@@ -370,57 +402,33 @@ function formatIsoDate(iso: string, locale: Locale): string {
   }).format(new Date(y, m - 1, d));
 }
 
+// ─── TSB / Method helpers ────────────────────────────────────────────────────────
+
 const TSB_BAND_COLOR: Record<TsbBand, string> = {
   fresh: "#0891B2",
-  race: "#16A34A",
+  race:  "#16A34A",
   train: "#D97706",
-  over: "#DC2626",
+  over:  "#DC2626",
 };
+
+const ATL_COLOR = "#E11D48"; // rose — fatigue
 
 function getTsbText(band: TsbBand, s: Strings): string {
   switch (band) {
     case "fresh": return s.tsbFresh;
-    case "race": return s.tsbRace;
+    case "race":  return s.tsbRace;
     case "train": return s.tsbTrain;
-    case "over": return s.tsbOver;
+    case "over":  return s.tsbOver;
   }
 }
 
 const METHOD_COLOR: Record<LoadMethod, string> = {
   power: "#0891B2",
-  hr: "#E11D48",
-  none: "#9CA3AF",
+  hr:    "#E11D48",
+  none:  "#9CA3AF",
 };
 
-// ─── Small UI helpers ────────────────────────────────────────────────────────────
-
-interface NumberFieldProps {
-  label: string;
-  value: string;
-  unit?: string;
-  color: string;
-  onChange: (v: string) => void;
-}
-
-function NumberField({ label, value, unit, color, onChange }: NumberFieldProps) {
-  return (
-    <label className="flex flex-col gap-1">
-      <span className="text-xs font-medium text-[var(--color-text-secondary)]">{label}</span>
-      <div className="flex items-center gap-1.5">
-        <input
-          type="number"
-          inputMode="numeric"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-2.5 py-1.5 text-sm text-[var(--color-text)] outline-none transition-colors"
-          onFocus={(e) => (e.currentTarget.style.borderColor = color)}
-          onBlur={(e) => (e.currentTarget.style.borderColor = "")}
-        />
-        {unit && <span className="text-xs text-[var(--color-text-muted)]">{unit}</span>}
-      </div>
-    </label>
-  );
-}
+// ─── MethodBadge ─────────────────────────────────────────────────────────────────
 
 function MethodBadge({ method, s }: { method: LoadMethod; s: Strings }) {
   const label =
@@ -428,8 +436,8 @@ function MethodBadge({ method, s }: { method: LoadMethod; s: Strings }) {
   const color = METHOD_COLOR[method];
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold"
-      style={{ backgroundColor: color + "22", color }}
+      className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[11px] font-medium"
+      style={{ backgroundColor: mixAlpha(color, 12), color }}
     >
       {method === "power" ? "⚡" : method === "hr" ? "❤" : "—"} {label}
     </span>
@@ -465,13 +473,13 @@ function ZoneBar({ zoneTimes, locale }: { zoneTimes: ZoneTime[]; locale: Locale 
           if (zt.seconds === 0 || !def) return null;
           const pct = Math.round((zt.seconds / total) * 100);
           return (
-            <span key={zt.zoneId} className="flex items-center gap-1.5 text-xs">
+            <span key={zt.zoneId} className="flex items-center gap-1.5 font-mono text-xs tabular-nums">
               <span
                 className="inline-block h-2.5 w-2.5 flex-shrink-0 rounded-sm"
                 style={{ backgroundColor: def.color }}
               />
               <span className="text-[var(--color-text-secondary)]">{def.id}</span>
-              <span className="tabular-nums text-[var(--color-text-muted)]">
+              <span className="text-[var(--color-text-muted)]">
                 {formatDuration(zt.seconds)} · {pct}%
               </span>
             </span>
@@ -482,9 +490,15 @@ function ZoneBar({ zoneTimes, locale }: { zoneTimes: ZoneTime[]; locale: Locale 
   );
 }
 
-// ─── Main component (content only — outer card comes from the container) ─────────
+// ─── Main component (content only — ToolPanel + header come from the container) ──
 
-export default function UploadMode({ color = "#0891B2" }: { color?: string }): React.ReactElement {
+export default function UploadMode({
+  accent = "#0891B2",
+  accentVar = "--color-entrenamiento",
+}: {
+  accent?: string;
+  accentVar?: string;
+}): React.ReactElement {
   const locale = useLocale() as Locale;
   const s = STRINGS[locale];
 
@@ -586,7 +600,9 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
       const errors: { fileName: string; message: string }[] = [];
 
       const errMsg = (err: unknown) =>
-        err instanceof ActivityParseError || err instanceof Error ? err.message : String(err);
+        err instanceof ActivityParseError || err instanceof Error
+          ? err.message
+          : String(err);
 
       for (const file of files) {
         if (file.name.toLowerCase().endsWith(".zip")) {
@@ -654,21 +670,29 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
   const hasActivities = activities.length > 0;
   const single = metrics.length === 1 ? metrics[0] : null;
 
+  const sexOptions: Array<{ value: "m" | "f"; label: string }> = [
+    { value: "m", label: s.sexMale },
+    { value: "f", label: s.sexFemale },
+  ];
+
   // ─── Render ────────────────────────────────────────────────────────────────
 
   return (
-    <div className="p-5">
-      {/* Privacy banner */}
+    <div className="p-5 sm:p-7">
+      {/* ── Privacy banner ── */}
       <div
         className="mb-5 flex items-start gap-3 rounded-lg border px-4 py-3"
-        style={{ borderColor: color + "44", backgroundColor: color + "0F" }}
+        style={{
+          borderColor: accentAlpha(28),
+          backgroundColor: accentSurface(6),
+        }}
       >
         <svg
           className="mt-0.5 h-5 w-5 flex-shrink-0"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.8}
-          stroke={color}
+          stroke="var(--tool-accent)"
           aria-hidden="true"
         >
           <path
@@ -685,7 +709,7 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         </div>
       </div>
 
-      {/* Dropzone */}
+      {/* ── Drop zone — instrument bay ── */}
       <div
         role="button"
         tabIndex={0}
@@ -702,10 +726,10 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         }}
         onDragLeave={() => setDragOver(false)}
         onDrop={onDrop}
-        className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-6 py-10 text-center transition-colors"
+        className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-6 py-10 text-center transition-colors duration-200"
         style={{
-          borderColor: dragOver ? color : "var(--color-border)",
-          backgroundColor: dragOver ? color + "0D" : "transparent",
+          borderColor: dragOver ? "var(--tool-accent)" : "var(--color-border)",
+          backgroundColor: dragOver ? accentAlpha(8) : "transparent",
         }}
       >
         <svg
@@ -713,7 +737,7 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke={color}
+          stroke="var(--tool-accent)"
           aria-hidden="true"
         >
           <path
@@ -723,14 +747,14 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
           />
         </svg>
         <p className="text-sm font-semibold text-[var(--color-text)]">{s.dropTitle}</p>
-        <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{s.dropHint}</p>
+        <p className="mt-0.5 font-mono text-xs text-[var(--color-text-muted)]">{s.dropHint}</p>
         <span
           className="mt-4 inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: "var(--tool-accent)" }}
         >
           {s.dropButton}
         </span>
-        <p className="mt-3 text-[11px] text-[var(--color-text-muted)]">{s.formats}</p>
+        <p className="mt-3 font-mono text-[11px] text-[var(--color-text-muted)]">{s.formats}</p>
         <input
           ref={fileInputRef}
           type="file"
@@ -741,11 +765,12 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         />
       </div>
 
+      {/* ── Parsing indicator ── */}
       {parsing && (
-        <p className="mt-3 flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
+        <p className="mt-3 flex items-center gap-2 font-mono text-sm text-[var(--color-text-secondary)]">
           <span
             className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent"
-            style={{ color }}
+            style={{ color: "var(--tool-accent)" }}
           />
           {progress
             ? `${s.parsingZip} — ${progress.done}/${progress.total}`
@@ -753,14 +778,18 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         </p>
       )}
 
-      {/* Per-file errors */}
+      {/* ── Per-file errors ── */}
       {fileErrors.length > 0 && (
         <div className="mt-3 space-y-1.5">
           {fileErrors.map((fe, i) => (
             <div
               key={`${fe.fileName}-${i}`}
-              className="rounded-md border px-3 py-2 text-xs"
-              style={{ borderColor: "#DC262644", backgroundColor: "#DC26260F", color: "#DC2626" }}
+              className="rounded-md border px-3 py-2 font-mono text-xs"
+              style={{
+                borderColor: mixAlpha("#DC2626", 27),
+                backgroundColor: mixAlpha("#DC2626", 6),
+                color: "#DC2626",
+              }}
             >
               <span className="font-semibold">{s.fileError}: {fe.fileName}</span>
               <span className="text-[var(--color-text-secondary)]"> — {fe.message}</span>
@@ -769,21 +798,32 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         </div>
       )}
 
-      {/* Athlete settings */}
-      <div className="mt-5 rounded-lg border" style={{ borderColor: "var(--color-border)" }}>
+      {/* ── Athlete settings accordion ── */}
+      <div
+        className="mt-5 rounded-xl border"
+        style={{ borderColor: "var(--color-border)" }}
+      >
         <button
           type="button"
           onClick={() => setSettingsOpen((o) => !o)}
           className="flex w-full items-center justify-between px-4 py-3 text-left"
         >
-          <span className="text-sm font-semibold text-[var(--color-text)]">{s.settingsTitle}</span>
+          <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
+            {s.settingsTitle}
+          </span>
           <span className="flex items-center gap-3">
-            <span className="text-xs tabular-nums text-[var(--color-text-muted)]">
+            <span
+              className="rounded-md px-2 py-0.5 font-mono text-xs font-medium tabular-nums"
+              style={{
+                color: "var(--tool-accent)",
+                backgroundColor: accentAlpha(12),
+              }}
+            >
               FTP {ftp} {s.watts}
             </span>
             <svg
-              className="h-4 w-4 transition-transform"
-              style={{ transform: settingsOpen ? "rotate(180deg)" : "none", color: "var(--color-text-muted)" }}
+              className="h-4 w-4 transition-transform text-[var(--color-text-muted)]"
+              style={{ transform: settingsOpen ? "rotate(180deg)" : "none" }}
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
@@ -795,73 +835,112 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
         </button>
 
         {settingsOpen && (
-          <div className="border-t px-4 py-4" style={{ borderColor: "var(--color-border-light)" }}>
+          <div
+            className="border-t px-4 py-4"
+            style={{ borderColor: "var(--color-border-light)" }}
+          >
             <p className="mb-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
               {s.settingsHint}
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              <NumberField label={s.ftpLabel} value={settings.ftp} unit={s.watts} color={color} onChange={(v) => updateSetting("ftp", v)} />
-              <NumberField label={s.lthrLabel} value={settings.lthr} unit={s.bpm} color={color} onChange={(v) => updateSetting("lthr", v)} />
-              <NumberField label={s.maxHrLabel} value={settings.maxHr} unit={s.bpm} color={color} onChange={(v) => updateSetting("maxHr", v)} />
-              <NumberField label={s.restHrLabel} value={settings.restHr} unit={s.bpm} color={color} onChange={(v) => updateSetting("restHr", v)} />
-              <NumberField label={s.seedCtlLabel} value={settings.seedCtl} color={color} onChange={(v) => updateSetting("seedCtl", v)} />
-              <label className="flex flex-col gap-1">
-                <span className="text-xs font-medium text-[var(--color-text-secondary)]">{s.sexLabel}</span>
-                <div className="flex h-[34px] overflow-hidden rounded-md border" style={{ borderColor: "var(--color-border)" }}>
-                  {(["m", "f"] as const).map((sx) => (
-                    <button
-                      key={sx}
-                      type="button"
-                      onClick={() => updateSetting("sex", sx)}
-                      className="flex-1 text-xs font-medium transition-colors"
-                      style={{
-                        backgroundColor: settings.sex === sx ? color : "transparent",
-                        color: settings.sex === sx ? "#fff" : "var(--color-text-secondary)",
-                      }}
-                    >
-                      {sx === "m" ? s.sexMale : s.sexFemale}
-                    </button>
-                  ))}
-                </div>
-              </label>
+              <NumberField
+                id="tl-ftp"
+                label={s.ftpLabel}
+                value={settings.ftp}
+                unit={s.watts}
+                min={0}
+                max={600}
+                step={1}
+                onChange={(v) => updateSetting("ftp", v)}
+              />
+              <NumberField
+                id="tl-lthr"
+                label={s.lthrLabel}
+                value={settings.lthr}
+                unit={s.bpm}
+                min={100}
+                max={220}
+                step={1}
+                onChange={(v) => updateSetting("lthr", v)}
+              />
+              <NumberField
+                id="tl-max-hr"
+                label={s.maxHrLabel}
+                value={settings.maxHr}
+                unit={s.bpm}
+                min={100}
+                max={230}
+                step={1}
+                onChange={(v) => updateSetting("maxHr", v)}
+              />
+              <NumberField
+                id="tl-rest-hr"
+                label={s.restHrLabel}
+                value={settings.restHr}
+                unit={s.bpm}
+                min={30}
+                max={100}
+                step={1}
+                onChange={(v) => updateSetting("restHr", v)}
+              />
+              <NumberField
+                id="tl-seed-ctl"
+                label={s.seedCtlLabel}
+                value={settings.seedCtl}
+                min={0}
+                max={200}
+                step={1}
+                onChange={(v) => updateSetting("seedCtl", v)}
+              />
+              <Segmented
+                label={s.sexLabel}
+                options={sexOptions}
+                value={settings.sex}
+                onChange={(v) => updateSetting("sex", v)}
+              />
             </div>
 
             {hasPowerData && (
               <button
                 type="button"
                 onClick={estimateFtp}
-                className="mt-4 inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors"
-                style={{ borderColor: color, color }}
+                className="mt-4 inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 font-mono text-xs font-medium transition-colors hover:opacity-80"
+                style={{
+                  borderColor: accentAlpha(50),
+                  color: "var(--tool-accent)",
+                }}
                 title={s.estimateFtpHint}
               >
                 {s.estimateFtp}
               </button>
             )}
-            <p className="mt-3 text-[11px] leading-relaxed text-[var(--color-text-muted)]">{s.seedCtlHint}</p>
+            <p className="mt-3 text-[11px] leading-relaxed text-[var(--color-text-muted)]">
+              {s.seedCtlHint}
+            </p>
           </div>
         )}
       </div>
 
-      {/* Results */}
+      {/* ── Results ── */}
       {hasActivities && (
         <div className="mt-6">
           {/* Header + clear */}
           <div className="mb-3 flex items-center justify-between">
-            <h4 className="text-sm font-semibold text-[var(--color-text)]">
+            <h4 className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
               {metrics.length === 1 ? s.oneActivity : s.activitiesCount(metrics.length)}
             </h4>
             <button
               type="button"
               onClick={clearAll}
-              className="text-xs font-medium text-[var(--color-text-muted)] underline-offset-2 hover:underline"
+              className="font-mono text-xs font-medium text-[var(--color-text-muted)] underline-offset-2 hover:underline"
             >
               {s.clearAll}
             </button>
           </div>
 
-          {/* Single-activity detailed breakdown */}
+          {/* Single-activity detailed breakdown or multi-activity table */}
           {single ? (
-            <SingleActivityCard m={single} s={s} locale={locale} color={color} />
+            <SingleActivityCard m={single} s={s} locale={locale} />
           ) : (
             <ActivitiesTable metrics={metrics} s={s} locale={locale} />
           )}
@@ -869,7 +948,9 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
           {/* PMC */}
           {pmcData.length >= 2 ? (
             <div className="mt-6">
-              <p className="text-sm font-semibold text-[var(--color-text)]">{s.pmcTitle}</p>
+              <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+                {s.pmcTitle}
+              </p>
               <p className="mb-3 mt-0.5 text-xs text-[var(--color-text-muted)]">{s.pmcHint}</p>
               <PmcChart
                 data={chartData}
@@ -877,126 +958,195 @@ export default function UploadMode({ color = "#0891B2" }: { color?: string }): R
                 xType="number"
                 xDomain={[0, pmcData.length - 1]}
                 xTicks={xTicks}
-                xTickFormatter={(v) => formatIsoDate(pmcData[Number(v)]?.date ?? "", locale)}
-                tooltipLabelFormatter={(v) => formatIsoDate(pmcData[Number(v)]?.date ?? "", locale)}
-                color={color}
-                labels={{ fitness: s.fitnessLabel, fatigue: s.fatigueLabel, form: s.formLabel }}
+                xTickFormatter={(v) =>
+                  formatIsoDate(pmcData[Number(v)]?.date ?? "", locale)
+                }
+                tooltipLabelFormatter={(v) =>
+                  formatIsoDate(pmcData[Number(v)]?.date ?? "", locale)
+                }
+                color={accent}
+                accentVar={accentVar}
+                labels={{
+                  fitness: s.fitnessLabel,
+                  fatigue: s.fatigueLabel,
+                  form: s.formLabel,
+                }}
               />
 
+              {/* Final CTL / ATL / TSB readouts */}
               {finalPoint && tsbBand && (
-                <div
-                  className="mt-5 rounded-lg p-4"
-                  style={{ backgroundColor: color + "11", border: `1px solid ${color}44` }}
-                >
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
+                <ReadoutPanel className="mt-5">
+                  <p className="mb-4 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                     {s.finalValues}
                   </p>
                   <div className="grid grid-cols-3 gap-4">
-                    <FinalValue label={s.fitnessLabel} value={finalPoint.ctl} color={color} />
-                    <FinalValue label={s.fatigueLabel} value={finalPoint.atl} color="#E11D48" />
-                    <FinalValue
-                      label={s.formLabel}
-                      value={finalPoint.tsb}
-                      color={TSB_BAND_COLOR[tsbBand]}
-                      signed
+                    {/* CTL — uses section accent (--tool-accent) */}
+                    <Readout
+                      label={s.fitnessLabel}
+                      value={finalPoint.ctl.toFixed(1)}
+                      primary={true}
+                      animateKey={finalPoint.ctl}
                     />
+                    {/* ATL — override --tool-accent with fatigue rose */}
+                    <div style={{ "--tool-accent": ATL_COLOR } as CSSProperties}>
+                      <Readout
+                        label={s.fatigueLabel}
+                        value={finalPoint.atl.toFixed(1)}
+                        primary={true}
+                        animateKey={finalPoint.atl}
+                      />
+                    </div>
+                    {/* TSB — override --tool-accent with TSB band color */}
+                    <div style={{ "--tool-accent": TSB_BAND_COLOR[tsbBand] } as CSSProperties}>
+                      <Readout
+                        label={s.formLabel}
+                        value={`${finalPoint.tsb >= 0 ? "+" : ""}${finalPoint.tsb.toFixed(1)}`}
+                        primary={true}
+                        animateKey={finalPoint.tsb}
+                      />
+                    </div>
                   </div>
                   <div
                     className="mt-4 rounded-md px-3 py-2.5 text-sm leading-snug"
-                    style={{ backgroundColor: TSB_BAND_COLOR[tsbBand] + "14", borderLeft: `3px solid ${TSB_BAND_COLOR[tsbBand]}` }}
+                    style={{
+                      backgroundColor: mixAlpha(TSB_BAND_COLOR[tsbBand], 8),
+                      borderLeft: `3px solid ${TSB_BAND_COLOR[tsbBand]}`,
+                    }}
                   >
-                    <span className="font-semibold" style={{ color: TSB_BAND_COLOR[tsbBand] }}>
+                    <span
+                      className="font-semibold"
+                      style={{ color: TSB_BAND_COLOR[tsbBand] }}
+                    >
                       {s.tsbInterpTitle}:{" "}
                     </span>
-                    <span className="text-[var(--color-text-secondary)]">{getTsbText(tsbBand, s)}</span>
+                    <span className="text-[var(--color-text-secondary)]">
+                      {getTsbText(tsbBand, s)}
+                    </span>
                   </div>
-                </div>
+                </ReadoutPanel>
               )}
             </div>
           ) : (
-            <p className="mt-5 rounded-md border px-3 py-2.5 text-xs text-[var(--color-text-muted)]" style={{ borderColor: "var(--color-border)" }}>
+            <p
+              className="mt-5 rounded-lg border px-4 py-3 font-mono text-xs leading-relaxed text-[var(--color-text-muted)]"
+              style={{
+                borderColor: accentAlpha(22),
+                backgroundColor: accentSurface(4),
+              }}
+            >
               {s.pmcNeedMore}
             </p>
           )}
         </div>
       )}
 
-      {/* Footnote */}
-      <p className="mt-6 text-xs leading-relaxed text-[var(--color-text-muted)]">{s.footnote}</p>
+      {/* ── Footnote ── */}
+      <p className="mt-6 border-t border-[var(--color-border-light)] pt-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
+        {s.footnote}
+      </p>
     </div>
   );
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────────────────
 
-function FinalValue({
-  label,
-  value,
-  color,
-  signed = false,
-}: {
-  label: string;
-  value: number;
-  color: string;
-  signed?: boolean;
-}) {
-  return (
-    <div>
-      <p className="mb-0.5 text-xs font-medium uppercase tracking-wide" style={{ color }}>
-        {label}
-      </p>
-      <p className="text-3xl font-bold leading-none tabular-nums" style={{ color }}>
-        {signed && value >= 0 ? "+" : ""}
-        {value.toFixed(1)}
-      </p>
-    </div>
-  );
-}
-
 function SingleActivityCard({
   m,
   s,
   locale,
-  color,
 }: {
   m: ActivityMetrics;
   s: Strings;
   locale: Locale;
-  color: string;
 }) {
   const a = m.activity;
+  const hasPrimaryMetrics =
+    m.tss !== null || (m.method === "power" && m.np !== null);
+
   return (
-    <div className="rounded-lg border p-4" style={{ borderColor: "var(--color-border)" }}>
+    <div
+      className="rounded-xl border p-4"
+      style={{ borderColor: "var(--color-border)" }}
+    >
+      {/* File header */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <div>
-          <p className="text-sm font-semibold text-[var(--color-text)]">
+          <p className="font-mono text-sm font-medium text-[var(--color-text)]">
             {a.sport ? a.sport : s.sport} · {formatDate(a.startTime, locale)}
           </p>
-          <p className="text-xs text-[var(--color-text-muted)]">{a.fileName}</p>
+          <p className="font-mono text-xs text-[var(--color-text-muted)]">{a.fileName}</p>
         </div>
         <MethodBadge method={m.method} s={s} />
       </div>
 
-      {/* Key metrics grid */}
+      {/* Primary metrics — TSS / NP / IF as telemetry readouts */}
+      {hasPrimaryMetrics && (
+        <ReadoutPanel className="mb-4">
+          <div className="flex flex-wrap items-start gap-6">
+            {m.tss !== null && (
+              <Readout
+                label={s.tss}
+                value={m.tss.toFixed(0)}
+                primary={true}
+                animateKey={m.tss}
+              />
+            )}
+            {m.method === "power" && m.np !== null && (
+              <Readout
+                label={s.np}
+                value={String(m.np)}
+                unit={s.watts}
+                primary={false}
+              />
+            )}
+            {m.method === "power" && m.if_ !== null && (
+              <Readout
+                label={s.if_}
+                value={m.if_.toFixed(2)}
+                primary={false}
+              />
+            )}
+          </div>
+        </ReadoutPanel>
+      )}
+
+      {/* Secondary metrics grid */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Metric label={s.duration} value={formatDuration(a.durationSec)} />
-        {m.tss !== null && <Metric label={s.tss} value={m.tss.toFixed(0)} accent={color} />}
-        {m.method === "power" && m.np !== null && <Metric label={s.np} value={`${m.np} ${s.watts}`} />}
-        {m.method === "power" && m.if_ !== null && <Metric label={s.if_} value={m.if_.toFixed(2)} />}
-        {a.avgPower !== undefined && <Metric label={s.avgPower} value={`${a.avgPower} ${s.watts}`} />}
-        {a.maxPower !== undefined && <Metric label={s.maxPower} value={`${a.maxPower} ${s.watts}`} />}
-        {a.avgHr !== undefined && <Metric label={s.avgHr} value={`${a.avgHr} ${s.bpm}`} />}
-        {a.maxHr !== undefined && <Metric label={s.maxHr} value={`${a.maxHr} ${s.bpm}`} />}
+        {a.avgPower !== undefined && (
+          <Metric label={s.avgPower} value={`${a.avgPower} ${s.watts}`} />
+        )}
+        {a.maxPower !== undefined && (
+          <Metric label={s.maxPower} value={`${a.maxPower} ${s.watts}`} />
+        )}
+        {a.avgHr !== undefined && (
+          <Metric label={s.avgHr} value={`${a.avgHr} ${s.bpm}`} />
+        )}
+        {a.maxHr !== undefined && (
+          <Metric label={s.maxHr} value={`${a.maxHr} ${s.bpm}`} />
+        )}
       </div>
 
       {/* Warnings */}
       {m.needsFtp && (
-        <p className="mt-4 rounded-md px-3 py-2 text-xs" style={{ backgroundColor: "#D9770611", color: "#B45309" }}>
+        <p
+          className="mt-4 rounded-md px-3 py-2 text-xs"
+          style={{
+            backgroundColor: mixAlpha("#D97706", 7),
+            color: "#B45309",
+          }}
+        >
           {s.noFtpWarning}
         </p>
       )}
       {m.method === "none" && !m.needsFtp && (
-        <p className="mt-4 rounded-md px-3 py-2 text-xs" style={{ backgroundColor: "#9CA3AF22", color: "var(--color-text-secondary)" }}>
+        <p
+          className="mt-4 rounded-md px-3 py-2 text-xs"
+          style={{
+            backgroundColor: mixAlpha("#9CA3AF", 14),
+            color: "var(--color-text-secondary)",
+          }}
+        >
           {s.noDataWarning}
         </p>
       )}
@@ -1004,7 +1154,7 @@ function SingleActivityCard({
       {/* Time in zones */}
       {m.zoneTimes && (
         <div className="mt-5">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
+          <p className="mb-2 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
             {s.timeInZones}
           </p>
           <ZoneBar zoneTimes={m.zoneTimes} locale={locale} />
@@ -1014,11 +1164,13 @@ function SingleActivityCard({
   );
 }
 
-function Metric({ label, value, accent }: { label: string; value: string; accent?: string }) {
+function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[11px] font-medium uppercase tracking-wide text-[var(--color-text-muted)]">{label}</p>
-      <p className="text-lg font-bold tabular-nums" style={{ color: accent ?? "var(--color-text)" }}>
+      <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+        {label}
+      </p>
+      <p className="mt-0.5 font-mono text-lg font-medium tabular-nums tracking-tight text-[var(--color-text)]">
         {value}
       </p>
     </div>
@@ -1042,10 +1194,16 @@ function ActivitiesTable({
   });
 
   return (
-    <div className="overflow-x-auto rounded-lg border" style={{ borderColor: "var(--color-border)" }}>
+    <div
+      className="overflow-x-auto rounded-xl border"
+      style={{ borderColor: "var(--color-border)" }}
+    >
       <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b text-left" style={{ borderColor: "var(--color-border)" }}>
+          <tr
+            className="border-b text-left"
+            style={{ borderColor: "var(--color-border)" }}
+          >
             <Th>{s.date}</Th>
             <Th>{s.duration}</Th>
             <Th align="right">{s.np}</Th>
@@ -1063,10 +1221,14 @@ function ActivitiesTable({
             >
               <Td>{formatDate(m.activity.startTime, locale)}</Td>
               <Td>{formatDuration(m.activity.durationSec)}</Td>
-              <Td align="right">{m.np !== null ? `${m.np}` : "—"}</Td>
-              <Td align="right">{m.if_ !== null ? m.if_.toFixed(2) : "—"}</Td>
+              <Td align="right">{m.np !== null ? String(m.np) : "—"}</Td>
               <Td align="right">
-                <span className="font-semibold tabular-nums">{m.tss !== null ? m.tss.toFixed(0) : "—"}</span>
+                {m.if_ !== null ? m.if_.toFixed(2) : "—"}
+              </Td>
+              <Td align="right">
+                <span className="font-semibold tabular-nums">
+                  {m.tss !== null ? m.tss.toFixed(0) : "—"}
+                </span>
               </Td>
               <Td>
                 <MethodBadge method={m.method} s={s} />
@@ -1079,19 +1241,33 @@ function ActivitiesTable({
   );
 }
 
-function Th({ children, align = "left" }: { children: React.ReactNode; align?: "left" | "right" }) {
+function Th({
+  children,
+  align = "left",
+}: {
+  children: React.ReactNode;
+  align?: "left" | "right";
+}) {
   return (
     <th
-      className={`px-3 py-2 ${align === "right" ? "text-right" : "text-left"} text-[11px] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]`}
+      className={`px-3 py-2 ${align === "right" ? "text-right" : "text-left"} font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]`}
     >
       {children}
     </th>
   );
 }
 
-function Td({ children, align = "left" }: { children: React.ReactNode; align?: "left" | "right" }) {
+function Td({
+  children,
+  align = "left",
+}: {
+  children: React.ReactNode;
+  align?: "left" | "right";
+}) {
   return (
-    <td className={`px-3 py-2 ${align === "right" ? "text-right" : "text-left"} text-[var(--color-text)]`}>
+    <td
+      className={`px-3 py-2 ${align === "right" ? "text-right font-mono tabular-nums" : "text-left"} text-[var(--color-text)]`}
+    >
       {children}
     </td>
   );

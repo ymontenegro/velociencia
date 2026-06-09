@@ -1,21 +1,27 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ReferenceLine,
-  ResponsiveContainer,
-} from "recharts";
 import { useLocale } from "@/components/locale-provider";
 import type { Locale } from "@/lib/i18n";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
+import {
+  ToolPanel,
+  NumberField,
+  Segmented,
+  FilterChip,
+  Readout,
+  ReadoutPanel,
+  GaugeBar,
+  GaugeLegend,
+  accentAlpha,
+  accentSurface,
+} from "@/components/tools/ui";
 
 // ─── i18n ─────────────────────────────────────────────────────────────────────
 
 const STRINGS = {
   es: {
+    eyebrow: "Ciencia · Calculadora",
     title: "Estimador de VO₂máx",
     wmaxLabel: "Potencia aeróbica máxima — Wmax (vatios)",
     weightLabel: "Peso corporal (kg)",
@@ -40,6 +46,7 @@ const STRINGS = {
       "Estimación mediante la regresión de Storer et al. (1990) en cicloergómetro. El VO₂máx real requiere análisis de gases en laboratorio; el resultado depende del protocolo de rampa utilizado.",
   },
   en: {
+    eyebrow: "Science · Calculator",
     title: "VO₂max Estimator",
     wmaxLabel: "Peak aerobic power — Wmax (watts)",
     weightLabel: "Body weight (kg)",
@@ -81,11 +88,11 @@ interface Category {
   lowerBound: number;
   /** Exclusive upper bound for classification; Infinity for the last band. */
   upperBound: number;
-  /** Width of this segment in the chart (upper visual cap for the last band). */
+  /** Width of this segment in the gauge (upper visual cap for the last band). */
   chartWidth: number;
 }
 
-// Visual max caps the open-ended last category on the chart X axis.
+// Visual max caps the open-ended last category on the gauge X axis.
 const VISUAL_MAX_MEN = 75;   // ml/kg/min
 const VISUAL_MAX_WOMEN = 65; // ml/kg/min
 
@@ -199,10 +206,6 @@ function getCategories(gender: Gender): Category[] {
   return gender === "m" ? CATEGORIES_MEN : CATEGORIES_WOMEN;
 }
 
-function getVisualMax(gender: Gender): number {
-  return gender === "m" ? VISUAL_MAX_MEN : VISUAL_MAX_WOMEN;
-}
-
 /**
  * Storer et al. (1990) — cycle ergometer VO₂max regression.
  *
@@ -244,75 +247,18 @@ function classifyVo2(relative: number, gender: Gender): Category | undefined {
   return cats[0];
 }
 
-/** Build a single-row data object for the stacked horizontal BarChart. */
-function buildChartRow(gender: Gender): Record<string, number | string> {
-  const cats = getCategories(gender);
-  const row: Record<string, number | string> = { row: "gauge" };
-  for (const cat of cats) row[cat.key] = cat.chartWidth;
-  return row;
-}
-
 /** Parse a positive finite number from a raw string; returns 0 on failure. */
 function parsePositive(raw: string): number {
   const n = parseFloat(raw);
   return Number.isFinite(n) && n > 0 ? n : 0;
 }
 
-// ─── SVG marker label (recharts injects viewBox via cloneElement) ─────────────
-
-interface MarkerLabelProps {
-  /** Injected by recharts at clone time. */
-  viewBox?: { x: number; y: number; width: number; height: number };
-  value: number;
-  color: string;
-}
-
-function UserMarkerLabel({ viewBox, value, color }: MarkerLabelProps) {
-  if (!viewBox) return null;
-  const { x, y } = viewBox;
-  const text = value.toFixed(1);
-  const boxW = 44;
-  const boxH = 18;
-  const arrowH = 6;
-
-  return (
-    <g>
-      {/* Background pill */}
-      <rect
-        x={x - boxW / 2}
-        y={y - boxH - arrowH}
-        width={boxW}
-        height={boxH}
-        rx={4}
-        fill={color}
-      />
-      {/* Downward arrow connecting pill to the reference line */}
-      <polygon
-        points={`${x - 5},${y - arrowH} ${x + 5},${y - arrowH} ${x},${y}`}
-        fill={color}
-      />
-      {/* Value label */}
-      <text
-        x={x}
-        y={y - arrowH - boxH / 2 + 5}
-        textAnchor="middle"
-        fill="#ffffff"
-        fontSize={10}
-        fontWeight="700"
-      >
-        {text}
-      </text>
-    </g>
-  );
-}
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Vo2maxEstimatorCalculator({
-  color = "#7C3AED",
-}: {
-  color?: string;
-}) {
+  accent = "#7C3AED",
+  accentVar = "--color-ciencia",
+}: ToolComponentProps) {
   const locale = useLocale();
   const s = STRINGS[locale];
 
@@ -360,422 +306,213 @@ export default function Vo2maxEstimatorCalculator({
   );
 
   // ── Chart data ─────────────────────────────────────────────────────────────
-  const chartData = useMemo(() => [buildChartRow(gender)], [gender]);
   const categories = useMemo(() => getCategories(gender), [gender]);
-  const visualMax = getVisualMax(gender);
-  const refX = result ? Math.min(result.relative, visualMax) : 0;
-  const xTicks = useMemo(
-    () => categories.map((c) => c.lowerBound).concat([visualMax]),
-    [categories, visualMax],
-  );
-
   const isValid = result !== null;
 
-  // ── Shared input styling ──────────────────────────────────────────────────
-  const inputBaseClass =
-    "w-full rounded-md border px-3 py-2 text-sm tabular-nums outline-none";
-  const inputBaseStyle: React.CSSProperties = {
-    borderColor: "var(--color-border)",
-    backgroundColor: "var(--color-bg-card)",
-    color: "var(--color-text)",
-  };
+  // Gauge segments derived from VO₂max category table (locale-aware labels)
+  const gaugeSegments = useMemo(
+    () =>
+      categories.map((cat, i) => ({
+        label: cat.label[locale],
+        width: cat.chartWidth,
+        color: CATEGORY_COLORS[i],
+      })),
+    [categories, locale],
+  );
+
+  // Index of the active category band in the gauge legend (-1 = none)
+  const activeIndex = useMemo(
+    () => (category ? categories.findIndex((c) => c.key === category.key) : -1),
+    [category, categories],
+  );
+
+  const genderOptions: Array<{ value: Gender; label: string }> = [
+    { value: "m", label: s.male },
+    { value: "f", label: s.female },
+  ];
 
   return (
-    <div
-      className="not-prose rounded-lg border"
-      style={{
-        borderColor: "var(--color-border)",
-        backgroundColor: "var(--color-bg-card)",
-      }}
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={s.eyebrow}
+      title={s.title}
     >
-      {/* ── Header ────────────────────────────────────────────────────────── */}
-      <div
-        className="rounded-t-lg px-5 py-4"
-        style={{ borderBottom: "1px solid var(--color-border-light)" }}
-      >
-        <h3
-          className="text-base font-semibold"
-          style={{ color: "var(--color-text)" }}
-        >
-          {s.title}
-        </h3>
-      </div>
+      {/* ── Inputs ── */}
+      <div className="grid gap-6 sm:grid-cols-2">
+        {/* Wmax / FTP block — full width */}
+        <div className="sm:col-span-2">
+          <NumberField
+            id="vo2-wmax"
+            label={s.wmaxLabel}
+            value={ftpMode && derivedWmax > 0 ? String(derivedWmax) : wmaxStr}
+            onChange={(v) => {
+              if (!ftpMode) setWmaxStr(v);
+            }}
+            min={1}
+            max={3000}
+            step={1}
+            unit="W"
+            readOnly={ftpMode && derivedWmax > 0}
+          />
 
-      <div className="p-5">
-        {/* ── Inputs ──────────────────────────────────────────────────────── */}
-        <div className="mb-5 grid gap-4 sm:grid-cols-2">
-          {/* Wmax / FTP block */}
-          <div className="sm:col-span-2">
-            <label
-              className="mb-1.5 block text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.wmaxLabel}
-            </label>
-            <input
-              type="number"
-              min={1}
-              max={3000}
-              step={1}
-              value={
-                ftpMode && derivedWmax > 0 ? String(derivedWmax) : wmaxStr
-              }
-              readOnly={ftpMode && derivedWmax > 0}
-              onChange={(e) => {
-                if (!ftpMode) setWmaxStr(e.target.value);
-              }}
-              className={inputBaseClass}
-              style={{
-                ...inputBaseStyle,
-                opacity: ftpMode && derivedWmax > 0 ? 0.65 : 1,
-              }}
-              onFocus={(e) => {
-                if (!ftpMode) e.currentTarget.style.borderColor = color;
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-border)";
-              }}
-            />
-
-            {/* FTP toggle link */}
-            <button
-              type="button"
+          {/* FTP mode toggle */}
+          <div className="mt-2.5">
+            <FilterChip
+              label={s.ftpToggle}
+              active={ftpMode}
               onClick={() => {
                 setFtpMode((v) => !v);
                 setFtpStr("");
               }}
-              className="mt-1.5 text-xs underline-offset-2 hover:underline"
-              style={{ color }}
-            >
-              {s.ftpToggle}
-            </button>
-
-            {/* FTP helper panel (collapsible) */}
-            {ftpMode && (
-              <div
-                className="mt-2.5 rounded-md p-3"
-                style={{
-                  backgroundColor: color + "0f",
-                  border: `1px solid ${color}33`,
-                }}
-              >
-                <p
-                  className="mb-2 text-xs leading-relaxed"
-                  style={{ color: "var(--color-text-muted)" }}
-                >
-                  {s.ftpNote}
-                </p>
-                <div className="flex flex-wrap items-center gap-2">
-                  <label
-                    className="whitespace-nowrap text-xs font-medium"
-                    style={{ color: "var(--color-text-secondary)" }}
-                  >
-                    {s.ftpLabel}
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    max={2000}
-                    step={1}
-                    placeholder="ej. 225"
-                    value={ftpStr}
-                    onChange={(e) => setFtpStr(e.target.value)}
-                    className="w-24 rounded-md border px-2 py-1 text-xs tabular-nums outline-none"
-                    style={inputBaseStyle}
-                    onFocus={(e) =>
-                      (e.currentTarget.style.borderColor = color)
-                    }
-                    onBlur={(e) =>
-                      (e.currentTarget.style.borderColor =
-                        "var(--color-border)")
-                    }
-                  />
-                  {derivedWmax > 0 && (
-                    <span
-                      className="text-xs font-semibold tabular-nums"
-                      style={{ color }}
-                    >
-                      {s.wmaxFromFtp} {derivedWmax} W
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Weight */}
-          <div>
-            <label
-              className="mb-1.5 block text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.weightLabel}
-            </label>
-            <input
-              type="number"
-              min={1}
-              max={300}
-              step={0.1}
-              value={weightStr}
-              onChange={(e) => setWeightStr(e.target.value)}
-              className={inputBaseClass}
-              style={inputBaseStyle}
-              onFocus={(e) => (e.currentTarget.style.borderColor = color)}
-              onBlur={(e) =>
-                (e.currentTarget.style.borderColor = "var(--color-border)")
-              }
             />
           </div>
 
-          {/* Age */}
-          <div>
-            <label
-              className="mb-1.5 block text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.ageLabel}
-            </label>
-            <input
-              type="number"
-              min={10}
-              max={100}
-              step={1}
-              value={ageStr}
-              onChange={(e) => setAgeStr(e.target.value)}
-              className={inputBaseClass}
-              style={inputBaseStyle}
-              onFocus={(e) => (e.currentTarget.style.borderColor = color)}
-              onBlur={(e) =>
-                (e.currentTarget.style.borderColor = "var(--color-border)")
-              }
-            />
-          </div>
-
-          {/* Sex */}
-          <div className="sm:col-span-2">
-            <p
-              className="mb-1.5 text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.genderLabel}
-            </p>
+          {/* FTP helper panel (shown when toggle is active) */}
+          {ftpMode && (
             <div
-              className="flex overflow-hidden rounded-md border"
-              style={{ borderColor: "var(--color-border)" }}
+              className="mt-3 rounded-lg p-4"
+              style={{
+                backgroundColor: accentSurface(6),
+                border: `1px solid ${accentAlpha(20)}`,
+              }}
             >
-              {(["m", "f"] as Gender[]).map((g, i) => {
-                const isActive = gender === g;
-                return (
-                  <button
-                    key={g}
-                    type="button"
-                    onClick={() => setGender(g)}
-                    className="flex-1 py-2 text-sm font-medium transition-colors"
-                    style={{
-                      backgroundColor: isActive ? color : "transparent",
-                      color: isActive
-                        ? "#fff"
-                        : "var(--color-text-secondary)",
-                      borderRight:
-                        i === 0
-                          ? "1px solid var(--color-border)"
-                          : "none",
-                    }}
+              <p className="mb-3 text-xs leading-relaxed text-[var(--color-text-muted)]">
+                {s.ftpNote}
+              </p>
+              <div className="flex flex-wrap items-end gap-3">
+                <NumberField
+                  id="vo2-ftp"
+                  label={s.ftpLabel}
+                  value={ftpStr}
+                  onChange={setFtpStr}
+                  min={1}
+                  max={2000}
+                  step={1}
+                  unit="W"
+                  placeholder="ej. 225"
+                  className="w-44"
+                />
+                {derivedWmax > 0 && (
+                  <p
+                    className="pb-2.5 font-mono text-xs font-semibold tabular-nums"
+                    style={{ color: "var(--tool-accent)" }}
                   >
-                    {g === "m" ? s.male : s.female}
-                  </button>
-                );
-              })}
+                    {s.wmaxFromFtp} {derivedWmax} W
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* ── Result card ─────────────────────────────────────────────────── */}
+        {/* Weight */}
+        <NumberField
+          id="vo2-weight"
+          label={s.weightLabel}
+          value={weightStr}
+          onChange={setWeightStr}
+          min={1}
+          max={300}
+          step={0.1}
+          unit="kg"
+        />
+
+        {/* Age */}
+        <NumberField
+          id="vo2-age"
+          label={s.ageLabel}
+          value={ageStr}
+          onChange={setAgeStr}
+          min={10}
+          max={100}
+          step={1}
+          unit="yr"
+        />
+
+        {/* Sex — full width */}
+        <Segmented
+          label={s.genderLabel}
+          options={genderOptions}
+          value={gender}
+          onChange={setGender}
+          className="sm:col-span-2"
+        />
+      </div>
+
+      {/* ── Readout ── */}
+      <ReadoutPanel className="mt-6">
         {isValid && result ? (
-          <div
-            className="mb-6 rounded-lg p-4"
-            style={{
-              backgroundColor: color + "11",
-              border: `1px solid ${color}44`,
-            }}
-          >
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              {/* Relative VO₂max — primary result */}
-              <div className="flex-1">
-                <p
-                  className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-                  style={{ color }}
-                >
-                  {s.relativeLabel}
-                </p>
-                <div className="flex items-baseline gap-2">
-                  <span
-                    className="text-5xl font-bold tabular-nums leading-none"
-                    style={{ color }}
-                  >
-                    {result.relative.toFixed(1)}
-                  </span>
-                  <span
-                    className="text-xl font-semibold"
-                    style={{ color: "var(--color-text-secondary)" }}
-                  >
-                    {s.relativeUnit}
-                  </span>
-                </div>
-                <p
-                  className="mt-1.5 text-sm tabular-nums"
-                  style={{ color: "var(--color-text-muted)" }}
-                >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <Readout
+              label={s.relativeLabel}
+              value={result.relative.toFixed(1)}
+              unit={s.relativeUnit}
+              animateKey={result.relative}
+              sub={
+                <>
                   {s.absoluteLabel}:{" "}
-                  <span className="font-medium" style={{ color: "var(--color-text-secondary)" }}>
+                  <span className="font-mono font-medium tabular-nums text-[var(--color-text-secondary)]">
                     {result.absoluteLMin.toFixed(2)} {s.absoluteUnit}
                   </span>
-                </p>
-              </div>
-
-              {/* Vertical divider */}
-              <div
-                className="hidden w-px self-stretch sm:block"
-                style={{ backgroundColor: color + "33" }}
-              />
-
-              {/* Classification */}
-              {category && (
-                <div className="flex-1">
-                  <p
-                    className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-                    style={{ color: "var(--color-text-muted)" }}
-                  >
-                    {s.categoryLabel}
-                  </p>
-                  <p
-                    className="text-2xl font-bold leading-tight"
-                    style={{ color: "var(--color-text)" }}
-                  >
-                    {category.label[locale]}
-                  </p>
-                  <p
-                    className="mt-0.5 text-sm tabular-nums"
-                    style={{ color: "var(--color-text-muted)" }}
-                  >
-                    {category.range[locale]}
-                  </p>
-                  <p
-                    className="mt-1 text-xs"
-                    style={{ color: "var(--color-text-muted)" }}
-                  >
-                    {s.categoryNote}
-                  </p>
-                </div>
-              )}
-            </div>
+                </>
+              }
+            />
+            <div
+              className="hidden w-px self-stretch sm:block"
+              style={{ backgroundColor: accentAlpha(22) }}
+            />
+            <div
+              className="block h-px sm:hidden"
+              style={{ backgroundColor: accentAlpha(22) }}
+            />
+            <Readout
+              label={s.categoryLabel}
+              value={category ? category.label[locale] : "—"}
+              primary={false}
+              sub={
+                category ? (
+                  <>
+                    <span className="block font-mono tabular-nums">
+                      {category.range[locale]}
+                    </span>
+                    <span className="mt-0.5 block text-xs">
+                      {s.categoryNote}
+                    </span>
+                  </>
+                ) : undefined
+              }
+            />
           </div>
         ) : (
-          <div
-            className="mb-6 rounded-lg p-4 text-sm"
-            style={{
-              backgroundColor: "var(--color-bg-card)",
-              border: "1px solid var(--color-border)",
-              color: "var(--color-text-muted)",
-            }}
-          >
+          <p className="text-sm text-[var(--color-text-muted)]">
             {s.invalidInput}
-          </div>
-        )}
-
-        {/* ── Gauge chart ──────────────────────────────────────────────────── */}
-        <div
-          className="mb-5 rounded-lg border px-4 pb-4 pt-4"
-          style={{ borderColor: "var(--color-border)" }}
-        >
-          <p
-            className="mb-3 text-sm font-semibold"
-            style={{ color: "var(--color-text)" }}
-          >
-            {s.chartTitle}
           </p>
+        )}
+      </ReadoutPanel>
 
-          <ResponsiveContainer width="100%" height={120}>
-            <BarChart
-              layout="vertical"
-              data={chartData}
-              margin={{ top: 32, right: 12, left: 0, bottom: 4 }}
-            >
-              {/* Single-row Y axis — hidden */}
-              <YAxis type="category" dataKey="row" hide width={0} />
-
-              {/* X axis with category boundary ticks */}
-              <XAxis
-                type="number"
-                domain={[0, visualMax]}
-                ticks={xTicks}
-                tickFormatter={(v: number) =>
-                  Number.isInteger(v) ? String(v) : v.toFixed(0)
-                }
-                tick={{ fontSize: 11, fill: "var(--color-text-muted)" }}
-                stroke="var(--color-border)"
-                tickLine={false}
-              />
-
-              {/* Stacked bars — one segment per VO₂max category */}
-              {categories.map((cat, i) => (
-                <Bar
-                  key={cat.key}
-                  dataKey={cat.key}
-                  stackId="gauge"
-                  fill={CATEGORY_COLORS[i]}
-                  isAnimationActive={false}
-                  radius={
-                    i === 0
-                      ? [4, 0, 0, 4]
-                      : i === categories.length - 1
-                        ? [0, 4, 4, 0]
-                        : [0, 0, 0, 0]
-                  }
-                />
-              ))}
-
-              {/* User position marker */}
-              {isValid && result && (
-                <ReferenceLine
-                  x={refX}
-                  stroke={color}
-                  strokeWidth={2.5}
-                  label={
-                    <UserMarkerLabel value={result.relative} color={color} />
-                  }
-                />
-              )}
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* ── Category legend ──────────────────────────────────────────────── */}
-        <div className="mb-5 flex flex-wrap gap-x-4 gap-y-2">
-          {categories.map((cat, i) => (
-            <div key={cat.key} className="flex items-center gap-1.5">
-              <span
-                className="inline-block h-2.5 w-2.5 flex-shrink-0 rounded-sm"
-                style={{ backgroundColor: CATEGORY_COLORS[i] }}
-              />
-              <span
-                className="text-xs"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                {cat.label[locale]}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Footnote ────────────────────────────────────────────────────── */}
-        <p
-          className="text-xs leading-relaxed"
-          style={{ color: "var(--color-text-muted)" }}
-        >
-          {s.footnote}
+      {/* ── Gauge ── */}
+      <div className="mt-6 rounded-xl border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-text)_2%,var(--color-bg-card))] px-4 pb-5 pt-4">
+        <p className="mb-4 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+          {s.chartTitle}
         </p>
+        <GaugeBar
+          segments={gaugeSegments}
+          value={result ? result.relative : 0}
+          valueLabel={result ? result.relative.toFixed(1) : "0"}
+          showMarker={isValid}
+        />
+        <GaugeLegend
+          segments={gaugeSegments}
+          activeIndex={activeIndex}
+          className="mt-5"
+        />
       </div>
-    </div>
+
+      {/* ── Footnote ── */}
+      <p className="mt-5 border-t border-[var(--color-border-light)] pt-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
+        {s.footnote}
+      </p>
+    </ToolPanel>
   );
 }

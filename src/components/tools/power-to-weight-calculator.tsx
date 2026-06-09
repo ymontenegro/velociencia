@@ -1,21 +1,25 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ReferenceLine,
-  ResponsiveContainer,
-} from "recharts";
 import { useLocale } from "@/components/locale-provider";
 import type { Locale } from "@/lib/i18n";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
+import {
+  ToolPanel,
+  NumberField,
+  Segmented,
+  Readout,
+  ReadoutPanel,
+  GaugeBar,
+  GaugeLegend,
+  accentAlpha,
+} from "@/components/tools/ui";
 
 // ─── i18n ────────────────────────────────────────────────────────────────────
 
 const STRINGS = {
   es: {
+    eyebrow: "Ciencia · Calculadora",
     title: "Calculadora de relación potencia-peso",
     powerLabel: "Potencia / FTP (vatios)",
     weightLabel: "Peso corporal (kg)",
@@ -32,6 +36,7 @@ const STRINGS = {
     invalidInput: "Ingresa valores válidos para calcular.",
   },
   en: {
+    eyebrow: "Science · Calculator",
     title: "Power-to-Weight Calculator",
     powerLabel: "Power / FTP (watts)",
     weightLabel: "Body weight (kg)",
@@ -66,11 +71,11 @@ interface Category {
   lowerBound: number;
   /** Exclusive upper bound for classification; Infinity for the last category. */
   upperBound: number;
-  /** Width of this segment in the chart (upper visual cap for last category). */
+  /** Width of this segment in the gauge (upper visual cap for last category). */
   chartWidth: number;
 }
 
-// Visual max for the chart's X axis (caps the unbounded last category).
+// Visual max for the gauge X axis (caps the unbounded last category).
 const VISUAL_MAX_MEN = 7.0;
 const VISUAL_MAX_WOMEN = 6.5;
 
@@ -195,10 +200,6 @@ function getCategories(gender: Gender): Category[] {
   return gender === "m" ? CATEGORIES_MEN : CATEGORIES_WOMEN;
 }
 
-function getVisualMax(gender: Gender): number {
-  return gender === "m" ? VISUAL_MAX_MEN : VISUAL_MAX_WOMEN;
-}
-
 /** Returns the category the given W/kg falls into, or undefined if wkg ≤ 0. */
 function classifyWkg(wkg: number, gender: Gender): Category | undefined {
   if (wkg <= 0) return undefined;
@@ -210,78 +211,12 @@ function classifyWkg(wkg: number, gender: Gender): Category | undefined {
   return cats[0];
 }
 
-/** Build a single-row data object for the stacked BarChart. */
-function buildChartRow(gender: Gender): Record<string, number | string> {
-  const cats = getCategories(gender);
-  const row: Record<string, number | string> = { row: "profile" };
-  for (const cat of cats) {
-    row[cat.key] = cat.chartWidth;
-  }
-  return row;
-}
-
-// ─── Custom reference-line label (recharts clones this, injecting viewBox) ───
-
-interface MarkerLabelProps {
-  /** Injected by recharts at clone time. */
-  viewBox?: { x: number; y: number; width: number; height: number };
-  wkg: number;
-  color: string;
-}
-
-function UserMarkerLabel({ viewBox, wkg, color }: MarkerLabelProps) {
-  if (!viewBox) return null;
-  const { x, y } = viewBox;
-  const text = `${wkg.toFixed(2)}`;
-  const boxW = 42;
-  const boxH = 18;
-  const arrowH = 6;
-
-  return (
-    <g>
-      {/* Background pill */}
-      <rect
-        x={x - boxW / 2}
-        y={y - boxH - arrowH}
-        width={boxW}
-        height={boxH}
-        rx={4}
-        fill={color}
-      />
-      {/* Downward-pointing arrow connecting pill to line */}
-      <polygon
-        points={`${x - 5},${y - arrowH} ${x + 5},${y - arrowH} ${x},${y}`}
-        fill={color}
-      />
-      {/* Value text */}
-      <text
-        x={x}
-        y={y - arrowH - boxH / 2 + 5}
-        textAnchor="middle"
-        fill="#ffffff"
-        fontSize={10}
-        fontWeight="700"
-      >
-        {text}
-      </text>
-    </g>
-  );
-}
-
-// ─── X-axis tick formatter ─────────────────────────────────────────────────────
-
-function fmtTick(v: number): string {
-  // Show one decimal only when not a whole number
-  return Number.isInteger(v) ? String(v) : v.toFixed(1);
-}
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function PowerToWeightCalculator({
-  color = "#7C3AED",
-}: {
-  color?: string;
-}) {
+  accent = "#7C3AED",
+  accentVar = "--color-ciencia",
+}: ToolComponentProps) {
   const locale = useLocale();
   const s = STRINGS[locale];
 
@@ -308,312 +243,122 @@ export default function PowerToWeightCalculator({
   }, [power, weight]);
 
   const category = useMemo(() => classifyWkg(wkg, gender), [wkg, gender]);
-
-  const chartData = useMemo(() => [buildChartRow(gender)], [gender]);
-
   const categories = useMemo(() => getCategories(gender), [gender]);
-  const visualMax = getVisualMax(gender);
-
-  // Clamp the reference line position so it stays within the visual range
-  const refX = Math.min(wkg, visualMax);
-
-  // X-axis boundary ticks
-  const xTicks = useMemo(
-    () => categories.map((c) => c.lowerBound).concat([visualMax]),
-    [categories, visualMax]
-  );
-
   const isValid = wkg > 0;
 
+  // Gauge segments derived from the Coggan category table (locale-aware labels)
+  const gaugeSegments = useMemo(
+    () =>
+      categories.map((cat, i) => ({
+        label: cat.label[locale],
+        width: cat.chartWidth,
+        color: CATEGORY_COLORS[i],
+      })),
+    [categories, locale],
+  );
+
+  // Index of the active category band in the gauge legend (-1 = none)
+  const activeIndex = useMemo(
+    () => (category ? categories.findIndex((c) => c.key === category.key) : -1),
+    [category, categories],
+  );
+
+  const genderOptions: Array<{ value: Gender; label: string }> = [
+    { value: "m", label: s.male },
+    { value: "f", label: s.female },
+  ];
+
   return (
-    <div
-      className="not-prose rounded-lg border"
-      style={{
-        borderColor: "var(--color-border)",
-        backgroundColor: "var(--color-bg-card)",
-      }}
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={s.eyebrow}
+      title={s.title}
     >
-      {/* Header */}
-      <div
-        className="rounded-t-lg px-5 py-4"
-        style={{ borderBottom: "1px solid var(--color-border-light)" }}
-      >
-        <h3
-          className="text-base font-semibold"
-          style={{ color: "var(--color-text)" }}
-        >
-          {s.title}
-        </h3>
+      {/* ── Inputs ── */}
+      <div className="grid gap-6 sm:grid-cols-3">
+        <NumberField
+          id="ptw-power"
+          label={s.powerLabel}
+          value={powerStr}
+          onChange={setPowerStr}
+          min={1}
+          max={3000}
+          step={1}
+          unit="W"
+        />
+        <NumberField
+          id="ptw-weight"
+          label={s.weightLabel}
+          value={weightStr}
+          onChange={setWeightStr}
+          min={1}
+          max={300}
+          step={0.1}
+          unit="kg"
+        />
+        <Segmented
+          label={s.genderLabel}
+          options={genderOptions}
+          value={gender}
+          onChange={setGender}
+        />
       </div>
 
-      <div className="p-5">
-        {/* ── Inputs ─────────────────────────────────────────────────────── */}
-        <div className="mb-6 grid gap-4 sm:grid-cols-3">
-          {/* Power */}
-          <div>
-            <label
-              className="mb-1.5 block text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.powerLabel}
-            </label>
-            <input
-              type="number"
-              min={1}
-              max={3000}
-              step={1}
-              value={powerStr}
-              onChange={(e) => setPowerStr(e.target.value)}
-              className="w-full rounded-md border px-3 py-2 text-sm tabular-nums outline-none focus:ring-2"
-              style={{
-                borderColor: "var(--color-border)",
-                backgroundColor: "var(--color-bg-card)",
-                color: "var(--color-text)",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = color)}
-              onBlur={(e) =>
-                (e.target.style.borderColor = "var(--color-border)")
-              }
+      {/* ── Readout ── */}
+      <ReadoutPanel className="mt-6">
+        {isValid && category ? (
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <Readout
+              label={s.resultUnit}
+              value={wkg.toFixed(2)}
+              unit="W/kg"
+              animateKey={wkg}
             />
-          </div>
-
-          {/* Weight */}
-          <div>
-            <label
-              className="mb-1.5 block text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.weightLabel}
-            </label>
-            <input
-              type="number"
-              min={1}
-              max={300}
-              step={0.1}
-              value={weightStr}
-              onChange={(e) => setWeightStr(e.target.value)}
-              className="w-full rounded-md border px-3 py-2 text-sm tabular-nums outline-none focus:ring-2"
-              style={{
-                borderColor: "var(--color-border)",
-                backgroundColor: "var(--color-bg-card)",
-                color: "var(--color-text)",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = color)}
-              onBlur={(e) =>
-                (e.target.style.borderColor = "var(--color-border)")
-              }
-            />
-          </div>
-
-          {/* Gender */}
-          <div>
-            <p
-              className="mb-1.5 text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.genderLabel}
-            </p>
             <div
-              className="flex overflow-hidden rounded-md border"
-              style={{ borderColor: "var(--color-border)" }}
-            >
-              {(["m", "f"] as Gender[]).map((g, i) => {
-                const isActive = gender === g;
-                return (
-                  <button
-                    key={g}
-                    type="button"
-                    onClick={() => setGender(g)}
-                    className="flex-1 py-2 text-sm font-medium transition-colors"
-                    style={{
-                      backgroundColor: isActive ? color : "transparent",
-                      color: isActive
-                        ? "#fff"
-                        : "var(--color-text-secondary)",
-                      borderRight:
-                        i === 0 ? "1px solid var(--color-border)" : "none",
-                    }}
-                  >
-                    {g === "m" ? s.male : s.female}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Result card ─────────────────────────────────────────────────── */}
-        {isValid ? (
-          <div
-            className="mb-6 rounded-lg p-4"
-            style={{
-              backgroundColor: color + "11",
-              border: `1px solid ${color}44`,
-            }}
-          >
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              {/* Big number */}
-              <div className="flex-1">
-                <p
-                  className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-                  style={{ color: color }}
-                >
-                  {s.resultUnit}
-                </p>
-                <div className="flex items-baseline gap-2">
-                  <span
-                    className="text-5xl font-bold tabular-nums leading-none"
-                    style={{ color: color }}
-                  >
-                    {wkg.toFixed(2)}
-                  </span>
-                  <span
-                    className="text-xl font-semibold"
-                    style={{ color: "var(--color-text-secondary)" }}
-                  >
-                    W/kg
-                  </span>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div
-                className="hidden w-px self-stretch sm:block"
-                style={{ backgroundColor: color + "33" }}
-              />
-
-              {/* Category */}
-              {category && (
-                <div className="flex-1">
-                  <p
-                    className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-                    style={{ color: "var(--color-text-muted)" }}
-                  >
-                    {s.categoryLabel}
-                  </p>
-                  <p
-                    className="text-2xl font-bold leading-tight"
-                    style={{ color: "var(--color-text)" }}
-                  >
-                    {category.label[locale]}
-                  </p>
-                  <p
-                    className="mt-0.5 text-sm tabular-nums"
-                    style={{ color: "var(--color-text-muted)" }}
-                  >
-                    {category.range[locale]}
-                  </p>
-                </div>
-              )}
-            </div>
+              className="hidden w-px self-stretch sm:block"
+              style={{ backgroundColor: accentAlpha(22) }}
+            />
+            <div
+              className="block h-px sm:hidden"
+              style={{ backgroundColor: accentAlpha(22) }}
+            />
+            <Readout
+              label={s.categoryLabel}
+              value={category.label[locale]}
+              sub={category.range[locale]}
+              primary={false}
+            />
           </div>
         ) : (
-          <div
-            className="mb-6 rounded-lg p-4 text-sm"
-            style={{
-              backgroundColor: "var(--color-bg-card)",
-              border: "1px solid var(--color-border)",
-              color: "var(--color-text-muted)",
-            }}
-          >
+          <p className="text-sm text-[var(--color-text-muted)]">
             {s.invalidInput}
-          </div>
-        )}
-
-        {/* ── Chart ───────────────────────────────────────────────────────── */}
-        <div
-          className="mb-5 rounded-lg border px-4 pb-4 pt-4"
-          style={{ borderColor: "var(--color-border)" }}
-        >
-          <p
-            className="mb-3 text-sm font-semibold"
-            style={{ color: "var(--color-text)" }}
-          >
-            {s.chartTitle}
           </p>
+        )}
+      </ReadoutPanel>
 
-          <ResponsiveContainer width="100%" height={120}>
-            <BarChart
-              layout="vertical"
-              data={chartData}
-              margin={{ top: 28, right: 12, left: 0, bottom: 4 }}
-            >
-              {/* Hidden Y axis (only one row) */}
-              <YAxis type="category" dataKey="row" hide width={0} />
-
-              {/* X axis with category boundary ticks */}
-              <XAxis
-                type="number"
-                domain={[0, visualMax]}
-                ticks={xTicks}
-                tickFormatter={fmtTick}
-                tick={{ fontSize: 11, fill: "var(--color-text-muted)" }}
-                stroke="var(--color-border)"
-                tickLine={false}
-              />
-
-              {/* Stacked bars: one segment per Coggan category */}
-              {categories.map((cat, i) => (
-                <Bar
-                  key={cat.key}
-                  dataKey={cat.key}
-                  stackId="profile"
-                  fill={CATEGORY_COLORS[i]}
-                  isAnimationActive={false}
-                  radius={
-                    i === 0
-                      ? [4, 0, 0, 4]
-                      : i === categories.length - 1
-                        ? [0, 4, 4, 0]
-                        : [0, 0, 0, 0]
-                  }
-                />
-              ))}
-
-              {/* User position marker */}
-              {isValid && (
-                <ReferenceLine
-                  x={refX}
-                  stroke={color}
-                  strokeWidth={2.5}
-                  label={
-                    <UserMarkerLabel
-                      wkg={wkg}
-                      color={color}
-                    />
-                  }
-                />
-              )}
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* ── Category legend ─────────────────────────────────────────────── */}
-        <div className="mb-5 flex flex-wrap gap-x-4 gap-y-2">
-          {categories.map((cat, i) => (
-            <div key={cat.key} className="flex items-center gap-1.5">
-              <span
-                className="inline-block h-2.5 w-2.5 rounded-sm flex-shrink-0"
-                style={{ backgroundColor: CATEGORY_COLORS[i] }}
-              />
-              <span
-                className="text-xs"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                {cat.label[locale]}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Footnote ────────────────────────────────────────────────────── */}
-        <p
-          className="text-xs leading-relaxed"
-          style={{ color: "var(--color-text-muted)" }}
-        >
-          {s.footnote}
+      {/* ── Gauge ── */}
+      <div className="mt-6 rounded-xl border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-text)_2%,var(--color-bg-card))] px-4 pb-5 pt-4">
+        <p className="mb-4 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+          {s.chartTitle}
         </p>
+        <GaugeBar
+          segments={gaugeSegments}
+          value={wkg}
+          valueLabel={wkg.toFixed(2)}
+          showMarker={isValid}
+        />
+        <GaugeLegend
+          segments={gaugeSegments}
+          activeIndex={activeIndex}
+          className="mt-5"
+        />
       </div>
-    </div>
+
+      {/* ── Footnote ── */}
+      <p className="mt-5 border-t border-[var(--color-border-light)] pt-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
+        {s.footnote}
+      </p>
+    </ToolPanel>
   );
 }

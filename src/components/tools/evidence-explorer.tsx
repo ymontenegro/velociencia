@@ -15,22 +15,34 @@ import {
   EVIDENCE_DIRECTION_ORDER,
   type SupplementEntry,
   type EvidenceFilterState,
+  type EvidenceCategory,
   type EvidenceLevel,
   type EvidenceDirection,
-  type EvidenceCategory,
 } from "@/lib/datasets/evidence";
 import { getToolById, toolHref } from "@/lib/tools";
+import {
+  ToolPanel,
+  FilterChip,
+  SelectField,
+  MetaBadge,
+  accentAlpha,
+  accentSurface,
+} from "@/components/tools/ui";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
-/* Local strings not in the shared dictionary                          */
+/* Local strings — eyebrow (new) + cross-link copy.                   */
+/* Per convention: new eyebrow/label strings live here, not in JSON.  */
 /* ------------------------------------------------------------------ */
 
 const LOCAL_STRINGS = {
   es: {
+    eyebrow: "Nutrición · Suplementación",
     ctaGels: "¿Buscas geles? Compara precio por gramo de carbohidrato",
   },
   en: {
+    eyebrow: "Nutrition · Supplementation",
     ctaGels: "Looking for gels? Compare cost per gram of carb",
   },
 } as const;
@@ -38,6 +50,7 @@ const LOCAL_STRINGS = {
 /* ------------------------------------------------------------------ */
 /* Semantic badge colour palette (fixed, theme-neutral)                */
 /* Low-opacity bg + strong same-hue text → readable on dark + light.  */
+/* DO NOT CHANGE: these palettes encode scientific meaning.            */
 /* ------------------------------------------------------------------ */
 
 type BadgeStyle = { backgroundColor: string; color: string };
@@ -79,26 +92,23 @@ const AIS_BADGE: Record<string, BadgeStyle> = {
 /* Main component                                                      */
 /* ------------------------------------------------------------------ */
 
-export default function EvidenceExplorer({ color }: { color?: string }) {
+export default function EvidenceExplorer({
+  accent = "#0D9488",
+  accentVar = "--color-nutricion",
+}: ToolComponentProps) {
   const locale = useLocale();
   const dict = useDictionary();
   const e = dict.evidence;
   const t = LOCAL_STRINGS[locale];
-  const accent = color ?? "var(--color-nutricion)";
-
-  /** Returns `color` + hex-alpha (e.g. "22") or a `color-mix` fallback. */
-  const colorAlpha = (alphaHex: string) => {
-    if (color) return color + alphaHex;
-    const pct = Math.round((parseInt(alphaHex, 16) / 255) * 100);
-    return `color-mix(in srgb, var(--color-nutricion) ${pct}%, transparent)`;
-  };
 
   /* State ----------------------------------------------------------- */
   const [filters, setFilters] = useState<EvidenceFilterState>(DEFAULT_EVIDENCE_FILTERS);
   /** IDs of cards with their full detail expanded. */
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   /** IDs of cards with their citations block expanded. */
-  const [expandedCitationIds, setExpandedCitationIds] = useState<Set<string>>(new Set());
+  const [expandedCitationIds, setExpandedCitationIds] = useState<Set<string>>(
+    new Set(),
+  );
 
   /* Memos ----------------------------------------------------------- */
   const categories = useMemo(() => getPresentCategories(), []);
@@ -139,72 +149,106 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
   }
 
   /* Label helpers (cast for safe enum-key indexing) ----------------- */
-  const levelLabel = (v: string) => (e.levelLabels as Record<string, string>)[v] ?? v;
-  const dirLabel = (v: string) => (e.directionLabels as Record<string, string>)[v] ?? v;
-  const catLabel = (v: string) => (e.categoryLabels as Record<string, string>)[v] ?? v;
-  const confLabel = (v: string) => (e.confidenceLabels as Record<string, string>)[v] ?? v;
-  const popLabel = (v: string) => (e.populationLabels as Record<string, string>)[v] ?? v;
-  const sexLabel = (v: string) => (e.sexLabels as Record<string, string>)[v] ?? v;
-  const wadaLabel = (v: string) => (e.wadaLabels as Record<string, string>)[v] ?? v;
-  const aisLabel = (v: string) => (e.aisLabels as Record<string, string>)[v] ?? v;
-  const levelDescLabel = (v: string) => (e.levelDesc as Record<string, string>)[v] ?? v;
-  const dirDescLabel = (v: string) => (e.directionDesc as Record<string, string>)[v] ?? v;
+  const levelLabel = (v: string) =>
+    (e.levelLabels as Record<string, string>)[v] ?? v;
+  const dirLabel = (v: string) =>
+    (e.directionLabels as Record<string, string>)[v] ?? v;
+  const catLabel = (v: string) =>
+    (e.categoryLabels as Record<string, string>)[v] ?? v;
+  const confLabel = (v: string) =>
+    (e.confidenceLabels as Record<string, string>)[v] ?? v;
+  const popLabel = (v: string) =>
+    (e.populationLabels as Record<string, string>)[v] ?? v;
+  const sexLabel = (v: string) =>
+    (e.sexLabels as Record<string, string>)[v] ?? v;
+  const wadaLabel = (v: string) =>
+    (e.wadaLabels as Record<string, string>)[v] ?? v;
+  const aisLabel = (v: string) =>
+    (e.aisLabels as Record<string, string>)[v] ?? v;
+  const levelDescLabel = (v: string) =>
+    (e.levelDesc as Record<string, string>)[v] ?? v;
+  const dirDescLabel = (v: string) =>
+    (e.directionDesc as Record<string, string>)[v] ?? v;
 
   /* ---------------------------------------------------------------- */
   return (
-    <div className="space-y-6">
-
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={t.eyebrow}
+      title={e.title}
+      meta={
+        <MetaBadge>
+          {e.lastReviewed} {EVIDENCE_LAST_REVIEWED}
+        </MetaBadge>
+      }
+      contentClassName="p-0"
+    >
       {/* ── Filter panel ─────────────────────────────────────────── */}
-      <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 space-y-4">
-
+      <div
+        className="space-y-4 border-b border-[var(--color-border)] p-5 sm:p-6"
+        style={{ backgroundColor: accentSurface(2) }}
+      >
         {/* Search */}
-        <input
-          type="search"
-          placeholder={e.searchPlaceholder}
-          value={filters.query}
-          onChange={(ev) => setFilters((f) => ({ ...f, query: ev.target.value }))}
-          className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-1"
-          style={{ accentColor: accent }}
-          aria-label={e.searchPlaceholder}
-        />
+        <div>
+          <label
+            htmlFor="evidence-search"
+            className="mb-1.5 block font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]"
+          >
+            {e.searchPlaceholder}
+          </label>
+          <div className="tool-field flex items-center rounded-lg">
+            <input
+              id="evidence-search"
+              type="search"
+              placeholder={e.searchPlaceholder}
+              value={filters.query}
+              onChange={(ev) =>
+                setFilters((f) => ({ ...f, query: ev.target.value }))
+              }
+              className="w-full bg-transparent px-3 py-2.5 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none"
+              aria-label={e.searchPlaceholder}
+            />
+          </div>
+        </div>
 
         {/* Category select */}
-        <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-          {e.filterCategory}
-          <select
-            value={filters.category}
-            onChange={(ev) =>
-              setFilters((f) => ({
-                ...f,
-                category: ev.target.value as EvidenceCategory | "",
-              }))
-            }
-            className="min-w-[12rem] self-start rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-            style={{ accentColor: accent }}
-          >
-            <option value="">{e.filterAll}</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {catLabel(cat)}
-              </option>
-            ))}
-          </select>
-        </label>
+        <SelectField
+          id="evidence-category"
+          label={e.filterCategory}
+          value={filters.category}
+          onChange={(v) =>
+            setFilters((f) => ({
+              ...f,
+              category: v as EvidenceCategory | "",
+            }))
+          }
+          className="min-w-[12rem] self-start"
+        >
+          <option value="">{e.filterAll}</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {catLabel(cat)}
+            </option>
+          ))}
+        </SelectField>
 
         {/* Evidence-level chips */}
         <div className="space-y-2">
-          <p className="text-xs font-medium text-[var(--color-text-secondary)]">
+          <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
             {e.filterLevel}
           </p>
           <div className="flex flex-wrap gap-2">
             {EVIDENCE_LEVEL_ORDER.map((lvl) => (
-              <FilterToggle
+              <FilterChip
                 key={lvl}
                 label={levelLabel(lvl)}
                 active={filters.level === lvl}
-                accent={accent}
                 onClick={() =>
-                  setFilters((f) => ({ ...f, level: f.level === lvl ? "" : lvl }))
+                  setFilters((f) => ({
+                    ...f,
+                    level: f.level === lvl ? "" : lvl,
+                  }))
                 }
               />
             ))}
@@ -213,18 +257,20 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 
         {/* Direction chips */}
         <div className="space-y-2">
-          <p className="text-xs font-medium text-[var(--color-text-secondary)]">
+          <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
             {e.filterDirection}
           </p>
           <div className="flex flex-wrap gap-2">
             {EVIDENCE_DIRECTION_ORDER.map((dir) => (
-              <FilterToggle
+              <FilterChip
                 key={dir}
                 label={dirLabel(dir)}
                 active={filters.direction === dir}
-                accent={accent}
                 onClick={() =>
-                  setFilters((f) => ({ ...f, direction: f.direction === dir ? "" : dir }))
+                  setFilters((f) => ({
+                    ...f,
+                    direction: f.direction === dir ? "" : dir,
+                  }))
                 }
               />
             ))}
@@ -233,17 +279,18 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 
         {/* WADA permitted toggle + clear */}
         <div className="flex flex-wrap items-center gap-3">
-          <FilterToggle
+          <FilterChip
             label={e.filterPermitted}
             active={filters.permittedOnly}
-            accent={accent}
-            onClick={() => setFilters((f) => ({ ...f, permittedOnly: !f.permittedOnly }))}
+            onClick={() =>
+              setFilters((f) => ({ ...f, permittedOnly: !f.permittedOnly }))
+            }
           />
           {hasActiveFilters && (
             <button
               type="button"
               onClick={() => setFilters(DEFAULT_EVIDENCE_FILTERS)}
-              className="rounded-md border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
+              className="rounded-lg border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
             >
               {e.filterReset}
             </button>
@@ -252,12 +299,14 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
       </div>
 
       {/* ── Legend (dual axis, collapsible) ──────────────────────── */}
-      <details className="group rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)]">
+      <details className="group border-b border-[var(--color-border)]">
         <summary
-          className="flex cursor-pointer select-none list-none items-center justify-between px-4 py-3 text-sm font-semibold"
-          style={{ color: accent }}
+          className="flex cursor-pointer select-none list-none items-center justify-between px-5 py-3 sm:px-6"
+          style={{ color: "var(--tool-accent)" }}
         >
-          <span>{e.legendTitle}</span>
+          <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em]">
+            {e.legendTitle}
+          </span>
           <span
             aria-hidden="true"
             className="text-[var(--color-text-secondary)] transition-transform group-open:rotate-180"
@@ -266,12 +315,15 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
           </span>
         </summary>
 
-        <div className="border-t border-[var(--color-border)] px-4 pb-4 pt-3 space-y-4">
+        <div
+          className="space-y-4 border-t border-[var(--color-border)] px-5 pb-5 pt-4 sm:px-6"
+          style={{ backgroundColor: accentSurface(2) }}
+        >
           <div className="grid gap-5 sm:grid-cols-2">
 
             {/* Evidence-level axis */}
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">
+              <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
                 {e.legendAxisLevel}
               </p>
               <ul className="space-y-2">
@@ -293,7 +345,7 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 
             {/* Direction axis */}
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">
+              <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
                 {e.legendAxisDirection}
               </p>
               <ul className="space-y-2">
@@ -322,31 +374,25 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
       </details>
 
       {/* ── Summary strip ────────────────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="font-medium text-[var(--color-text)]">
-            {e.supplementCount.replace("{n}", String(entries.length))}
-          </span>
-          <span aria-hidden="true" className="text-[var(--color-text-muted)]">·</span>
-          <span className="text-[var(--color-text-secondary)]">
-            {e.citationCount.replace("{n}", String(totalCitations))}
-          </span>
-        </div>
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
-          style={{ backgroundColor: colorAlpha("22"), color: accent }}
-        >
-          {e.lastReviewed} {EVIDENCE_LAST_REVIEWED}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-5 py-3 sm:px-6">
+        <span className="font-mono text-[11px] font-medium tabular-nums text-[var(--color-text)]">
+          {e.supplementCount.replace("{n}", String(entries.length))}
+        </span>
+        <span aria-hidden="true" className="text-[var(--color-text-muted)]">
+          ·
+        </span>
+        <span className="font-mono text-[11px] tabular-nums text-[var(--color-text-secondary)]">
+          {e.citationCount.replace("{n}", String(totalCitations))}
         </span>
       </div>
 
       {/* ── Card list ────────────────────────────────────────────── */}
       {entries.length === 0 ? (
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-6 py-16 text-center">
+        <div className="px-6 pb-12 pt-8 text-center">
           <p className="text-[var(--color-text-muted)]">{e.noResults}</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-3 p-5 sm:p-6">
           {entries.map((entry) => {
             const isExpanded = expandedIds.has(entry.id);
             const isCitationsExpanded = expandedCitationIds.has(entry.id);
@@ -354,20 +400,33 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
             return (
               <article
                 key={entry.id}
-                className="rounded-lg border bg-[var(--color-bg-card)] overflow-hidden transition-colors"
+                className="relative overflow-hidden rounded-xl border bg-[var(--color-bg-card)] transition-colors"
                 style={{
-                  borderColor: isExpanded ? colorAlpha("55") : "var(--color-border)",
+                  borderColor: isExpanded
+                    ? accentAlpha(33)
+                    : "var(--color-border)",
                 }}
               >
+                {/* Accent tick on the left edge — stronger when expanded */}
+                <div
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 h-full w-[3px] rounded-l-xl transition-colors"
+                  style={{
+                    backgroundColor: isExpanded
+                      ? "var(--tool-accent)"
+                      : accentAlpha(20),
+                  }}
+                />
+
                 {/* ── Collapsed header (always visible) ─────────── */}
-                <div className="p-4">
+                <div className="pb-4 pl-5 pr-4 pt-4">
 
                   {/* Name + category */}
                   <div className="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                     <h3 className="text-base font-semibold text-[var(--color-text)]">
                       {entry.name[locale]}
                     </h3>
-                    <span className="text-xs text-[var(--color-text-muted)]">
+                    <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">
                       {catLabel(entry.category)}
                     </span>
                   </div>
@@ -431,8 +490,8 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
                     aria-expanded={isExpanded}
                     aria-label={`${isExpanded ? e.hideDetail : e.showDetail} — ${entry.name[locale]}`}
                     onClick={() => toggleCard(entry.id)}
-                    className="mt-3 text-xs font-medium transition-colors hover:underline"
-                    style={{ color: accent }}
+                    className="mt-3 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] transition-colors hover:underline"
+                    style={{ color: "var(--tool-accent)" }}
                   >
                     {isExpanded ? e.hideDetail : e.showDetail}
                   </button>
@@ -441,8 +500,11 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
                 {/* ── Expanded detail section ────────────────────── */}
                 {isExpanded && (
                   <div
-                    className="border-t px-4 py-4 space-y-4"
-                    style={{ borderTopColor: colorAlpha("33") }}
+                    className="space-y-4 border-t px-5 py-4"
+                    style={{
+                      borderTopColor: accentAlpha(22),
+                      backgroundColor: accentSurface(2),
+                    }}
                   >
                     {/* Effect size + Mechanism */}
                     <div className="grid gap-4 sm:grid-cols-2">
@@ -491,8 +553,8 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 
                     {/* Regulatory status detail row */}
                     <div
-                      className="flex flex-wrap gap-x-4 gap-y-1 rounded-md border border-[var(--color-border)] px-3 py-2 text-xs text-[var(--color-text-secondary)]"
-                      style={{ backgroundColor: colorAlpha("0A") }}
+                      className="flex flex-wrap gap-x-4 gap-y-1 rounded-lg border border-[var(--color-border)] px-3 py-2 text-xs text-[var(--color-text-secondary)]"
+                      style={{ backgroundColor: accentAlpha(6) }}
                     >
                       <span>
                         {e.wadaPrefix}:{" "}
@@ -526,13 +588,13 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 
                     {/* ── Citations block (collapsible) ────────────── */}
                     {entry.citations.length > 0 && (
-                      <div className="border-t border-[var(--color-border)] pt-3 space-y-3">
+                      <div className="space-y-3 border-t border-[var(--color-border)] pt-3">
                         <button
                           type="button"
                           aria-expanded={isCitationsExpanded}
                           onClick={() => toggleCitations(entry.id)}
-                          className="text-xs font-medium transition-colors hover:underline"
-                          style={{ color: accent }}
+                          className="font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] transition-colors hover:underline"
+                          style={{ color: "var(--tool-accent)" }}
                         >
                           {isCitationsExpanded
                             ? e.hideCitations
@@ -555,10 +617,10 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
                               return (
                                 <li
                                   key={idx}
-                                  className="rounded-md border border-[var(--color-border-light)] bg-[var(--color-bg)] p-3 text-xs space-y-1.5"
+                                  className="space-y-1.5 rounded-lg border border-[var(--color-border-light)] bg-[var(--color-bg)] p-3 text-xs"
                                 >
                                   {/* Author + year */}
-                                  <p className="font-semibold tabular-nums text-[var(--color-text)]">
+                                  <p className="font-mono font-semibold tabular-nums text-[var(--color-text)]">
                                     {cit.first_author} {cit.year}
                                   </p>
                                   {/* Title linked to source */}
@@ -568,13 +630,13 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="font-medium hover:underline"
-                                      style={{ color: accent }}
+                                      style={{ color: "var(--tool-accent)" }}
                                     >
                                       {cit.title}
                                     </a>
                                   </p>
                                   {/* Journal · study type */}
-                                  <p className="text-[var(--color-text-muted)]">
+                                  <p className="font-mono text-[10.5px] text-[var(--color-text-muted)]">
                                     {cit.journal} · {cit.study_type}
                                   </p>
                                   {/* Key finding */}
@@ -589,7 +651,7 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
                                           href={pmidUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="underline decoration-dotted text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
+                                          className="font-mono underline decoration-dotted text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
                                         >
                                           PMID: {cit.pmid}
                                         </a>
@@ -598,7 +660,7 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
                                           href={doiUrl!}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="underline decoration-dotted text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
+                                          className="font-mono underline decoration-dotted text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]"
                                         >
                                           DOI: {cit.doi}
                                         </a>
@@ -622,18 +684,21 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 
       {/* ── Cross-link to gel comparator ─────────────────────────── */}
       {gelComparatorHref && (
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+        <div
+          className="border-t border-[var(--color-border)] px-5 py-4 sm:px-6"
+          style={{ backgroundColor: accentSurface(2) }}
+        >
           <Link
             href={gelComparatorHref}
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:underline"
-            style={{ color: accent }}
+            style={{ color: "var(--tool-accent)" }}
           >
             <span aria-hidden="true">→</span>
             {t.ctaGels}
           </Link>
         </div>
       )}
-    </div>
+    </ToolPanel>
   );
 }
 
@@ -641,39 +706,7 @@ export default function EvidenceExplorer({ color }: { color?: string }) {
 /* Sub-components                                                      */
 /* ------------------------------------------------------------------ */
 
-/** Chip-style toggle button — reuses the exact pattern from gel-comparator. */
-function FilterToggle({
-  label,
-  active,
-  accent,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  accent: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={cn(
-        "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-        active
-          ? "text-white"
-          : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border-light)]",
-      )}
-      style={
-        active ? { backgroundColor: accent, borderColor: accent } : undefined
-      }
-    >
-      {label}
-    </button>
-  );
-}
-
-/** Label + prose field for the expanded card detail. */
+/** Label + prose field for the expanded card detail. Mono uppercase label. */
 function DetailField({
   label,
   children,
@@ -683,7 +716,7 @@ function DetailField({
 }) {
   return (
     <div className="space-y-1">
-      <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">
+      <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
         {label}
       </p>
       <p className="text-sm leading-relaxed text-[var(--color-text)]">{children}</p>

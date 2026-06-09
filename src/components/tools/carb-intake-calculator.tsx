@@ -15,12 +15,23 @@ import type { TooltipContentProps } from "recharts/types/component/Tooltip";
 import type { TooltipPayloadEntry } from "recharts/types/state/tooltipSlice";
 import type { ValueType, NameType } from "recharts/types/component/DefaultTooltipContent";
 import { useLocale } from "@/components/locale-provider";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
+import {
+  ToolPanel,
+  Readout,
+  ReadoutPanel,
+  RangeField,
+  Segmented,
+  useAccentColor,
+  accentAlpha,
+} from "@/components/tools/ui";
 
 // ─── i18n ────────────────────────────────────────────────────────────────────
 
 const STRINGS = {
   es: {
-    title: "Calculadora de ingesta de carbohidratos",
+    eyebrow: "Nutrición · Calculadora",
+    title: "Ingesta de carbohidratos",
     durationLabel: "Duración de la salida",
     durationUnit: "h",
     intensityLabel: "Intensidad",
@@ -51,7 +62,8 @@ const STRINGS = {
       "Basado en el marco de Jeukendrup (Sports Medicine, 2014) y el consenso de la ISSN. Los rangos reflejan tasas de oxidación máximas estudiadas en laboratorio; la respuesta individual varía. El intestino puede entrenarse para tolerar ingestas más altas con práctica sistemática.",
   },
   en: {
-    title: "Carbohydrate Intake Calculator",
+    eyebrow: "Nutrition · Calculator",
+    title: "Carbohydrate intake",
     durationLabel: "Ride duration",
     durationUnit: "h",
     intensityLabel: "Intensity",
@@ -104,15 +116,6 @@ interface ChartPoint {
 }
 
 // ─── Core logic (Jeukendrup / ISSN guidelines) ───────────────────────────────
-//
-// Duration zones and their g/h ranges [min, max]:
-//   zone0  < 0.75 h  (< 45 min)     → [0,  0]
-//   zone1  0.75–1.25 h (45–75 min)  → [0, 30]  — mouth rinse or small amounts
-//   zone2  1.25–2 h   (1–2 h)       → [20, 40] — nominal ~30 g/h, single CHO
-//   zone3  2–2.5 h                  → [50, 70] — nominal ~60 g/h
-//   zone4  > 2.5 h                  → [65, 90] — multiple-transport required
-//
-// Intensity factor (low=0, moderate=0.5, high=1) interpolates within the range.
 
 const ZONE_RANGES: Record<ZoneKey, [number, number]> = {
   zone0: [0, 0],
@@ -192,12 +195,13 @@ function CarbTooltip(
         color: "var(--color-text)",
       }}
     >
-      <p className="mb-1 font-medium">
+      <p className="mb-1 font-mono text-xs font-medium tabular-nums">
         {strings.chartTooltipHour}: {String(label)} {strings.durationUnit}
       </p>
       {payload.map((entry: TooltipPayloadEntry) => (
         <p
           key={String(entry.dataKey)}
+          className="font-mono text-xs tabular-nums"
           style={{ color: entry.color ?? "var(--color-text-secondary)" }}
         >
           {entry.dataKey === "recomendado"
@@ -213,12 +217,12 @@ function CarbTooltip(
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function CarbIntakeCalculator({
-  color = "#0D9488",
-}: {
-  color?: string;
-}) {
+  accent = "#0D9488",
+  accentVar = "--color-nutricion",
+}: ToolComponentProps) {
   const locale = useLocale();
   const s = STRINGS[locale];
+  const chartColor = useAccentColor(accentVar, accent);
 
   const [duration, setDuration] = useState<number>(2);
   const [intensity, setIntensity] = useState<Intensity>("moderate");
@@ -236,8 +240,6 @@ export default function CarbIntakeCalculator({
     [duration, rec.gPerHour, showRef]
   );
 
-  // ─── Helpers ───
-
   function formatDuration(h: number): string {
     const totalMin = Math.round(h * 60);
     const hrs = Math.floor(totalMin / 60);
@@ -253,309 +255,156 @@ export default function CarbIntakeCalculator({
     { value: "high", label: s.high },
   ];
 
-  const colorAlpha = (hex: string) => color + hex;
-
-  // ─── Render ───
-
   return (
-    <div
-      className="not-prose rounded-lg border"
-      style={{
-        borderColor: "var(--color-border)",
-        backgroundColor: "var(--color-bg-card)",
-      }}
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={s.eyebrow}
+      title={s.title}
     >
-      {/* Header */}
-      <div
-        className="rounded-t-lg px-5 py-4"
-        style={{ borderBottom: "1px solid var(--color-border-light)" }}
-      >
-        <h3
-          className="text-base font-semibold"
-          style={{ color: "var(--color-text)" }}
-        >
-          {s.title}
-        </h3>
+      {/* ── Inputs ── */}
+      <div className="grid gap-6 sm:grid-cols-2">
+        <RangeField
+          id="carb-duration"
+          label={s.durationLabel}
+          value={duration}
+          onChange={setDuration}
+          min={0.5}
+          max={7}
+          step={0.5}
+          display={formatDuration(duration)}
+          minLabel="30 min"
+          maxLabel="7 h"
+        />
+        <Segmented
+          label={s.intensityLabel}
+          options={intensityOptions}
+          value={intensity}
+          onChange={setIntensity}
+        />
       </div>
 
-      <div className="p-5">
-        {/* ── Inputs ── */}
-        <div className="mb-6 grid gap-5 sm:grid-cols-2">
-          {/* Duration slider */}
-          <div>
-            <div
-              className="mb-2 flex items-center justify-between text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
+      {/* ── Readout ── */}
+      <ReadoutPanel className="mt-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <Readout
+            label={s.gPerHour}
+            value={rec.gPerHour}
+            unit="g/h"
+            animateKey={rec.gPerHour}
+          />
+          <div
+            className="hidden w-px self-stretch sm:block"
+            style={{ backgroundColor: accentAlpha(22) }}
+          />
+          <div className="block h-px sm:hidden" style={{ backgroundColor: accentAlpha(22) }} />
+          <Readout
+            label={s.totalLabel}
+            value={rec.totalGrams}
+            unit={s.grams}
+            primary={false}
+            animateKey={rec.totalGrams}
+          />
+        </div>
+        <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+          {s[rec.zoneKey]}
+        </p>
+      </ReadoutPanel>
+
+      {/* ── Chart ── */}
+      <div className="mt-6 rounded-xl border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-text)_2%,var(--color-bg-card))] px-2 pb-2 pt-4 sm:px-4">
+        <p className="mb-3 px-2 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+          {s.chartTitle}
+        </p>
+
+        {rec.gPerHour === 0 ? (
+          <div className="flex h-32 items-center justify-center text-sm text-[var(--color-text-muted)]">
+            {s.noIntake}
+          </div>
+        ) : (
+          <ResponsiveContainer width="100%" height={320}>
+            <AreaChart
+              data={chartData}
+              margin={{ top: 8, right: 16, left: 0, bottom: 16 }}
             >
-              <span>{s.durationLabel}</span>
-              <span
-                className="rounded px-2 py-0.5 text-sm font-semibold tabular-nums"
-                style={{
-                  backgroundColor: colorAlpha("22"),
-                  color: color,
+              <defs>
+                <linearGradient id="gradRec" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={chartColor} stopOpacity={0.28} />
+                  <stop offset="95%" stopColor={chartColor} stopOpacity={0.03} />
+                </linearGradient>
+                <linearGradient id="gradRef" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.15} />
+                  <stop offset="95%" stopColor="#94a3b8" stopOpacity={0.01} />
+                </linearGradient>
+              </defs>
+
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+              <XAxis
+                dataKey="hora"
+                tick={{ fontSize: 11, fill: "var(--color-text-muted)" }}
+                stroke="var(--color-border)"
+                label={{
+                  value: s.chartAxisX,
+                  position: "insideBottom",
+                  offset: -10,
+                  fontSize: 11,
+                  fill: "var(--color-text-muted)",
                 }}
-              >
-                {formatDuration(duration)}
-              </span>
-            </div>
-            <input
-              type="range"
-              min={0.5}
-              max={7}
-              step={0.5}
-              value={duration}
-              onChange={(e) => setDuration(Number(e.target.value))}
-              className="w-full cursor-pointer"
-              style={{ accentColor: color }}
-            />
-            <div
-              className="mt-1 flex justify-between text-xs"
-              style={{ color: "var(--color-text-muted)" }}
-            >
-              <span>30 min</span>
-              <span>7 h</span>
-            </div>
-          </div>
-
-          {/* Intensity segmented control */}
-          <div>
-            <p
-              className="mb-2 text-sm font-medium"
-              style={{ color: "var(--color-text)" }}
-            >
-              {s.intensityLabel}
-            </p>
-            <div
-              className="flex overflow-hidden rounded-md border"
-              style={{ borderColor: "var(--color-border)" }}
-            >
-              {intensityOptions.map(({ value, label }, idx) => {
-                const isActive = intensity === value;
-                const isLast = idx === intensityOptions.length - 1;
-                return (
-                  <button
-                    key={value}
-                    type="button"
-                    onClick={() => setIntensity(value)}
-                    className="flex-1 py-2 text-sm font-medium transition-colors"
-                    style={{
-                      backgroundColor: isActive ? color : "transparent",
-                      color: isActive
-                        ? "#ffffff"
-                        : "var(--color-text-secondary)",
-                      borderRight: isLast
-                        ? "none"
-                        : "1px solid var(--color-border)",
-                    }}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Output card ── */}
-        <div
-          className="mb-6 rounded-lg p-4"
-          style={{
-            backgroundColor: colorAlpha("11"),
-            border: `1px solid ${colorAlpha("44")}`,
-          }}
-        >
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            {/* Primary: g/h */}
-            <div className="flex-1">
-              <p
-                className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-                style={{ color: color }}
-              >
-                {s.gPerHour}
-              </p>
-              <div className="flex items-baseline gap-1.5">
-                <span
-                  className="text-5xl font-bold tabular-nums leading-none"
-                  style={{ color: color }}
-                >
-                  {rec.gPerHour}
-                </span>
-                <span
-                  className="text-xl font-semibold"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  g/h
-                </span>
-              </div>
-            </div>
-
-            {/* Separators */}
-            <div
-              className="hidden w-px self-stretch sm:block"
-              style={{ backgroundColor: colorAlpha("33") }}
-            />
-            <div
-              className="block h-px sm:hidden"
-              style={{ backgroundColor: colorAlpha("33") }}
-            />
-
-            {/* Secondary: total grams */}
-            <div className="flex-1">
-              <p
-                className="mb-0.5 text-xs font-medium uppercase tracking-wide"
-                style={{ color: "var(--color-text-muted)" }}
-              >
-                {s.totalLabel}
-              </p>
-              <div className="flex items-baseline gap-1.5">
-                <span
-                  className="text-4xl font-bold tabular-nums leading-none"
-                  style={{ color: "var(--color-text)" }}
-                >
-                  {rec.totalGrams}
-                </span>
-                <span
-                  className="text-lg font-semibold"
-                  style={{ color: "var(--color-text-secondary)" }}
-                >
-                  {s.grams}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Zone description */}
-          <p
-            className="mt-4 text-sm leading-relaxed"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            {s[rec.zoneKey]}
-          </p>
-        </div>
-
-        {/* ── Chart ── */}
-        <div
-          className="mb-5 rounded-lg border px-2 pb-2 pt-4 sm:px-4"
-          style={{ borderColor: "var(--color-border)" }}
-        >
-          <p
-            className="mb-3 px-2 text-sm font-semibold"
-            style={{ color: "var(--color-text)" }}
-          >
-            {s.chartTitle}
-          </p>
-
-          {rec.gPerHour === 0 ? (
-            <div
-              className="flex h-32 items-center justify-center text-sm"
-              style={{ color: "var(--color-text-muted)" }}
-            >
-              {s.noIntake}
-            </div>
-          ) : (
-            <ResponsiveContainer width="100%" height={320}>
-              <AreaChart
-                data={chartData}
-                margin={{ top: 8, right: 16, left: 0, bottom: 16 }}
-              >
-                <defs>
-                  <linearGradient id="gradRec" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={color} stopOpacity={0.28} />
-                    <stop offset="95%" stopColor={color} stopOpacity={0.03} />
-                  </linearGradient>
-                  <linearGradient id="gradRef" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor="#94a3b8"
-                      stopOpacity={0.15}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor="#94a3b8"
-                      stopOpacity={0.01}
-                    />
-                  </linearGradient>
-                </defs>
-
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="var(--color-border)"
-                />
-                <XAxis
-                  dataKey="hora"
-                  tick={{ fontSize: 12, fill: "var(--color-text-muted)" }}
-                  stroke="var(--color-border)"
-                  label={{
-                    value: s.chartAxisX,
-                    position: "insideBottom",
-                    offset: -10,
-                    fontSize: 11,
-                    fill: "var(--color-text-muted)",
-                  }}
-                />
-                <YAxis
-                  tick={{ fontSize: 12, fill: "var(--color-text-muted)" }}
-                  stroke="var(--color-border)"
-                  unit=" g"
-                  width={54}
-                />
-                <Tooltip
-                  content={(props: TooltipContentProps<ValueType, NameType>) => (
-                    <CarbTooltip {...props} strings={s} />
-                  )}
-                />
-                {showRef && (
-                  <Legend
-                    wrapperStyle={{ fontSize: 12, paddingTop: 8 }}
-                    iconType="line"
-                  />
+              />
+              <YAxis
+                tick={{ fontSize: 11, fill: "var(--color-text-muted)" }}
+                stroke="var(--color-border)"
+                unit=" g"
+                width={54}
+              />
+              <Tooltip
+                content={(props: TooltipContentProps<ValueType, NameType>) => (
+                  <CarbTooltip {...props} strings={s} />
                 )}
+              />
+              {showRef && (
+                <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="line" />
+              )}
 
-                {/* Single-transporter ceiling: 60 g/h reference line */}
-                {showRef && (
-                  <Area
-                    type="monotone"
-                    dataKey="limite60"
-                    stroke="#94a3b8"
-                    strokeWidth={1.5}
-                    strokeDasharray="5 4"
-                    fill="url(#gradRef)"
-                    name={s.chartSeriesRef}
-                    dot={false}
-                    activeDot={false}
-                    legendType="line"
-                  />
-                )}
-
-                {/* Recommended intake */}
+              {showRef && (
                 <Area
                   type="monotone"
-                  dataKey="recomendado"
-                  stroke={color}
-                  strokeWidth={2.5}
-                  fill="url(#gradRec)"
-                  name={s.chartSeriesRec}
+                  dataKey="limite60"
+                  stroke="#94a3b8"
+                  strokeWidth={1.5}
+                  strokeDasharray="5 4"
+                  fill="url(#gradRef)"
+                  name={s.chartSeriesRef}
                   dot={false}
-                  activeDot={{
-                    r: 4,
-                    fill: color,
-                    stroke: "var(--color-bg-card)",
-                    strokeWidth: 2,
-                  }}
+                  activeDot={false}
+                  legendType="line"
                 />
-              </AreaChart>
-            </ResponsiveContainer>
-          )}
-        </div>
+              )}
 
-        {/* ── Footnote ── */}
-        <p
-          className="text-xs leading-relaxed"
-          style={{ color: "var(--color-text-muted)" }}
-        >
-          {s.footnote}
-        </p>
+              <Area
+                type="monotone"
+                dataKey="recomendado"
+                stroke={chartColor}
+                strokeWidth={2.5}
+                fill="url(#gradRec)"
+                name={s.chartSeriesRec}
+                dot={false}
+                activeDot={{
+                  r: 4,
+                  fill: chartColor,
+                  stroke: "var(--color-bg-card)",
+                  strokeWidth: 2,
+                }}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
       </div>
-    </div>
+
+      {/* ── Footnote ── */}
+      <p className="mt-5 border-t border-[var(--color-border-light)] pt-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
+        {s.footnote}
+      </p>
+    </ToolPanel>
   );
 }

@@ -11,9 +11,9 @@ interface ToolsHighlightProps {
 
 /**
  * Homepage highlight band — surfaces the interactive calculators right below the
- * hero. Shows 3 curated tools (distinct section colors) plus a CTA to the full
- * index. Reuses the shared <ToolCard>; tinted background + border set it apart
- * from the article grid.
+ * hero. Race Telemetry treatment: card-toned background, mono eyebrow, multi-section
+ * instrument bar. Shows 3 curated tools (distinct section colors) plus a CTA to
+ * the full index. Reuses the shared <ToolCard>.
  */
 export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
   const tools = getFeaturedTools(3);
@@ -22,32 +22,47 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
   const allToolsHref = locale === "en" ? "/tools" : "/herramientas";
 
   return (
-    <section className="border-y border-[var(--color-border)] bg-[var(--color-bg)]">
-      <div className="relative mx-auto max-w-7xl overflow-hidden px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        {/* Decorative section-color glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-10 -top-12 h-56 w-56 rounded-full opacity-[0.07] blur-2xl"
-          style={{ background: "radial-gradient(circle, #7C3AED, transparent 70%)" }}
-        />
+    <section className="relative overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-bg-card)]">
+      {/* Decorative section-color glows */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-10 -top-12 h-64 w-64 rounded-full opacity-[0.07] blur-2xl"
+        style={{ background: "radial-gradient(circle, #7C3AED, transparent 70%)" }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-12 bottom-0 h-56 w-56 rounded-full opacity-[0.05] blur-2xl"
+        style={{ background: "radial-gradient(circle, #0D9488, transparent 70%)" }}
+      />
 
+      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         {/* Header */}
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-              {dict.tools.nav}
-            </span>
+            {/* Mono eyebrow */}
+            <div className="flex items-center gap-2">
+              <span
+                aria-hidden="true"
+                className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]"
+              />
+              <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                {dict.tools.nav}
+              </span>
+            </div>
+
             <h2 className="mt-2 font-serif text-2xl font-bold leading-tight text-[var(--color-text)] sm:text-3xl">
               {dict.tools.homeTitle}
             </h2>
-            {/* Multi-section color accent line */}
+
+            {/* Multi-section instrument bar */}
             <div
-              className="mt-3 h-[3px] w-14 rounded-full"
+              className="mt-3 h-[3px] w-16 rounded-full"
               style={{
                 background:
                   "linear-gradient(90deg, #0D9488 0%, #7C3AED 40%, #0891B2 70%, #E11D48 100%)",
               }}
             />
+
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
               {dict.tools.homeSubtitle}
             </p>
