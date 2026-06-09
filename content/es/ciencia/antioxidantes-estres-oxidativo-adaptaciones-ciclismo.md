@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La suplementación con 1000 mg de vitamina C y 400 UI de vitamina E bloquea la mejora de sensibilidad a la insulina inducida por el ejercicio y reduce la expresión de PGC-1α, el interruptor maestro de la biogénesis mitocondrial. Las especies reactivas de oxígeno no son un daño colateral del entrenamiento: son la señal."
 coverImage: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "antioxidants-oxidative-stress-cycling-adaptations"
 ---
 
 ## La paradoja del ciclista que se cuida demasiado

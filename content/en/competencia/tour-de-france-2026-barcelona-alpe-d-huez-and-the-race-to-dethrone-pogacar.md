@@ -52,6 +52,7 @@ excerpt: >-
   unprecedented 2024 season.
 coverImage: >-
   https://images.unsplash.com/photo-1758471206484-0eaa2568320c?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "tour-de-france-2026-favoritos-recorrido"
 ---
 ## Barcelona Opens the Door to the Tour
 

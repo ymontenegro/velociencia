@@ -38,6 +38,7 @@ sources:
     type: pubmed
 excerpt: "In the HERITAGE study, 481 sedentary adults followed an identical training program for 20 weeks. VO2max gains ranged from virtually zero to over 1,000 ml/min, and the heritability of that response reached 47%."
 coverImage: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "genetica-respuesta-entrenamiento-ciclismo"
 ---
 
 ## Same Training, Opposite Results

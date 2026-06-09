@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "A vastus lateralis biopsy from a trained cyclist shows roughly twice the mitochondrial density per fiber of a sedentary subject. That difference, uncovered by Holloszy in 1967, is built through PGC-1α and explains why zone 2 and HIIT are not interchangeable."
 coverImage: "https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "mitocondrias-biogenesis-entrenamiento-ciclismo"
 ---
 
 ## The picture that changed exercise physiology

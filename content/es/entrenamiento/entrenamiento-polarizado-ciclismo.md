@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "Los atletas de élite en deportes de resistencia dedican cerca del 80% de su volumen a intensidad baja y solo el 20% a intensidad alta. El entrenamiento en la zona media —la 'zona gris'— resulta menos efectivo que este modelo polarizado."
 coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "polarized-training-why-going-slow-makes-you-faster"
 ---
 
 ## El patrón que nadie esperaba encontrar

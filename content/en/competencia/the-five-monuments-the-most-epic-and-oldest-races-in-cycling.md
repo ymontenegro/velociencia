@@ -63,6 +63,7 @@ excerpt: >-
   Together they have won 15 of the last 20. This is the anatomy of each one.
 coverImage: >-
   https://images.unsplash.com/photo-1655826060910-931c770bcdd6?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "cinco-monumentos-ciclismo-clasicas"
 ---
 ## Five Races, a Century of History
 

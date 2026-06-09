@@ -17,6 +17,7 @@ sources:
     url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7432021/"
     type: "pubmed"
 excerpt: "Ajustar la intensidad cada mañana según la variabilidad de la frecuencia cardíaca rinde igual o más que seguir un plan rígido, con menos sesiones duras malgastadas. Cómo medir tu HRV bien y montar un esquema de decisión semanal."
+translationOf: "hrv-guided-autoregulated-training-cycling"
 ---
 
 Un metaanálisis publicado en 2020 reunió ocho estudios y halló que prescribir el entrenamiento según la variabilidad de la frecuencia cardíaca mejoró el VO₂max en 2,84 ml/kg/min más que seguir un plan fijo. Ese dato proviene de Manresa-Rocamora y colaboradores (2020, *Applied Sciences*) y resume una idea incómoda para cualquiera que vive pegado a su calendario de Excel. El mejor plan no es el que está escrito en piedra, sino el que escucha cómo amaneces. La autorregulación por HRV propone ajustar la intensidad cada mañana a partir de una sola lectura: cuando el sistema nervioso está recuperado, haces la sesión dura; cuando no, la cambias por rodaje suave. Acá explico por qué funciona, qué dice la evidencia en ciclistas y cómo montarlo sin volverte esclavo de un número.

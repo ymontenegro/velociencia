@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Power data on the great Tour de France climbs tells the story of modern cycling. From the suspiciously high numbers of the Armstrong era to the resurgence of super-climbers with Pogačar and Vingegaard."
 coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "vatios-puertos-tour-super-escaladores"
 ---
 
 ## The numbers that define an era

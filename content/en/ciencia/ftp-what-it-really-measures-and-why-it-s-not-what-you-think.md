@@ -47,6 +47,7 @@ excerpt: >-
   0.96 in professionals. FTP does not equate to the lactate threshold or MLSS.
 coverImage: >-
   https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "ftp-limitaciones-metrica-rendimiento"
 ---
 ## The Most Cited Number in Cycling with a Power Meter
 

@@ -30,6 +30,7 @@ excerpt: >-
   post-exercise. A 3:1 or 4:1 carbohydrate to protein ratio optimizes recovery.
 coverImage: >-
   https://plus.unsplash.com/premium_photo-1664647788970-cdcb5e87f630?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "nutricion-recuperacion-post-ruta"
 ---
 ## The Anabolic Window Exists, But Not As You Were Told
 

@@ -29,6 +29,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/31864419/"
     type: scientific_paper
 excerpt: "Studies in Nature Medicine and Gut reveal that specific bacteria like Veillonella and Prevotella modulate lactate, inflammation, and recovery in endurance cyclists."
+translationOf: "impacto-del-microbioma-intestinal-en-la-recuperacion-y-rendimiento-ciclista"
 ---
 
 ## The invisible ecosystem that rides with you

@@ -37,6 +37,7 @@ excerpt: >-
   — is less effective than this polarized model.
 coverImage: >-
   https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "entrenamiento-polarizado-ciclismo"
 ---
 ## The Pattern No One Expected to Find
 

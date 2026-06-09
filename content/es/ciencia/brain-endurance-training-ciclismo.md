@@ -14,6 +14,7 @@ sources:
     url: "https://doi.org/10.1080/17461391.2022.2153231"
     type: "journal"
 excerpt: "La fatiga no es solo muscular: el cerebro pone un freno antes que las piernas. Dos ensayos muestran que añadir tareas cognitivas agotadoras al entrenamiento mejora la contrarreloj y baja el esfuerzo percibido. Esto es lo que sabemos y lo que aún no."
+translationOf: "brain-endurance-training-cycling"
 ---
 
 El grupo que entrenó el cerebro mejoró su resistencia un 24%, frente al 12% del que solo entrenó el cuerpo. Esa cifra, publicada por Neil Dallaway y colaboradores en el *European Journal of Sport Science* (2023), resume una idea que la fisiología del esfuerzo lleva una década discutiendo: el límite del rendimiento de resistencia no está solo en los músculos ni en el corazón, sino también en la percepción del esfuerzo que genera el cerebro. Si esa percepción se puede entrenar, el rendimiento debería seguirla. El brain endurance training (BET) es el intento más directo de poner esa hipótesis a prueba.

@@ -13,6 +13,7 @@
     "site": "Site",
     "newsletter": "Newsletter",
     "aboutUs": "About us",
+    "team": "The team",
     "home": "Home",
     "privacy": "Privacy policy",
     "contact": "Contact",
@@ -24,7 +25,7 @@
     "disclosure": "Affiliate disclosure"
   },
   "affiliate": {
-    "disclosure": "This article includes affiliate links. If you buy through them, PedalSci may earn a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
+    "disclosure": "This article includes affiliate links. If you buy through them, PedalSci earns a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
     "disclosureShort": "Affiliate link",
     "recommends": "Recommended",
     "cta": "Check price",
@@ -112,13 +113,15 @@
     "notFound": "Topic not found"
   },
   "authors": {
-    "title": "Columnists",
-    "subtitle": "The four voices behind PedalSci, one for each specialty.",
+    "title": "The team",
+    "subtitle": "The people behind PedalSci: section bylines, editor-in-chief, fact-checker and visual editor.",
+    "bylineAuthors": "Section bylines",
+    "editorialTeam": "Editorial team",
     "sectionLabel": "Section",
     "specialtyLabel": "Specialty",
     "articlesBy": "Articles by",
     "viewAllBy": "View all articles by",
-    "allColumnists": "View all columnists",
+    "allColumnists": "Meet the team",
     "articlesCount": "articles",
     "articleCount": "article",
     "notFound": "Columnist not found"
@@ -164,7 +167,7 @@
     "priceRef": "ref.",
     "lastUpdated": "Data updated:",
     "sourceLabel": "Source",
-    "disclaimer": "Reference prices with verification date. PedalSci may earn a commission on purchases made through the links in this table, at no extra cost to you.",
+    "disclaimer": "Reference prices with verification date. PedalSci earns a commission on purchases made through the links in this table, at no extra cost to you.",
     "methodology": "Methodology",
     "methodologyText": "Nutrition data is manually verified against each manufacturer's official product pages. Cost per gram of carbohydrate is calculated by dividing the gel's retail price by the grams of carbohydrate per serving."
   },
@@ -441,6 +444,8 @@
     "step4Text": "Before publishing, the editorial team reviews the text, checks that every claim matches the cited sources and corrects whatever is needed.",
     "step5Title": "We publish and correct",
     "step5Text": "We publish with sources cited explicitly so anyone can verify them. If you spot an error, we fix it.",
+    "ourTeam": "The editorial team",
+    "ourTeamIntro": "The people who research, write, edit and fact-check every article. AI is our working tool; the editorial judgement is always human.",
     "transparency": "Transparency",
     "transparencyText": "PedalSci is produced with an AI-assisted process supervised by our editorial team. AI helps research and draft from real scientific sources; the decision of what gets published, the fact-checking and the final edit are the responsibility of people. The names for each section are the editorial bylines we publish each specialty under.",
     "corrections": "Corrections and contact",

@@ -35,6 +35,7 @@ sources:
     type: scientific_study
 coverImage: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
 excerpt: "Science supports that vegetarian cyclists can maintain performance and muscle mass with proper nutritional planning, strategic B12, iron, creatine and omega-3 supplementation, and regular blood work."
+translationOf: "vegetarianismo-y-rendimiento-en-ciclismo-planificacion-nutricional-para-evitar-deficiencias"
 ---
 
 ## Vegetarianism and Cycling Performance: The Evidence Behind Plants

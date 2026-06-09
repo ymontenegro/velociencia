@@ -39,6 +39,7 @@ excerpt: >-
   effect is modest but consistent in sprints, attacks, and stage finishes.
 coverImage: >-
   https://images.unsplash.com/photo-1693996045300-521e9d08cabc?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "beta-alanina-rendimiento-ciclismo"
 ---
 ## A Muscular Buffer Built Gram by Gram
 

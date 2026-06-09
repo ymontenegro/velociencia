@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "El VO2max sigue siendo uno de los predictores más estudiados del rendimiento en ciclismo. Revisamos qué dicen los papers más recientes sobre sus límites y cómo mejorarlo."
 coverImage: "https://images.unsplash.com/photo-1709601414337-373519366406?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "vo2max-in-cycling-what-does-current-science-say"
 ---
 
 ## El número que define al ciclista

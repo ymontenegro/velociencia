@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La combinación de glucosa y fructosa permite tasas de oxidación de hasta 105 g/h, frente a los 60 g/h de la glucosa sola. Entrenar el intestino durante 2 semanas reduce los síntomas gastrointestinales en un 61%."
 coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "carbohydrates-during-exercise-how-many-grams-per-hour-and-how-to-train-the-gut"
 ---
 
 ## El intestino como cuello de botella del rendimiento

@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Un ciclista que pierde el 2% de su peso corporal en sudor reduce su potencia hasta un 6%. La diferencia entre beber bien y beber mal en ruta puede decidir una carrera."
 coverImage: "https://plus.unsplash.com/premium_photo-1723478432144-0156edc72332?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "hydration-on-the-road-evidence-based-guide"
 ---
 
 ## Un 2% de pérdida corporal recorta hasta un 6% de potencia

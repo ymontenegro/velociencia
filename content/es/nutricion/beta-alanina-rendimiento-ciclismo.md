@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "La beta-alanina eleva las concentraciones de carnosina muscular hasta un 80% tras semanas de carga, mejorando el rendimiento en esfuerzos de 60 a 240 segundos. Su efecto es modesto pero consistente en sprints, ataques y finales de etapa."
 coverImage: "https://images.unsplash.com/photo-1693996045300-521e9d08cabc?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "beta-alanine-and-cycling-performance-evidence-dosage-and-practical-application"
 ---
 
 ## Un buffer muscular que se construye gramo a gramo

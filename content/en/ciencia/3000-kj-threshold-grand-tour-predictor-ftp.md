@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "After 3000 kJ of accumulated work, riders with identical FTPs arrive at decisive climbs with capacities 5 to 9 percentage points apart. Fresh FTP doesn't measure that."
 coverImage: "https://images.unsplash.com/photo-1545575439-3261931f52f1?w=1600&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "umbral-3000-kj-predictor-grandes-vueltas"
 ---
 
 Two cyclists start the Tour de France with an FTP of 6.0 W/kg, tested in the lab the month before. At kilometer 155 of the Galibier stage, with 3,100 kilojoules accumulated in their legs, one attacks above 5.8 W/kg for seventeen minutes. The other manages at 5.0 W/kg and arrives with the chasing group. The difference was not in their FTP. It was in what remained of that FTP after three and a quarter hours of racing.

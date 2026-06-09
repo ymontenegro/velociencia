@@ -23,6 +23,7 @@ sources:
     url: "https://www.espn.com/olympics/cycling/story/_/id/43732244/former-tour-champ-egan-bernal-wins-1st-race-horrific-crash"
     type: "web_search"
 excerpt: "Egan Bernal terminó décimo el Giro de Italia 2026, a 12:54 de Vingegaard. Cuatro años después del accidente que casi lo mata, el colombiano confirma que volvió al nivel de las grandes vueltas, ahora con un rol distinto."
+translationOf: "egan-bernal-giro-2026-top10-comeback"
 ---
 
 Egan Bernal terminó décimo la clasificación general del Giro de Italia 2026, a 12 minutos y 54 segundos de Jonas Vingegaard. El número no parece gran cosa al lado del palmarés del colombiano, pero leerlo bien obliga a recordar de dónde viene este corredor. En enero de 2022 los médicos calcularon que tenía un 95% de probabilidades de quedar parapléjico, según reconstruyó después *Escape Collective* al convertir su caso en material de estudio clínico. Cuatro años más tarde, este top-10 en la Corsa Rosa no es un resultado intermedio: es la prueba de que la resurrección está completa.

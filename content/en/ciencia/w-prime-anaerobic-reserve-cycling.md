@@ -32,6 +32,7 @@ sources:
   - title: "The W' Balance Model: Mathematical and Methodological Considerations — Skiba & Clarke (2021)"
     url: "https://pubmed.ncbi.nlm.nih.gov/34686611/"
     type: pubmed
+translationOf: "reserva-anaerobica-w-prima-ciclismo"
 ---
 
 ## The line between sustainable and exhausting

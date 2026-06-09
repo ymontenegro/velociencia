@@ -38,6 +38,7 @@ sources:
     type: web_search
 excerpt: "Cinco carreras con más de un siglo de historia definen la élite del ciclismo de un día. Pogačar acumula diez victorias en Monumentos y Van der Poel siete. Juntos han ganado 15 de los últimos 20. Esta es la anatomía de cada una."
 coverImage: "https://images.unsplash.com/photo-1655826060910-931c770bcdd6?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "the-five-monuments-the-most-epic-and-oldest-races-in-cycling"
 ---
 
 ## Cinco carreras, un siglo de historia

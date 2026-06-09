@@ -38,6 +38,7 @@ sources:
     type: web_search
 excerpt: "259,5 kilómetros y 4.395 metros de desnivel separan a los favoritos del velódromo imaginario de Liège. Pogačar parte como máximo favorito tras su doblete Milán-San Remo + Flandes, pero Evenepoel, Pidcock, Healy, Skjelmose y Seixas llegan con motivos para creer que la Doyenne puede cambiar de dueño."
 coverImage: "https://images.unsplash.com/photo-1583348488360-00512a32b0f6?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "liege-bastogne-liege-2026-preview-favorites"
 ---
 
 259,5 kilómetros y 4.395 metros de desnivel positivo. Once cotés oficiales. Una llegada en plano en Liège tras bajar de la Roche-aux-Faucons. La 112ª edición de Liège-Bastogne-Liège se disputa el domingo 26 de abril y vuelve a reclamar su estatus de clásica más antigua del calendario, la Doyenne, esa carrera que Eddy Merckx ganó cinco veces y que hoy tiene a un nuevo emperador intentando acercarse a ese registro.

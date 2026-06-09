@@ -29,6 +29,7 @@ sources:
   - title: "Relative importance of pacing strategy and mean power output in 1500-m self-paced cycling"
     url: "https://pubmed.ncbi.nlm.nih.gov/19850573/"
     type: pubmed
+translationOf: "pacing-contrarreloj-distribucion-potencia"
 ---
 
 ## The mistake that repeats at every start line

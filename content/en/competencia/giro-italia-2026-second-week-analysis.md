@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "After three stages in Bulgaria and the first rest day, the Giro 2026 enters its Italian phase with ten seconds separating all the genuine GC contenders. Vingegaard showed in stage 2 that he climbs at a different level to the rest; UAE Team Emirates lost three leaders in 48 hours; Tiberi and Bernal have the profiles best suited to the road ahead."
 coverImage: "https://images.unsplash.com/photo-1759659478938-9753418d1585?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "giro-italia-2026-segunda-semana-analisis"
 ---
 
 Three stages, 543 kilometres, one mass crash in the rain and six abandonments: that's the ledger of the 2026 Giro d'Italia before the race reaches the only terrain where it can actually be settled. The general classification — Guillermo Thomas Silva (XDS Astana) leading, Egan Bernal four seconds back, Jonas Vingegaard ten seconds behind — is a standings table that tells you almost nothing useful yet. None of the genuine GC contenders have had a chance to show what they can do on a real climb. What Bulgaria did reveal, with unmistakable clarity, is who can no longer win this race and who arrives in Italy with advantages that don't yet appear in the time sheets.

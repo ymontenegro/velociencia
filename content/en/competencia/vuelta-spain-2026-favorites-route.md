@@ -29,6 +29,7 @@ sources:
     type: web_search
 excerpt: "The 2026 Vuelta a España starts August 22 in Monaco and finishes September 13 at the Alhambra in Granada. With 3,275 km, nine summit finishes, the unprecedented Collado del Alguacil and two time trials, the route is the most demanding in recent years. Roglič chases a record-breaking fifth victory."
 coverImage: "https://images.unsplash.com/photo-1766556578867-4b511ab7de4a?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "vuelta-espana-2026-favoritos-recorrido"
 ---
 
 ## Monaco Opens One of the Most Demanding Routes in Years

@@ -45,6 +45,7 @@ excerpt: >-
   performance.
 coverImage: >-
   https://images.unsplash.com/photo-1626266799502-ec96e7cc4bce?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "periodizacion-nutricional-ciclismo"
 ---
 ## Fuel for the Work Required, Not for the Calendar Day
 

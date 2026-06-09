@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Six-second peak power predicts who wins stage finishes, and it can be trained without compromising VO2max or aerobic economy. Short maximal sprint protocols with ample recovery develop type IIa and IIx fibers specifically while preserving endurance adaptations."
 coverImage: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "sprint-training-fibras-rapidas-ciclismo"
 ---
 
 ## The Variable Everyone Ignores Until They Need It

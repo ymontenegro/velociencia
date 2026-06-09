@@ -38,6 +38,7 @@ sources:
   - title: "Tart cherry concentrate does not enhance muscle protein synthesis response to exercise and protein in healthy older men"
     url: "https://pubmed.ncbi.nlm.nih.gov/29890270/"
     type: pubmed
+translationOf: "antocianinas-cerezas-acidas-recuperacion-ciclismo"
 ---
 
 ## The Cyclist Who Arrived at Stage Three Still Standing

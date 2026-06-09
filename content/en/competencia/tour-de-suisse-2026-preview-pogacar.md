@@ -38,6 +38,7 @@ sources:
   - title: "Tour de Suisse past winners and history — Cyclingnews"
     url: "https://www.cyclingnews.com/races/tour-de-suisse-2024/race-history/"
     type: web
+translationOf: "tour-de-suisse-2026-previa-pogacar"
 ---
 
 Tadej Pogačar announced his participation in the Tour de Suisse at UAE Team Emirates-XRG's media day in December. The statement was brief, but its strategic weight is significant: the Slovenian chose this race over the Critérium du Dauphiné — now rebranded as the Tour Auvergne-Rhône-Alpes — as his final competitive outing before the Tour de France. It is the first time since 2022, when Pogačar used the Tour of Slovenia as his last pre-Tour hit-out, that the defending champion arrives at the Grand Départ having raced in the two weeks prior. The decision is not trivial: the Tour de Suisse finishes on June 21. The start from Barcelona is July 4. Between the two lie thirteen days and a planned altitude block in Isola 2000.

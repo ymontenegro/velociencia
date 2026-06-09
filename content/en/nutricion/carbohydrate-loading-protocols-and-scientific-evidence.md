@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Filling muscle glycogen stores before competition is one of the most studied nutritional strategies in sport. Three distinct protocols achieve the same goal, but with vastly different timelines and levels of suffering."
 coverImage: "https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "carga-carbohidratos-protocolos"
 ---
 
 ## The fuel that defines the race

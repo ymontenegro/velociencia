@@ -14,6 +14,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/36595659/"
     type: "pubmed"
 excerpt: "El consenso del COI de 2023 redefine el déficit energético relativo (REDs) como un espectro que va de lo adaptable a lo patológico. En el deporte que más castiga el esqueleto, saber dónde está esa línea decide tu salud y tus vatios."
+translationOf: "reds-relative-energy-deficiency-cycling"
 ---
 
 En septiembre de 2023, el Comité Olímpico Internacional publicó en el *British Journal of Sports Medicine* (Mountjoy et al., 2023, Br J Sports Med 57(17):1073-1097) un consenso que rebautizó el síndrome: de RED-S pasó a llamarse REDs, "déficit energético relativo en el deporte". El cambio no fue cosmético. El documento reescribe el marco conceptual y deja de tratar la baja disponibilidad energética como un interruptor de encendido y apagado para describirla como un espectro. En un extremo está la baja disponibilidad energética adaptable, leve y transitoria, con efectos benignos; en el otro, la problemática, que arrastra una cascada de daños a la salud y al rendimiento. Para un ciclista, esa distinción es la diferencia entre una estrategia inteligente y un agujero del que cuesta años salir.

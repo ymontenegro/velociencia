@@ -38,6 +38,7 @@ excerpt: >-
   most supported by evidence.
 coverImage: >-
   https://images.unsplash.com/photo-1760001868208-be45d747a46c?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "intervalos-hiit-ciclismo"
 ---
 ## More Time at the Cardiovascular Limit in Less Total Time
 

@@ -41,6 +41,7 @@ sources:
     type: web_search
 excerpt: "La 110ª edición del Tour de Flandes enfrenta a Pogačar, Van der Poel y Van Aert en 271 km con 16 muros. Pogačar defiende título tras ganar Strade Bianche y Milán-San Remo. Van der Poel busca un récord de cuatro victorias después de su solo en la E3."
 coverImage: "https://www.rondevanvlaanderen.be/_media/corp/articles/image/1774521977/fit/750/0/598/fourth-win-for-van-der-poel-and-kopecky.jpg"
+translationOf: "tour-of-flanders-2026-preview-favorites"
 ---
 
 ## Tres hombres, 16 muros, una sola piedra en la cima

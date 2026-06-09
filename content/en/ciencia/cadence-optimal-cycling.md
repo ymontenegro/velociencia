@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "On flat stages of the Tour de France, professionals average 89–92 RPM. On the major mountain passes they drop to 71 RPM. Yet metabolic studies point to 60–80 RPM as the most efficient in terms of oxygen consumption. This paradox has occupied exercise physiology for decades — and its resolution has concrete implications for any cyclist."
 coverImage: "https://images.unsplash.com/photo-1741649897268-ac29908a9a91?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "cadencia-optima-ciclismo"
 ---
 
 ## The 90 RPM paradox

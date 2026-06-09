@@ -35,6 +35,7 @@ excerpt: >-
   cyclists.
 coverImage: >-
   https://images.unsplash.com/photo-1517482359597-b3f5ba0d52ce?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "economia-pedaleo-eficiencia-ciclismo"
 ---
 ## The Hidden Variable of Performance
 

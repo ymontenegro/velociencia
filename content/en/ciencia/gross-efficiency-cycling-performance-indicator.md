@@ -41,6 +41,7 @@ sources:
   - title: "The Relationship between Physiological Characteristics and Durability in Male Professional Cyclists — Spragg, Leo, Swart (2023)"
     url: "https://pubmed.ncbi.nlm.nih.gov/35977108/"
     type: pubmed
+translationOf: "eficiencia-gruesa-ciclismo-indicador-rendimiento"
 ---
 
 ## The third pillar nobody watches

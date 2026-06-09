@@ -20,6 +20,7 @@ sources:
     url: "https://www.cyclingnews.com/pro-cycling/training-camps/as-a-kid-it-was-a-dream-and-now-it-is-part-of-the-plan-isaac-del-toro-to-make-tour-de-france-debut-in-2026-in-support-of-tadej-pogacar/"
     type: "web_search"
 excerpt: "Isaac del Toro lidera el ranking UCI del año natural 2026 tras ganar el UAE Tour y la Tirreno-Adriático. El mexicano de 22 años llega al Dauphiné como favorito y debutará en el Tour, pero al servicio de Tadej Pogačar."
+translationOf: "isaac-del-toro-2026-uci-ranking-leader"
 ---
 
 Isaac del Toro encabeza el ranking UCI del año natural 2026 con una ventaja cercana a los 800 puntos sobre el resto del pelotón, según el conteo recogido por *CyclingUpToDate*. A los 22 años, el corredor mexicano de UAE Team Emirates-XRG es el ciclista que más ha rendido en lo que va de temporada. La cifra resume un arranque de año que ningún latinoamericano había firmado tan joven. Y el detalle de fondo es que esa cosecha la construyó como jefe de filas, no como gregario.

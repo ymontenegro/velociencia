@@ -35,6 +35,7 @@ sources:
     type: web_search
 excerpt: "Vingegaard pulverizó el récord del Blockhaus (38:26, más de un minuto más rápido que Quintana en 2017) y se convierte en el gran favorito del Giro 2026. Eulálio conserva la rosa con 3'17\"."
 coverImage: "https://upload.wikimedia.org/wikipedia/commons/6/63/Giro-d-Italia-2026-Sofia-Visma.jpg"
+translationOf: "giro-italia-2026-finale-chronicle"
 ---
 
 Los 13 kilómetros del Blockhaus tardaron 38 minutos y 26 segundos en redefinir el Giro de Italia 2026. Jonas Vingegaard cubrió la última subida de la séptima etapa —246 kilómetros desde Formia, con el Apenino como escenario final— a una velocidad que ningún ciclista había alcanzado antes en esa montaña. El récord anterior era de Nairo Quintana en 2017, 39 minutos y 29 segundos en el año en que el colombiano ganó el Giro. Vingegaard lo pulverizó por más de un minuto completo. Afonso Eulálio (Bahrain Victorious) cruzó la meta en el puesto 15, a 2 minutos y 55 segundos del danés, y conservó la maglia rosa con una ventaja de 3 minutos y 17 segundos sobre el ganador de la etapa. La diferencia numérica, sin embargo, no describe con precisión lo que ocurrió en ese último kilómetro de asfalto de los Abruzos.

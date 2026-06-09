@@ -40,6 +40,7 @@ excerpt: >-
   optimal dose is between 3 and 6 mg/kg of body weight.
 coverImage: >-
   https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "cafeina-rendimiento-ciclismo"
 ---
 ## A 3% Power Improvement Measured in Actual Watts
 

@@ -32,6 +32,7 @@ sources:
   - title: "Odden I, et al. The higher the fraction of maximal oxygen uptake is during interval training, the greater is the cycling performance gain. Eur J Sport Sci. 2024"
     url: "https://pubmed.ncbi.nlm.nih.gov/39385317/"
     type: pubmed
+translationOf: "intervalos-largos-vo2max-4x8-5x5-3x12-ciclismo"
 ---
 
 ## The time that matters is not pedaling time

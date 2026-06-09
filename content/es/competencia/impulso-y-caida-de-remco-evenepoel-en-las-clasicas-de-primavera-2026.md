@@ -38,6 +38,7 @@ sources:
     url: "https://www.cyclingnews.com/pro-cycling/racing/uae-tour-remco-evenepoel-takes-leaders-jersey-with-storming-time-trial-victory-on-stage-2/"
     type: web_search
 excerpt: "Seis victorias en ocho días de competición abrieron la temporada 2026 de Remco Evenepoel con Red Bull-BORA-hansgrohe, pero una caída en la Volta a Catalunya y las dificultades en montaña frenaron su impulso de cara a las clásicas de las Ardenas."
+translationOf: "rise-and-fall-of-remco-evenepoel-in-the-2026-spring-classics"
 ---
 
 ## Seis victorias en ocho días: el arranque demoledor

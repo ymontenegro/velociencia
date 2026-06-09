@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "La resíntesis de glucógeno muscular alcanza su tasa máxima en las primeras 2 horas post-ejercicio. Un ratio de 3:1 o 4:1 de carbohidratos a proteína optimiza la recuperación."
 coverImage: "https://plus.unsplash.com/premium_photo-1664647788970-cdcb5e87f630?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "post-ride-nutritional-recovery-what-to-eat-and-when"
 ---
 
 ## La ventana anabólica existe, pero no como te la vendieron

@@ -29,6 +29,7 @@ sources:
   - title: "Relative importance of pacing strategy and mean power output in 1500-m self-paced cycling"
     url: "https://pubmed.ncbi.nlm.nih.gov/19850573/"
     type: pubmed
+translationOf: "pacing-time-trial-power-distribution"
 ---
 
 ## El error que se repite en cada salida

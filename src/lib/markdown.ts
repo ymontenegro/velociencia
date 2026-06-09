@@ -74,6 +74,7 @@ export function getAllArticles(section?: string, locale: string = "es"): Article
         readingTime: getReadingTime(content),
         coverImage: frontmatter.coverImage,
         featured: frontmatter.featured ?? false,
+        translationOf: frontmatter.translationOf,
       });
     }
   }

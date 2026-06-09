@@ -32,6 +32,7 @@ sources:
   - title: "UCI Sports Nutrition Project: Race Nutrition for Road Cycling"
     url: "https://journals.humankinetics.com/view/journals/ijsnem/36/3/article-p215.xml"
     type: "study"
+translationOf: "protein-between-stages-grand-tours"
 ---
 
 Con 0.8 g de carbohidrato más 0.4 g de proteína por kilo de peso corporal por hora durante las dos primeras horas tras el agotamiento, el balance nitrogenado pasa de –82.4 ± 11.5 mg/kg a +7.0 ± 15.4 mg/kg. Ese dato, publicado por Sollie et al. en el *Journal of Applied Physiology* en 2018 (PMID: 30212306) con ocho ciclistas de élite, resume el problema con una precisión que pocas cifras consiguen: después de una etapa intensa, con solo carbohidratos en la ventana de recuperación el cuerpo sigue catabolizando tejido muscular; con proteína añadida, el balance se hace neutro. Multiplicado por 21 etapas, ese déficit acumulado es lo que distingue al ciclista que llega funcional a los Alpes de la tercera semana del que arrastra las piernas como lastres.

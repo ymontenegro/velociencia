@@ -32,6 +32,7 @@ sources:
     type: pubmed
 excerpt: "Dietary nitrate supplementation, primarily via beetroot juice, reduces the oxygen cost of submaximal exercise by up to 5% and extends time to exhaustion by 16%. The effective dose is 6-8 mmol NO₃⁻, equivalent to about 500 ml of beetroot juice or 140 ml of concentrate."
 coverImage: "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "nitratos-jugo-remolacha-rendimiento-ciclismo"
 ---
 
 ## 16% more endurance from half a liter of beetroot juice

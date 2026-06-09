@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "El VO₂max fija el techo aeróbico, pero la cinética del VO₂ determina cuán rápido llegas a ese techo. En ciclistas entrenados la constante temporal τ se sitúa entre 20 y 30 segundos; en no entrenados supera con frecuencia los 45 segundos. Esa brecha define el coste anaeróbico de cada arranque, aceleración e inicio de intervalo — y es modificable con entrenamiento."
 coverImage: "https://images.unsplash.com/photo-1709601415546-dcd24c912e56?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "vo2-kinetics-speed-of-response-cycling"
 ---
 
 ## Mismo techo, diferente velocidad de respuesta

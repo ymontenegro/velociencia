@@ -38,6 +38,7 @@ sources:
   - title: "Tour Auvergne-Rhône-Alpes statistics and records — ProCyclingStats"
     url: "https://www.procyclingstats.com/race/dauphine"
     type: web
+translationOf: "criterium-dauphine-2026-previa-favoritos"
 ---
 
 On June 7, the peloton rolls out from Vizille, a small town south of Grenoble where in 1788 the assembly that ignited the French Revolution was convened. What begins there carries a different kind of historical weight: for the first time in 77 editions, the Critérium du Dauphiné will not be called the Critérium du Dauphiné. The race returns under the name Tour Auvergne-Rhône-Alpes, rebranded after the host region increased its financial backing by 18 percent, pushing the budget to roughly eleven million euros. The name changes. The mountains do not.

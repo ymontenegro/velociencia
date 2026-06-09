@@ -30,6 +30,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/16430681/"
     type: scientific_paper
 excerpt: "Un 11,7% de mejora en VO2max en nueve semanas. Eso es lo que obtuvo el grupo polarizado en el estudio de Stöggl y Sperlich frente a quienes entrenaron por umbrales o volumen. La pregunta es si funciona igual para quien pedalea 8 horas a la semana."
+translationOf: "polarized-training-in-amateur-cyclists-evidence-and-practical-application"
 ---
 
 ## La trampa de la zona gris

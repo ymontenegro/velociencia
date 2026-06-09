@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Supplementing with 1000 mg of vitamin C and 400 IU of vitamin E blocks the exercise-induced improvement in insulin sensitivity and reduces PGC-1α expression, the master switch of mitochondrial biogenesis. Reactive oxygen species are not collateral damage from training — they are the signal itself."
 coverImage: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "antioxidantes-estres-oxidativo-adaptaciones-ciclismo"
 ---
 
 ## The paradox of the cyclist who takes too much care

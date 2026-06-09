@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "En etapas llanas del Tour de Francia, los profesionales mantienen 89-92 RPM. En los puertos de montaña caen a 71 RPM. Pero los estudios metabólicos apuntan a cadencias de 60-80 RPM como las más eficientes en términos de oxígeno. La paradoja lleva décadas en la literatura científica y su resolución tiene implicaciones concretas para cualquier ciclista."
 coverImage: "https://images.unsplash.com/photo-1741649897268-ac29908a9a91?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "cadence-optimal-cycling"
 ---
 
 ## La paradoja de los 90 RPM

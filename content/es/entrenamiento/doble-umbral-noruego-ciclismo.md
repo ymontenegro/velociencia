@@ -29,6 +29,7 @@ sources:
   - title: "Marius Bakken – Double Threshold Training in Depth"
     url: "https://www.mariusbakken.com/double-threshold-training.html"
     type: "media"
+translationOf: "norwegian-double-threshold-cycling"
 ---
 
 ## El momento en que el triatlón entró al pelotón

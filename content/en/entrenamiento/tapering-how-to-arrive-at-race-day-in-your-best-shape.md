@@ -38,6 +38,7 @@ excerpt: >-
   improvements of 2% to 6% in endurance athletes.
 coverImage: >-
   https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "tapering-puesta-a-punto"
 ---
 ## The Week Nobody Wants to Do
 

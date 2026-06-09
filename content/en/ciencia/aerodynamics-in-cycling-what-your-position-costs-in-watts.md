@@ -35,6 +35,7 @@ excerpt: >-
   without improving physical condition.
 coverImage: >-
   https://images.unsplash.com/photo-1769838509445-f42f1cc0b632?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "aerodinamica-posicion-ciclismo"
 ---
 ## The Physics That Slow Down the Cyclist
 

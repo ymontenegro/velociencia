@@ -17,6 +17,7 @@ sources:
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10937518/"
     type: "pubmed"
 excerpt: "Evidence held to rigorous hormonal standards says the cycle barely moves average performance. But data from elite cyclists show the phase does change how much intensity you tolerate. The key isn't fearing your period—it's periodizing with data."
+translationOf: "ciclo-menstrual-rendimiento-ciclismo-femenino"
 ---
 
 The average effect of the menstrual cycle on physical performance is −0.06 on the effect-size scale, a value statistics classifies as trivial. That figure comes from the most cited meta-analysis on the topic, signed by Kelly McNulty and colleagues in *Sports Medicine* (2020), which pooled 51 studies and 709 women with natural cycles. The conclusion unsettles both sides of the debate: the period neither ruins performance, as folklore claims, nor are the phases irrelevant, as the opposite oversimplification suggests. The reality is finer, and understanding it changes how a rider organizes her weeks.

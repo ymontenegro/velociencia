@@ -38,6 +38,7 @@ sources:
     type: pubmed
 excerpt: "Durante más de un siglo, el lactato fue tratado como un desecho tóxico del esfuerzo muscular. La ciencia actual demuestra que es un combustible preferido por el corazón y el cerebro, y que el 75% del lactato producido durante el ejercicio se oxida directamente para generar energía."
 coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "lactate-the-fuel-cycling-thought-was-waste"
 ---
 
 ## El error que duró un siglo

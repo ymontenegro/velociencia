@@ -1,6 +1,6 @@
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { getAllAuthors } from "@/lib/authors";
+import { getAllAuthors, getEditorialTeam } from "@/lib/authors";
 import { getAllArticles } from "@/lib/markdown";
 import { AuthorsIndex } from "@/components/authors/authors-index";
 
@@ -18,11 +18,19 @@ export default async function AuthorsPage() {
   const locale = await getLocale();
   const dict = await getDictionary(locale);
   const authors = getAllAuthors(locale);
+  const editorialTeam = getEditorialTeam(locale);
 
   const authorsWithCount = authors.map((author) => ({
     ...author,
     articleCount: getAllArticles(author.sectionId, locale).length,
   }));
 
-  return <AuthorsIndex authors={authorsWithCount} dict={dict} locale={locale} />;
+  return (
+    <AuthorsIndex
+      authors={authorsWithCount}
+      editorialTeam={editorialTeam}
+      dict={dict}
+      locale={locale}
+    />
+  );
 }

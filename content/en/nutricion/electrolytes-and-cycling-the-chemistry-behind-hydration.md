@@ -32,6 +32,7 @@ excerpt: >-
   during cycling. Sodium loss can exceed 1000 mg per hour in hot conditions.
 coverImage: >-
   https://plus.unsplash.com/premium_photo-1683121849049-aded3453fabc?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "hidratacion-electrolitos-ciclismo"
 ---
 ## Electrically Charged Minerals
 

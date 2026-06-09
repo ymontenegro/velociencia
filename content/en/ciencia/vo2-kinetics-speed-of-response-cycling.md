@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "VO₂max sets the aerobic ceiling, but VO₂ kinetics determines how fast you reach it. In trained cyclists the time constant τ sits between 20 and 30 seconds; in untrained individuals it commonly exceeds 45 seconds. That gap defines the anaerobic cost of every surge, acceleration, and interval start — and it is trainable."
 coverImage: "https://images.unsplash.com/photo-1709601415546-dcd24c912e56?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "cinetica-vo2-velocidad-respuesta-ciclismo"
 ---
 
 ## Same ceiling, different response speed

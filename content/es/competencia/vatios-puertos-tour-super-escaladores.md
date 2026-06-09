@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Los datos de potencia en las grandes ascensiones del Tour de France cuentan la historia del ciclismo moderno. Desde las cifras sospechosamente altas de la era Armstrong hasta el resurgimiento de los súper-escaladores con Pogačar y Vingegaard."
 coverImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "watts-on-tour-climbs-the-era-of-super-climbers"
 ---
 
 ## Los números que definen una era

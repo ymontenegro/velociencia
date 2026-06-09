@@ -59,6 +59,7 @@ excerpt: >-
   Proper management of sodium, potassium, magnesium, and calcium is vital for
   muscle function and preventing cramps in ultra-endurance cycling, adjusting
   hydration according to conditions and metabolism.
+translationOf: "manejo-de-electrolitos-durante-carreras-de-ultra-resistencia-en-ciclismo-balance-entre-hidratacion-y-funcion-muscular"
 ---
 ## Electrolyte Management During Ultra-Endurance Cycling Races: Balancing Hydration and Muscle Function
 

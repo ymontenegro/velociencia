@@ -25,6 +25,7 @@ excerpt: >-
   We analyze the evidence and how to apply it to amateur cycling.
 coverImage: >-
   https://images.unsplash.com/photo-1732611321835-43f0bdd5687f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "periodizacion-en-bloques"
 ---
 ## One Stimulus per Block, Not Ten
 

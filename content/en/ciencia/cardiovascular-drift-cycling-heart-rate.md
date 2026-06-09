@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "During 60 minutes of Zone 2 riding, heart rate can climb 5–15 bpm while power stays constant. Cardiovascular drift is not sensor noise — it precisely reflects the competition between working muscle and skin for the same cardiac output. Measuring the Pw:HR ratio turns every long ride into an aerobic durability test."
 coverImage: "https://images.unsplash.com/photo-1754546326803-994b2d510168?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "drift-cardiaco-ciclismo-frecuencia-cardiaca"
 ---
 
 ## Your head unit isn't lying — it's just telling a different story

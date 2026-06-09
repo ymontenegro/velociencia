@@ -32,6 +32,7 @@ sources:
     type: pubmed
 excerpt: "Ten days of heat acclimation expanded plasma volume by 6.5% and improved time-trial performance by 6% in cool conditions and 8% in the heat. The effect goes beyond thermoregulation: more blood, more cardiac output, more oxygen to working muscles."
 coverImage: "https://images.unsplash.com/photo-1530143311094-34d807799e8f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "adaptacion-calor-rendimiento-ciclismo"
 ---
 
 ## Heat as a training stimulus

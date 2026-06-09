@@ -13,6 +13,7 @@
     "site": "Sitio",
     "newsletter": "Newsletter",
     "aboutUs": "Sobre nosotros",
+    "team": "El equipo",
     "home": "Inicio",
     "privacy": "Política de privacidad",
     "contact": "Contacto",
@@ -24,7 +25,7 @@
     "disclosure": "Divulgación de afiliados"
   },
   "affiliate": {
-    "disclosure": "Este artículo incluye enlaces de afiliado. Si compras a través de ellos, Velociencia puede recibir una comisión sin costo adicional para ti. Solo enlazamos productos que consideramos genuinamente útiles para el ciclista.",
+    "disclosure": "Este artículo incluye enlaces de afiliado. Si compras a través de ellos, Velociencia recibe una comisión sin costo adicional para ti. Solo enlazamos productos que consideramos genuinamente útiles para el ciclista.",
     "disclosureShort": "Enlace de afiliado",
     "recommends": "Recomendado",
     "cta": "Ver precio",
@@ -112,13 +113,15 @@
     "notFound": "Tema no encontrado"
   },
   "authors": {
-    "title": "Columnistas",
-    "subtitle": "Las cuatro voces detrás de Velociencia, una por cada especialidad.",
+    "title": "El equipo",
+    "subtitle": "Las personas detrás de Velociencia: redactores de sección, editora jefa, verificador de fuentes y editora visual.",
+    "bylineAuthors": "Firmas de sección",
+    "editorialTeam": "Equipo de redacción",
     "sectionLabel": "Sección",
     "specialtyLabel": "Especialidad",
     "articlesBy": "Artículos de",
     "viewAllBy": "Ver todos los artículos de",
-    "allColumnists": "Ver todos los columnistas",
+    "allColumnists": "Ver el equipo",
     "articlesCount": "artículos",
     "articleCount": "artículo",
     "notFound": "Columnista no encontrado"
@@ -164,7 +167,7 @@
     "priceRef": "ref.",
     "lastUpdated": "Datos actualizados:",
     "sourceLabel": "Fuente",
-    "disclaimer": "Precios de referencia con fecha de verificación. Velociencia puede recibir comisión por compras realizadas a través de los enlaces de esta tabla, sin costo adicional para ti.",
+    "disclaimer": "Precios de referencia con fecha de verificación. Velociencia recibe una comisión por compras realizadas a través de los enlaces de esta tabla, sin costo adicional para ti.",
     "methodology": "Metodología",
     "methodologyText": "Los datos nutricionales se verifican manualmente contra las fichas oficiales de cada fabricante. El precio por gramo de carbohidrato se calcula dividiendo el precio de venta del gel por los gramos de carbohidrato por ración."
   },
@@ -441,6 +444,8 @@
     "step4Text": "Antes de publicar, el equipo editorial revisa el texto, comprueba que cada afirmación coincida con las fuentes citadas y corrige lo que haga falta.",
     "step5Title": "Publicamos y corregimos",
     "step5Text": "Publicamos con las fuentes citadas de forma explícita para que cualquiera pueda verificarlas. Si detectas un error, lo corregimos.",
+    "ourTeam": "El equipo editorial",
+    "ourTeamIntro": "Las personas que investigan, escriben, editan y verifican cada artículo. La IA es nuestra herramienta de trabajo; el criterio editorial es siempre humano.",
     "transparency": "Transparencia",
     "transparencyText": "Velociencia se elabora con un proceso asistido por inteligencia artificial y supervisado por nuestro equipo editorial. La IA ayuda a investigar y a redactar a partir de fuentes científicas reales; la decisión de qué se publica, la verificación de los datos y la edición final son responsabilidad de personas. Los nombres de cada sección son las identidades editoriales con las que firmamos cada especialidad.",
     "corrections": "Correcciones y contacto",

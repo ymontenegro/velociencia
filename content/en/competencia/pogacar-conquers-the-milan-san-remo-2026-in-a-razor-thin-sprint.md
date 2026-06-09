@@ -43,6 +43,7 @@ excerpt: >-
   Tom Pidcock by half a wheel on Via Roma.
 coverImage: >-
   https://plus.unsplash.com/premium_photo-1661964083002-8f020ef771b1?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "milan-san-remo-2026-analisis-carrera"
 ---
 La Classicissima delivered one of the most dramatic editions ever witnessed this Saturday. 298 kilometers from Pavia to San Remo, six and a half hours of racing, a massive crash at the most inopportune moment, and a finish decided by the thickness of a tire. Tadej Pogačar, the world champion, claimed the victory that had eluded him most in recent years. He did so bleeding from his left elbow, with his jersey torn but his determination intact.
 

@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "The power-duration curve is the most comprehensive tool for identifying a cyclist's strengths and weaknesses. From a 5-second sprint to a sustained hour-long effort, every point on the curve reflects a distinct energy system."
 coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "curva-potencia-perfil-ciclista"
 ---
 
 ## Your physiological fingerprint

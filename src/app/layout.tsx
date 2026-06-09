@@ -100,6 +100,12 @@ export default async function RootLayout({
         <link rel="alternate" hrefLang="es" href="https://velociencia.cl" />
         <link rel="alternate" hrefLang="en" href="https://pedalsci.com" />
         <link rel="alternate" hrefLang="x-default" href="https://velociencia.cl" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME_I18N[locale]} RSS Feed`}
+          href="/rss.xml"
+        />
         {/* Google Funding Choices + AdSense loaded via next/script to avoid hydration mismatch when ad blockers remove DOM nodes */}
         {/* Organization JSON-LD for SEO */}
         <script

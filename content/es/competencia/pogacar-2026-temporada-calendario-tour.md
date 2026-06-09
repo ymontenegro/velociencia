@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "Desde los 80 kilómetros en solitario de la Strade Bianche hasta las cuatro etapas ganadas en la Romandie, Pogačar acumula 9 victorias en tres meses y entra en el verano como el corredor más dominante de la historia reciente del ciclismo. El objetivo es el quinto Tour de France, que lo igualaría con Anquetil, Merckx, Hinault e Induráin."
 coverImage: "https://images.unsplash.com/photo-1764150230797-53b7a25b0f1b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "pogacar-2026-season-calendar-tour"
 ---
 
 ## Ochenta kilómetros solo en Toscana para empezar

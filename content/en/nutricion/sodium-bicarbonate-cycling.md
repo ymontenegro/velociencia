@@ -32,6 +32,7 @@ sources:
   - title: "Sodium bicarbonate and beta-alanine supplementation: Is combining both better than either alone? A systematic review and meta-analysis"
     url: "https://pubmed.ncbi.nlm.nih.gov/38952910/"
     type: pubmed
+translationOf: "bicarbonato-sodio-ciclismo"
 ---
 
 ## Fifty-Four Seconds Over 40 Kilometers

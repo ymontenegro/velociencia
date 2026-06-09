@@ -38,6 +38,7 @@ sources:
     type: web_search
 excerpt: "259.5 kilometres and 4,395 metres of climbing stand between the favourites and the finish line in Liège. Pogačar arrives as the top favourite after his Milan-San Remo and Flanders double, but Evenepoel, Pidcock, Healy, Skjelmose and Seixas all have reasons to believe the Doyenne could change hands."
 coverImage: "https://images.unsplash.com/photo-1583348488360-00512a32b0f6?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "liege-bastogne-liege-2026-previa-favoritos"
 ---
 
 259.5 kilometres and 4,395 metres of positive elevation gain. Eleven official climbs. A flat finish in Liège after descending from the Roche-aux-Faucons. The 112th edition of Liège-Bastogne-Liège takes place on Sunday 26 April and once again reclaims its status as the oldest Classic on the calendar, La Doyenne, the race Eddy Merckx won five times and where a new emperor is now trying to close in on that record.

@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "FTP improvement follows a predictable curve: rapid gains in the first 3-4 months, progressive deceleration, and inevitable plateaus. The numbers vary by starting point, but the adaptation pattern is remarkably consistent."
 coverImage: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "progresion-ftp-primer-ano"
 ---
 
 ## The curve nobody shows you

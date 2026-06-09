@@ -32,6 +32,7 @@ sources:
     type: pubmed
 excerpt: "Diez días de heat acclimation expandieron el volumen plasmático un 6.5% y mejoraron el rendimiento en contrarreloj un 6% en clima fresco y un 8% en calor. El efecto trasciende la termorregulación: más sangre, más gasto cardíaco, más oxígeno a los músculos."
 coverImage: "https://images.unsplash.com/photo-1530143311094-34d807799e8f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "heat-acclimation-cycling-performance"
 ---
 
 ## El calor como estímulo de entrenamiento

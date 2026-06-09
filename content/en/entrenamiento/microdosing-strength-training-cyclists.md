@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "In-season strength training doesn't require 45 minutes in the gym. Evidence supports 8 to 12 minutes of real work performed five times a week — the same weekly volume distributed in minimal doses that don't compromise recovery or interfere with key cycling sessions."
 coverImage: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "microdosis-fuerza-ciclistas"
 ---
 
 ## The Most Common In-Season Mistake: Choosing Between the Bike and the Gym

@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La periodización nutricional ajusta la ingesta de carbohidratos al objetivo de cada sesión de entrenamiento. Entrenar con baja disponibilidad de glucógeno potencia adaptaciones mitocondriales, pero competir con depósitos llenos maximiza el rendimiento."
 coverImage: "https://images.unsplash.com/photo-1626266799502-ec96e7cc4bce?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "nutritional-periodization-for-cyclists-fuel-according-to-demand"
 ---
 
 ## Combustible para el trabajo requerido, no para el día del calendario

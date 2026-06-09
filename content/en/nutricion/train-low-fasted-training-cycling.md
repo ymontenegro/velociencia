@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Training with low glycogen activates the AMPK–PGC-1α cascade and amplifies mitochondrial adaptations. The molecular evidence is solid; direct translation to race-day watts is more nuanced. Here's how train low actually works—and why WorldTour teams apply it with surgical precision, not as a blanket fueling philosophy."
 coverImage: "https://images.unsplash.com/photo-1648061930045-e9fdd171c052?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "train-low-entrenamiento-ayunas-ciclismo"
 ---
 
 ## The experiment that changed sports nutrition: two legs, one cyclist

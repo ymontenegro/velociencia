@@ -35,6 +35,7 @@ sources:
     type: scientific_paper
 excerpt: "Una sola noche de privación de sueño alarga el tiempo de una contrarreloj ciclista en torno a un 10%. La ciencia explica por qué dormir es la herramienta de recuperación más subestimada del ciclismo."
 coverImage: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "sleep-performance-cycling"
 ---
 
 ## El costo medible de una mala noche

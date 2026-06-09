@@ -29,6 +29,7 @@ sources:
     type: web
 excerpt: "El Performance Management Chart —CTL, ATL y TSB— es la traducción práctica del modelo impulso-respuesta de Banister (1975). Cincuenta años después, la evidencia confirma su utilidad como brújula de planificación, pero también sus límites: son promedios de promedios que capturan carga externa, no el estrés fisiológico real. Este artículo explica la matemática, los rangos validados y los errores más comunes al interpretarlos."
 coverImage: "https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "training-load-ctl-atl-tsb-performance-management-chart"
 ---
 
 ## El modelo que cumple cincuenta años y sigue vigente

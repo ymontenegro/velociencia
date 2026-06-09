@@ -14,6 +14,8 @@ export interface ArticleFrontmatter {
   featured?: boolean;
   /** Set to true when the article contains affiliate links (shows the disclosure banner). */
   affiliate?: boolean;
+  /** Slug of the paired article in the other locale (hreflang partner). */
+  translationOf?: string;
 }
 
 export interface Article {
@@ -37,6 +39,8 @@ export interface ArticleCard {
   coverImage?: string;
   /** True when the article has `featured: true` in its frontmatter. */
   featured?: boolean;
+  /** Slug of the paired article in the other locale (hreflang partner). */
+  translationOf?: string;
 }
 
 export interface ArticleSource {

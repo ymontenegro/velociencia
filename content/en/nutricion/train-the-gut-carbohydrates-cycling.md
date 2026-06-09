@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "The gut is not a fixed bottleneck: the capacity to absorb and oxidize carbohydrates during exercise can be trained. Here is the physiology behind the 120 g/h that the world's best cyclists now routinely target."
 coverImage: "https://images.unsplash.com/photo-1558415737-d2d14ef33023?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "entrenar-el-intestino-carbohidratos"
 ---
 
 ## The intestinal bottleneck: why 60 g/h was never enough

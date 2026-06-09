@@ -14,6 +14,7 @@ sources:
     url: "https://doi.org/10.1080/17461391.2022.2153231"
     type: "journal"
 excerpt: "Fatigue isn't only muscular: the brain hits the brakes before the legs do. Two trials show that adding exhausting cognitive tasks to training improves the time trial and lowers perceived effort. Here is what we know—and what we don't."
+translationOf: "brain-endurance-training-ciclismo"
 ---
 
 The group that trained the brain improved its endurance by 24%, versus 12% for the group that trained only the body. That figure, published by Neil Dallaway and colleagues in the *European Journal of Sport Science* (2023), captures an idea that exercise physiology has been debating for a decade: the limit of endurance performance lies not only in the muscles or the heart, but also in the perception of effort the brain generates. If that perception can be trained, performance should follow it. Brain endurance training (BET) is the most direct attempt to put that hypothesis to the test.

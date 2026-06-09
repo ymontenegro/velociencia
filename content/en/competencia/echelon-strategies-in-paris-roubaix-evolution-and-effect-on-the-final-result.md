@@ -40,6 +40,7 @@ excerpt: >-
   How echelon formations have defined the outcome of Paris-Roubaix in recent
   editions, supported by aerodynamic studies and tactical analysis of races
   between 2019 and 2024.
+translationOf: "estrategias-de-abanicos-en-paris-roubaix-evolucion-y-efecto-en-el-resultado-final"
 ---
 ## Echelon Strategies in Paris-Roubaix: Evolution and Impact on the Final Outcome
 

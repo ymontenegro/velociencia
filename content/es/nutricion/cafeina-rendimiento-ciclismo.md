@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La cafeína mejora la potencia media en ciclismo un 3% y reduce el tiempo en contrarreloj un 2.2%, según un metaanálisis de 46 estudios controlados. La dosis óptima se sitúa entre 3 y 6 mg/kg de peso corporal."
 coverImage: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "caffeine-and-performance-in-cycling-dosage-timing-and-evidence"
 ---
 
 ## Un 3% de mejora en potencia que se mide en vatios reales

@@ -29,6 +29,7 @@ sources:
     type: web
 excerpt: "The Performance Management Chart — CTL, ATL and TSB — is the practical translation of Banister's impulse-response model (1975). Fifty years on, the evidence confirms its utility as a planning compass, but also its limits: these are averages of averages that capture external load, not real physiological stress. This article explains the math, validated ranges and the most common errors in interpretation."
 coverImage: "https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "carga-entrenamiento-ctl-atl-tsb-performance-management-chart"
 ---
 
 ## The model that has lasted fifty years

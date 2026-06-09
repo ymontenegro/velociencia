@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Un metaanálisis de 27 estudios muestra que reducir el volumen de entrenamiento entre un 41% y un 60% durante dos semanas, manteniendo la intensidad, produce mejoras de rendimiento del 2% al 6% en atletas de resistencia."
 coverImage: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "tapering-how-to-arrive-at-race-day-in-your-best-shape"
 ---
 
 ## La semana que nadie quiere hacer

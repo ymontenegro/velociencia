@@ -23,6 +23,7 @@ sources:
     url: "https://www.noticiasdealava.eus/deportes/2022/04/17/viento-empuja-baarle-conquista-paris-1016536.html"
     type: web_search
 excerpt: "Cómo las formaciones de abanicos han definido el resultado de París-Roubaix en ediciones recientes, con respaldo de estudios aerodinámicos y análisis táctico de las carreras entre 2019 y 2024."
+translationOf: "echelon-strategies-in-paris-roubaix-evolution-and-effect-on-the-final-result"
 ---
 
 ## Estrategias de abanicos en París-Roubaix: evolución y efecto en el resultado final

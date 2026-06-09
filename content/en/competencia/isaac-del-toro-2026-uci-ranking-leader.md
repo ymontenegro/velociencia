@@ -20,6 +20,7 @@ sources:
     url: "https://www.cyclingnews.com/pro-cycling/training-camps/as-a-kid-it-was-a-dream-and-now-it-is-part-of-the-plan-isaac-del-toro-to-make-tour-de-france-debut-in-2026-in-support-of-tadej-pogacar/"
     type: "web_search"
 excerpt: "Isaac del Toro leads the 2026 UCI calendar-year ranking after winning the UAE Tour and Tirreno-Adriatico. The 22-year-old Mexican arrives at the Dauphiné as a favorite and will debut at the Tour — but in support of Tadej Pogačar."
+translationOf: "isaac-del-toro-temporada-2026-lider-ranking-uci"
 ---
 
 Isaac del Toro tops the 2026 UCI calendar-year ranking with a lead of close to 800 points over the rest of the peloton, according to the count reported by *CyclingUpToDate*. At 22, the Mexican rider of UAE Team Emirates-XRG is the cyclist who has performed best so far this season. The figure sums up a start to the year that no Latin American had ever put together so young. And the underlying detail is that he built that haul as team leader, not as a domestique.

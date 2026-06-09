@@ -32,6 +32,7 @@ sources:
   - title: "UCI Sports Nutrition Project: Race Nutrition for Road Cycling"
     url: "https://journals.humankinetics.com/view/journals/ijsnem/36/3/article-p215.xml"
     type: "study"
+translationOf: "proteina-entre-etapas-grandes-vueltas"
 ---
 
 With 0.8 g of carbohydrate plus 0.4 g of protein per kilogram of body weight per hour during the first two hours after exhaustion, nitrogen balance shifts from –82.4 ± 11.5 mg/kg to +7.0 ± 15.4 mg/kg. That figure, published by Sollie et al. in the *Journal of Applied Physiology* in 2018 (PMID: 30212306) with eight elite cyclists, captures the problem with rare precision: after an intense stage, relying on carbohydrates alone during the recovery window leaves the body in continued net muscle catabolism; adding protein tips the balance toward neutral. Multiplied across 21 stages, that accumulated deficit is what separates the rider who arrives functional in the Alps of week three from the one dragging depleted legs to the finish.

@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Tres modelos de distribución de intensidad compiten en la ciencia del entrenamiento: polarizado, piramidal y umbral. Los datos de Stöggl y Sperlich (2014) y Neal et al. (2013) revelan diferencias claras en las adaptaciones que produce cada uno."
 coverImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "polarized-pyramidal-or-threshold-what-science-says-about-each-model"
 ---
 
 ## El debate que divide al entrenamiento de resistencia

@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Los vatios por kilogramo son la métrica que iguala el campo de juego entre ciclistas de distinto tamaño. La tabla de Coggan popularizó los rangos de referencia, pero la realidad fisiológica detrás de esos números es más matizada de lo que parece."
 coverImage: "https://images.unsplash.com/photo-1592182811189-87f6ae2f3407?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "watts-per-kg-competitive-levels-and-how-to-improve"
 ---
 
 ## Por qué el peso importa tanto como la potencia

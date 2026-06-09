@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La eficiencia mecánica explica por qué dos ciclistas con el mismo consumo de oxígeno producen potencias distintas. Los profesionales convierten hasta un 25% de la energía metabólica en trabajo mecánico, frente al 18-20% de los recreativos."
 coverImage: "https://images.unsplash.com/photo-1517482359597-b3f5ba0d52ce?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "pedaling-economy-why-two-cyclists-with-the-same-vo2max-perform-differently"
 ---
 
 ## La variable oculta del rendimiento

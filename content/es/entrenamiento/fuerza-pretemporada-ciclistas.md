@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "La pretemporada es la ventana donde el ciclista puede dedicar energía real al gimnasio sin comprometer el trabajo en bici. Rønnestad et al. demostraron que la fuerza pesada mejora la potencia sin añadir peso corporal."
 coverImage: "https://images.unsplash.com/photo-1647828150413-1717ace5bac2?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "strength-in-preseason-the-block-that-transforms-your-pedaling"
 ---
 
 ## La ventana que la mayoría desperdicia
