@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -10,7 +11,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { SECTIONS, SECTIONS_I18N, getSectionBySlug, type SectionId } from "@/lib/constants";
+import Image from "next/image";
+import { SECTIONS, SECTIONS_I18N, getSectionBySlug } from "@/lib/constants";
 import { formatDate, getReadingTime } from "@/lib/utils";
 import { getAllArticles } from "@/lib/markdown";
 import { getRelatedByTags, tagToSlug } from "@/lib/tags";
@@ -215,6 +217,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
   const homeLabel = locale === "en" ? "Home" : "Inicio";
 
+  // Reusable accent style for tool-scope wrappers
+  const accentStyle = { "--tool-accent": sectionConfig.color } as CSSProperties;
+
   return (
     <article>
       {/* NewsArticle JSON-LD */}
@@ -275,24 +280,33 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         }}
       />
       <ViewTracker slug={slug} section={sectionId} />
-      {/* Breadcrumb */}
+
+      {/* Breadcrumb — mono HUD treatment with live dot on the section link */}
       <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-[var(--color-text-muted)]">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)]"
+        >
           <Link href="/" className="transition-colors hover:text-[var(--color-text)]">
             {dict.article.breadcrumbHome}
           </Link>
-          <span className="text-[var(--color-border)]">/</span>
+          <span aria-hidden="true" className="text-[var(--color-border)]">/</span>
           <Link
             href={`/${sectionI18n.slug}`}
-            className="transition-colors hover:text-[var(--color-text)]"
+            className="flex items-center gap-1.5 transition-colors"
             style={{ color: sectionConfig.color }}
           >
+            <span
+              aria-hidden="true"
+              className="tool-live-dot h-1 w-1 flex-none rounded-full"
+              style={{ backgroundColor: sectionConfig.color }}
+            />
             {sectionI18n.name}
           </Link>
         </nav>
       </div>
 
-      {/* Hero gradient area */}
+      {/* Hero gradient area — cover image + article header */}
       <div
         className="relative mt-4 overflow-hidden"
         style={{
@@ -304,34 +318,54 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <div className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }} />
 
         {frontmatter.coverImage && (
-          <img src={frontmatter.coverImage} alt={frontmatter.title} loading="eager" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+          <Image
+            src={frontmatter.coverImage as string}
+            alt={frontmatter.title as string}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
         )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col justify-end px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-          <span className="inline-block w-fit rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-            {sectionI18n.name}
-          </span>
+          {/* HUD section kicker — live dot + mono section name */}
+          <div className="flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="tool-live-dot h-1.5 w-1.5 flex-none rounded-full"
+              style={{ backgroundColor: sectionConfig.color }}
+            />
+            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-white/80">
+              {sectionI18n.name}
+            </span>
+          </div>
 
-          <h1 className="animate-fade-in-up mt-5 font-serif text-3xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-5xl xl:text-6xl" style={{ textShadow: "0 2px 12px rgba(0,0,0,0.15)" }}>
-            {frontmatter.title}
+          {/* Title — editorial protagonist, style untouched */}
+          <h1
+            className="animate-fade-in-up mt-4 font-serif text-3xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-5xl xl:text-6xl"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.15)" }}
+          >
+            {frontmatter.title as string}
           </h1>
 
           {frontmatter.subtitle && (
             <p className="animate-fade-in-up stagger-1 mt-4 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
-              {frontmatter.subtitle}
+              {frontmatter.subtitle as string}
             </p>
           )}
 
-          <div className="animate-fade-in-up stagger-2 mt-6 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wider text-white/60">
+          {/* Metadata line — author normal, date + reading time in mono */}
+          <div className="animate-fade-in-up stagger-2 mt-6 flex flex-wrap items-center gap-3 text-white/70">
             <AuthorAvatar name={authorName} color={sectionConfig.color} size="sm" />
-            <span className="normal-case tracking-normal">
+            <span className="text-sm font-medium text-white/80">
               {dict.article.by}{" "}
               {authorProfile ? (
                 <Link
                   href={`/${authorBase}/${authorProfile.slug}`}
-                  className="transition-colors hover:underline"
+                  className="transition-colors hover:text-white hover:underline"
                 >
                   {authorName}
                 </Link>
@@ -339,16 +373,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 authorName
               )}
             </span>
-            <span>&middot;</span>
-            {frontmatter.date && <time>{formatDate(frontmatter.date, locale)}</time>}
-            <span>&middot;</span>
-            <span>{readingTime} {dict.article.minRead}</span>
+            <span aria-hidden="true" className="h-1 w-1 flex-none rounded-full bg-white/30" />
+            {frontmatter.date && (
+              <time className="font-mono text-[11px] tracking-[0.06em] text-white/60">
+                {formatDate(frontmatter.date as string, locale)}
+              </time>
+            )}
+            <span aria-hidden="true" className="h-1 w-1 flex-none rounded-full bg-white/30" />
+            <span className="font-mono text-[11px] tracking-[0.06em] text-white/60">
+              {readingTime}&thinsp;{dict.article.minRead}
+            </span>
           </div>
 
+          {/* Share bar */}
           <div className="animate-fade-in-up stagger-2 mt-5">
             <ShareBar
               title={frontmatter.title as string}
-              color={sectionConfig.color}
               copyLabel={dict.article.copyLink}
               copiedLabel={dict.article.copied}
             />
@@ -368,32 +408,40 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           {/* Empty left gutter on 2xl */}
           <div className="hidden 2xl:block" />
 
-          {/* Reading column — constrained to 68ch on all sizes; on 2xl the grid handles centering */}
+          {/* Reading column */}
           <div className="mx-auto max-w-[68ch] py-10 sm:py-14 2xl:mx-0 2xl:max-w-none">
             {frontmatter.affiliate && (
               <div className="mb-8">
                 <AffiliateDisclosure text={dict.affiliate.disclosure} />
               </div>
             )}
+            {/* Prose — editorial legibility, styles untouched */}
             <div className={`prose prose-lg prose-${sectionId === "nutricion" ? "nutricion" : sectionId === "ciencia" ? "ciencia" : sectionId === "entrenamiento" ? "entrenamiento" : "competencia"}`}>
               {mdxContent}
             </div>
 
-            {/* Tag chips — after prose body, before references */}
+            {/* Tag filter-chips — mono style, section color on hover */}
             {tags.length > 0 && (
               <div className="mt-10 border-t border-[var(--color-border-light)] pt-6">
-                <p
-                  className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em]"
-                  style={{ color: sectionConfig.color }}
-                >
-                  {dict.article.relatedTopics}
-                </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="mb-3 flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="h-1 w-1 flex-none rounded-full"
+                    style={{ backgroundColor: sectionConfig.color }}
+                  />
+                  <p
+                    className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+                    style={{ color: sectionConfig.color }}
+                  >
+                    {dict.article.relatedTopics}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
                   {tags.map((tag) => (
                     <Link
                       key={tag}
                       href={`/${tagBase}/${tagToSlug(tag)}`}
-                      className="tag-chip rounded-full border border-[var(--color-border)] px-3 py-1 text-[12px] font-medium text-[var(--color-text-secondary)] hover:text-[var(--tag-section-color)] hover:border-[var(--tag-section-color)]"
+                      className="inline-flex items-center rounded border border-[var(--color-border)] bg-[var(--color-bg-card)] px-2.5 py-0.5 font-mono text-[11px] font-medium text-[var(--color-text-secondary)] transition-all duration-150 hover:border-[var(--tag-section-color)] hover:text-[var(--tag-section-color)] hover:bg-[var(--color-bg)]"
                       style={{ ["--tag-section-color" as string]: sectionConfig.color }}
                     >
                       {tag}
@@ -417,52 +465,76 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </div>
 
-      {/* References */}
+      {/* References — Race Telemetry panel: tool-corners + grid bg + HUD header */}
       {sources.length > 0 && (
         <div className="mx-auto max-w-[68ch] px-4 pb-8 sm:px-6 lg:px-8">
-          <section className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 sm:p-8">
-            <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">
-              {dict.article.references}
-            </h2>
-            <div className="mt-1 h-[2px] w-10" style={{ backgroundColor: sectionConfig.color }} />
-            <ol className="mt-5 space-y-3">
-              {sources.map((source, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm">
-                  <span
-                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white"
-                    style={{ backgroundColor: sectionConfig.color }}
-                  >
-                    {i + 1}
-                  </span>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--color-text-secondary)] underline underline-offset-2 transition-colors hover:text-[var(--color-text)]"
+          <section
+            className="tool-scope tool-corners relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 sm:p-8"
+            style={accentStyle}
+          >
+            {/* Telemetry grid — subtle depth */}
+            <div
+              aria-hidden="true"
+              className="tool-grid-bg pointer-events-none absolute inset-0 opacity-25"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 0%, transparent 50%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 50%)",
+              }}
+            />
+            <div className="relative z-10">
+              {/* HUD header */}
+              <div className="mb-5 flex items-center gap-2 border-b border-[var(--color-border-light)] pb-4">
+                <span
+                  aria-hidden="true"
+                  className="tool-live-dot h-1.5 w-1.5 flex-none rounded-full"
+                  style={{ backgroundColor: "var(--tool-accent)" }}
+                />
+                <h2
+                  className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+                  style={{ color: "var(--tool-accent)" }}
+                >
+                  {dict.article.references}
+                </h2>
+              </div>
+              <ol className="space-y-3">
+                {sources.map((source, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm">
+                    <span
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded font-mono text-[10px] font-bold text-white"
+                      style={{ backgroundColor: "var(--tool-accent)" }}
                     >
-                      {source.title}
-                    </a>
-                    {source.type && (
-                      <span
-                        className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-                        style={{
-                          backgroundColor: `var(${sectionConfig.colorVar}-light)`,
-                          color: `var(${sectionConfig.colorVar}-dark)`,
-                        }}
+                      {i + 1}
+                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--color-text-secondary)] underline underline-offset-2 transition-colors hover:text-[var(--color-text)]"
                       >
-                        {source.type}
-                      </span>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ol>
+                        {source.title}
+                      </a>
+                      {source.type && (
+                        <span
+                          className="shrink-0 rounded px-2 py-0.5 font-mono text-[9.5px] font-semibold uppercase tracking-wider"
+                          style={{
+                            backgroundColor: `var(${sectionConfig.colorVar}-light)`,
+                            color: `var(${sectionConfig.colorVar}-dark)`,
+                          }}
+                        >
+                          {source.type}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </section>
         </div>
       )}
 
-      {/* Related interactive tools (original, hands-on value) */}
+      {/* Related interactive tools */}
       <RelatedTools
         sectionId={sectionId}
         tags={tags}
@@ -486,14 +558,26 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <AdUnit slot="1161395850" />
       </div>
 
-      {/* Keep reading */}
+      {/* Keep reading — HUD section header consistent with homepage sections */}
       {relatedArticles.length > 0 && (
         <section className="border-t border-[var(--color-border)]">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-            <div className="mb-6 border-t-[4px] pt-4" style={{ borderColor: sectionConfig.color }}>
-              <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: sectionConfig.color }}>
-                {dict.article.keepReading}
-              </h2>
+            <div className="tool-scope mb-6" style={accentStyle}>
+              <div className="border-t-2 pt-3" style={{ borderColor: "var(--tool-accent)" }}>
+                <div className="flex items-center gap-2.5">
+                  <span
+                    aria-hidden="true"
+                    className="tool-live-dot h-1.5 w-1.5 flex-none rounded-full"
+                    style={{ backgroundColor: "var(--tool-accent)" }}
+                  />
+                  <h2
+                    className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+                    style={{ color: "var(--tool-accent)" }}
+                  >
+                    {dict.article.keepReading}
+                  </h2>
+                </div>
+              </div>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedArticles.map((article) => (
@@ -519,19 +603,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </section>
       )}
 
-      {/* Back link */}
+      {/* Back link — mono treatment */}
       <div className="mx-auto max-w-[68ch] px-4 pb-16 sm:px-6 lg:px-8">
         <Link
           href={`/${sectionI18n.slug}`}
-          className="group inline-flex items-center gap-2 text-sm font-medium transition-colors"
+          className="group inline-flex items-center gap-2 transition-colors"
           style={{ color: sectionConfig.color }}
         >
           <svg
-            className="h-4 w-4 transition-transform group-hover:-translate-x-1"
+            className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -539,7 +624,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
             />
           </svg>
-          {dict.article.backTo} {sectionI18n.name}
+          <span className="font-mono text-[10px] font-medium uppercase tracking-[0.18em]">
+            {dict.article.backTo} {sectionI18n.name}
+          </span>
         </Link>
       </div>
     </article>

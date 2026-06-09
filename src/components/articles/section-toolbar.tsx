@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useState, useEffect } from "react";
 import { ArticleCard } from "@/components/articles/article-card";
 import { useDictionary, useLocale } from "@/components/locale-provider";
@@ -126,19 +127,23 @@ export function SectionToolbar({
   ];
 
   return (
-    <div className="space-y-6">
-      {/* Toolbar row */}
+    <div
+      className="tool-scope space-y-6"
+      style={{ "--tool-accent": sectionColor } as CSSProperties}
+    >
+      {/* ── Toolbar row ─────────────────────────────────────────────── */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        {/* Topic chips */}
-        <div className="flex items-center gap-2">
-          <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
+        {/* Topic filter chips */}
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
             {dict.sections.filterByTopic}
           </span>
           <div className="no-scrollbar flex gap-1.5 overflow-x-auto">
+            {/* "All" chip */}
             <button
               onClick={() => handleTagChange(null)}
               className={cn(
-                "shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-150",
+                "shrink-0 rounded-sm border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider transition-all duration-150",
                 activeTag === null
                   ? "border-transparent text-white"
                   : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-border-light)] hover:text-[var(--color-text)]"
@@ -147,17 +152,20 @@ export function SectionToolbar({
             >
               {dict.sections.allTopicsFilter}
             </button>
+            {/* Tag chips */}
             {availableTags.map(({ slug, display }) => (
               <button
                 key={slug}
                 onClick={() => handleTagChange(slug)}
                 className={cn(
-                  "shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-150",
+                  "shrink-0 rounded-sm border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider transition-all duration-150",
                   activeTag === slug
                     ? "border-transparent text-white"
                     : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-border-light)] hover:text-[var(--color-text)]"
                 )}
-                style={activeTag === slug ? { backgroundColor: sectionColor } : {}}
+                style={
+                  activeTag === slug ? { backgroundColor: sectionColor } : {}
+                }
               >
                 {display}
               </button>
@@ -165,18 +173,18 @@ export function SectionToolbar({
           </div>
         </div>
 
-        {/* Sort selector */}
+        {/* Sort segment */}
         <div className="flex shrink-0 items-center gap-2">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
             {dict.sections.sortBy}
           </span>
-          <div className="flex rounded-lg border border-[var(--color-border)] overflow-hidden">
+          <div className="flex overflow-hidden rounded-sm border border-[var(--color-border)]">
             {sortOptions.map(({ key, label }) => (
               <button
                 key={key}
                 onClick={() => handleSortChange(key)}
                 className={cn(
-                  "px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-150",
+                  "px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider transition-colors duration-150",
                   sort === key
                     ? "text-white"
                     : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
@@ -190,12 +198,18 @@ export function SectionToolbar({
         </div>
       </div>
 
-      {/* Count line */}
-      <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--color-text-muted)]">
-        {dict.sections.showing} {sorted.length} {dict.sections.articlesWord}
-      </p>
+      {/* ── Count readout ───────────────────────────────────────────── */}
+      <div className="flex items-center gap-2">
+        <span
+          className="h-1 w-1 rounded-full"
+          style={{ backgroundColor: sectionColor }}
+        />
+        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--color-text-muted)]">
+          {sorted.length} {dict.sections.articlesWord}
+        </p>
+      </div>
 
-      {/* Empty state */}
+      {/* ── Empty state ─────────────────────────────────────────────── */}
       {sorted.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20">
           <p className="font-serif text-xl italic text-[var(--color-text-muted)]">
@@ -205,7 +219,7 @@ export function SectionToolbar({
         </div>
       )}
 
-      {/* Articles grid */}
+      {/* ── Articles grid ───────────────────────────────────────────── */}
       {visible.length > 0 && (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((article, i) => (
@@ -227,14 +241,15 @@ export function SectionToolbar({
         </div>
       )}
 
-      {/* Load more */}
+      {/* ── Load more ───────────────────────────────────────────────── */}
       {hasMore && (
         <div className="flex justify-center pt-4">
           <button
             onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-            className="rounded-full border border-[var(--color-border)] px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)] transition-colors duration-150 hover:border-transparent hover:text-white"
+            className="rounded-sm border border-[var(--color-border)] px-6 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)] transition-all duration-150 hover:border-transparent hover:text-white"
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = sectionColor;
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+                sectionColor;
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor = "";

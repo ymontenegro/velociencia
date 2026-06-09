@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
-import { getFeaturedTools } from "@/lib/tools";
+import { getAllTools } from "@/lib/tools";
 import { ToolCard } from "@/components/tools/tool-card";
 
 interface ToolsHighlightProps {
@@ -10,14 +10,16 @@ interface ToolsHighlightProps {
 }
 
 /**
- * Homepage highlight band — surfaces the interactive calculators right below the
- * hero. Race Telemetry treatment: card-toned background, mono eyebrow, multi-section
- * instrument bar. Shows 3 curated tools (distinct section colors) plus a CTA to
- * the full index. Reuses the shared <ToolCard>.
+ * Homepage tools band — surfaces ALL 9 interactive tools (6 calculators + 3 datasets).
+ * Grouped by kind (Calculadoras / Datos) with section counts in mono.
+ * Race Telemetry treatment: live dot eyebrow, multi-section gradient bar, HUD group labels.
  */
 export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
-  const tools = getFeaturedTools(3);
-  if (tools.length === 0) return null;
+  const allTools = getAllTools();
+  const calculators = allTools.filter((t) => !t.kind || t.kind === "calculator");
+  const datasets = allTools.filter((t) => t.kind === "dataset");
+
+  if (allTools.length === 0) return null;
 
   const allToolsHref = locale === "en" ? "/tools" : "/herramientas";
 
@@ -39,11 +41,11 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
         {/* Header */}
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            {/* Mono eyebrow */}
+            {/* Mono eyebrow with live dot */}
             <div className="flex items-center gap-2">
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]"
+                className="tool-live-dot inline-block h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-text-muted)]"
               />
               <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
                 {dict.tools.nav}
@@ -89,17 +91,57 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
           </Link>
         </div>
 
-        {/* Tool cards grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {tools.map((tool) => (
-            <ToolCard
-              key={tool.id}
-              tool={tool}
-              locale={locale}
-              openTool={dict.tools.openTool}
-            />
-          ))}
-        </div>
+        {/* Calculators group */}
+        {calculators.length > 0 && (
+          <div className="mb-10">
+            {/* Group header — HUD divider */}
+            <div className="mb-5 flex items-center gap-3">
+              <span className="font-mono text-[9.5px] font-medium uppercase tracking-[0.28em] text-[var(--color-text-muted)] whitespace-nowrap">
+                {dict.home.toolsCalculators}
+              </span>
+              <div className="flex-1 h-px bg-[var(--color-border)]" />
+              <span className="font-mono text-[9px] tabular-nums text-[var(--color-text-muted)]">
+                {calculators.length}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {calculators.map((tool) => (
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  locale={locale}
+                  openTool={dict.tools.openTool}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Datasets group */}
+        {datasets.length > 0 && (
+          <div>
+            {/* Group header — HUD divider */}
+            <div className="mb-5 flex items-center gap-3">
+              <span className="font-mono text-[9.5px] font-medium uppercase tracking-[0.28em] text-[var(--color-text-muted)] whitespace-nowrap">
+                {dict.home.toolsDatasets}
+              </span>
+              <div className="flex-1 h-px bg-[var(--color-border)]" />
+              <span className="font-mono text-[9px] tabular-nums text-[var(--color-text-muted)]">
+                {datasets.length}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {datasets.map((tool) => (
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  locale={locale}
+                  openTool={dict.tools.openDataset}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

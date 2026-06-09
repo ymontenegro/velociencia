@@ -1,6 +1,7 @@
 "use client";
 
 export default function GlobalError({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- required by Next.js error-boundary contract; not surfaced in this minimal fallback UI
   error,
   reset,
 }: {

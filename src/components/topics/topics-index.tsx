@@ -23,7 +23,6 @@ function tagSizeClass(count: number, maxCount: number): string {
 export async function TopicsIndex({ tags, locale }: TopicsIndexProps) {
   const dict = await getDictionary(locale);
   const base = locale === "en" ? "topic" : "tema";
-
   const maxCount = tags.length > 0 ? tags[0].count : 1;
 
   const countLabel = (count: number) =>
@@ -33,23 +32,44 @@ export async function TopicsIndex({ tags, locale }: TopicsIndexProps) {
 
   return (
     <div>
-      {/* Header */}
-      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-          <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-            {dict.topics.topic}
-          </span>
+      {/* ── HUD header ──────────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
+        {/* Faint telemetry grid — HUD depth cue */}
+        <div
+          className="tool-scope tool-grid-bg pointer-events-none absolute inset-0 opacity-25"
+          style={{
+            maskImage: "linear-gradient(to bottom, black, transparent 75%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black, transparent 75%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          {/* Eyebrow row — mono, HUD signal */}
+          <div className="flex items-center gap-2">
+            <span
+              className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]"
+              aria-hidden="true"
+            />
+            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+              {dict.topics.topic}
+            </span>
+          </div>
+
           <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl">
             {dict.topics.allTitle}
           </h1>
-          <div className="mt-4 h-[2px] w-12 bg-[var(--color-border)]" />
+
+          {/* Accent rule */}
+          <div className="mt-4 h-[2px] w-8 bg-[var(--color-border)]" />
+
           <p className="mt-4 text-base text-[var(--color-text-secondary)]">
             {dict.topics.allSubtitle}
           </p>
         </div>
       </div>
 
-      {/* Tag cloud */}
+      {/* ── Tag cloud ───────────────────────────────────────────────────── */}
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         {tags.length === 0 ? (
           <p className="font-serif text-xl italic text-[var(--color-text-muted)]">
@@ -64,7 +84,8 @@ export async function TopicsIndex({ tags, locale }: TopicsIndexProps) {
                 className={`tag-chip inline-flex items-baseline gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-bg-card)] px-3 py-1.5 text-[var(--color-text-secondary)] transition-all duration-200 hover:border-[var(--color-text-muted)] hover:bg-[var(--color-border-light)] hover:text-[var(--color-text)] ${tagSizeClass(tagInfo.count, maxCount)}`}
               >
                 <span>{tagInfo.tag}</span>
-                <span className="text-[10px] font-normal text-[var(--color-text-muted)]">
+                {/* Article count in mono — telemetry readout */}
+                <span className="font-mono text-[9px] font-normal text-[var(--color-text-muted)]">
                   {countLabel(tagInfo.count)}
                 </span>
               </Link>

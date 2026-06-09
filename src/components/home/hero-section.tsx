@@ -47,12 +47,31 @@ export async function HeroSection() {
   return (
     <section className="bg-[var(--color-bg)]">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-        {/* Section label: "Destacados" when any pinned article is present, otherwise "Lo último" */}
-        <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
-          {hasFeatured ? dict.home.featured : dict.home.latest}
-        </p>
+        {/* Race Telemetry eyebrow — live dot + mono label + spectrum accent line */}
+        <div className="mb-6">
+          <div className="flex items-center gap-2">
+            {/* Blinking live dot — competencia red signals editorial pulse */}
+            <span
+              aria-hidden="true"
+              className="tool-live-dot inline-block h-1.5 w-1.5 flex-none rounded-full"
+              style={{ backgroundColor: "#E11D48" }}
+            />
+            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+              {hasFeatured ? dict.home.featured : dict.home.latest}
+            </p>
+          </div>
+          {/* Multi-section spectrum accent line — all 4 sections represented */}
+          <div
+            aria-hidden="true"
+            className="mt-2 h-[2px] w-12 rounded-full"
+            style={{
+              background:
+                "linear-gradient(90deg, #0D9488 0%, #7C3AED 33%, #0891B2 66%, #E11D48 100%)",
+            }}
+          />
+        </div>
 
-        {/* Article grid: 2/3 hero + 1/3 stacked */}
+        {/* Article grid: 2/3 hero + 1/3 stacked side articles */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">
           {/* Main hero article */}
           <div className="lg:col-span-2">

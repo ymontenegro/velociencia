@@ -22,7 +22,10 @@ export default async function TerminosPage() {
       <div>
         <div className="bg-[var(--color-text)] dark:bg-[#0A0A0E]">
           <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-            <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-white backdrop-blur-sm">Legal</span>
+            <div className="flex items-center gap-2.5">
+              <span className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full bg-white/60" aria-hidden="true" />
+              <span className="inline-block rounded-full bg-white/20 px-3 py-1 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-white backdrop-blur-sm">Legal</span>
+            </div>
             <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl">Terms of Service</h1>
             <div className="mt-4 h-[2px] w-16 bg-white/40" />
           </div>

@@ -8,6 +8,11 @@ interface TopicCloudProps {
   dict: Dictionary;
 }
 
+/**
+ * Topic cloud — restyled as Race Telemetry filter chips.
+ * Mono text, defined borders, HUD section heading with thickness proportional
+ * to article count per tag (font-size gradient preserved).
+ */
 export function TopicCloud({ locale, dict }: TopicCloudProps) {
   const tags = getAllTags(locale).slice(0, 24);
   if (tags.length === 0) return null;
@@ -28,30 +33,44 @@ export function TopicCloud({ locale, dict }: TopicCloudProps) {
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      {/* Section heading — same editorial style as home sections */}
-      <div className="mb-8 border-t-[6px] border-[var(--color-text)] pt-4">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-            {dict.home.exploreTopics}
-          </h2>
+      {/* HUD section heading */}
+      <div className="mb-8 border-t-2 border-[var(--color-text)] pt-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="h-1 w-1 flex-none rounded-full bg-[var(--color-text-muted)]"
+            />
+            <h2 className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+              {dict.home.exploreTopics}
+            </h2>
+          </div>
           <Link
             href={`/${base}`}
-            className="text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+            className="font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
           >
             {dict.home.allTopics} &rarr;
           </Link>
         </div>
       </div>
 
-      {/* Tag cloud */}
-      <div className="flex flex-wrap items-center gap-2">
+      {/* Filter-chip cloud — mono text + defined border on hover */}
+      <div className="flex flex-wrap items-center gap-1.5">
         {tags.map(({ tag, slug, count }) => (
           <Link
             key={slug}
             href={`/${base}/${slug}`}
-            className="tag-chip rounded-full border border-[var(--color-border)] px-3 py-1 font-medium text-[var(--color-text-secondary)] transition-colors duration-150 hover:border-[var(--color-border-light)] hover:bg-[var(--color-bg-card)] hover:text-[var(--color-text)]"
+            className="inline-flex items-center rounded border border-[var(--color-border)] bg-[var(--color-bg-card)] px-2.5 py-0.5 font-mono font-medium text-[var(--color-text-secondary)] transition-all duration-150 hover:border-[var(--color-text)] hover:bg-[var(--color-bg)] hover:text-[var(--color-text)]"
             style={{ fontSize: fontSize(count) }}
-            title={`${count} ${count === 1 ? (locale === "en" ? "article" : "artículo") : (locale === "en" ? "articles" : "artículos")}`}
+            title={`${count} ${
+              count === 1
+                ? locale === "en"
+                  ? "article"
+                  : "artículo"
+                : locale === "en"
+                  ? "articles"
+                  : "artículos"
+            }`}
           >
             {tag}
           </Link>

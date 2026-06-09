@@ -83,7 +83,7 @@ export function ToolCard({ tool, locale, openTool, className }: ToolCardProps) {
             <ToolIcon toolId={tool.id} className="h-8 w-8" />
           </span>
 
-          {/* Section eyebrow — mono, with live dot */}
+          {/* Section eyebrow — mono, with live dot + type badge */}
           <span className="mt-5 flex items-center gap-2">
             <span
               aria-hidden="true"
@@ -95,6 +95,17 @@ export function ToolCard({ tool, locale, openTool, className }: ToolCardProps) {
               style={{ color: "var(--tool-accent)" }}
             >
               {sectionName}
+            </span>
+            {/* HUD type chip — CALC or DATA */}
+            <span
+              className="ml-auto rounded px-1.5 py-[2px] font-mono text-[8.5px] font-semibold uppercase tracking-[0.16em]"
+              style={{
+                color: "var(--tool-accent)",
+                border: "1px solid color-mix(in srgb, var(--tool-accent) 35%, transparent)",
+                backgroundColor: "color-mix(in srgb, var(--tool-accent) 7%, transparent)",
+              }}
+            >
+              {tool.kind === "dataset" ? "DATA" : "CALC"}
             </span>
           </span>
 

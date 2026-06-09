@@ -1,315 +1,698 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useLocale, useDictionary } from "@/components/locale-provider";
 import { CommandPalette } from "@/components/search/command-palette";
+import { getAllTools, toolHref, toolColor } from "@/lib/tools";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isMobileToolsOpen, setIsMobileToolsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const pathname = usePathname();
   const locale = useLocale();
   const dict = useDictionary();
   const sections = SECTIONS_I18N[locale];
+  const tools = getAllTools();
+  const calculators = tools.filter((t) => !t.kind || t.kind === "calculator");
+  const datasets = tools.filter((t) => t.kind === "dataset");
 
-  const NAV_ITEMS = [
-    ...SECTION_IDS.map((id) => ({
-      href: `/${sections[id].slug}`,
-      label: sections[id].name,
-      sectionId: id,
-    })),
-    { href: locale === "en" ? "/tools" : "/herramientas", label: dict.tools.nav, sectionId: null },
-    { href: locale === "en" ? "/about" : "/sobre", label: dict.header.about, sectionId: null },
-  ] as const;
+  const toolsHref = locale === "en" ? "/tools" : "/herramientas";
+  const aboutHref = locale === "en" ? "/about" : "/sobre";
 
+  const toolsMenuRef = useRef<HTMLDivElement>(null);
+  const toolsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // ── Scroll tracking ──────────────────────────────────────────────────────
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? scrollTop / docHeight : 0;
       setScrollProgress(Math.min(progress, 1));
       setIsScrolled(scrollTop > 50);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
+  // ── Body scroll lock when mobile menu open ───────────────────────────────
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
-  // Global ⌘K / Ctrl+K to open command palette
+  // ── Keyboard shortcuts ───────────────────────────────────────────────────
   useEffect(() => {
-    const handleGlobalKey = (e: KeyboardEvent) => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsToolsOpen(false);
+        setIsMenuOpen(false);
+        setSearchOpen(false);
+      }
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setSearchOpen((prev) => !prev);
       }
     };
-    window.addEventListener("keydown", handleGlobalKey);
-    return () => window.removeEventListener("keydown", handleGlobalKey);
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
   }, []);
+
+  // ── Close tools menu on outside click ───────────────────────────────────
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (
+        toolsMenuRef.current &&
+        !toolsMenuRef.current.contains(e.target as Node)
+      ) {
+        setIsToolsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  // Cleanup hover timer on unmount
+  useEffect(() => {
+    return () => {
+      if (toolsCloseTimer.current) clearTimeout(toolsCloseTimer.current);
+    };
+  }, []);
+
+  const openToolsMenu = () => {
+    if (toolsCloseTimer.current) clearTimeout(toolsCloseTimer.current);
+    setIsToolsOpen(true);
+  };
+
+  const scheduleCloseToolsMenu = () => {
+    toolsCloseTimer.current = setTimeout(() => setIsToolsOpen(false), 150);
+  };
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
+  const closeAll = () => {
+    setIsMenuOpen(false);
+    setIsToolsOpen(false);
+    setIsMobileToolsOpen(false);
+  };
 
   return (
     <>
-    <CommandPalette
-      open={searchOpen}
-      onClose={() => setSearchOpen(false)}
-      locale={locale}
-    />
-    <header className="sticky top-0 z-40">
-      {/* Scroll progress bar */}
-      <div
-        className="scroll-progress h-[2px] w-full"
-        style={{ transform: `scaleX(${scrollProgress})`, transformOrigin: "left" }}
-        aria-hidden="true"
+      <CommandPalette
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        locale={locale}
       />
 
-      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg)]/95 backdrop-blur-md">
-        <div className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300",
-          isScrolled ? "py-2" : "py-3"
-        )}>
-          {/* Site name — editorial, dramatic */}
-          <Link
-            href="/"
+      <header className="sticky top-0 z-40">
+        {/* Scroll progress bar */}
+        <div
+          className="scroll-progress h-[2px] w-full"
+          style={{
+            transform: `scaleX(${scrollProgress})`,
+            transformOrigin: "left",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="border-b border-[var(--color-border)] bg-[var(--color-bg)]/95 backdrop-blur-md">
+          <div
             className={cn(
-              "group flex items-center gap-2 font-serif font-bold tracking-[0.12em] uppercase text-[var(--color-text)] transition-all duration-300 hover:opacity-70",
-              isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"
+              "mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300",
+              isScrolled ? "py-2" : "py-3",
             )}
           >
-            {/* Bike wheel icon */}
-            <svg
+            {/* ── Logo / Site name ───────────────────────────────────────── */}
+            <Link
+              href="/"
               className={cn(
-                "flex-shrink-0 transition-all duration-300",
-                isScrolled ? "h-4 w-4" : "h-5 w-5"
+                "group flex items-center gap-2 font-serif font-bold tracking-[0.12em] uppercase text-[var(--color-text)] transition-all duration-300 hover:opacity-70",
+                isScrolled ? "text-lg sm:text-xl" : "text-xl sm:text-2xl",
               )}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
             >
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="2" />
-              <line x1="12" y1="2" x2="12" y2="10" />
-              <line x1="12" y1="14" x2="12" y2="22" />
-              <line x1="2" y1="12" x2="10" y2="12" />
-              <line x1="14" y1="12" x2="22" y2="12" />
-              <line x1="4.93" y1="4.93" x2="10.59" y2="10.59" />
-              <line x1="13.41" y1="13.41" x2="19.07" y2="19.07" />
-              <line x1="4.93" y1="19.07" x2="10.59" y2="13.41" />
-              <line x1="13.41" y1="10.59" x2="19.07" y2="4.93" />
-            </svg>
-            <div className="flex flex-col">
-              <span>{dict.siteName}</span>
-              <span className={cn(
-                "text-[9px] font-sans font-normal tracking-wider text-[var(--color-text-muted)] transition-all duration-300",
-                isScrolled ? "hidden" : "block"
-              )}>
-                {dict.tagline}
-              </span>
-            </div>
-          </Link>
-
-          {/* Desktop navigation */}
-          <nav className="hidden items-center gap-8 md:flex">
-            {NAV_ITEMS.map((item) => {
-              const isActive = pathname.startsWith(item.href);
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
+              {/* Bike wheel icon */}
+              <svg
+                className={cn(
+                  "flex-shrink-0 transition-all duration-300",
+                  isScrolled ? "h-4 w-4" : "h-5 w-5",
+                )}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="2" />
+                <line x1="12" y1="2" x2="12" y2="10" />
+                <line x1="12" y1="14" x2="12" y2="22" />
+                <line x1="2" y1="12" x2="10" y2="12" />
+                <line x1="14" y1="12" x2="22" y2="12" />
+                <line x1="4.93" y1="4.93" x2="10.59" y2="10.59" />
+                <line x1="13.41" y1="13.41" x2="19.07" y2="19.07" />
+                <line x1="4.93" y1="19.07" x2="10.59" y2="13.41" />
+                <line x1="13.41" y1="10.59" x2="19.07" y2="4.93" />
+              </svg>
+              <div className="flex flex-col">
+                <span>{dict.siteName}</span>
+                {/* Telemetry eyebrow — mono, muted signal label */}
+                <span
                   className={cn(
-                    "nav-link-animated text-xs font-medium tracking-wider uppercase transition-colors duration-300 ease-out hover:text-[var(--color-text)]",
-                    isActive
+                    "font-mono text-[8px] font-normal tracking-[0.25em] text-[var(--color-text-muted)] transition-all duration-300 uppercase",
+                    isScrolled ? "hidden" : "block",
+                  )}
+                  aria-hidden="true"
+                >
+                  {dict.tagline}
+                </span>
+              </div>
+            </Link>
+
+            {/* ── Desktop navigation ─────────────────────────────────────── */}
+            <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
+              {/* Section links with colored dots */}
+              {SECTION_IDS.map((id) => {
+                const href = `/${sections[id].slug}`;
+                const isActive = pathname.startsWith(href);
+                return (
+                  <Link
+                    key={id}
+                    href={href}
+                    className={cn(
+                      "nav-link-animated flex items-center gap-1.5 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ease-out hover:text-[var(--color-text)]",
+                      isActive
+                        ? "font-bold text-[var(--color-text)]"
+                        : "text-[var(--color-text-muted)]",
+                    )}
+                  >
+                    {/* Colored section dot — HUD heat-map signal */}
+                    <span
+                      className="section-dot transition-transform group-hover:scale-125"
+                      style={{ backgroundColor: SECTIONS[id].color }}
+                      aria-hidden="true"
+                    />
+                    {sections[id].name}
+                  </Link>
+                );
+              })}
+
+              {/* Tools mega-menu trigger */}
+              <div
+                ref={toolsMenuRef}
+                className="relative"
+                onMouseEnter={openToolsMenu}
+                onMouseLeave={scheduleCloseToolsMenu}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isToolsOpen}
+                  aria-haspopup="true"
+                  aria-controls="tools-megamenu"
+                  aria-label={dict.header.toolsMenuLabel}
+                  onClick={() => setIsToolsOpen((v) => !v)}
+                  className={cn(
+                    "nav-link-animated flex items-center gap-1 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ease-out hover:text-[var(--color-text)]",
+                    isToolsOpen || pathname.startsWith(toolsHref)
                       ? "font-bold text-[var(--color-text)]"
-                      : "text-[var(--color-text-muted)]"
+                      : "text-[var(--color-text-muted)]",
                   )}
                 >
-                  {item.label}
-                </Link>
-              );
-            })}
-            {/* Desktop search button */}
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
-              aria-label={dict.search.open}
-            >
-              <svg
-                className="h-3.5 w-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                aria-hidden="true"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
-              </svg>
-              {dict.search.button}
-              <kbd>⌘K</kbd>
-            </button>
-            <a
-              href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
-              className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
-              title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
-            >
-              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg>
-              {locale === "es" ? "EN" : "ES"}
-            </a>
-            <ThemeToggle />
-          </nav>
+                  {dict.tools.nav}
+                  {/* Chevron */}
+                  <svg
+                    className={cn(
+                      "h-3 w-3 transition-transform duration-200",
+                      isToolsOpen && "rotate-180",
+                    )}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
 
-          {/* Mobile: locale + theme toggle + search + menu button */}
-          <div className="flex items-center gap-2 md:hidden">
-            <a
-              href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
-              className="flex items-center gap-1 rounded-full border border-[var(--color-border)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
-              title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
-            >
-              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg>
-              {locale === "es" ? "EN" : "ES"}
-            </a>
-            <ThemeToggle />
-            {/* Mobile search icon button */}
+                {/* ── Mega-menu panel ─────────────────────────────────── */}
+                {isToolsOpen && (
+                  <div
+                    id="tools-megamenu"
+                    role="navigation"
+                    aria-label={dict.tools.nav}
+                    className="menu-enter tool-scope tool-corners absolute right-0 top-full z-50 mt-3 w-[560px] overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl"
+                    onMouseEnter={openToolsMenu}
+                    onMouseLeave={scheduleCloseToolsMenu}
+                  >
+                    {/* Faint telemetry grid in the background */}
+                    <div
+                      className="tool-grid-bg pointer-events-none absolute inset-0 opacity-40"
+                      style={{
+                        maskImage: "linear-gradient(to bottom, black, transparent 60%)",
+                        WebkitMaskImage: "linear-gradient(to bottom, black, transparent 60%)",
+                      }}
+                      aria-hidden="true"
+                    />
+
+                    {/* Header strip */}
+                    <div className="relative border-b border-[var(--color-border)] px-5 py-3">
+                      <span className="font-mono text-[9px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                        {dict.tools.nav} — {dict.tools.indexSubtitle}
+                      </span>
+                    </div>
+
+                    {/* Two-column grid */}
+                    <div className="relative grid grid-cols-2 gap-0 divide-x divide-[var(--color-border)]">
+                      {/* Calculadoras column */}
+                      <div className="p-4">
+                        <p className="mb-3 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                          {dict.header.toolsGroupCalc}
+                        </p>
+                        <ul className="space-y-1">
+                          {calculators.map((tool) => (
+                            <li key={tool.id}>
+                              <Link
+                                href={toolHref(tool, locale)}
+                                onClick={closeAll}
+                                className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors duration-150 hover:bg-[var(--color-border-light)]"
+                              >
+                                <span
+                                  className="section-dot mt-1.5 flex-shrink-0 transition-transform group-hover:scale-125"
+                                  style={{ backgroundColor: toolColor(tool) }}
+                                  aria-hidden="true"
+                                />
+                                <div className="min-w-0">
+                                  <span className="block text-[11px] font-semibold leading-snug text-[var(--color-text)]">
+                                    {tool.title[locale]}
+                                  </span>
+                                  <span className="block truncate text-[10px] leading-snug text-[var(--color-text-muted)]">
+                                    {tool.tagline[locale]}
+                                  </span>
+                                </div>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Datos column */}
+                      <div className="p-4">
+                        <p className="mb-3 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                          {dict.header.toolsGroupData}
+                        </p>
+                        <ul className="space-y-1">
+                          {datasets.map((tool) => (
+                            <li key={tool.id}>
+                              <Link
+                                href={toolHref(tool, locale)}
+                                onClick={closeAll}
+                                className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors duration-150 hover:bg-[var(--color-border-light)]"
+                              >
+                                <span
+                                  className="section-dot mt-1.5 flex-shrink-0 transition-transform group-hover:scale-125"
+                                  style={{ backgroundColor: toolColor(tool) }}
+                                  aria-hidden="true"
+                                />
+                                <div className="min-w-0">
+                                  <span className="block text-[11px] font-semibold leading-snug text-[var(--color-text)]">
+                                    {tool.title[locale]}
+                                  </span>
+                                  <span className="block truncate text-[10px] leading-snug text-[var(--color-text-muted)]">
+                                    {tool.tagline[locale]}
+                                  </span>
+                                </div>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Footer link — view all */}
+                    <div className="relative border-t border-[var(--color-border)] px-5 py-3">
+                      <Link
+                        href={toolsHref}
+                        onClick={closeAll}
+                        className="group flex items-center gap-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                      >
+                        {dict.header.toolsViewAll}
+                        <svg
+                          className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          aria-hidden="true"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* About link */}
+              <Link
+                href={aboutHref}
+                className={cn(
+                  "nav-link-animated text-xs font-medium tracking-wider uppercase transition-colors duration-300 ease-out hover:text-[var(--color-text)]",
+                  pathname.startsWith(aboutHref)
+                    ? "font-bold text-[var(--color-text)]"
+                    : "text-[var(--color-text-muted)]",
+                )}
+              >
+                {dict.header.about}
+              </Link>
+
+              {/* Search button */}
+              <button
+                type="button"
+                onClick={() => setSearchOpen(true)}
+                className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
+                aria-label={dict.search.open}
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+                </svg>
+                {dict.search.button}
+                <kbd>⌘K</kbd>
+              </button>
+
+              {/* Locale switch */}
+              <a
+                href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
+                className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
+                title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+                {locale === "es" ? "EN" : "ES"}
+              </a>
+
+              <ThemeToggle />
+            </nav>
+
+            {/* ── Mobile controls ────────────────────────────────────────── */}
+            <div className="flex items-center gap-2 md:hidden">
+              <a
+                href={locale === "es" ? "https://pedalsci.com" : "https://velociencia.cl"}
+                className="flex items-center gap-1 rounded-full border border-[var(--color-border)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text)] hover:text-[var(--color-text)]"
+                title={locale === "es" ? "Switch to English" : "Cambiar a Español"}
+              >
+                <svg
+                  className="h-3 w-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+                {locale === "es" ? "EN" : "ES"}
+              </a>
+              <ThemeToggle />
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
+                onClick={() => setSearchOpen(true)}
+                aria-label={dict.search.open}
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? dict.header.closeMenu : dict.header.openMenu}
+                aria-expanded={isMenuOpen}
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  {isMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Mobile overlay ─────────────────────────────────────────────── */}
+        <div
+          className={cn(
+            "fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 md:hidden",
+            isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0",
+          )}
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+
+        {/* ── Mobile drawer ──────────────────────────────────────────────── */}
+        <nav
+          className={cn(
+            "fixed right-0 top-0 z-50 h-full w-72 overflow-y-auto bg-[var(--color-bg)] shadow-2xl transition-transform duration-300 ease-out md:hidden",
+            isMenuOpen ? "translate-x-0" : "translate-x-full",
+          )}
+          aria-label={dict.header.menu}
+        >
+          {/* Drawer header */}
+          <div className="flex items-center justify-between border-b border-[var(--color-border)] px-6 py-5">
+            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+              {dict.header.menu}
+            </span>
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
-              onClick={() => setSearchOpen(true)}
-              aria-label={dict.search.open}
+              className="flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label={dict.header.closeMenu}
             >
               <svg
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
                 strokeWidth={1.5}
+                stroke="currentColor"
                 aria-hidden="true"
               >
-                <circle cx="11" cy="11" r="8" />
-                <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? dict.header.closeMenu : dict.header.openMenu}
-              aria-expanded={isMenuOpen}
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-              >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 md:hidden",
-          isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        )}
-        onClick={() => setIsMenuOpen(false)}
-        aria-hidden="true"
-      />
+          <div className="px-4 py-4">
+            {/* Section links */}
+            {SECTION_IDS.map((id) => {
+              const href = `/${sections[id].slug}`;
+              const isActive = pathname.startsWith(href);
+              return (
+                <Link
+                  key={id}
+                  href={href}
+                  onClick={closeAll}
+                  className={cn(
+                    "flex items-center gap-3 border-l-2 py-3.5 pl-4 mb-1 text-sm font-medium tracking-wider uppercase transition-colors",
+                    isActive
+                      ? "text-[var(--color-text)]"
+                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
+                  )}
+                  style={{
+                    borderLeftColor: isActive ? SECTIONS[id].color : "transparent",
+                  }}
+                >
+                  <span
+                    className="section-dot flex-shrink-0"
+                    style={{ backgroundColor: SECTIONS[id].color }}
+                    aria-hidden="true"
+                  />
+                  {sections[id].name}
+                </Link>
+              );
+            })}
 
-      {/* Mobile navigation — slides in from right */}
-      <nav
-        className={cn(
-          "fixed right-0 top-0 z-50 h-full w-72 bg-[var(--color-bg)] shadow-2xl transition-transform duration-300 ease-out md:hidden",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        <div className="flex items-center justify-between border-b border-[var(--color-border)] px-6 py-5">
-          <span className="font-serif text-lg font-bold tracking-[0.2em] uppercase text-[var(--color-text)]">
-            {dict.header.menu}
-          </span>
-          <button
-            type="button"
-            className="flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-[var(--color-border-light)]"
-            onClick={() => setIsMenuOpen(false)}
-            aria-label={dict.header.closeMenu}
-          >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div className="px-4 py-6">
-          {NAV_ITEMS.map((item) => {
-            const isActive = pathname.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
+            {/* Tools expandable section */}
+            <div className="mb-1">
+              <button
+                type="button"
+                onClick={() => setIsMobileToolsOpen((v) => !v)}
+                aria-expanded={isMobileToolsOpen}
                 className={cn(
-                  "block py-4 text-sm font-medium tracking-wider uppercase transition-colors border-l-2 pl-4 mb-1",
-                  isActive
+                  "flex w-full items-center gap-3 border-l-2 border-transparent py-3.5 pl-4 text-sm font-medium tracking-wider uppercase transition-colors",
+                  pathname.startsWith(toolsHref)
                     ? "text-[var(--color-text)]"
-                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
                 )}
-                style={{
-                  borderLeftColor: isActive ? "var(--color-text)" : "transparent",
-                }}
               >
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
-    </header>
+                <span
+                  className="section-dot flex-shrink-0 bg-[var(--color-text-muted)]"
+                  aria-hidden="true"
+                />
+                {dict.tools.nav}
+                <svg
+                  className={cn(
+                    "ml-auto h-3.5 w-3.5 transition-transform duration-200",
+                    isMobileToolsOpen && "rotate-180",
+                  )}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Expanded tools list */}
+              {isMobileToolsOpen && (
+                <div className="ml-7 mt-1 border-l border-[var(--color-border)] pl-4">
+                  {/* Calculadoras group */}
+                  <p className="mb-2 font-mono text-[8.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                    {dict.header.toolsGroupCalc}
+                  </p>
+                  {calculators.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={toolHref(tool, locale)}
+                      onClick={closeAll}
+                      className="group mb-1 flex items-center gap-2 py-2 text-xs font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                    >
+                      <span
+                        className="section-dot flex-shrink-0"
+                        style={{ backgroundColor: toolColor(tool) }}
+                        aria-hidden="true"
+                      />
+                      {tool.title[locale]}
+                    </Link>
+                  ))}
+
+                  {/* Datos group */}
+                  <p className="mb-2 mt-3 font-mono text-[8.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                    {dict.header.toolsGroupData}
+                  </p>
+                  {datasets.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={toolHref(tool, locale)}
+                      onClick={closeAll}
+                      className="group mb-1 flex items-center gap-2 py-2 text-xs font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                    >
+                      <span
+                        className="section-dot flex-shrink-0"
+                        style={{ backgroundColor: toolColor(tool) }}
+                        aria-hidden="true"
+                      />
+                      {tool.title[locale]}
+                    </Link>
+                  ))}
+
+                  {/* View all link */}
+                  <Link
+                    href={toolsHref}
+                    onClick={closeAll}
+                    className="mt-3 flex items-center gap-1.5 py-2 font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                  >
+                    {dict.header.toolsViewAll}
+                    <svg
+                      className="h-3 w-3"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* About */}
+            <Link
+              href={aboutHref}
+              onClick={closeAll}
+              className={cn(
+                "block border-l-2 border-transparent py-3.5 pl-4 mb-1 text-sm font-medium tracking-wider uppercase transition-colors",
+                pathname.startsWith(aboutHref)
+                  ? "text-[var(--color-text)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
+              )}
+            >
+              {dict.header.about}
+            </Link>
+          </div>
+        </nav>
+      </header>
     </>
   );
 }

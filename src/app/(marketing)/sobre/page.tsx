@@ -216,9 +216,15 @@ export default async function SobrePage() {
 
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="relative z-10">
-            <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-              {dict.about.badge}
-            </span>
+            <div className="flex items-center gap-2.5">
+              <span
+                className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full bg-white/60"
+                aria-hidden="true"
+              />
+              <span className="inline-block rounded-full bg-white/20 px-3 py-1 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-white backdrop-blur-sm">
+                {dict.about.badge}
+              </span>
+            </div>
             <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
               {siteName}
             </h1>
@@ -233,7 +239,7 @@ export default async function SobrePage() {
       {/* What we do */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="border-t-[6px] border-[var(--color-text)] pt-4">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+          <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
             {dict.about.whatWeDo}
           </h2>
         </div>
@@ -248,7 +254,7 @@ export default async function SobrePage() {
       <section className="border-t border-[var(--color-border)]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="border-t-[6px] border-[var(--color-text)] pt-4">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+            <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
               {dict.about.ourTeam}
             </h2>
           </div>
@@ -286,7 +292,7 @@ export default async function SobrePage() {
                         {member.name}
                       </p>
                       <p
-                        className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em]"
+                        className="mt-0.5 font-mono text-[9px] font-medium uppercase tracking-[0.16em]"
                         style={{ color: accentColor }}
                       >
                         {member.role}
@@ -343,7 +349,7 @@ export default async function SobrePage() {
       <section className="border-t border-[var(--color-border)]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="border-t-[6px] border-[var(--color-text)] pt-4">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+            <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
               {dict.about.editorialProcess}
             </h2>
           </div>
@@ -375,7 +381,7 @@ export default async function SobrePage() {
       <section className="border-t border-[var(--color-border)]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="border-t-[6px] border-[var(--color-text)] pt-4">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+            <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
               {dict.about.ourSections}
             </h2>
           </div>
@@ -425,7 +431,7 @@ export default async function SobrePage() {
                           {sectionI18n.journalist}
                         </span>
                       </div>
-                      <span className="text-[11px] font-medium text-[var(--color-text-muted)]">
+                      <span className="font-mono text-[9px] font-medium text-[var(--color-text-muted)]">
                         {articleCount} {articleCount === 1 ? (locale === "es" ? "artículo" : "article") : (locale === "es" ? "artículos" : "articles")}
                       </span>
                     </div>
@@ -443,7 +449,7 @@ export default async function SobrePage() {
           <div className="flex items-start gap-4">
             <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+              <p className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
                 {dict.about.transparency}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
@@ -456,7 +462,7 @@ export default async function SobrePage() {
           <div className="mt-12 flex items-start gap-4">
             <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+              <p className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
                 {dict.about.corrections}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">

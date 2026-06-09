@@ -182,10 +182,12 @@ export default function PowerZonesCalculator({
   const zones = useMemo<ZoneResult[]>(() => computeZones(ftp, locale), [ftp, locale]);
   const chartData = useMemo<ChartDatum[]>(() => buildChartData(zones, ftp), [zones, ftp]);
 
-  // Tooltip renderer — closure over `s` for bilinguality
+  // Tooltip renderer — closure over `s` for bilinguality.
+  // Named function so react/display-name is satisfied (anonymous arrow functions
+  // returned from useMemo lack a display name and trigger the lint rule).
   const renderTooltip = useMemo(
     () =>
-      (props: TooltipContentProps) => {
+      function ZoneTooltip(props: TooltipContentProps) {
         const { active, payload } = props;
         if (!active || !payload?.length) return null;
         const datum = payload[0]?.payload as ChartDatum | undefined;

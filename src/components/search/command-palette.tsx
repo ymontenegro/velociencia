@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useDictionary } from "@/components/locale-provider";
@@ -154,6 +155,7 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
   useEffect(() => {
     if (!open || indexLoaded || isLoadingIndex) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoadingIndex(true);
     fetch(`/api/search-index?locale=${locale}`)
       .then((r) => {
@@ -193,6 +195,7 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
   // --------------------------------------------------------------------------
   useEffect(() => {
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setQuery("");
       setSelectedIdx(0);
       // Defer focus to let the panel animate in
@@ -262,11 +265,6 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  // Reset selectedIdx on query change
-  useEffect(() => {
-    setSelectedIdx(0);
-  }, [query]);
-
   // Scroll selected item into view
   useEffect(() => {
     if (!listRef.current) return;
@@ -308,19 +306,31 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
         aria-hidden="true"
       />
 
-      {/* Panel */}
+      {/* ── HUD Panel ─────────────────────────────────────────────────── */}
       <div
         role="dialog"
         aria-modal="true"
         aria-label={dict.search.button}
-        className="cmdk-panel fixed left-1/2 top-[10vh] z-50 w-full max-w-xl -translate-x-1/2 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-2xl flex flex-col overflow-hidden"
-        style={{ maxHeight: "70vh" }}
+        className={cn(
+          "tool-scope tool-corners cmdk-panel",
+          "fixed left-1/2 top-[10vh] z-50 w-full max-w-xl -translate-x-1/2",
+          "rounded-xl border border-[var(--color-border)]",
+          "bg-[var(--color-bg)] shadow-2xl",
+          "flex flex-col overflow-hidden"
+        )}
+        style={{
+          maxHeight: "70vh",
+          "--tool-accent": "var(--color-text)",
+        } as CSSProperties}
       >
-        {/* Search input row */}
-        <div className="flex items-center gap-3 border-b border-[var(--color-border)] px-4 py-3">
+        {/* ── Input row — telemetry grid bg for HUD feel ─────────────── */}
+        <div className="relative flex items-center gap-3 border-b border-[var(--color-border)] px-4 py-3">
+          {/* Subtle grid overlay on input area */}
+          <div className="tool-grid-bg pointer-events-none absolute inset-0 opacity-[0.05]" />
+
           {/* Magnifier icon */}
           <svg
-            className="h-4 w-4 flex-shrink-0 text-[var(--color-text-muted)]"
+            className="relative h-4 w-4 flex-shrink-0 text-[var(--color-text-muted)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -335,9 +345,12 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
             ref={inputRef}
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setSelectedIdx(0);
+            }}
             placeholder={dict.search.placeholder}
-            className="min-w-0 flex-1 bg-transparent text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none"
+            className="relative min-w-0 flex-1 bg-transparent font-mono text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none"
             aria-label={dict.search.placeholder}
             autoComplete="off"
             autoCorrect="off"
@@ -345,53 +358,63 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
             spellCheck={false}
           />
 
-          {/* Dismiss */}
+          {/* Dismiss — ESC key visual */}
           <button
             type="button"
             onClick={onClose}
-            className="flex-shrink-0 text-[10px] font-medium tracking-wider uppercase text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+            className="relative flex-shrink-0 text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
             aria-label="Cerrar"
           >
             <kbd>Esc</kbd>
           </button>
         </div>
 
-        {/* Results area */}
+        {/* ── Results area ───────────────────────────────────────────── */}
         <div
           ref={listRef}
-          className="overflow-y-auto no-scrollbar flex-1 py-2"
+          className="no-scrollbar flex-1 overflow-y-auto py-2"
         >
           {/* Loading */}
           {isLoadingIndex && (
-            <p className="px-4 py-6 text-center text-xs text-[var(--color-text-muted)]">
-              {dict.search.loading}
-            </p>
+            <div className="flex items-center justify-center gap-2 px-4 py-8">
+              <span className="tool-live-dot h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]" />
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                {dict.search.loading}
+              </p>
+            </div>
           )}
 
           {/* No results */}
           {showNoResults && (
-            <p className="px-4 py-6 text-center text-xs text-[var(--color-text-muted)]">
-              {dict.search.noResults}
-            </p>
+            <div className="flex items-center justify-center px-4 py-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                {dict.search.noResults}
+              </p>
+            </div>
           )}
 
           {/* Empty state — index ready, no query */}
           {!hasQuery && indexLoaded && !isLoadingIndex && (
-            <p className="px-4 py-6 text-center text-xs text-[var(--color-text-muted)]">
-              {dict.search.placeholder}
-            </p>
+            <div className="flex items-center justify-center px-4 py-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                {dict.search.placeholder}
+              </p>
+            </div>
           )}
 
-          {/* Articles group */}
+          {/* ── Articles group ─────────────────────────────────────── */}
           {articleResults.length > 0 && (
             <div>
-              <p className="px-4 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
+              {/* Group header */}
+              <p className="px-4 pb-1 pt-2 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                 {dict.search.sectionsGroup}
               </p>
+
               {articleResults.map((r, i) => {
                 const isSelected = i === selectedIdx;
                 const sectionColor =
                   SECTIONS[r.section as SectionId]?.color ?? "#888";
+
                 return (
                   <button
                     key={`${r.section}/${r.slug}`}
@@ -400,23 +423,34 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
                     onClick={() => handleArticleClick(r)}
                     onMouseEnter={() => setSelectedIdx(i)}
                     className={cn(
-                      "flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors",
+                      "flex w-full items-center gap-3 border-l-2 border-transparent pl-3 pr-4 py-2.5 text-left transition-all duration-150",
                       isSelected
                         ? "bg-[var(--color-border-light)]"
                         : "hover:bg-[var(--color-border-light)]"
                     )}
+                    style={{
+                      borderLeftColor: isSelected ? sectionColor : "transparent",
+                    }}
                   >
-                    {/* Section badge */}
-                    <span
-                      className="flex-shrink-0 rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white"
-                      style={{ backgroundColor: sectionColor }}
-                    >
-                      {r.sectionName}
-                    </span>
+                    {/* Section kicker — dot + mono label (matches ArticleCard) */}
+                    <div className="flex flex-shrink-0 items-center gap-1.5">
+                      <span
+                        className="h-1.5 w-1.5 flex-none rounded-full"
+                        style={{ backgroundColor: sectionColor }}
+                      />
+                      <span
+                        className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em]"
+                        style={{ color: sectionColor }}
+                      >
+                        {r.sectionName}
+                      </span>
+                    </div>
+
                     {/* Title */}
                     <span className="min-w-0 flex-1 truncate text-sm font-medium text-[var(--color-text)]">
                       {r.title}
                     </span>
+
                     {/* Arrow indicator on selection */}
                     {isSelected && (
                       <svg
@@ -427,7 +461,11 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
                         strokeWidth={2}
                         aria-hidden="true"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     )}
                   </button>
@@ -436,15 +474,24 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
             </div>
           )}
 
-          {/* Topics group */}
+          {/* ── Topics group ───────────────────────────────────────── */}
           {topicResults.length > 0 && (
-            <div className={cn(articleResults.length > 0 ? "mt-1 border-t border-[var(--color-border-light)] pt-1" : "")}>
-              <p className="px-4 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
+            <div
+              className={cn(
+                articleResults.length > 0
+                  ? "mt-1 border-t border-[var(--color-border-light)] pt-1"
+                  : ""
+              )}
+            >
+              {/* Group header */}
+              <p className="px-4 pb-1 pt-2 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                 {dict.search.topicsGroup}
               </p>
+
               {topicResults.map((t, i) => {
                 const flatIdx = articleResults.length + i;
                 const isSelected = flatIdx === selectedIdx;
+
                 return (
                   <button
                     key={t.slug}
@@ -453,11 +500,16 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
                     onClick={() => handleTopicClick(t)}
                     onMouseEnter={() => setSelectedIdx(flatIdx)}
                     className={cn(
-                      "flex w-full items-center gap-2.5 px-4 py-2.5 text-left transition-colors",
+                      "flex w-full items-center gap-2.5 border-l-2 border-transparent pl-3 pr-4 py-2.5 text-left transition-all duration-150",
                       isSelected
                         ? "bg-[var(--color-border-light)]"
                         : "hover:bg-[var(--color-border-light)]"
                     )}
+                    style={{
+                      borderLeftColor: isSelected
+                        ? "var(--color-text-muted)"
+                        : "transparent",
+                    }}
                   >
                     {/* Tag icon */}
                     <svg
@@ -486,7 +538,11 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
                         strokeWidth={2}
                         aria-hidden="true"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     )}
                   </button>
@@ -496,20 +552,24 @@ export function CommandPalette({ open, onClose, locale }: CommandPaletteProps) {
           )}
         </div>
 
-        {/* Footer hints */}
-        <div className="flex items-center gap-3 border-t border-[var(--color-border)] px-4 py-2.5">
-          <span className="flex items-center gap-1 text-[10px] text-[var(--color-text-muted)]">
+        {/* ── Footer hints — keyboard shortcuts in mono ──────────────── */}
+        <div className="flex items-center gap-4 border-t border-[var(--color-border)] px-4 py-2">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] text-[var(--color-text-muted)]">
             <kbd>↑</kbd>
             <kbd>↓</kbd>
             <span className="ml-0.5">{dict.search.hint}</span>
           </span>
-          <span className="flex items-center gap-1 text-[10px] text-[var(--color-text-muted)]">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] text-[var(--color-text-muted)]">
             <kbd>↵</kbd>
-            <span className="ml-0.5">{locale === "en" ? "open" : "abrir"}</span>
+            <span className="ml-0.5">
+              {dict.search.enterHint}
+            </span>
           </span>
-          <span className="flex items-center gap-1 text-[10px] text-[var(--color-text-muted)]">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] text-[var(--color-text-muted)]">
             <kbd>Esc</kbd>
-            <span className="ml-0.5">{locale === "en" ? "close" : "cerrar"}</span>
+            <span className="ml-0.5">
+              {dict.search.escHint}
+            </span>
           </span>
         </div>
       </div>

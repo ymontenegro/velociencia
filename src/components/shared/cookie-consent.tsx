@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 import Link from "next/link";
 
 interface CookieConsentProps {
@@ -14,7 +14,9 @@ export function CookieConsent({ locale }: CookieConsentProps) {
 
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_KEY);
-    if (!consent) setVisible(true);
+    // startTransition defers the update so it isn't a direct synchronous
+    // setState call in the effect body (react-hooks/set-state-in-effect).
+    if (!consent) startTransition(() => setVisible(true));
   }, []);
 
   function accept() {

@@ -23,26 +23,48 @@ export async function TopicArchive({ tag, articles, locale }: TopicArchiveProps)
 
   return (
     <div>
-      {/* Topic header — neutral, no section color */}
-      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-          <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-            {dict.topics.topic}
-          </span>
+      {/* ── HUD header ──────────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
+        {/* Faint telemetry grid */}
+        <div
+          className="tool-scope tool-grid-bg pointer-events-none absolute inset-0 opacity-25"
+          style={{
+            maskImage: "linear-gradient(to bottom, black, transparent 75%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black, transparent 75%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          {/* Eyebrow with live dot — telemetry signal */}
+          <div className="flex items-center gap-2">
+            <span
+              className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]"
+              aria-hidden="true"
+            />
+            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+              {dict.topics.topic}
+            </span>
+          </div>
+
           <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl lg:text-6xl">
             {tag.tag}
           </h1>
-          <div className="mt-4 h-[2px] w-12 bg-[var(--color-border)]" />
+
+          {/* Accent rule */}
+          <div className="mt-4 h-[2px] w-8 bg-[var(--color-border)]" />
+
+          {/* Descriptive line — count as mono readout */}
           <p className="mt-4 text-base text-[var(--color-text-secondary)]">
             {dict.topics.articlesAbout}{" "}
             <span className="font-semibold text-[var(--color-text)]">{tag.tag}</span>
             {" — "}
-            {countLabel}
+            <span className="font-mono text-[var(--color-text-muted)]">{countLabel}</span>
           </p>
         </div>
       </div>
 
-      {/* Articles grid */}
+      {/* ── Articles grid ───────────────────────────────────────────────── */}
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         {articles.length === 0 ? (
           <p className="font-serif text-xl italic text-[var(--color-text-muted)]">
@@ -90,6 +112,7 @@ export async function TopicArchive({ tag, articles, locale }: TopicArchiveProps)
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

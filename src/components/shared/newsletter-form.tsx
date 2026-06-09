@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useState } from "react";
 import { useDictionary, useLocale } from "@/components/locale-provider";
 
@@ -61,26 +62,33 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
         ? dict.newsletter.error
         : null;
 
-  /* ── Compact mode (footer) ── */
+  /* ── Compact mode (footer) ─────────────────────────────────────────── */
   if (compact) {
     if (isSuccess) {
       return (
         <div className="animate-success flex items-center gap-2">
-          <svg
-            className="h-4 w-4 text-[var(--color-nutricion)]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2.5}
+          {/* Telemetry checkmark display */}
+          <div
+            className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-sm"
+            style={{ backgroundColor: "var(--color-nutricion)" }}
           >
-            <path
-              className="animate-checkmark"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-          <p className="text-sm font-medium text-[var(--color-nutricion)]">
+            <svg
+              className="h-3 w-3 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              aria-hidden="true"
+            >
+              <path
+                className="animate-checkmark"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-nutricion)]">
             {status === "duplicate"
               ? dict.newsletter.alreadySubscribed
               : dict.newsletter.thanks}
@@ -90,25 +98,34 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
     }
 
     return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (status === "invalid" || status === "error") setStatus("idle");
-          }}
-          placeholder={dict.newsletter.placeholder}
-          disabled={status === "submitting"}
-          className="w-full rounded-md border border-[var(--color-border)] bg-white px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-ciencia)] focus:outline-none focus:ring-1 focus:ring-[var(--color-ciencia)] transition-colors disabled:opacity-60"
-        />
+      <form
+        onSubmit={handleSubmit}
+        className="tool-scope flex flex-col gap-2"
+        style={{ "--tool-accent": "var(--color-ciencia)" } as CSSProperties}
+      >
+        {/* Input with instrument-panel focus ring via tool-field */}
+        <div className="tool-field rounded-sm">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (status === "invalid" || status === "error") setStatus("idle");
+            }}
+            placeholder={dict.newsletter.placeholder}
+            disabled={status === "submitting"}
+            className="w-full bg-transparent px-3 py-2 font-mono text-[13px] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none disabled:opacity-60"
+          />
+        </div>
         {errorMessage && (
-          <p className="text-xs text-red-500">{errorMessage}</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-red-500">
+            {errorMessage}
+          </p>
         )}
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full rounded-md bg-[var(--color-text)] px-4 py-2 text-sm font-medium text-white transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full rounded-sm bg-[var(--color-text)] px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-bg)] transition-all hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "submitting"
             ? dict.newsletter.submitting
@@ -118,11 +135,11 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
     );
   }
 
-  /* ── Standalone mode (dramatic section) ── */
+  /* ── Standalone mode (dramatic section) ────────────────────────────── */
   if (isSuccess) {
     return (
       <section className="relative overflow-hidden rounded-lg bg-[var(--color-text)] px-6 py-16 sm:px-12 sm:py-20">
-        {/* Subtle decorative gradient */}
+        {/* Decorative gradient */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -130,14 +147,30 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
               "radial-gradient(ellipse at 30% 50%, var(--color-ciencia) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, var(--color-nutricion) 0%, transparent 60%)",
           }}
         />
+        {/* Telemetry grid overlay */}
+        <div
+          className="tool-scope absolute inset-0 tool-grid-bg opacity-[0.04]"
+          style={{ "--tool-accent": "rgba(255,255,255,0.8)" } as CSSProperties}
+        />
+        {/* Corner ticks */}
+        <div
+          className="pointer-events-none absolute left-[12px] top-[12px] z-10 h-3 w-3 border-l-[1.5px] border-t-[1.5px]"
+          style={{ borderColor: "rgba(255,255,255,0.2)" }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-[12px] right-[12px] z-10 h-3 w-3 border-b-[1.5px] border-r-[1.5px]"
+          style={{ borderColor: "rgba(255,255,255,0.2)" }}
+        />
+
         <div className="animate-success relative z-10 flex flex-col items-center text-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-nutricion)]">
+          <div className="flex h-14 w-14 items-center justify-center rounded-sm bg-[var(--color-nutricion)]">
             <svg
               className="h-7 w-7 text-white"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth={2.5}
+              aria-hidden="true"
             >
               <path
                 className="animate-checkmark"
@@ -153,7 +186,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
               : dict.newsletter.thanksTitle}
           </p>
           {status !== "duplicate" && (
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.1em] text-white/50">
               {dict.newsletter.thanksSubtitle}
             </p>
           )}
@@ -164,7 +197,7 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
 
   return (
     <section className="relative overflow-hidden rounded-lg bg-[var(--color-text)] px-6 py-16 sm:px-12 sm:py-20">
-      {/* Subtle decorative gradient */}
+      {/* Decorative gradient */}
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -172,8 +205,30 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
             "radial-gradient(ellipse at 30% 50%, var(--color-ciencia) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, var(--color-nutricion) 0%, transparent 60%)",
         }}
       />
+      {/* Telemetry grid overlay */}
+      <div
+        className="tool-scope absolute inset-0 tool-grid-bg opacity-[0.04]"
+        style={{ "--tool-accent": "rgba(255,255,255,0.8)" } as CSSProperties}
+      />
+      {/* Corner ticks */}
+      <div
+        className="pointer-events-none absolute left-[12px] top-[12px] z-10 h-3 w-3 border-l-[1.5px] border-t-[1.5px]"
+        style={{ borderColor: "rgba(255,255,255,0.2)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-[12px] right-[12px] z-10 h-3 w-3 border-b-[1.5px] border-r-[1.5px]"
+        style={{ borderColor: "rgba(255,255,255,0.2)" }}
+      />
 
       <div className="relative z-10 mx-auto max-w-lg text-center">
+        {/* HUD badge */}
+        <div className="mb-4 flex items-center justify-center gap-2">
+          <span className="tool-live-dot h-1.5 w-1.5 rounded-full bg-white/50" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/50">
+            {dict.newsletter.stayUpdated}
+          </span>
+        </div>
+
         <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
           {dict.newsletter.stayUpdated}
         </h2>
@@ -195,12 +250,12 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
             }}
             placeholder={dict.newsletter.placeholder}
             disabled={status === "submitting"}
-            className="flex-1 rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors backdrop-blur-sm disabled:opacity-60"
+            className="flex-1 rounded-sm border border-white/10 bg-white/5 px-4 py-3 font-mono text-[13px] text-white placeholder:text-white/30 backdrop-blur-sm transition-colors focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 disabled:opacity-60"
           />
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-[var(--color-text)] transition-all hover:bg-white/90 hover:shadow-lg active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="rounded-sm bg-white px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text)] transition-all hover:bg-white/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === "submitting"
               ? dict.newsletter.submitting
@@ -209,7 +264,9 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
         </form>
 
         {errorMessage && (
-          <p className="mt-3 text-sm text-red-300">{errorMessage}</p>
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.1em] text-red-300">
+            {errorMessage}
+          </p>
         )}
       </div>
     </section>

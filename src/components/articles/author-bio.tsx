@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { getAuthorByName } from "@/lib/authors";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
@@ -19,31 +20,49 @@ export function AuthorBio({ authorName, locale, color, label, viewAllLabel }: Au
   const accentColor = color ?? author.color;
   const authorBase = locale === "en" ? "author" : "autor";
 
+  const accentStyle = { "--tool-accent": accentColor } as CSSProperties;
+
   return (
     <section className="mx-auto max-w-[68ch] px-4 pb-8 sm:px-6 lg:px-8">
-      <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 sm:p-8">
-        {/* Section label */}
-        <p
-          className="text-[11px] font-semibold uppercase tracking-[0.2em]"
-          style={{ color: accentColor }}
-        >
-          {label}
-        </p>
-
-        {/* Color divider */}
-        <div className="mt-1 h-[2px] w-8" style={{ backgroundColor: accentColor }} />
+      {/*
+       * tool-scope: sets --tool-accent so corner ticks pick up the section color
+       * tool-corners: HUD tick marks at top-left and bottom-right (subtle detail)
+       */}
+      <div
+        className="tool-scope tool-corners relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 sm:p-8"
+        style={accentStyle}
+      >
+        {/* HUD header — live dot + mono label + accent divider */}
+        <div className="mb-5 flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            className="tool-live-dot h-1.5 w-1.5 flex-none rounded-full"
+            style={{ backgroundColor: "var(--tool-accent)" }}
+          />
+          <p
+            className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+            style={{ color: "var(--tool-accent)" }}
+          >
+            {label}
+          </p>
+        </div>
+        <div
+          className="mb-5 h-[2px] w-8 rounded-full"
+          style={{ backgroundColor: "var(--tool-accent)" }}
+        />
 
         {/* Author row */}
-        <div className="mt-5 flex items-start gap-4">
+        <div className="flex items-start gap-4">
           <AuthorAvatar name={author.name} color={accentColor} size="md" />
 
           <div className="min-w-0 flex-1">
             <p className="font-serif text-base font-bold text-[var(--color-text)]">
               {author.name}
             </p>
+            {/* Specialty in mono — telemetry micro-detail */}
             <p
-              className="mt-0.5 text-[11px] font-semibold uppercase tracking-[0.12em]"
-              style={{ color: accentColor }}
+              className="mt-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.14em]"
+              style={{ color: "var(--tool-accent)" }}
             >
               {author.specialty}
             </p>
@@ -55,7 +74,7 @@ export function AuthorBio({ authorName, locale, color, label, viewAllLabel }: Au
               <Link
                 href={`/${authorBase}/${author.slug}`}
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:underline"
-                style={{ color: accentColor }}
+                style={{ color: "var(--tool-accent)" }}
               >
                 {viewAllLabel} {author.name}
                 <svg

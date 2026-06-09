@@ -23,8 +23,10 @@ export function SponsorSlot({ label, className = "" }: SponsorSlotProps) {
   if (!name || !url) return null;
 
   return (
-    <div className={`rounded-md border border-white/10 bg-white/5 px-3 py-2.5 ${className}`}>
-      <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30">
+    <div
+      className={`rounded-sm border border-white/10 bg-white/5 px-3 py-2.5 ${className}`}
+    >
+      <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30">
         {label}
       </p>
       <a
@@ -35,7 +37,9 @@ export function SponsorSlot({ label, className = "" }: SponsorSlotProps) {
       >
         {name}
         {tagline && (
-          <span className="mt-0.5 block text-xs font-normal text-white/40">{tagline}</span>
+          <span className="mt-0.5 block font-mono text-[11px] font-normal text-white/40">
+            {tagline}
+          </span>
         )}
       </a>
     </div>

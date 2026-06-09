@@ -1,7 +1,7 @@
 import RSSParser from "rss-parser";
 import { db } from "@/lib/db";
 import { rssFeeds, rssItems } from "@/lib/db/schema";
-import { eq, desc, and, sql } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 // ---------------------------------------------------------------------------
 // Types

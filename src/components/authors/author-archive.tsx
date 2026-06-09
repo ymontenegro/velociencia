@@ -26,16 +26,38 @@ export function AuthorArchive({ author, articles, dict, locale }: AuthorArchiveP
 
   return (
     <div>
-      {/* Author header */}
-      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-          {/* Section badge */}
-          <span
-            className="inline-block text-[11px] font-semibold uppercase tracking-[0.18em]"
-            style={{ color: sectionConfig.color }}
-          >
-            {dict.authors.sectionLabel} · {sectionI18n.name}
-          </span>
+      {/* ── HUD header ──────────────────────────────────────────────────── */}
+      <div
+        className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-bg-card)]"
+        /* Section-scoped accent drives the grid tint */
+        style={{ "--tool-accent": sectionConfig.color } as React.CSSProperties}
+      >
+        {/* Faint telemetry grid tinted by section color */}
+        <div
+          className="tool-scope tool-grid-bg pointer-events-none absolute inset-0 opacity-30"
+          style={{
+            "--tool-accent": sectionConfig.color,
+            maskImage: "linear-gradient(to bottom, black, transparent 70%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black, transparent 70%)",
+          } as React.CSSProperties}
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          {/* Section eyebrow — mono + section-dot */}
+          <div className="flex items-center gap-2">
+            <span
+              className="section-dot flex-shrink-0"
+              style={{ backgroundColor: sectionConfig.color }}
+              aria-hidden="true"
+            />
+            <span
+              className="font-mono text-[9px] font-medium uppercase tracking-[0.22em]"
+              style={{ color: sectionConfig.color }}
+            >
+              {dict.authors.sectionLabel} · {sectionI18n.name}
+            </span>
+          </div>
 
           {/* Avatar + name row */}
           <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
@@ -44,8 +66,9 @@ export function AuthorArchive({ author, articles, dict, locale }: AuthorArchiveP
               <h1 className="font-serif text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl">
                 {author.name}
               </h1>
+              {/* Specialty — mono readout */}
               <p
-                className="mt-2 text-[11px] font-semibold uppercase tracking-[0.15em]"
+                className="mt-2 font-mono text-[9px] font-medium uppercase tracking-[0.18em]"
                 style={{ color: sectionConfig.color }}
               >
                 {dict.authors.specialtyLabel} · {author.specialty}
@@ -53,25 +76,40 @@ export function AuthorArchive({ author, articles, dict, locale }: AuthorArchiveP
             </div>
           </div>
 
-          {/* Color rule */}
-          <div className="mt-5 h-[2px] w-12" style={{ backgroundColor: sectionConfig.color }} />
+          {/* Section accent rule */}
+          <div
+            className="mt-5 h-[2px] w-12"
+            style={{ backgroundColor: sectionConfig.color }}
+          />
 
           {/* Bio */}
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-text-secondary)]">
             {author.bio}
           </p>
 
-          {/* Article count */}
-          <p className="mt-4 text-sm text-[var(--color-text-muted)]">{countLabel}</p>
+          {/* Article count — mono readout with live dot */}
+          <div className="mt-4 flex items-center gap-2">
+            <span
+              className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full"
+              style={{ backgroundColor: sectionConfig.color }}
+              aria-hidden="true"
+            />
+            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+              {countLabel}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Articles grid */}
+      {/* ── Articles grid ───────────────────────────────────────────────── */}
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        {/* Grid heading */}
-        <div className="mb-8 border-t-[3px] pt-4" style={{ borderColor: sectionConfig.color }}>
+        {/* Grid heading — mono with section color accent */}
+        <div
+          className="mb-8 border-t-[3px] pt-4"
+          style={{ borderColor: sectionConfig.color }}
+        >
           <h2
-            className="text-[11px] font-semibold uppercase tracking-[0.2em]"
+            className="font-mono text-[9px] font-medium uppercase tracking-[0.22em]"
             style={{ color: sectionConfig.color }}
           >
             {dict.authors.articlesBy} {author.name}

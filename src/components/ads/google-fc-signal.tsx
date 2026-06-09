@@ -9,7 +9,9 @@ import { useEffect } from "react";
  */
 export function GoogleFcSignal() {
   useEffect(() => {
-    if (window.frames["googlefcPresent" as any]) return;
+    // window.frames has no string index signature in the TS lib; double-cast
+    // through unknown to avoid any while still checking frame existence by name.
+    if ((window.frames as unknown as Record<string, Window | undefined>)["googlefcPresent"]) return;
 
     const iframe = document.createElement("iframe");
     iframe.style.cssText =

@@ -176,7 +176,6 @@ function normalize(s: string): string {
 export function filterEvidence(
   entries: SupplementEntry[],
   filters: EvidenceFilterState,
-  locale: Locale,
 ): SupplementEntry[] {
   const q = normalize(filters.query);
   return entries.filter((e) => {

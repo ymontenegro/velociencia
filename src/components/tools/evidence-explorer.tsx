@@ -120,9 +120,9 @@ export default function EvidenceExplorer({
   }, [locale]);
 
   const entries = useMemo<SupplementEntry[]>(() => {
-    const filtered = filterEvidence(getAllSupplements(), filters, locale);
+    const filtered = filterEvidence(getAllSupplements(), filters);
     return sortByEditorialRank(filtered);
-  }, [filters, locale]);
+  }, [filters]);
 
   const hasActiveFilters = useMemo(
     () => JSON.stringify(filters) !== JSON.stringify(DEFAULT_EVIDENCE_FILTERS),

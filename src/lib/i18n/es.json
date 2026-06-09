@@ -6,7 +6,11 @@
     "menu": "Menú",
     "closeMenu": "Cerrar menú",
     "openMenu": "Abrir menú",
-    "about": "Sobre"
+    "about": "Sobre",
+    "toolsGroupCalc": "Calculadoras",
+    "toolsGroupData": "Datos",
+    "toolsViewAll": "Ver todas las herramientas",
+    "toolsMenuLabel": "Abrir menú de herramientas"
   },
   "footer": {
     "sections": "Secciones",
@@ -22,7 +26,8 @@
     "newsletterCTA": "Recibe los mejores artículos en tu correo.",
     "allRightsReserved": "Todos los derechos reservados.",
     "editorialDesign": "Diseño editorial premium",
-    "disclosure": "Divulgación de afiliados"
+    "disclosure": "Divulgación de afiliados",
+    "tools": "Herramientas"
   },
   "affiliate": {
     "disclosure": "Este artículo incluye enlaces de afiliado. Si compras a través de ellos, Velociencia recibe una comisión sin costo adicional para ti. Solo enlazamos productos que consideramos genuinamente útiles para el ciclista.",
@@ -45,7 +50,15 @@
     "editorialNote": "Nota editorial",
     "exploreTopics": "Explora por tema",
     "allTopics": "Ver todos los temas",
-    "trendingNow": "Tendencia"
+    "trendingNow": "Tendencia",
+    "archiveLabel": "El archivo",
+    "archiveArticles": "artículos",
+    "archiveTools": "herramientas",
+    "archiveSections": "secciones",
+    "archiveLanguages": "idiomas",
+    "toolsCalculators": "Calculadoras",
+    "toolsDatasets": "Datos",
+    "sectionArticles": "artículos"
   },
   "article": {
     "by": "Por",
@@ -90,7 +103,8 @@
     "loadMore": "Cargar más",
     "showing": "Mostrando",
     "articlesWord": "artículos",
-    "noResults": "Sin resultados para este filtro"
+    "noResults": "Sin resultados para este filtro",
+    "sectionJournalist": "Periodista de sección"
   },
   "search": {
     "button": "Buscar",
@@ -100,7 +114,9 @@
     "topicsGroup": "Temas",
     "hint": "navegar",
     "open": "Abrir búsqueda",
-    "loading": "Cargando…"
+    "loading": "Cargando…",
+    "enterHint": "abrir",
+    "escHint": "cerrar"
   },
   "topics": {
     "topic": "Tema",
@@ -136,7 +152,10 @@
     "backToTools": "Ver todas las herramientas",
     "openTool": "Abrir calculadora",
     "openDataset": "Ver comparador",
-    "disclaimer": "Estas calculadoras entregan estimaciones con fines educativos y no sustituyen el consejo de un profesional. Los archivos que subas se procesan en tu navegador y no se envían a ningún servidor."
+    "disclaimer": "Estas calculadoras entregan estimaciones con fines educativos y no sustituyen el consejo de un profesional. Los archivos que subas se procesan en tu navegador y no se envían a ningún servidor.",
+    "groupCalculators": "Calculadoras",
+    "groupDatasets": "Datos",
+    "fromEditorial": "De la redacción"
   },
   "comparator": {
     "title": "Comparador de geles energéticos",

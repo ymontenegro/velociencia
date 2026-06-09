@@ -245,7 +245,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
                   style={{ backgroundColor: color }}
                 />
                 <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                  {locale === "en" ? "From the editorial" : "De la redacción"}
+                  {dict.tools.fromEditorial}
                 </span>
               </div>
               <h2 className="mt-2 font-serif text-2xl font-bold text-[var(--color-text)]">

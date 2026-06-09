@@ -6,7 +6,11 @@
     "menu": "Menu",
     "closeMenu": "Close menu",
     "openMenu": "Open menu",
-    "about": "About"
+    "about": "About",
+    "toolsGroupCalc": "Calculators",
+    "toolsGroupData": "Datasets",
+    "toolsViewAll": "View all tools",
+    "toolsMenuLabel": "Open tools menu"
   },
   "footer": {
     "sections": "Sections",
@@ -22,7 +26,8 @@
     "newsletterCTA": "Get the best articles delivered to your inbox.",
     "allRightsReserved": "All rights reserved.",
     "editorialDesign": "Premium editorial design",
-    "disclosure": "Affiliate disclosure"
+    "disclosure": "Affiliate disclosure",
+    "tools": "Tools"
   },
   "affiliate": {
     "disclosure": "This article includes affiliate links. If you buy through them, PedalSci earns a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
@@ -45,7 +50,15 @@
     "editorialNote": "Editorial note",
     "exploreTopics": "Explore by topic",
     "allTopics": "View all topics",
-    "trendingNow": "Trending"
+    "trendingNow": "Trending",
+    "archiveLabel": "The archive",
+    "archiveArticles": "articles",
+    "archiveTools": "tools",
+    "archiveSections": "sections",
+    "archiveLanguages": "languages",
+    "toolsCalculators": "Calculators",
+    "toolsDatasets": "Data",
+    "sectionArticles": "articles"
   },
   "article": {
     "by": "By",
@@ -90,7 +103,8 @@
     "loadMore": "Load more",
     "showing": "Showing",
     "articlesWord": "articles",
-    "noResults": "No results for this filter"
+    "noResults": "No results for this filter",
+    "sectionJournalist": "Section journalist"
   },
   "search": {
     "button": "Search",
@@ -100,7 +114,9 @@
     "topicsGroup": "Topics",
     "hint": "navigate",
     "open": "Open search",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "enterHint": "open",
+    "escHint": "close"
   },
   "topics": {
     "topic": "Topic",
@@ -136,7 +152,10 @@
     "backToTools": "View all tools",
     "openTool": "Open calculator",
     "openDataset": "View comparator",
-    "disclaimer": "These calculators provide educational estimates and are not a substitute for professional advice. Any files you upload are processed in your browser and never sent to any server."
+    "disclaimer": "These calculators provide educational estimates and are not a substitute for professional advice. Any files you upload are processed in your browser and never sent to any server.",
+    "groupCalculators": "Calculators",
+    "groupDatasets": "Data",
+    "fromEditorial": "From the editorial"
   },
   "comparator": {
     "title": "Energy gel comparator",

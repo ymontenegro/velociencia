@@ -2,6 +2,14 @@
 
 import { useEffect, useRef } from "react";
 
+// AdSense injects `window.adsbygoogle` at runtime; it is not in the standard
+// DOM lib types, so we declare it here to avoid `any` casts below.
+declare global {
+  interface Window {
+    adsbygoogle: Array<Record<string, unknown>>;
+  }
+}
+
 interface AdUnitProps {
   slot: string;
   format?: "auto" | "horizontal" | "vertical" | "rectangle";
@@ -16,7 +24,7 @@ export function AdUnit({ slot, format = "auto", responsive = true, className }: 
   useEffect(() => {
     if (pushed.current) return;
     try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
       pushed.current = true;
     } catch {
       // AdSense not loaded yet or ad blocker active

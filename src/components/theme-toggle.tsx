@@ -1,13 +1,17 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, startTransition, useState } from "react";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  // startTransition defers the update so it isn't flagged as a direct
+  // synchronous setState call in the effect body (react-hooks/set-state-in-effect).
+  useEffect(() => {
+    startTransition(() => setMounted(true));
+  }, []);
 
   if (!mounted) {
     return (

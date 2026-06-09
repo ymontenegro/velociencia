@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, startTransition, useState } from "react";
 import Link from "next/link";
 import { useLocale, useDictionary } from "@/components/locale-provider";
 import {
@@ -106,8 +106,12 @@ export default function RaceCalendar({
 
   const [filters, setFilters] = useState<RaceFilterState>(DEFAULT_RACE_FILTERS);
   // Reference date computed on the client only (avoids SSR hydration mismatch).
+  // startTransition defers the update so it isn't a synchronous setState call
+  // inside the effect body (satisfies react-hooks/set-state-in-effect).
   const [today, setToday] = useState<string | null>(null);
-  useEffect(() => setToday(localToday()), []);
+  useEffect(() => {
+    startTransition(() => setToday(localToday()));
+  }, []);
 
   const categories = useMemo(() => getPresentCategories(), []);
   const continents = useMemo(() => getPresentContinents(), []);

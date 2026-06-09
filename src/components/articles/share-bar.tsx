@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface ShareBarProps {
   title: string;
-  color: string;
   copyLabel: string;
   copiedLabel: string;
 }
@@ -43,12 +42,13 @@ function IconLink() {
   );
 }
 
-export function ShareBar({ title, color, copyLabel, copiedLabel }: ShareBarProps) {
+export function ShareBar({ title, copyLabel, copiedLabel }: ShareBarProps) {
   const [url, setUrl] = useState("");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setUrl(window.location.href);
+    // La URL solo existe en cliente; baja prioridad tras la hidratación.
+    startTransition(() => setUrl(window.location.href));
   }, []);
 
   const encodedUrl = encodeURIComponent(url);
@@ -75,8 +75,9 @@ export function ShareBar({ title, color, copyLabel, copiedLabel }: ShareBarProps
     }
   };
 
+  // HUD button base — square corners instead of rounded-full, works on dark hero overlay
   const buttonBase =
-    "flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-bg-card)] p-2 text-[var(--color-text-muted)] transition-all duration-200";
+    "flex items-center justify-center rounded border border-white/30 bg-white/10 p-2 text-white/70 backdrop-blur-sm transition-all duration-200 hover:border-white/60 hover:bg-white/20 hover:text-white";
 
   return (
     <div className="flex items-center gap-2">
@@ -87,15 +88,6 @@ export function ShareBar({ title, color, copyLabel, copiedLabel }: ShareBarProps
         rel="noopener noreferrer"
         aria-label="Share on X"
         className={buttonBase}
-        style={{ ["--share-color" as string]: color }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.color = color;
-          (e.currentTarget as HTMLElement).style.borderColor = color;
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.color = "";
-          (e.currentTarget as HTMLElement).style.borderColor = "";
-        }}
       >
         <IconX />
       </a>
@@ -107,14 +99,6 @@ export function ShareBar({ title, color, copyLabel, copiedLabel }: ShareBarProps
         rel="noopener noreferrer"
         aria-label="Share on WhatsApp"
         className={buttonBase}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.color = color;
-          (e.currentTarget as HTMLElement).style.borderColor = color;
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.color = "";
-          (e.currentTarget as HTMLElement).style.borderColor = "";
-        }}
       >
         <IconWhatsApp />
       </a>
@@ -126,44 +110,20 @@ export function ShareBar({ title, color, copyLabel, copiedLabel }: ShareBarProps
         rel="noopener noreferrer"
         aria-label="Share on LinkedIn"
         className={buttonBase}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.color = color;
-          (e.currentTarget as HTMLElement).style.borderColor = color;
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.color = "";
-          (e.currentTarget as HTMLElement).style.borderColor = "";
-        }}
       >
         <IconLinkedIn />
       </a>
 
-      {/* Copy link */}
+      {/* Copy link — mono text label */}
       <button
         type="button"
         onClick={handleCopy}
         aria-label={copied ? copiedLabel : copyLabel}
         className={cn(
           buttonBase,
-          "gap-1.5 px-3 text-[11px] font-semibold uppercase tracking-[0.12em]"
+          "gap-1.5 px-3 font-mono text-[10px] font-medium uppercase tracking-[0.14em]",
+          copied && "border-white/80 bg-white/20 text-white"
         )}
-        style={
-          copied
-            ? { color, borderColor: color, backgroundColor: `${color}12` }
-            : {}
-        }
-        onMouseEnter={(e) => {
-          if (!copied) {
-            (e.currentTarget as HTMLElement).style.color = color;
-            (e.currentTarget as HTMLElement).style.borderColor = color;
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!copied) {
-            (e.currentTarget as HTMLElement).style.color = "";
-            (e.currentTarget as HTMLElement).style.borderColor = "";
-          }
-        }}
       >
         <IconLink />
         <span>{copied ? copiedLabel : copyLabel}</span>

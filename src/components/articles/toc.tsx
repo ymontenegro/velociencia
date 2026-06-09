@@ -63,11 +63,23 @@ export function Toc({ headings, label, color }: TocProps) {
       aria-label={label}
       className="sticky top-8 hidden max-h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar 2xl:block"
     >
-      <p
-        className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
-      >
-        {label}
-      </p>
+      {/* HUD label — border-t + live dot + mono */}
+      <div className="mb-4 border-t-2 pt-3" style={{ borderColor: color }}>
+        <div className="flex items-center gap-1.5">
+          <span
+            aria-hidden="true"
+            className="tool-live-dot h-1 w-1 flex-none rounded-full"
+            style={{ backgroundColor: color }}
+          />
+          <p
+            className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+            style={{ color }}
+          >
+            {label}
+          </p>
+        </div>
+      </div>
+
       <ul className="space-y-1">
         {headings.map((h) => {
           const isActive = activeId === h.id;
@@ -76,16 +88,12 @@ export function Toc({ headings, label, color }: TocProps) {
               <a
                 href={`#${h.id}`}
                 className={cn(
-                  "toc-link block border-l-2 pl-3 py-0.5 text-[13px] leading-snug",
+                  "toc-link block border-l-2 pl-3 py-0.5 text-[12px] leading-snug transition-colors",
                   isActive
                     ? "font-medium"
                     : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
                 )}
-                style={
-                  isActive
-                    ? { borderColor: color, color: color }
-                    : {}
-                }
+                style={isActive ? { borderColor: color, color } : {}}
                 onClick={(e) => {
                   e.preventDefault();
                   const el = document.getElementById(h.id);

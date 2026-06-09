@@ -35,7 +35,7 @@ export function TrendingBarClient({
       .then((rows: unknown) => {
         if (!Array.isArray(rows) || rows.length === 0) return;
         const articleMap = new Map(
-          allArticles.map((a) => [`${a.section}/${a.slug}`, a])
+          allArticles.map((a) => [`${a.section}/${a.slug}`, a]),
         );
         const matched = (rows as ViewRow[])
           .map((r) => articleMap.get(`${r.section}/${r.slug}`))
@@ -50,20 +50,37 @@ export function TrendingBarClient({
 
   return (
     <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
-        <span className="shrink-0 text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-text)]">
-          {isTrending ? labelNow : labelLatest}
-        </span>
-        <span className="h-3 w-px shrink-0 bg-[var(--color-border)]" aria-hidden="true" />
-        <div className="flex items-center gap-4 overflow-x-auto">
+      <div className="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8 no-scrollbar">
+        {/* Label with live dot — Race Telemetry signal */}
+        <div className="flex shrink-0 items-center gap-2">
+          {isTrending && (
+            <span
+              className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-competencia)]"
+              aria-hidden="true"
+            />
+          )}
+          <span className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text)]">
+            {isTrending ? labelNow : labelLatest}
+          </span>
+        </div>
+
+        {/* Vertical divider */}
+        <span
+          className="h-3 w-px shrink-0 bg-[var(--color-border)]"
+          aria-hidden="true"
+        />
+
+        {/* Article links */}
+        <div className="flex items-center gap-4 overflow-x-auto no-scrollbar">
           {articles.map((article, i) => (
             <Link
               key={`${article.section}-${article.slug}`}
               href={article.href}
               className="group flex shrink-0 items-center gap-2 text-[11px] leading-tight text-[var(--color-text-muted)] transition-colors duration-300 hover:text-[var(--color-text)]"
             >
+              {/* Section badge with section color accent */}
               <span
-                className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white"
+                className="inline-flex shrink-0 items-center rounded px-1.5 py-0.5 font-mono text-[8.5px] font-medium uppercase tracking-wider text-white"
                 style={{ backgroundColor: article.sectionColor }}
               >
                 {article.sectionName}

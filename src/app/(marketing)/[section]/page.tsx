@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -71,33 +72,93 @@ export default async function SectionPage({ params }: SectionPageProps) {
 
   return (
     <div>
-      {/* Section header with gradient background */}
+      {/* ── Section HUD header ───────────────────────────────────────── */}
       <div
         className="relative overflow-hidden"
         style={{
           background: `linear-gradient(135deg, var(${sectionConfig.colorVar}-dark) 0%, ${sectionConfig.color} 50%, var(${sectionConfig.colorVar}-light) 100%)`,
         }}
       >
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }} />
-        <div className="absolute -bottom-10 -left-10 h-48 w-48 rounded-full opacity-10" style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }} />
+        {/* Telemetry grid overlay */}
+        <div
+          className="tool-scope absolute inset-0 tool-grid-bg opacity-[0.06]"
+          style={{ "--tool-accent": "white" } as CSSProperties}
+        />
 
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        {/* Decorative glow blobs */}
+        <div
+          className="absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute -bottom-10 -left-10 h-48 w-48 rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
+        />
+
+        {/* HUD corner ticks */}
+        <div
+          className="pointer-events-none absolute left-[12px] top-[12px] z-10 h-3 w-3 border-l-[1.5px] border-t-[1.5px]"
+          style={{ borderColor: "rgba(255,255,255,0.35)" }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-[12px] right-[12px] z-10 h-3 w-3 border-b-[1.5px] border-r-[1.5px]"
+          style={{ borderColor: "rgba(255,255,255,0.35)" }}
+        />
+
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <div className="animate-fade-in-up relative z-10">
-            <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-              {dict.article.section}
-            </span>
-            <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+            {/* HUD section badge */}
+            <div className="flex items-center gap-2">
+              <span
+                className="tool-live-dot h-1.5 w-1.5 flex-none rounded-full"
+                style={{ backgroundColor: "rgba(255,255,255,0.7)" }}
+              />
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">
+                {dict.article.section}
+              </span>
+            </div>
+
+            {/* Section name */}
+            <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
               {sectionI18n.name}
             </h1>
+
+            {/* Accent divider */}
             <div className="mt-4 h-[2px] w-16 bg-white/40" />
+
+            {/* Section description */}
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/85">
               {sectionI18n.description}
             </p>
+
+            {/* Journalist + article count — mono readout row */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+              {/* Journalist */}
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/50">
+                  {dict.sections.sectionJournalist}
+                </span>
+                <span className="font-mono text-[11px] font-semibold text-white/85">
+                  {sectionI18n.journalist}
+                </span>
+              </div>
+              {/* Separator */}
+              <span className="hidden h-3 w-[1px] bg-white/30 sm:block" />
+              {/* Article count */}
+              <div className="flex items-center gap-1.5">
+                <span className="font-mono text-base font-bold tabular-nums text-white">
+                  {articles.length}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/50">
+                  {dict.sections.articlesWord}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Articles with filters, sort, and load-more */}
+      {/* ── Articles with filters, sort, and load-more ───────────────── */}
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <SectionToolbar
           articles={articles}

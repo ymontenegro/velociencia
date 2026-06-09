@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { SECTION_IDS, SECTIONS, SECTIONS_I18N, type SectionId } from "@/lib/constants";
 import { getAllArticles, selectHeroArticles } from "@/lib/markdown";
@@ -7,6 +8,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { TrendingBar } from "@/components/layout/trending-bar";
 import { HeroSection } from "@/components/home/hero-section";
+import { ArchiveStats } from "@/components/home/archive-stats";
 import { ArticleCard } from "@/components/articles/article-card";
 import { MostRead } from "@/components/home/most-read";
 import { TopicCloud } from "@/components/home/topic-cloud";
@@ -29,9 +31,20 @@ export default async function HomePage() {
     competencia: [],
   };
 
+  // Total count per section (including hero articles) for the HUD header metric
+  const sectionTotals: Record<SectionId, number> = {
+    nutricion: 0,
+    ciencia: 0,
+    entrenamiento: 0,
+    competencia: 0,
+  };
+
   for (const article of allArticles) {
-    if (article.section in articlesBySection && !heroSlugs.has(article.slug)) {
-      articlesBySection[article.section].push(article);
+    if (article.section in articlesBySection) {
+      sectionTotals[article.section]++;
+      if (!heroSlugs.has(article.slug)) {
+        articlesBySection[article.section].push(article);
+      }
     }
   }
 
@@ -45,16 +58,18 @@ export default async function HomePage() {
     return new Date(bDate).getTime() - new Date(aDate).getTime();
   });
 
-
   return (
     <>
       <Header />
       <TrendingBar />
       <main className="flex-1">
-        {/* Hero — 3 most recent articles */}
+        {/* Hero — 3 most recent / featured articles */}
         <HeroSection />
 
-        {/* Interactive calculators — highlighted right below the hero */}
+        {/* Archive depth signal — thin HUD stats band */}
+        <ArchiveStats articleCount={allArticles.length} dict={dict} />
+
+        {/* All 9 interactive tools — calculators + datasets */}
         <ToolsHighlight locale={locale} dict={dict} />
 
         {/* Divider */}
@@ -62,10 +77,10 @@ export default async function HomePage() {
           <div className="h-px bg-[var(--color-border)]" />
         </div>
 
-        {/* By Section + Featured sidebar */}
+        {/* Articles by section + Most Read sidebar */}
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-10">
-            {/* Main content: articles by section */}
+            {/* Main: articles grouped by section */}
             <div className="space-y-16 lg:col-span-3">
               {sortedSectionIds.map((sectionId) => {
                 const section = SECTIONS[sectionId];
@@ -77,26 +92,43 @@ export default async function HomePage() {
                 const leadArticle = sectionArticles[0];
                 const headlineArticles = sectionArticles.slice(1);
 
+                // --tool-accent drives HUD corner ticks and live dot via tool-scope
+                const accentStyle = {
+                  "--tool-accent": section.color,
+                } as CSSProperties;
+
                 return (
                   <div key={sectionId}>
-                    {/* Section header with thick colored border */}
-                    <div
-                      className="mb-5 border-t-[6px] pt-4"
-                      style={{ borderColor: section.color }}
-                    >
-                      <div className="flex items-baseline justify-between">
-                        <h2
-                          className="text-[11px] font-semibold uppercase tracking-[0.2em]"
-                          style={{ color: section.color }}
-                        >
-                          {sectionI18n.name}
-                        </h2>
-                        <Link
-                          href={`/${sectionI18n.slug}`}
-                          className="text-[11px] font-medium uppercase tracking-wider text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
-                        >
-                          {dict.home.viewAll} &rarr;
-                        </Link>
+                    {/* HUD section header — live dot + mono eyebrow + article count */}
+                    <div className="tool-scope mb-5" style={accentStyle}>
+                      <div
+                        className="border-t-2 pt-3"
+                        style={{ borderColor: "var(--tool-accent)" }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2.5">
+                            <span
+                              aria-hidden="true"
+                              className="tool-live-dot h-1.5 w-1.5 flex-none rounded-full"
+                              style={{ backgroundColor: "var(--tool-accent)" }}
+                            />
+                            <h2
+                              className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+                              style={{ color: "var(--tool-accent)" }}
+                            >
+                              {sectionI18n.name}
+                            </h2>
+                            <span className="font-mono text-[9px] tabular-nums text-[var(--color-text-muted)]">
+                              {sectionTotals[sectionId]}&thinsp;{dict.home.sectionArticles}
+                            </span>
+                          </div>
+                          <Link
+                            href={`/${sectionI18n.slug}`}
+                            className="font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                          >
+                            {dict.home.viewAll} &rarr;
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
@@ -147,7 +179,7 @@ export default async function HomePage() {
               })}
             </div>
 
-            {/* Sidebar: Most Read */}
+            {/* Sidebar: Most Read leaderboard */}
             <aside className="lg:col-span-1">
               <div className="sticky top-24">
                 <MostRead
@@ -174,7 +206,7 @@ export default async function HomePage() {
             <div className="flex items-start gap-4">
               <div className="mt-0.5 h-8 w-[2px] flex-shrink-0 bg-[var(--color-border)]" />
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
                   {dict.home.editorialNote}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
@@ -186,7 +218,6 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
     </>

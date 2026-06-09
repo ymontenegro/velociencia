@@ -21,30 +21,52 @@ export function AuthorsIndex({ authors, editorialTeam, dict, locale }: AuthorsIn
 
   return (
     <div>
-      {/* Header */}
-      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-          <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-            {dict.authors.title}
-          </span>
+      {/* ── HUD header ──────────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-bg-card)]">
+        {/* Faint telemetry grid */}
+        <div
+          className="tool-scope tool-grid-bg pointer-events-none absolute inset-0 opacity-25"
+          style={{
+            maskImage: "linear-gradient(to bottom, black, transparent 75%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black, transparent 75%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          {/* Eyebrow with live dot */}
+          <div className="flex items-center gap-2">
+            <span
+              className="tool-live-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]"
+              aria-hidden="true"
+            />
+            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+              {dict.authors.title}
+            </span>
+          </div>
+
           <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl">
             {dict.authors.title}
           </h1>
-          <div className="mt-4 h-[2px] w-12 bg-[var(--color-border)]" />
+
+          {/* Accent rule */}
+          <div className="mt-4 h-[2px] w-8 bg-[var(--color-border)]" />
+
           <p className="mt-4 text-base text-[var(--color-text-secondary)]">
             {dict.authors.subtitle}
           </p>
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 space-y-16">
-        {/* Section bylines */}
+      <div className="mx-auto max-w-6xl space-y-16 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        {/* ── Section bylines ──────────────────────────────────────────── */}
         <section>
           <div className="mb-8 border-t-[3px] border-[var(--color-text)] pt-4">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+            <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
               {dict.authors.bylineAuthors}
             </h2>
           </div>
+
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {authors.map((author) => {
               const sectionConfig = SECTIONS[author.sectionId];
@@ -60,31 +82,42 @@ export function AuthorsIndex({ authors, editorialTeam, dict, locale }: AuthorsIn
                   href={`/${authorBase}/${author.slug}`}
                   className="group flex flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 transition-all duration-200 hover:border-[var(--color-text-muted)] hover:shadow-sm"
                 >
-                  {/* Section accent rule */}
+                  {/* Section accent rule — expands on hover */}
                   <div
-                    className="mb-5 h-[3px] w-10 rounded-full transition-all duration-200 group-hover:w-14"
-                    style={{ backgroundColor: sectionConfig.color }}
+                    className="mb-5 h-[3px] rounded-full transition-all duration-200 group-hover:w-14"
+                    style={{ backgroundColor: sectionConfig.color, width: "2.5rem" }}
                   />
 
                   {/* Avatar */}
                   <AuthorAvatar name={author.name} color={author.color} size="lg" />
 
-                  {/* Name + specialty */}
+                  {/* Name */}
                   <p className="mt-4 font-serif text-lg font-bold leading-snug text-[var(--color-text)]">
                     {author.name}
                   </p>
-                  <p
-                    className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em]"
-                    style={{ color: sectionConfig.color }}
-                  >
-                    {sectionI18n.name}
-                  </p>
+
+                  {/* Section name — mono + section-dot */}
+                  <div className="mt-1 flex items-center gap-1.5">
+                    <span
+                      className="section-dot flex-shrink-0"
+                      style={{ backgroundColor: sectionConfig.color }}
+                      aria-hidden="true"
+                    />
+                    <p
+                      className="font-mono text-[9px] font-medium uppercase tracking-[0.16em]"
+                      style={{ color: sectionConfig.color }}
+                    >
+                      {sectionI18n.name}
+                    </p>
+                  </div>
+
+                  {/* Specialty */}
                   <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-secondary)]">
                     {author.specialty}
                   </p>
 
-                  {/* Article count */}
-                  <p className="mt-auto pt-4 text-[11px] font-medium text-[var(--color-text-muted)]">
+                  {/* Article count — mono readout */}
+                  <p className="mt-auto pt-4 font-mono text-[9px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                     {countLabel}
                   </p>
                 </Link>
@@ -93,13 +126,14 @@ export function AuthorsIndex({ authors, editorialTeam, dict, locale }: AuthorsIn
           </div>
         </section>
 
-        {/* Editorial team */}
+        {/* ── Editorial team ───────────────────────────────────────────── */}
         <section>
           <div className="mb-8 border-t-[3px] border-[var(--color-text)] pt-4">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+            <h2 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
               {dict.authors.editorialTeam}
             </h2>
           </div>
+
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {editorialTeam.map((member) => (
               <div
@@ -112,13 +146,17 @@ export function AuthorsIndex({ authors, editorialTeam, dict, locale }: AuthorsIn
                 {/* Avatar */}
                 <AuthorAvatar name={member.name} color={member.color} size="lg" />
 
-                {/* Name + role */}
+                {/* Name */}
                 <p className="mt-4 font-serif text-lg font-bold leading-snug text-[var(--color-text)]">
                   {member.name}
                 </p>
-                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+
+                {/* Role — mono label */}
+                <p className="mt-1 font-mono text-[9px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                   {member.role}
                 </p>
+
+                {/* Specialty */}
                 <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-secondary)]">
                   {member.specialty}
                 </p>

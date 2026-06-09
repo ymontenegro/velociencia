@@ -27,6 +27,8 @@ export async function ToolsIndexContent() {
       indexSubtitle={dict.tools.indexSubtitle}
       openTool={dict.tools.openTool}
       openDataset={dict.tools.openDataset}
+      groupCalculators={dict.tools.groupCalculators}
+      groupDatasets={dict.tools.groupDatasets}
     />
   );
 }

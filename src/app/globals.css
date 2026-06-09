@@ -807,3 +807,27 @@ input[type="range"].tool-range:focus-visible::-webkit-slider-thumb {
 .tool-scope .recharts-cartesian-axis-tick-value {
   font-family: var(--font-dm-mono), ui-monospace, monospace;
 }
+
+/* ─── Header mega-menu ─── */
+
+/* Smooth enter for the tools dropdown panel — appears below the nav trigger. */
+@keyframes menu-enter {
+  from { opacity: 0; transform: translateY(-6px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.menu-enter {
+  animation: menu-enter 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-enter { animation: none; }
+}
+
+/* Nav section dot — 4 px colored circle used beside section nav links and
+   footer column items as a lightweight "heat-map signal" (per-section color). */
+.section-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
