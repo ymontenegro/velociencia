@@ -31,25 +31,47 @@ import {
   type DifficultyBand,
 } from "@/lib/datasets/climbs";
 import { getToolById, toolHref } from "@/lib/tools";
+import {
+  ToolPanel,
+  FilterChip,
+  SelectField,
+  MetaBadge,
+  NumberField,
+  ReadoutPanel,
+  accentAlpha,
+  accentSurface,
+  useAccentColor,
+} from "@/components/tools/ui";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
-/* Difficulty badge palette (theme-neutral, low-opacity bg + strong text) */
+/* Local strings — eyebrow lives here, not in i18n JSON               */
+/* ------------------------------------------------------------------ */
+
+const LOCAL_STRINGS = {
+  es: { eyebrow: "Entrenamiento · Explorador" },
+  en: { eyebrow: "Training · Explorer" },
+} as const;
+
+/* ------------------------------------------------------------------ */
+/* Difficulty badge palette (fixed semantic colours — DO NOT CHANGE)  */
+/* Low-opacity bg + strong same-hue text → readable on dark + light.  */
 /* ------------------------------------------------------------------ */
 
 type BadgeStyle = { backgroundColor: string; color: string };
 
 const DIFFICULTY_BADGE: Record<DifficultyBand, BadgeStyle> = {
-  exigente: { backgroundColor: "rgba(14,165,233,0.14)", color: "#0284c7" },
-  muy_dura: { backgroundColor: "rgba(245,158,11,0.14)", color: "#b45309" },
-  extrema: { backgroundColor: "rgba(239,68,68,0.14)", color: "#dc2626" },
-  mitica: { backgroundColor: "rgba(124,58,237,0.16)", color: "#7c3aed" },
+  exigente: { backgroundColor: "rgba(14,165,233,0.14)",  color: "#0284c7" },
+  muy_dura: { backgroundColor: "rgba(245,158,11,0.14)",  color: "#b45309" },
+  extrema:  { backgroundColor: "rgba(239,68,68,0.14)",   color: "#dc2626" },
+  mitica:   { backgroundColor: "rgba(124,58,237,0.16)",  color: "#7c3aed" },
 };
 
 /** Per-km gradient strip colour bands (mirrors road-sign colour coding). */
 function gradientColor(g: number): string {
-  if (g < 4) return "#22c55e";
-  if (g < 7) return "#eab308";
+  if (g < 4)  return "#22c55e";
+  if (g < 7)  return "#eab308";
   if (g < 10) return "#f97316";
   if (g < 13) return "#ef4444";
   return "#7f1d1d";
@@ -74,17 +96,14 @@ const SORT_KEYS: ClimbSortKey[] = [
 
 /* ------------------------------------------------------------------ */
 
-export default function ClimbsDatabase({ color }: { color?: string }) {
+export default function ClimbsDatabase({
+  accent = "#0891B2",
+  accentVar = "--color-entrenamiento",
+}: ToolComponentProps) {
   const locale = useLocale();
   const dict = useDictionary();
   const t = dict.climbs;
-  const accent = color ?? "var(--color-entrenamiento)";
-
-  const colorAlpha = (alphaHex: string) => {
-    if (color) return color + alphaHex;
-    const pct = Math.round((parseInt(alphaHex, 16) / 255) * 100);
-    return `color-mix(in srgb, var(--color-entrenamiento) ${pct}%, transparent)`;
-  };
+  const s = LOCAL_STRINGS[locale as keyof typeof LOCAL_STRINGS];
 
   const [filters, setFilters] = useState<ClimbFilterState>(DEFAULT_CLIMB_FILTERS);
   const [sortKey, setSortKey] = useState<ClimbSortKey>("difficulty");
@@ -92,8 +111,8 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
   const continents = useMemo(() => getPresentContinents(), []);
-  const countries = useMemo(() => getPresentCountries(), []);
-  const demCount = useMemo(() => getDemProfiledCount(), []);
+  const countries  = useMemo(() => getPresentCountries(), []);
+  const demCount   = useMemo(() => getDemProfiledCount(), []);
 
   const racesHref = useMemo(() => {
     const tool = getToolById("race-calendar");
@@ -119,132 +138,146 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
     });
   }
 
-  const continentLabel = (v: string) =>
-    (t.continentLabels as Record<string, string>)[v] ?? v;
-  const difficultyLabel = (v: string) =>
-    (t.difficultyLabels as Record<string, string>)[v] ?? v;
-  const difficultyDescLabel = (v: string) =>
-    (t.difficultyDesc as Record<string, string>)[v] ?? v;
-  const surfaceLabel = (v: string) =>
-    (t.surfaceLabels as Record<string, string>)[v] ?? v;
-  const sortLabel = (k: ClimbSortKey) => {
+  /* Label helpers --------------------------------------------------- */
+  const continentLabel  = (v: string) => (t.continentLabels  as Record<string, string>)[v] ?? v;
+  const difficultyLabel = (v: string) => (t.difficultyLabels as Record<string, string>)[v] ?? v;
+  const difficultyDescLabel = (v: string) => (t.difficultyDesc as Record<string, string>)[v] ?? v;
+  const surfaceLabel    = (v: string) => (t.surfaceLabels    as Record<string, string>)[v] ?? v;
+  const sortKeyLabel = (k: ClimbSortKey) => {
     const map: Record<ClimbSortKey, string> = {
-      difficulty: t.colFiets,
-      length: t.fieldLength,
-      gain: t.fieldGain,
-      avg_gradient: t.fieldAvg,
-      max_gradient: t.fieldMax,
-      summit: t.fieldSummit,
+      difficulty:    t.colFiets,
+      length:        t.fieldLength,
+      gain:          t.fieldGain,
+      avg_gradient:  t.fieldAvg,
+      max_gradient:  t.fieldMax,
+      summit:        t.fieldSummit,
     };
     return map[k];
   };
 
+  /* ---------------------------------------------------------------- */
   return (
-    <div className="space-y-6">
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={s.eyebrow}
+      title={t.title}
+      meta={
+        <MetaBadge>
+          {t.lastReviewed} {CLIMBS_LAST_REVIEWED}
+        </MetaBadge>
+      }
+      contentClassName="p-0"
+    >
       {/* ── Filter panel ─────────────────────────────────────────── */}
-      <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 space-y-4">
-        <input
-          type="search"
-          placeholder={t.searchPlaceholder}
-          value={filters.query}
-          onChange={(ev) => setFilters((f) => ({ ...f, query: ev.target.value }))}
-          className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-1"
-          style={{ accentColor: accent }}
-          aria-label={t.searchPlaceholder}
-        />
-
-        <div className="flex flex-wrap items-end gap-4">
-          {/* Continent */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterContinent}
-            <select
-              value={filters.continent}
-              onChange={(ev) =>
-                setFilters((f) => ({
-                  ...f,
-                  continent: ev.target.value as Continent | "",
-                }))
-              }
-              className="min-w-[10rem] rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-              style={{ accentColor: accent }}
-            >
-              <option value="">{t.filterAll}</option>
-              {continents.map((c) => (
-                <option key={c} value={c}>
-                  {continentLabel(c)}
-                </option>
-              ))}
-            </select>
+      <div
+        className="space-y-4 border-b border-[var(--color-border)] p-5 sm:p-6"
+        style={{ backgroundColor: accentSurface(2) }}
+      >
+        {/* Search */}
+        <div>
+          <label
+            htmlFor="climbs-search"
+            className="mb-1.5 block font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]"
+          >
+            {t.searchPlaceholder}
           </label>
-
-          {/* Country */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterCountry}
-            <select
-              value={filters.country}
-              onChange={(ev) =>
-                setFilters((f) => ({ ...f, country: ev.target.value }))
-              }
-              className="min-w-[8rem] rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-              style={{ accentColor: accent }}
-            >
-              <option value="">{t.filterAll}</option>
-              {countries.map((c) => (
-                <option key={c} value={c}>
-                  {flagEmoji(c)} {c}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          {/* Min length */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterMinLength}
+          <div className="tool-field flex items-center rounded-lg">
             <input
-              type="number"
-              inputMode="numeric"
-              min={0}
-              max={50}
-              value={filters.minLength || ""}
+              id="climbs-search"
+              type="search"
+              placeholder={t.searchPlaceholder}
+              value={filters.query}
               onChange={(ev) =>
-                setFilters((f) => ({ ...f, minLength: Number(ev.target.value) || 0 }))
+                setFilters((f) => ({ ...f, query: ev.target.value }))
               }
-              className="w-20 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
+              className="w-full bg-transparent px-3 py-2.5 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none"
+              aria-label={t.searchPlaceholder}
             />
-          </label>
+          </div>
+        </div>
 
-          {/* Min gradient */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterMinGradient}
-            <input
-              type="number"
-              inputMode="numeric"
-              min={0}
-              max={20}
-              value={filters.minGradient || ""}
-              onChange={(ev) =>
-                setFilters((f) => ({
-                  ...f,
-                  minGradient: Number(ev.target.value) || 0,
-                }))
-              }
-              className="w-20 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-            />
-          </label>
+        {/* Continent + Country */}
+        <div className="flex flex-wrap gap-4">
+          <SelectField
+            id="climbs-continent"
+            label={t.filterContinent}
+            value={filters.continent}
+            onChange={(v) =>
+              setFilters((f) => ({
+                ...f,
+                continent: v as Continent | "",
+              }))
+            }
+            className="min-w-[10rem]"
+          >
+            <option value="">{t.filterAll}</option>
+            {continents.map((c) => (
+              <option key={c} value={c}>
+                {continentLabel(c)}
+              </option>
+            ))}
+          </SelectField>
+
+          <SelectField
+            id="climbs-country"
+            label={t.filterCountry}
+            value={filters.country}
+            onChange={(v) => setFilters((f) => ({ ...f, country: v }))}
+            className="min-w-[8rem]"
+          >
+            <option value="">{t.filterAll}</option>
+            {countries.map((c) => (
+              <option key={c} value={c}>
+                {flagEmoji(c)} {c}
+              </option>
+            ))}
+          </SelectField>
+        </div>
+
+        {/* Min Length + Min Gradient */}
+        <div className="flex flex-wrap gap-4">
+          <NumberField
+            id="climbs-min-length"
+            label={t.filterMinLength}
+            value={filters.minLength > 0 ? String(filters.minLength) : ""}
+            onChange={(v) =>
+              setFilters((f) => ({ ...f, minLength: Number(v) || 0 }))
+            }
+            min={0}
+            max={50}
+            step={1}
+            unit="km"
+            stepper={false}
+            className="w-32"
+          />
+          <NumberField
+            id="climbs-min-gradient"
+            label={t.filterMinGradient}
+            value={filters.minGradient > 0 ? String(filters.minGradient) : ""}
+            onChange={(v) =>
+              setFilters((f) => ({ ...f, minGradient: Number(v) || 0 }))
+            }
+            min={0}
+            max={20}
+            step={1}
+            unit="%"
+            stepper={false}
+            className="w-28"
+          />
         </div>
 
         {/* Difficulty chips */}
         <div className="space-y-2">
-          <p className="text-xs font-medium text-[var(--color-text-secondary)]">
+          <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
             {t.filterDifficulty}
           </p>
           <div className="flex flex-wrap gap-2">
             {DIFFICULTY_BAND_ORDER.map((band) => (
-              <FilterToggle
+              <FilterChip
                 key={band}
                 label={difficultyLabel(band)}
                 active={filters.difficulty === band}
-                accent={accent}
                 onClick={() =>
                   setFilters((f) => ({
                     ...f,
@@ -257,7 +290,7 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
               <button
                 type="button"
                 onClick={() => setFilters(DEFAULT_CLIMB_FILTERS)}
-                className="rounded-md border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
+                className="rounded-lg border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
               >
                 {t.filterReset}
               </button>
@@ -266,26 +299,24 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
         </div>
 
         {/* Sort */}
-        <div className="flex flex-wrap items-center gap-2 border-t border-[var(--color-border)] pt-3">
-          <span className="text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.sortBy}:
-          </span>
-          <select
+        <div className="flex flex-wrap items-end gap-3 border-t border-[var(--color-border)] pt-4">
+          <SelectField
+            id="climbs-sort"
+            label={t.sortBy}
             value={sortKey}
-            onChange={(ev) => setSortKey(ev.target.value as ClimbSortKey)}
-            className="rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-            style={{ accentColor: accent }}
+            onChange={(v) => setSortKey(v as ClimbSortKey)}
+            className="min-w-[10rem]"
           >
             {SORT_KEYS.map((k) => (
               <option key={k} value={k}>
-                {sortLabel(k)}
+                {sortKeyLabel(k)}
               </option>
             ))}
-          </select>
+          </SelectField>
           <button
             type="button"
             onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
-            className="rounded-md border border-[var(--color-border)] px-2.5 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
+            className="rounded-lg border border-[var(--color-border)] px-3 py-2.5 font-mono text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
             aria-label={sortDir === "asc" ? "asc" : "desc"}
           >
             {sortDir === "asc" ? "↑" : "↓"}
@@ -294,12 +325,14 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
       </div>
 
       {/* ── Difficulty legend (collapsible) ──────────────────────── */}
-      <details className="group rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)]">
+      <details className="group border-b border-[var(--color-border)]">
         <summary
-          className="flex cursor-pointer select-none list-none items-center justify-between px-4 py-3 text-sm font-semibold"
-          style={{ color: accent }}
+          className="flex cursor-pointer select-none list-none items-center justify-between px-5 py-3 sm:px-6"
+          style={{ color: "var(--tool-accent)" }}
         >
-          <span>{t.legendTitle}</span>
+          <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em]">
+            {t.legendTitle}
+          </span>
           <span
             aria-hidden="true"
             className="text-[var(--color-text-secondary)] transition-transform group-open:rotate-180"
@@ -307,7 +340,10 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
             ▾
           </span>
         </summary>
-        <div className="border-t border-[var(--color-border)] px-4 pb-4 pt-3 space-y-2">
+        <div
+          className="space-y-3 border-t border-[var(--color-border)] px-5 pb-5 pt-4 sm:px-6"
+          style={{ backgroundColor: accentSurface(2) }}
+        >
           <ul className="space-y-2">
             {DIFFICULTY_BAND_ORDER.map((band) => (
               <li key={band} className="flex items-start gap-2">
@@ -330,31 +366,23 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
       </details>
 
       {/* ── Summary strip ────────────────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="font-medium text-[var(--color-text)]">
-            {t.climbCount.replace("{n}", String(entries.length))}
-          </span>
-          <span aria-hidden="true" className="text-[var(--color-text-muted)]">·</span>
-          <span className="text-[var(--color-text-secondary)]">
-            {t.profiledCount.replace("{n}", String(demCount))}
-          </span>
-        </div>
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
-          style={{ backgroundColor: colorAlpha("22"), color: accent }}
-        >
-          {t.lastReviewed} {CLIMBS_LAST_REVIEWED}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-5 py-3 sm:px-6">
+        <span className="font-mono text-[11px] font-medium tabular-nums text-[var(--color-text)]">
+          {t.climbCount.replace("{n}", String(entries.length))}
+        </span>
+        <span aria-hidden="true" className="text-[var(--color-text-muted)]">·</span>
+        <span className="font-mono text-[11px] tabular-nums text-[var(--color-text-secondary)]">
+          {t.profiledCount.replace("{n}", String(demCount))}
         </span>
       </div>
 
       {/* ── Card list ────────────────────────────────────────────── */}
       {entries.length === 0 ? (
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-6 py-16 text-center">
+        <div className="px-6 pb-12 pt-8 text-center">
           <p className="text-[var(--color-text-muted)]">{t.noResults}</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-3 p-5 sm:p-6">
           {entries.map((climb) => {
             const isExpanded = expandedIds.has(climb.id);
             const band = difficultyBand(climb);
@@ -362,13 +390,27 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
             return (
               <article
                 key={climb.id}
-                className="rounded-lg border bg-[var(--color-bg-card)] overflow-hidden transition-colors"
+                className="relative overflow-hidden rounded-xl border bg-[var(--color-bg-card)] transition-colors"
                 style={{
-                  borderColor: isExpanded ? colorAlpha("55") : "var(--color-border)",
+                  borderColor: isExpanded
+                    ? accentAlpha(33)
+                    : "var(--color-border)",
                 }}
               >
-                <div className="p-4">
-                  {/* Title row */}
+                {/* Accent tick on the left edge — stronger when expanded */}
+                <div
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 h-full w-[3px] rounded-l-xl transition-colors"
+                  style={{
+                    backgroundColor: isExpanded
+                      ? "var(--tool-accent)"
+                      : accentAlpha(20),
+                  }}
+                />
+
+                {/* ── Collapsed header (always visible) ─────────── */}
+                <div className="pb-4 pl-5 pr-4 pt-4">
+                  {/* Name + region */}
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-baseline gap-x-2">
@@ -377,7 +419,7 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
                           {climb.name}
                         </h3>
                         {climb.ascent_name && (
-                          <span className="text-xs text-[var(--color-text-muted)]">
+                          <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">
                             {climb.ascent_name[locale]}
                           </span>
                         )}
@@ -386,18 +428,18 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
                         {climb.region[locale]}
                       </p>
                     </div>
-                    {/* FIETS star metric */}
+                    {/* FIETS star metric — DM Mono, section accent */}
                     <div
-                      className="shrink-0 rounded-md px-3 py-1.5 text-right"
-                      style={{ backgroundColor: colorAlpha("14") }}
+                      className="shrink-0 rounded-lg px-3 py-2 text-right"
+                      style={{ backgroundColor: accentAlpha(14) }}
                     >
                       <div
-                        className="text-lg font-bold tabular-nums leading-none"
-                        style={{ color: accent }}
+                        className="font-mono text-lg font-bold tabular-nums leading-none"
+                        style={{ color: "var(--tool-accent)" }}
                       >
                         {fiets.toFixed(1)}
                       </div>
-                      <div className="mt-0.5 text-[10px] uppercase tracking-wide text-[var(--color-text-muted)]">
+                      <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
                         {t.colFiets}
                       </div>
                     </div>
@@ -411,39 +453,47 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
                     >
                       {difficultyLabel(band)}
                     </span>
-                    <Figure label={t.colLength} value={`${climb.length_km} km`} />
-                    <Figure label={t.colGain} value={`${climb.elevation_gain_m} m`} />
-                    <Figure label={t.colAvg} value={`${climb.avg_gradient}%`} />
-                    <Figure label={t.colMax} value={`${climb.max_gradient}%`} />
-                    <Figure label={t.colSummit} value={`${climb.summit_elevation_m} m`} />
+                    <Figure label={t.colLength}  value={`${climb.length_km} km`} />
+                    <Figure label={t.colGain}    value={`${climb.elevation_gain_m} m`} />
+                    <Figure label={t.colAvg}     value={`${climb.avg_gradient}%`} />
+                    <Figure label={t.colMax}     value={`${climb.max_gradient}%`} />
+                    <Figure label={t.colSummit}  value={`${climb.summit_elevation_m} m`} />
                   </div>
 
+                  {/* Expand/collapse button */}
                   <button
                     type="button"
                     aria-expanded={isExpanded}
+                    aria-label={`${isExpanded ? t.hideProfile : t.showProfile} — ${climb.name}`}
                     onClick={() => toggleCard(climb.id)}
-                    className="mt-3 text-xs font-medium transition-colors hover:underline"
-                    style={{ color: accent }}
+                    className="mt-3 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] transition-colors hover:underline"
+                    style={{ color: "var(--tool-accent)" }}
                   >
                     {isExpanded ? t.hideProfile : t.showProfile}
                   </button>
                 </div>
 
-                {/* Expanded detail */}
+                {/* ── Expanded detail section ────────────────────── */}
                 {isExpanded && (
                   <div
-                    className="border-t px-4 py-4 space-y-4"
-                    style={{ borderTopColor: colorAlpha("33") }}
+                    className="space-y-4 border-t px-5 py-4"
+                    style={{
+                      borderTopColor: accentAlpha(22),
+                      backgroundColor: accentSurface(2),
+                    }}
                   >
                     {/* Profile chart */}
                     {climb.profile && climb.profile.length > 1 && (
                       <div>
-                        <div className="mb-1 flex items-center justify-between">
-                          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">
-                            {t.profileTitle}
-                          </p>
-                        </div>
-                        <ProfileChart climb={climb} accent={accent} dict={t} />
+                        <p className="mb-2 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
+                          {t.profileTitle}
+                        </p>
+                        <ProfileChart
+                          climb={climb}
+                          accent={accent}
+                          accentVar={accentVar}
+                          dict={t}
+                        />
                         {/* Gradient strip */}
                         {climb.gradient_segments &&
                           climb.gradient_segments.length > 0 && (
@@ -476,17 +526,29 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
                       </div>
                     )}
 
+                    {/* Key metrics — DM Mono readout panel */}
+                    <ReadoutPanel className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                      <MetricCell label={t.colFiets}   value={fiets.toFixed(1)} primary />
+                      <MetricCell label={t.colLength}  value={String(climb.length_km)}          unit="km" />
+                      <MetricCell label={t.colGain}    value={String(climb.elevation_gain_m)}   unit="m" />
+                      <MetricCell label={t.colAvg}     value={String(climb.avg_gradient)}       unit="%" />
+                      <MetricCell label={t.colMax}     value={String(climb.max_gradient)}       unit="%" />
+                      <MetricCell label={t.colSummit}  value={String(climb.summit_elevation_m)} unit="m" />
+                    </ReadoutPanel>
+
                     {/* FIETS explainer */}
                     <div
-                      className="rounded-md px-3 py-2 text-xs text-[var(--color-text-secondary)]"
-                      style={{ backgroundColor: colorAlpha("0A") }}
+                      className="rounded-lg px-3 py-2 text-xs text-[var(--color-text-secondary)]"
+                      style={{ backgroundColor: accentAlpha(8) }}
                     >
-                      <strong style={{ color: accent }}>{t.fietsLabel}:</strong>{" "}
+                      <strong style={{ color: "var(--tool-accent)" }}>
+                        {t.fietsLabel}:
+                      </strong>{" "}
                       {t.fietsExplain}
                     </div>
 
                     {/* Data grid */}
-                    <div className="grid gap-x-4 gap-y-2 text-sm sm:grid-cols-2">
+                    <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
                       <DetailField label={t.fieldRegion}>
                         {climb.region[locale]}
                       </DetailField>
@@ -523,7 +585,7 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline decoration-dotted hover:text-[var(--color-text-secondary)]"
-                        style={{ color: accent }}
+                        style={{ color: "var(--tool-accent)" }}
                       >
                         {climb.source_name}
                       </a>{" "}
@@ -539,18 +601,21 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
 
       {/* ── Cross-link to race calendar ──────────────────────────── */}
       {racesHref && (
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+        <div
+          className="border-t border-[var(--color-border)] px-5 py-4 sm:px-6"
+          style={{ backgroundColor: accentSurface(2) }}
+        >
           <Link
             href={racesHref}
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:underline"
-            style={{ color: accent }}
+            style={{ color: "var(--tool-accent)" }}
           >
             <span aria-hidden="true">→</span>
             {t.ctaRaces}
           </Link>
         </div>
       )}
-    </div>
+    </ToolPanel>
   );
 }
 
@@ -558,15 +623,24 @@ export default function ClimbsDatabase({ color }: { color?: string }) {
 /* Sub-components                                                      */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Elevation profile chart. Uses `useAccentColor` to resolve the section accent
+ * var to a real hex — Recharts renders to SVG and cannot consume CSS variables
+ * in stopColor/stroke/fill attributes.
+ */
 function ProfileChart({
   climb,
   accent,
+  accentVar,
   dict,
 }: {
   climb: ClimbEntry;
   accent: string;
+  accentVar: string;
   dict: { profileDistance: string; profileElevation: string };
 }) {
+  // Recharts → SVG: resolve CSS var to computed hex; `accent` is the SSR fallback.
+  const chartColor = useAccentColor(accentVar, accent);
   const data = (climb.profile ?? []).map((p) => ({ d: p.d, e: p.e }));
   return (
     <div className="h-44 w-full">
@@ -574,8 +648,8 @@ function ProfileChart({
         <AreaChart data={data} margin={{ top: 6, right: 8, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id={`grad-${climb.id}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={accent} stopOpacity={0.45} />
-              <stop offset="100%" stopColor={accent} stopOpacity={0.05} />
+              <stop offset="0%"   stopColor={chartColor} stopOpacity={0.45} />
+              <stop offset="100%" stopColor={chartColor} stopOpacity={0.05} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
@@ -604,12 +678,15 @@ function ProfileChart({
               color: "var(--color-text)",
             }}
             labelFormatter={(v) => `${Number(v).toFixed(1)} km`}
-            formatter={(v) => [`${Math.round(Number(v ?? 0))} m`, dict.profileElevation]}
+            formatter={(v) => [
+              `${Math.round(Number(v ?? 0))} m`,
+              dict.profileElevation,
+            ]}
           />
           <Area
             type="monotone"
             dataKey="e"
-            stroke={accent}
+            stroke={chartColor}
             strokeWidth={2}
             fill={`url(#grad-${climb.id})`}
             isAnimationActive={false}
@@ -620,44 +697,58 @@ function ProfileChart({
   );
 }
 
+/** Compact DM Mono metric cell inside the key-figures ReadoutPanel. */
+function MetricCell({
+  label,
+  value,
+  unit,
+  primary = false,
+}: {
+  label: string;
+  value: string;
+  unit?: string;
+  primary?: boolean;
+}) {
+  return (
+    <div className="min-w-0">
+      <p
+        className="mb-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.16em]"
+        style={{ color: primary ? "var(--tool-accent)" : "var(--color-text-muted)" }}
+      >
+        {label}
+      </p>
+      <div className="flex items-baseline gap-0.5">
+        <span
+          className="font-mono text-xl font-semibold tabular-nums leading-none"
+          style={{ color: primary ? "var(--tool-accent)" : "var(--color-text)" }}
+        >
+          {value}
+        </span>
+        {unit && (
+          <span className="font-mono text-[11px] text-[var(--color-text-secondary)]">
+            {unit}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Inline label + value pair in the card's key-figures row. Mono label. */
 function Figure({ label, value }: { label: string; value: string }) {
   return (
     <span className="text-[var(--color-text-secondary)]">
-      <span className="text-[var(--color-text-muted)]">{label}</span>{" "}
-      <span className="font-medium tabular-nums text-[var(--color-text)]">{value}</span>
+      <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
+        {label}
+      </span>{" "}
+      <span className="font-mono font-medium tabular-nums text-[var(--color-text)]">
+        {value}
+      </span>
     </span>
   );
 }
 
-function FilterToggle({
-  label,
-  active,
-  accent,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  accent: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={cn(
-        "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-        active
-          ? "text-white"
-          : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border-light)]",
-      )}
-      style={active ? { backgroundColor: accent, borderColor: accent } : undefined}
-    >
-      {label}
-    </button>
-  );
-}
-
+/** Label + prose field for the expanded card detail. Mono uppercase label. */
 function DetailField({
   label,
   children,
@@ -667,7 +758,7 @@ function DetailField({
 }) {
   return (
     <div className="space-y-1">
-      <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-secondary)]">
+      <p className="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]">
         {label}
       </p>
       <p className="text-sm leading-relaxed text-[var(--color-text)]">{children}</p>

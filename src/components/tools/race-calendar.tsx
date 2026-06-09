@@ -23,23 +23,57 @@ import {
   type Continent,
 } from "@/lib/datasets/races";
 import { getToolById, toolHref } from "@/lib/tools";
-import { cn } from "@/lib/utils";
+import {
+  ToolPanel,
+  FilterChip,
+  SelectField,
+  MetaBadge,
+  accentAlpha,
+  accentSurface,
+} from "@/components/tools/ui";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
+
+/* ------------------------------------------------------------------ */
+/* Local strings — eyebrow + title.                                    */
+/* Per convention: new eyebrow/title strings live here, not in JSON.  */
+/* ------------------------------------------------------------------ */
+
+const LOCAL_STRINGS = {
+  es: {
+    eyebrow: "COMPETENCIA · CALENDARIO",
+    title: "Calendario UCI 2026",
+  },
+  en: {
+    eyebrow: "COMPETITION · CALENDAR",
+    title: "UCI 2026 Calendar",
+  },
+} as const;
+
+/* ------------------------------------------------------------------ */
+/* Badge palettes (fixed, theme-neutral).                              */
+/* Low-opacity bg + same-hue text → readable on dark + light.         */
+/* DO NOT CHANGE: these palettes encode classification meaning.        */
+/* ------------------------------------------------------------------ */
 
 type BadgeStyle = { backgroundColor: string; color: string };
 
 const CATEGORY_BADGE: Record<RaceCategory, BadgeStyle> = {
-  worldtour: { backgroundColor: "rgba(225,29,72,0.14)", color: "#e11d48" },
-  proseries: { backgroundColor: "rgba(245,158,11,0.14)", color: "#b45309" },
+  worldtour:   { backgroundColor: "rgba(225,29,72,0.14)",   color: "#e11d48" },
+  proseries:   { backgroundColor: "rgba(245,158,11,0.14)",  color: "#b45309" },
   continental: { backgroundColor: "rgba(100,116,139,0.16)", color: "#475569" },
 };
 
 const GENDER_BADGE: Record<RaceGender, BadgeStyle> = {
-  men: { backgroundColor: "rgba(14,165,233,0.14)", color: "#0284c7" },
-  women: { backgroundColor: "rgba(217,70,239,0.14)", color: "#c026d3" },
+  men:   { backgroundColor: "rgba(14,165,233,0.14)",  color: "#0284c7" },
+  women: { backgroundColor: "rgba(217,70,239,0.14)",  color: "#c026d3" },
   mixed: { backgroundColor: "rgba(100,116,139,0.14)", color: "#64748b" },
 };
 
 const GENDERS: RaceGender[] = ["men", "women"];
+
+/* ------------------------------------------------------------------ */
+/* Helpers                                                             */
+/* ------------------------------------------------------------------ */
 
 /** ISO date YYYY-MM-DD → "D MMM" using the localized month labels. */
 function shortDate(iso: string, months: string[]): string {
@@ -48,7 +82,7 @@ function shortDate(iso: string, months: string[]): string {
   return `${d} ${(months[m] ?? "").slice(0, 3)}`;
 }
 
-/** Local YYYY-MM-DD for the client's today (used for ongoing/upcoming badges). */
+/** Local YYYY-MM-DD for the client's today (avoids SSR hydration mismatch). */
 function localToday(): string {
   const now = new Date();
   const y = now.getFullYear();
@@ -57,17 +91,18 @@ function localToday(): string {
   return `${y}-${m}-${d}`;
 }
 
-export default function RaceCalendar({ color }: { color?: string }) {
+/* ------------------------------------------------------------------ */
+/* Main component                                                      */
+/* ------------------------------------------------------------------ */
+
+export default function RaceCalendar({
+  accent = "#E11D48",
+  accentVar = "--color-competencia",
+}: ToolComponentProps) {
   const locale = useLocale();
   const dict = useDictionary();
   const t = dict.races;
-  const accent = color ?? "var(--color-competencia)";
-
-  const colorAlpha = (alphaHex: string) => {
-    if (color) return color + alphaHex;
-    const pct = Math.round((parseInt(alphaHex, 16) / 255) * 100);
-    return `color-mix(in srgb, var(--color-competencia) ${pct}%, transparent)`;
-  };
+  const ls = LOCAL_STRINGS[locale];
 
   const [filters, setFilters] = useState<RaceFilterState>(DEFAULT_RACE_FILTERS);
   // Reference date computed on the client only (avoids SSR hydration mismatch).
@@ -107,107 +142,120 @@ export default function RaceCalendar({ color }: { color?: string }) {
     (t.continentLabels as Record<string, string>)[v] ?? v;
 
   return (
-    <div className="space-y-6">
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={ls.eyebrow}
+      title={ls.title}
+      meta={
+        <MetaBadge>
+          {t.lastReviewed} {RACES_LAST_REVIEWED}
+        </MetaBadge>
+      }
+      contentClassName="p-0"
+    >
       {/* ── Filter panel ─────────────────────────────────────────── */}
-      <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 space-y-4">
-        <input
-          type="search"
-          placeholder={t.searchPlaceholder}
-          value={filters.query}
-          onChange={(ev) => setFilters((f) => ({ ...f, query: ev.target.value }))}
-          className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-1"
-          style={{ accentColor: accent }}
-          aria-label={t.searchPlaceholder}
-        />
-
-        <div className="flex flex-wrap items-end gap-4">
-          {/* Month */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterMonth}
-            <select
-              value={filters.month}
-              onChange={(ev) =>
-                setFilters((f) => ({ ...f, month: Number(ev.target.value) }))
-              }
-              className="min-w-[8rem] rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-              style={{ accentColor: accent }}
-            >
-              <option value={-1}>{t.filterAll}</option>
-              {months.map((m, i) => (
-                <option key={i} value={i}>
-                  {m}
-                </option>
-              ))}
-            </select>
+      <div
+        className="space-y-4 border-b border-[var(--color-border)] p-5 sm:p-6"
+        style={{ backgroundColor: accentSurface(2) }}
+      >
+        {/* Search */}
+        <div>
+          <label
+            htmlFor="race-search"
+            className="mb-1.5 block font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-secondary)]"
+          >
+            {t.searchPlaceholder}
           </label>
-
-          {/* Category */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterCategory}
-            <select
-              value={filters.category}
+          <div className="tool-field flex items-center rounded-lg">
+            <input
+              id="race-search"
+              type="search"
+              placeholder={t.searchPlaceholder}
+              value={filters.query}
               onChange={(ev) =>
-                setFilters((f) => ({
-                  ...f,
-                  category: ev.target.value as RaceCategory | "",
-                }))
+                setFilters((f) => ({ ...f, query: ev.target.value }))
               }
-              className="min-w-[8rem] rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-              style={{ accentColor: accent }}
-            >
-              <option value="">{t.filterAll}</option>
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {catLabel(c)}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          {/* Continent */}
-          <label className="flex flex-col gap-1 text-xs font-medium text-[var(--color-text-secondary)]">
-            {t.filterContinent}
-            <select
-              value={filters.continent}
-              onChange={(ev) =>
-                setFilters((f) => ({
-                  ...f,
-                  continent: ev.target.value as Continent | "",
-                }))
-              }
-              className="min-w-[8rem] rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1.5 text-sm text-[var(--color-text)]"
-              style={{ accentColor: accent }}
-            >
-              <option value="">{t.filterAll}</option>
-              {continents.map((c) => (
-                <option key={c} value={c}>
-                  {continentLabel(c)}
-                </option>
-              ))}
-            </select>
-          </label>
+              className="w-full bg-transparent px-3 py-2.5 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none"
+              aria-label={t.searchPlaceholder}
+            />
+          </div>
         </div>
 
-        {/* Gender + kind chips */}
+        {/* Month + Category + Continent selects */}
+        <div className="flex flex-wrap items-end gap-3">
+          <SelectField
+            id="race-month"
+            label={t.filterMonth}
+            value={String(filters.month)}
+            onChange={(v) =>
+              setFilters((f) => ({ ...f, month: Number(v) }))
+            }
+            className="min-w-[9rem]"
+          >
+            <option value="-1">{t.filterAll}</option>
+            {months.map((m, i) => (
+              <option key={i} value={String(i)}>
+                {m}
+              </option>
+            ))}
+          </SelectField>
+
+          <SelectField
+            id="race-category"
+            label={t.filterCategory}
+            value={filters.category}
+            onChange={(v) =>
+              setFilters((f) => ({ ...f, category: v as RaceCategory | "" }))
+            }
+            className="min-w-[9rem]"
+          >
+            <option value="">{t.filterAll}</option>
+            {categories.map((c) => (
+              <option key={c} value={c}>
+                {catLabel(c)}
+              </option>
+            ))}
+          </SelectField>
+
+          <SelectField
+            id="race-continent"
+            label={t.filterContinent}
+            value={filters.continent}
+            onChange={(v) =>
+              setFilters((f) => ({ ...f, continent: v as Continent | "" }))
+            }
+            className="min-w-[9rem]"
+          >
+            <option value="">{t.filterAll}</option>
+            {continents.map((c) => (
+              <option key={c} value={c}>
+                {continentLabel(c)}
+              </option>
+            ))}
+          </SelectField>
+        </div>
+
+        {/* Gender + kind chips + clear */}
         <div className="flex flex-wrap items-center gap-2">
           {GENDERS.map((g) => (
-            <FilterToggle
+            <FilterChip
               key={g}
               label={genderLabel(g)}
               active={filters.gender === g}
-              accent={accent}
               onClick={() =>
                 setFilters((f) => ({ ...f, gender: f.gender === g ? "" : g }))
               }
             />
           ))}
-          <span aria-hidden="true" className="mx-1 text-[var(--color-text-muted)]">|</span>
+          <span aria-hidden="true" className="mx-1 text-[var(--color-border)]">
+            |
+          </span>
           {KIND_ORDER.map((k) => (
-            <FilterToggle
+            <FilterChip
               key={k}
               label={kindLabel(k)}
               active={filters.kind === k}
-              accent={accent}
               onClick={() =>
                 setFilters((f) => ({ ...f, kind: f.kind === k ? "" : k }))
               }
@@ -217,7 +265,7 @@ export default function RaceCalendar({ color }: { color?: string }) {
             <button
               type="button"
               onClick={() => setFilters(DEFAULT_RACE_FILTERS)}
-              className="rounded-md border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
+              className="rounded-lg border border-[var(--color-border)] px-3 py-1.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-border-light)]"
             >
               {t.filterReset}
             </button>
@@ -226,40 +274,35 @@ export default function RaceCalendar({ color }: { color?: string }) {
       </div>
 
       {/* ── Summary strip ────────────────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="font-medium text-[var(--color-text)]">
-            {t.raceCount.replace("{n}", String(filteredCount))}
-          </span>
-          <span aria-hidden="true" className="text-[var(--color-text-muted)]">·</span>
-          <span className="text-[var(--color-text-secondary)]">
-            {t.season.replace("{n}", String(RACES_SEASON))} · {total}
-          </span>
-        </div>
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium"
-          style={{ backgroundColor: colorAlpha("22"), color: accent }}
-        >
-          {t.lastReviewed} {RACES_LAST_REVIEWED}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-5 py-3 sm:px-6">
+        <span className="font-mono text-[11px] font-medium tabular-nums text-[var(--color-text)]">
+          {t.raceCount.replace("{n}", String(filteredCount))}
+        </span>
+        <span aria-hidden="true" className="text-[var(--color-text-muted)]">
+          ·
+        </span>
+        <span className="font-mono text-[11px] tabular-nums text-[var(--color-text-secondary)]">
+          {t.season.replace("{n}", String(RACES_SEASON))} · {total}
         </span>
       </div>
 
       {/* ── Month groups ─────────────────────────────────────────── */}
       {groups.length === 0 ? (
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-6 py-16 text-center">
+        <div className="px-6 pb-12 pt-8 text-center">
           <p className="text-[var(--color-text-muted)]">{t.noResults}</p>
         </div>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-8 p-5 sm:p-6">
           {groups.map((group) => (
             <section key={group.month}>
+              {/* Month heading — mono eyebrow with accent rule */}
               <h3
-                className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wide"
-                style={{ color: accent }}
+                className="mb-3 flex items-center gap-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em]"
+                style={{ color: "var(--tool-accent)" }}
               >
                 <span
                   className="h-3 w-1 rounded-full"
-                  style={{ backgroundColor: accent }}
+                  style={{ backgroundColor: "var(--tool-accent)" }}
                 />
                 {months[group.month]}
               </h3>
@@ -271,8 +314,6 @@ export default function RaceCalendar({ color }: { color?: string }) {
                     locale={locale}
                     today={today}
                     months={months}
-                    accent={accent}
-                    colorAlpha={colorAlpha}
                     genderLabel={genderLabel}
                     kindLabel={kindLabel}
                     ongoingLabel={t.badgeOngoing}
@@ -289,18 +330,21 @@ export default function RaceCalendar({ color }: { color?: string }) {
 
       {/* ── Cross-link to climbs database ────────────────────────── */}
       {climbsHref && (
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4">
+        <div
+          className="border-t border-[var(--color-border)] px-5 py-4 sm:px-6"
+          style={{ backgroundColor: accentSurface(2) }}
+        >
           <Link
             href={climbsHref}
             className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:underline"
-            style={{ color: accent }}
+            style={{ color: "var(--tool-accent)" }}
           >
             <span aria-hidden="true">→</span>
             {t.ctaClimbs}
           </Link>
         </div>
       )}
-    </div>
+    </ToolPanel>
   );
 }
 
@@ -311,8 +355,6 @@ function RaceRow({
   locale,
   today,
   months,
-  accent,
-  colorAlpha,
   genderLabel,
   kindLabel,
   ongoingLabel,
@@ -324,8 +366,6 @@ function RaceRow({
   locale: "es" | "en";
   today: string | null;
   months: string[];
-  accent: string;
-  colorAlpha: (a: string) => string;
   genderLabel: (v: string) => string;
   kindLabel: (v: string) => string;
   ongoingLabel: string;
@@ -342,12 +382,21 @@ function RaceRow({
 
   return (
     <li
-      className="rounded-lg border bg-[var(--color-bg-card)] p-3 transition-colors"
-      style={{ borderColor: ongoing ? colorAlpha("66") : "var(--color-border)" }}
+      className="relative overflow-hidden rounded-xl border bg-[var(--color-bg-card)] p-3 transition-colors"
+      style={{ borderColor: ongoing ? accentAlpha(40) : "var(--color-border)" }}
     >
+      {/* Accent tick on the left edge — visible only when the race is ongoing */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 h-full w-[3px] rounded-l-xl transition-colors"
+        style={{
+          backgroundColor: ongoing ? "var(--tool-accent)" : accentAlpha(18),
+        }}
+      />
+
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
         {/* Date */}
-        <span className="w-28 shrink-0 text-xs font-semibold tabular-nums text-[var(--color-text-secondary)]">
+        <span className="w-28 shrink-0 font-mono text-xs tabular-nums text-[var(--color-text-secondary)]">
           {dateText}
         </span>
 
@@ -362,23 +411,20 @@ function RaceRow({
           </span>
         </span>
 
-        {/* Badges */}
+        {/* Status badges */}
         {ongoing && (
           <span
-            className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white"
-            style={{ backgroundColor: accent }}
+            className="rounded-full px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-white"
+            style={{ backgroundColor: "var(--tool-accent)" }}
           >
             {ongoingLabel}
           </span>
         )}
         {!ongoing && upcoming && (
-          <span
-            className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide"
-            style={{ backgroundColor: colorAlpha("22"), color: accent }}
-          >
-            {upcomingLabel}
-          </span>
+          <MetaBadge>{upcomingLabel}</MetaBadge>
         )}
+
+        {/* Classification badges (fixed semantic palettes) */}
         <span
           className="rounded-full px-2 py-0.5 text-[11px] font-medium"
           style={CATEGORY_BADGE[race.category]}
@@ -391,7 +437,7 @@ function RaceRow({
         >
           {genderLabel(race.gender)}
         </span>
-        <span className="hidden text-[11px] text-[var(--color-text-muted)] sm:inline">
+        <span className="hidden font-mono text-[10.5px] text-[var(--color-text-muted)] sm:inline">
           {kindLabel(race.kind)}
         </span>
 
@@ -403,7 +449,7 @@ function RaceRow({
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium hover:underline"
-              style={{ color: accent }}
+              style={{ color: "var(--tool-accent)" }}
             >
               {officialLabel}
             </a>
@@ -418,40 +464,12 @@ function RaceRow({
           </a>
         </span>
       </div>
+
       {race.notes && (
         <p className="mt-1.5 text-xs text-[var(--color-text-secondary)]">
           {race.notes[locale]}
         </p>
       )}
     </li>
-  );
-}
-
-function FilterToggle({
-  label,
-  active,
-  accent,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  accent: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={cn(
-        "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-        active
-          ? "text-white"
-          : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border-light)]",
-      )}
-      style={active ? { backgroundColor: accent, borderColor: accent } : undefined}
-    >
-      {label}
-    </button>
   );
 }
