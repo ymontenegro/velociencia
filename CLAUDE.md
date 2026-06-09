@@ -15,15 +15,6 @@ npm run db:setup         # Create dirs, run migrations, seed DB
 npm run db:migrate       # Run Drizzle migrations only
 npm run db:studio        # Drizzle Studio (DB browser)
 
-npm run agents:full      # Full pipeline: discover → research → write → review
-npm run agents:discover  # Discover new topics per section
-npm run agents:research  # Research proposed/approved topics
-npm run agents:write     # Write articles for researched topics
-npm run agents:review    # Editor reviews pending articles
-npm run agents:start     # Start cron scheduler
-
-npm run feeds:import     # Import RSS feeds
-
 npm run queue            # Editorial queue CLI (list / show / next / done / publish)
 ```
 
@@ -50,7 +41,7 @@ When the user says "trabaja en la cola" / "next post", run `npm run queue next`,
 
 ## Architecture
 
-**Stack:** Next.js 16 + React 19, Tailwind CSS 4, SQLite via better-sqlite3 + Drizzle ORM, OpenAI SDK (gpt-4.1-mini for journalist, gpt-4.1 for editor). Path alias: `@/*` → `./src/*`. Output: `standalone`.
+**Stack:** Next.js 16 + React 19, Tailwind CSS 4, SQLite via better-sqlite3 + Drizzle ORM. Path alias: `@/*` → `./src/*`. Output: `standalone`.
 
 ### Dual-language site (i18n)
 
@@ -58,7 +49,7 @@ Host-based routing: `velociencia.cl` → Spanish (`es`), `pedalsci.com` → Engl
 
 ### Two content systems coexist
 
-- **SQLite DB** (`data/ciclismo.db`): tracks agent pipeline state — topics, sources, agent runs, RSS feeds, article metadata. Status workflow: `discovered` → `researching` → `drafting` → `review` → `published`/`rejected`.
+- **SQLite DB** (`data/ciclismo.db`): tracks topics, sources, agent run history, RSS feeds, article metadata. Status workflow: `discovered` → `researching` → `drafting` → `review` → `published`/`rejected`.
 - **Markdown files** (`content/{locale}/{section}/{slug}.md`): published article content with gray-matter frontmatter. Read at build time by `src/lib/markdown.ts`. These are the **source of truth** for the public site.
 
 ### Four content sections
@@ -72,9 +63,9 @@ Defined in `src/lib/constants.ts` as `SECTIONS` (with `SECTIONS_I18N` for transl
 | `entrenamiento` | Entrenamiento | `#0891B2` | Tomás Herrera |
 | `competencia` | Competencia | `#E11D48` | Diego Araya |
 
-### Agent pipeline
+### Content production
 
-`src/agents/` — Two AI agents: *journalist* (discover, research, write) and *editor* (review). Each phase is a module under `src/agents/journalist/` or `src/agents/editor/`. Prompts in `src/agents/prompts/` include per-section specialization files (`section-nutricion.ts`, `section-ciencia.ts`, etc.). Schemas use Zod for structured output via `zodResponseFormat`.
+Articles are written by Claude Code via the editorial queue (`npm run queue`). The OpenAI-based autonomous pipeline (`src/agents/`) has been removed. `agentRuns` and `topics` tables are kept for historical data but no longer populated by automated agents.
 
 ### Markdown rendering pipeline
 
@@ -97,7 +88,7 @@ Primary: Unsplash CDN hotlinking via `src/lib/images.ts` `unsplash()` helper wit
 
 ### API routes (`src/app/api/`)
 
-REST endpoints: articles (CRUD + approve/reject), feeds, topics, agents, views (tracking), and `/api/cron/*` triggers for each pipeline phase.
+REST endpoints: articles (CRUD + approve/reject), feeds, topics, views (tracking), and admin queue.
 
 ### DB schema (`src/lib/db/schema.ts`)
 
@@ -105,7 +96,7 @@ Tables: `articles`, `sources`, `topics`, `agentRuns`, `rssFeeds`, `rssItems`, `a
 
 ### External data sources
 
-`src/lib/`: `pubmed.ts`, `semantic-scholar.ts`, `rss.ts`, `sources.ts` — used during the research phase to gather scientific references.
+`src/lib/rss.ts` — fetches and stores RSS feed items; used by `/api/feeds/refresh`.
 
 ## Key Conventions
 
@@ -119,9 +110,6 @@ Tables: `articles`, `sources`, `topics`, `agentRuns`, `rssFeeds`, `rssItems`, `a
 ## Environment Variables
 
 ```
-OPENAI_API_KEY=           # Required — agent pipeline (gpt-4.1-mini, gpt-4.1)
 NEXT_PUBLIC_SITE_URL=     # For sitemap/OG (default: http://localhost:3000)
-PUBMED_API_KEY=           # Optional — increases PubMed rate limits
-SEMANTIC_SCHOLAR_API_KEY= # Optional — increases Semantic Scholar rate limits
-UNSPLASH_ACCESS_KEY=      # Optional — agentic image fetching
+UNSPLASH_ACCESS_KEY=      # Optional — agentic cover image fetching
 ```

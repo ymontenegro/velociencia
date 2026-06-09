@@ -1,5 +1,22 @@
 import { sqliteTable, text, integer, real, index } from "drizzle-orm/sqlite-core";
 
+// NOTE: SQLite FK enforcement is ON (via `PRAGMA foreign_keys = ON`) but Drizzle-ORM
+// does not emit FK constraints in the DDL for SQLite schemas. The following logical
+// relationships exist but are NOT enforced at the DB level:
+//
+//   articles.topicId       → topics.id
+//   articles.agentRunId    → agent_runs.id
+//   sources.articleId      → articles.id
+//   sources.topicId        → topics.id
+//   rssItems.feedId        → rss_feeds.id
+//   rssItems.usedInTopicId → topics.id
+//   topics.agentRunId      → agent_runs.id
+//   scheduledPosts.articleId   → articles.id
+//   scheduledPosts.articleIdEn → articles.id
+//
+// Adding real FK constraints would require rebuilding each table (SQLite limitation).
+// Keep this comment updated if new references are added.
+
 export const articles = sqliteTable(
   "articles",
   {
@@ -74,53 +91,66 @@ export const sources = sqliteTable(
   (table) => [
     index("idx_sources_article").on(table.articleId),
     index("idx_sources_topic").on(table.topicId),
+    index("idx_sources_type").on(table.type),
   ]
 );
 
-export const agentRuns = sqliteTable("agent_runs", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  agentType: text("agent_type", {
-    enum: ["journalist", "editor"],
-  }).notNull(),
-  phase: text("phase", {
-    enum: ["discover", "research", "write", "review"],
-  }).notNull(),
-  section: text("section", {
-    enum: ["nutricion", "ciencia", "entrenamiento", "competencia"],
-  }),
-  status: text("status", {
-    enum: ["running", "completed", "failed"],
-  }).notNull(),
-  model: text("model").notNull(),
-  inputTokens: integer("input_tokens"),
-  outputTokens: integer("output_tokens"),
-  costUsd: real("cost_usd"),
-  durationMs: integer("duration_ms"),
-  errorMessage: text("error_message"),
-  metadata: text("metadata"), // JSON blob
-  startedAt: integer("started_at", { mode: "timestamp" })
-    .notNull()
-    .$defaultFn(() => new Date()),
-  completedAt: integer("completed_at", { mode: "timestamp" }),
-});
+export const agentRuns = sqliteTable(
+  "agent_runs",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    agentType: text("agent_type", {
+      enum: ["journalist", "editor"],
+    }).notNull(),
+    phase: text("phase", {
+      enum: ["discover", "research", "write", "review"],
+    }).notNull(),
+    section: text("section", {
+      enum: ["nutricion", "ciencia", "entrenamiento", "competencia"],
+    }),
+    status: text("status", {
+      enum: ["running", "completed", "failed"],
+    }).notNull(),
+    model: text("model").notNull(),
+    inputTokens: integer("input_tokens"),
+    outputTokens: integer("output_tokens"),
+    costUsd: real("cost_usd"),
+    durationMs: integer("duration_ms"),
+    errorMessage: text("error_message"),
+    metadata: text("metadata"), // JSON blob
+    startedAt: integer("started_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    completedAt: integer("completed_at", { mode: "timestamp" }),
+  },
+  (table) => [
+    index("idx_agent_runs_status_phase").on(table.status, table.phase),
+  ]
+);
 
-export const rssFeeds = sqliteTable("rss_feeds", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  name: text("name").notNull(),
-  url: text("url").notNull().unique(),
-  section: text("section", {
-    enum: ["nutricion", "ciencia", "entrenamiento", "competencia", "general"],
-  }).notNull(),
-  language: text("language").default("en"),
-  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
-  lastFetchedAt: integer("last_fetched_at", { mode: "timestamp" }),
-  fetchIntervalMinutes: integer("fetch_interval_minutes").default(60),
-  errorCount: integer("error_count").default(0),
-  lastError: text("last_error"),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .notNull()
-    .$defaultFn(() => new Date()),
-});
+export const rssFeeds = sqliteTable(
+  "rss_feeds",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    name: text("name").notNull(),
+    url: text("url").notNull().unique(),
+    section: text("section", {
+      enum: ["nutricion", "ciencia", "entrenamiento", "competencia", "general"],
+    }).notNull(),
+    language: text("language").default("en"),
+    isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+    lastFetchedAt: integer("last_fetched_at", { mode: "timestamp" }),
+    fetchIntervalMinutes: integer("fetch_interval_minutes").default(60),
+    errorCount: integer("error_count").default(0),
+    lastError: text("last_error"),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (table) => [
+    index("idx_rss_feeds_section").on(table.section),
+  ]
+);
 
 export const rssItems = sqliteTable(
   "rss_items",
