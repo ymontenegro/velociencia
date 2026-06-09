@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "La variabilidad de la frecuencia cardíaca permite detectar estados de sobrecarga y mala recuperación antes de que el rendimiento caiga. El coeficiente de variación del LnRMSSD guía la toma de decisiones en el entrenamiento."
 coverImage: "https://images.unsplash.com/photo-1654195131868-cac1d8429d86?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "hrv-in-cycling-what-your-heart-says-about-your-fatigue-before-you-know-it"
 ---
 
 ## Un espejo del sistema nervioso autónomo

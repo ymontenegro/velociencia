@@ -38,6 +38,7 @@ sources:
     type: pubmed
 excerpt: "For over a century, lactate was treated as a toxic byproduct of muscular effort. Current science shows it is a preferred fuel for the heart and brain, and that 75% of lactate produced during exercise is directly oxidized to generate energy."
 coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "lactato-combustible-no-residuo-ciclismo"
 ---
 
 ## The mistake that lasted a century

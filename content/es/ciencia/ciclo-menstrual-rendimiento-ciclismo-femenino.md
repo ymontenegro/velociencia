@@ -17,6 +17,7 @@ sources:
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10937518/"
     type: "pubmed"
 excerpt: "La evidencia con estándares hormonales rigurosos dice que el ciclo apenas mueve el rendimiento medio. Pero los datos de ciclistas de élite muestran que la fase sí cambia cuánta intensidad toleras. La clave no es temerle al periodo, sino periodizar con datos."
+translationOf: "menstrual-cycle-cycling-performance-women"
 ---
 
 El efecto medio del ciclo menstrual sobre el rendimiento físico es de −0,06 en la escala de tamaño del efecto, un valor que la estadística clasifica como trivial. Esa cifra proviene del metaanálisis más citado sobre el tema, firmado por Kelly McNulty y colaboradores en *Sports Medicine* (2020), que reunió 51 estudios y 709 mujeres con ciclo natural. La conclusión incomoda a ambos bandos del debate: ni el periodo arruina el rendimiento, como dice el folclore, ni las fases son irrelevantes, como sugiere la simplificación opuesta. La realidad es más fina, y entenderla cambia cómo una ciclista organiza sus semanas.

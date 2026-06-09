@@ -32,6 +32,7 @@ sources:
   - title: "Cubel C et al. Haematological adaptations to high-altitude and heat acclimation training in elite male cyclists. Exp Physiol. 2026"
     url: "https://physoc.onlinelibrary.wiley.com/doi/full/10.1113/EP092968"
     type: "pubmed"
+translationOf: "heat-altitude-sequential-protocol-cycling"
 ---
 
 ## La trampa del "dos es mejor que uno"

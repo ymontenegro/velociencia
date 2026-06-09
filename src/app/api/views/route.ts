@@ -1,10 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, schema } from "@/lib/db";
 import { sql } from "drizzle-orm";
+import { rateLimit, clientKeyFromHeaders } from "@/lib/rate-limit";
+import { SECTION_IDS, type SectionId } from "@/lib/constants";
 
 // POST — record a view
 export async function POST(req: NextRequest) {
-  const { slug, section } = await req.json();
+  const client = clientKeyFromHeaders(req.headers);
+  if (!rateLimit(`views:${client}`, { limit: 60, windowMs: 60_000 })) {
+    return NextResponse.json({ error: "rate limited" }, { status: 429 });
+  }
+
+  let body: { slug?: unknown; section?: unknown };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "invalid body" }, { status: 400 });
+  }
+
+  const slug = typeof body?.slug === "string" ? body.slug.slice(0, 200) : "";
+  const rawSection = typeof body?.section === "string" ? body.section : "";
+  const section = SECTION_IDS.includes(rawSection as SectionId) ? (rawSection as SectionId) : null;
 
   if (!slug || !section) {
     return NextResponse.json({ error: "slug and section required" }, { status: 400 });

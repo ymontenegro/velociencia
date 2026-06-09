@@ -23,6 +23,7 @@ sources:
     type: web_search
 excerpt: "El Giro de Italia 2026 parte desde Bulgaria el 8 de mayo y termina en Roma el 31. Con 3.459 km, 7 finales en alto, el Blockhaus, los Dolomitas y una CRI de 40 km, el recorrido favorece a los escaladores completos. Roglič, Tiberi y Del Toro lideran las apuestas."
 coverImage: "https://images.unsplash.com/photo-1592182811189-87f6ae2f3407?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "giro-d-italia-2026-favorites-route-and-key-stage-analysis"
 ---
 
 ## Bulgaria como punto de partida

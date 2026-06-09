@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "Los intervalos en zona de VO2max acumulan más tiempo a alta demanda cardiovascular que el esfuerzo continuo. Protocolos de 4×4 minutos y 30/30 segundos son los más respaldados por la evidencia."
 coverImage: "https://images.unsplash.com/photo-1760001868208-be45d747a46c?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "high-intensity-intervals-protocols-that-work"
 ---
 
 ## Más tiempo al límite cardiovascular en menos tiempo total

@@ -1,5 +1,6 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
-import { SECTIONS_I18N } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N } from "@/lib/constants";
 import { toolHref, toolColor } from "@/lib/tools";
 import type { ToolInfo } from "@/lib/tools";
 import type { Locale } from "@/lib/i18n";
@@ -15,55 +16,86 @@ interface ToolCardProps {
 
 /**
  * Reusable calculator card — shared by the /herramientas (·/tools) index and the
- * homepage highlight band. Editorial / minimal treatment matching
- * `section-preview.tsx`: the section color appears only as restrained accents
- * (icon, thin top line, faint corner glow + icon watermark), never as a heavy
- * gradient block. The textual content sits in a `relative z-10` wrapper so it
- * always paints above the absolutely-positioned decorations.
+ * homepage highlight band. Race Telemetry language: instrument-panel face with
+ * HUD corner ticks, faint telemetry grid, mono eyebrow, and accent driven by the
+ * section CSS var via --tool-accent. Mirrors the ToolPanel aesthetic from ui/.
  */
 export function ToolCard({ tool, locale, openTool, className }: ToolCardProps) {
   const color = toolColor(tool);
+  const sectionConfig = SECTIONS[tool.sectionId];
   const sectionName = SECTIONS_I18N[locale][tool.sectionId].name;
   const href = toolHref(tool, locale);
 
+  // Set --tool-accent from the section CSS var (dark-mode-aware) with a hex fallback.
+  const scopeStyle = {
+    "--tool-accent": `var(${sectionConfig.colorVar}, ${color})`,
+  } as CSSProperties;
+
   return (
-    <Link href={href} className={cn("group block h-full", className)}>
-      <article className="relative flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 shadow-sm transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl sm:p-7">
-        {/* Soft corner glow in the section color */}
+    <Link
+      href={href}
+      className={cn("tool-scope group block h-full", className)}
+      style={scopeStyle}
+    >
+      {/*
+       * tool-panel: instrument-panel background gradient + border + HUD shadow
+       * tool-panel-hover: accent-tinted shadow on hover
+       * tool-corners: two-corner HUD tick marks (::before top-left, ::after bottom-right)
+       * overflow-hidden: clips the telemetry grid and corner glow decorations
+       */}
+      <article className="tool-panel tool-panel-hover tool-corners relative flex h-full flex-col overflow-hidden rounded-xl transition-all duration-500 ease-out hover:-translate-y-1">
+        {/* Telemetry grid — fades toward the bottom for depth */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-[0.07] blur-2xl transition-opacity duration-500 group-hover:opacity-[0.14]"
-          style={{ backgroundColor: color }}
+          className="tool-grid-bg pointer-events-none absolute inset-0 opacity-60"
+          style={{
+            maskImage: "linear-gradient(to bottom, black 0%, transparent 60%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 60%)",
+          }}
+        />
+
+        {/* Soft corner glow in the section accent */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-[0.08] blur-2xl transition-opacity duration-500 group-hover:opacity-[0.16]"
+          style={{ backgroundColor: "var(--tool-accent)" }}
         />
 
         {/* Large faint icon watermark */}
         <span
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-7 -right-5 opacity-[0.05] transition-opacity duration-500 group-hover:opacity-[0.09]"
-          style={{ color }}
+          style={{ color: "var(--tool-accent)" }}
         >
           <ToolIcon toolId={tool.id} className="h-32 w-32" />
         </span>
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-1 flex-col">
-          {/* Accent line */}
+        {/* Content — sits above all decorations */}
+        <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-7">
+          {/* Accent rule — animates width on hover */}
           <div
-            className="h-[2px] w-8 transition-all duration-500 ease-out group-hover:w-14"
-            style={{ backgroundColor: color }}
+            className="h-[2px] w-8 rounded-full transition-all duration-500 ease-out group-hover:w-14"
+            style={{ backgroundColor: "var(--tool-accent)" }}
           />
 
           {/* Icon */}
-          <span className="mt-6 block" style={{ color }}>
+          <span className="mt-6 block" style={{ color: "var(--tool-accent)" }}>
             <ToolIcon toolId={tool.id} className="h-8 w-8" />
           </span>
 
-          {/* Section label */}
-          <span
-            className="mt-5 text-[10px] font-semibold uppercase tracking-[0.2em]"
-            style={{ color }}
-          >
-            {sectionName}
+          {/* Section eyebrow — mono, with live dot */}
+          <span className="mt-5 flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="tool-live-dot h-1 w-1 flex-none rounded-full"
+              style={{ backgroundColor: "var(--tool-accent)" }}
+            />
+            <span
+              className="font-mono text-[10px] font-medium uppercase tracking-[0.22em]"
+              style={{ color: "var(--tool-accent)" }}
+            >
+              {sectionName}
+            </span>
           </span>
 
           {/* Title */}
@@ -80,16 +112,18 @@ export function ToolCard({ tool, locale, openTool, className }: ToolCardProps) {
           <div className="mt-6 flex items-center gap-1.5 border-t border-[var(--color-border-light)] pt-4">
             <span
               className="text-sm font-semibold transition-colors duration-200"
-              style={{ color }}
+              style={{ color: "var(--tool-accent)" }}
             >
               {openTool}
             </span>
+            {/* stroke="currentColor" reads the CSS `color` property set on the svg */}
             <svg
               className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
-              stroke={color}
+              stroke="currentColor"
+              style={{ color: "var(--tool-accent)" }}
             >
               <path
                 strokeLinecap="round"

@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "Tras tres etapas en Bulgaria y el primer día de descanso, el Giro 2026 entra en su fase italiana con diez segundos separando a todos los favoritos reales. Vingegaard mostró en la segunda etapa que escala en otro nivel; UAE Team Emirates perdió tres líderes en 48 horas; Tiberi y Bernal tienen los perfiles más adaptados al recorrido que viene."
 coverImage: "https://images.unsplash.com/photo-1759659478938-9753418d1585?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "giro-italia-2026-second-week-analysis"
 ---
 
 Tres etapas, 543 kilómetros, una caída masiva bajo la lluvia y seis abandonos: ese es el inventario del Giro 2026 antes de que la carrera toque el único terreno donde puede resolverse. La clasificación general, con Guillermo Thomas Silva (XDS Astana) de líder provisional a cuatro segundos de Egan Bernal y a diez de Jonas Vingegaard, es en este momento una tabla de posiciones sin significado profundo. Ninguno de los grandes favoritos ha tenido ocasión de mostrar su potencial en montaña. Lo que Bulgaria sí dejó claro —con una evidencia que no admite discusión— es quién ya no puede ganar este Giro y quién llega a Italia con ventajas que no se ven en los números.

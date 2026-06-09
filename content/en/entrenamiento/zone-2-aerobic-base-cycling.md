@@ -26,6 +26,7 @@ sources:
     type: web
 excerpt: "Zone 2 — the intensity that feels too easy — is where mitochondria multiply, fat oxidation peaks, and lactate recycling reaches its highest efficiency. San Millán made it the cornerstone of Pogačar's training."
 coverImage: "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "zona-2-base-aerobica-ciclismo"
 ---
 
 ## The intensity that doesn't feel like training

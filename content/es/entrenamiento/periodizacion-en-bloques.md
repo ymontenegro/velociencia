@@ -14,6 +14,7 @@ sources:
     type: pubmed
 excerpt: "La periodización en bloques concentra estímulos de entrenamiento específicos en períodos cortos. Analizamos la evidencia y cómo aplicarla al ciclismo amateur."
 coverImage: "https://images.unsplash.com/photo-1732611321835-43f0bdd5687f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "block-periodization-concentrate-the-load-to-improve-faster"
 ---
 
 ## Un solo estímulo por bloque, no diez

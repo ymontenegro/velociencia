@@ -29,6 +29,7 @@ sources:
     type: web_search
 excerpt: "La 123ª edición de Paris-Roubaix enfrenta a Van der Poel, tricampeón y aspirante al récord de cuatro victorias, contra Pogačar, que solo necesita este Monumento para unirse a Merckx, De Vlaeminck y Van Looy en el club más exclusivo del ciclismo."
 coverImage: "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "paris-roubaix-2026-preview-favorites"
 ---
 
 258,3 kilómetros separan Compiègne del velódromo de Roubaix. 30 sectores de pavé suman 54,8 kilómetros de adoquines donde una piedra suelta, un pinchazo o un segundo de desconcentración pueden destruir meses de preparación. La 123ª edición del Infierno del Norte se disputa este domingo 12 de abril y llega cargada de historia por escribir. Mathieu van der Poel defiende un trono que ocupa desde hace tres años consecutivos y quiere igualar el récord absoluto de cuatro victorias que comparten Roger De Vlaeminck y Tom Boonen. Enfrente, Tadej Pogačar busca el único Monumento que le falta para convertirse en el cuarto ciclista de la historia en ganarlos todos.

@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "El test de FTP de 20 minutos multiplica la potencia media por 0.95, pero estudios recientes muestran que ese factor varía entre 0.88 en recreativos y 0.96 en profesionales. El FTP no equivale al umbral de lactato ni al MLSS."
 coverImage: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "ftp-what-it-really-measures-and-why-it-s-not-what-you-think"
 ---
 
 ## El número más citado del ciclismo con potenciómetro

@@ -23,6 +23,7 @@ sources:
   - title: "Superior Physiological Adaptations After a Microcycle of Short Intervals Versus Long Intervals in Cyclists"
     url: "https://pubmed.ncbi.nlm.nih.gov/33735833/"
     type: pubmed
+translationOf: "30-30-intervals-vo2max-cycling"
 ---
 
 ## El problema con los intervalos que todos hacen

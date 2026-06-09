@@ -34,6 +34,7 @@ excerpt: >-
   it.
 coverImage: >-
   https://images.unsplash.com/photo-1709601414337-373519366406?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "vo2max-y-rendimiento"
 ---
 ## The Number That Defines the Cyclist
 

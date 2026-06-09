@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Entrenar con reservas bajas de glicógeno activa la cascada AMPK–PGC-1α y amplifica las adaptaciones mitocondriales. La evidencia molecular es sólida; la traslación directa a más vatios en carrera, más matizada. Así funciona el train low y por qué los equipos WorldTour lo aplican con precisión quirúrgica, no como filosofía de alimentación."
 coverImage: "https://images.unsplash.com/photo-1648061930045-e9fdd171c052?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "train-low-fasted-training-cycling"
 ---
 
 ## El experimento que cambió la nutrición deportiva: dos piernas, un mismo corredor

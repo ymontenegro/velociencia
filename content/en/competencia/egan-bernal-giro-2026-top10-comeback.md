@@ -23,6 +23,7 @@ sources:
     url: "https://www.espn.com/olympics/cycling/story/_/id/43732244/former-tour-champ-egan-bernal-wins-1st-race-horrific-crash"
     type: "web_search"
 excerpt: "Egan Bernal finished tenth at the 2026 Giro d'Italia, 12:54 behind Vingegaard. Four years after the crash that nearly killed him, the Colombian confirms he is back at Grand Tour level — now in a different role."
+translationOf: "egan-bernal-regreso-top10-giro-2026"
 ---
 
 Egan Bernal finished tenth in the general classification of the 2026 Giro d'Italia, 12 minutes and 54 seconds behind Jonas Vingegaard. The number looks modest next to the Colombian's palmarès, but reading it properly means remembering where this rider comes from. In January 2022, doctors estimated he had a 95% chance of being left paraplegic, as *Escape Collective* later reconstructed when it turned his case into clinical study material. Four years on, this top 10 at the Corsa Rosa is not an in-between result: it is proof that the resurrection is complete.

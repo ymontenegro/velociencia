@@ -44,6 +44,7 @@ sources:
   - title: "Exogenous ketosis elevates circulating erythropoietin and stimulates muscular angiogenesis during endurance training overload"
     url: "https://pubmed.ncbi.nlm.nih.gov/37062892/"
     type: pubmed
+translationOf: "cetonas-exogenas-ciclismo"
 ---
 
 ## The Peloton's Supplement That Doesn't Work Where You Think It Does

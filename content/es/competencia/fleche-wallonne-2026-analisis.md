@@ -38,6 +38,7 @@ sources:
   - title: "Comment Paul Seixas a asphyxié la concurrence dans le Mur de Huy"
     url: "https://www.eurosport.fr/cyclisme/fleche-wallonne-hommes/2026/comment-paul-seixas-vainqueur-de-la-fleche-wallonne-a-asphyxie-la-concurrence-dans-le-mur-de-huy-en-vieux-briscard_sto23292825/story.shtml"
     type: web_search
+translationOf: "fleche-wallonne-2026-analysis"
 ---
 
 Paul Seixas completó la ascensión final al Mur de Huy en 2 minutos y 43 segundos, el tercer mejor tiempo registrado en la historia de La Flèche Wallonne. Fue el miércoles 22 de abril, en la 90ª edición de la carrera más brutal de las Ardenas belgas, y el corredor de Decathlon CMA CGM lo consiguió con el codo derecho ensangrentado tras una caída a mitad de recorrido, en su primera participación en la prueba y con apenas 19 años y 210 días de vida. Nadie en la historia de la carrera había ganado tan joven. Mauro Schmid (Jayco-AlUla) y Ben Tulett (Visma-Lease a Bike) cruzaron la línea tres segundos después, juntos, peleando por las migajas de una victoria que el francés construyó con una lógica aplastante.

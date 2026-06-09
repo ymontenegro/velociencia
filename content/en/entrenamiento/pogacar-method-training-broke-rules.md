@@ -36,6 +36,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/34792817/"
     type: scientific_paper
 excerpt: "Thirty-nine minutes and forty-three seconds. That's how long Tadej Pogačar needed to climb Plateau de Beille in 2024, three-and-a-half minutes faster than Marco Pantani's record. The question is no longer whether he is the best climber of his generation, but how he got there while breaking most of the rules sports physiology had set for Grand Tour racing."
+translationOf: "metodo-pogacar-entrenamiento-rompio-reglas"
 ---
 
 ## The day the textbook stopped working

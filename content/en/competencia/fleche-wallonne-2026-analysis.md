@@ -35,6 +35,7 @@ sources:
   - title: "Remco Evenepoel opts against racing La Flèche Wallonne after all"
     url: "https://www.cyclingnews.com/pro-cycling/teams-riders/remco-evenepoel-opts-against-racing-la-fleche-wallonne-after-all-with-full-focus-on-next-showdown-with-tadej-pogacar/"
     type: web_search
+translationOf: "fleche-wallonne-2026-analisis"
 ---
 
 Paul Seixas climbed the final Mur de Huy in 2 minutes and 43 seconds, the third-fastest ascent ever recorded at La Flèche Wallonne. It was Wednesday, April 22, the 90th edition of the most unforgiving race in the Belgian Ardennes, and the Decathlon CMA CGM rider did it with a bloodied right elbow from a mid-race crash, on his first-ever start in the event, at just 19 years and 210 days old. Nobody in the history of the race had won it younger. Mauro Schmid (Jayco-AlUla) and Ben Tulett (Visma–Lease a Bike) crossed the line three seconds back, together, contesting second place while the Frenchman was already celebrating alone up the road.

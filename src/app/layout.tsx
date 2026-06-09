@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Space_Grotesk, DM_Sans, DM_Mono } from "next/font/google";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_NAME_I18N, SITE_DESCRIPTION_I18N } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LocaleProvider } from "@/components/locale-provider";
@@ -18,6 +18,16 @@ const spaceGrotesk = Space_Grotesk({
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Monospace sibling of DM Sans — powers the "telemetry" readouts, chart axes and
+// technical eyebrows across the interactive tools. On-brand (same designer as the
+// body face) while giving the calculators an instrument-panel character.
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -79,7 +89,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${spaceGrotesk.variable} ${dmSans.variable} h-full`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} ${dmMono.variable} h-full`}
       suppressHydrationWarning
     >
       <head>
@@ -90,6 +100,12 @@ export default async function RootLayout({
         <link rel="alternate" hrefLang="es" href="https://velociencia.cl" />
         <link rel="alternate" hrefLang="en" href="https://pedalsci.com" />
         <link rel="alternate" hrefLang="x-default" href="https://velociencia.cl" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME_I18N[locale]} RSS Feed`}
+          href="/rss.xml"
+        />
         {/* Google Funding Choices + AdSense loaded via next/script to avoid hydration mismatch when ad blockers remove DOM nodes */}
         {/* Organization JSON-LD for SEO */}
         <script

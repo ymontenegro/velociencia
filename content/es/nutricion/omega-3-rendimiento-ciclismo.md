@@ -29,6 +29,7 @@ sources:
   - title: "Omega-3 Polyunsaturated Fatty Acid Supplementation for Reducing Muscle Soreness after Eccentric Exercise: A Systematic Review and Meta-Analysis"
     url: "https://pubmed.ncbi.nlm.nih.gov/32382573/"
     type: "study"
+translationOf: "omega-3-cycling-performance"
 ---
 
 ## Solo un atleta de élite entre ciento seis

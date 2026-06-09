@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { topics } from "@/lib/db/schema";
 import { eq, desc, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/admin/auth";
 
 // GET /api/topics – List topics with optional filters
 export async function GET(request: Request) {
@@ -48,6 +49,9 @@ export async function GET(request: Request) {
 
 // POST /api/topics – Create a new topic manually
 export async function POST(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await request.json();
     const { section, title, description, angle, priority, suggestedKeywords } =

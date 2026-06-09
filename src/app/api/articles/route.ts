@@ -4,6 +4,7 @@ import { articles } from "@/lib/db/schema";
 import { eq, desc, and, sql } from "drizzle-orm";
 import { slugify, getReadingTime } from "@/lib/utils";
 import { writeArticle } from "@/lib/markdown";
+import { requireAdmin } from "@/lib/admin/auth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -64,6 +65,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await request.json();
     const { title, section, content, tags, subtitle, excerpt, author } = body;
@@ -99,7 +103,7 @@ export async function POST(request: NextRequest) {
     if (excerpt) frontmatter.excerpt = excerpt;
 
     // Write the markdown file
-    const contentPath = writeArticle(section, slug, frontmatter, content);
+    writeArticle(section, slug, frontmatter, content);
     const relativeContentPath = `content/${section}/${slug}.md`;
 
     // Insert into database

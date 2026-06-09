@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "Catalina Soto conquistó el oro en la prueba en línea élite del Campeonato Panamericano de Ruta 2026 en Cereté, Colombia. La ciclista chilena del Laboral Kutxa suma tres títulos nacionales en marzo y el mayor triunfo continental de su carrera a los 24 años."
 coverImage: "https://www.naiz.eus/media/asset_publics/resources/001/316/711/article_main_landscape/Cata-Soto.JPG"
+translationOf: "catalina-soto-pan-american-road-champion-the-chilean-cyclist-who-never-gave-up"
 ---
 
 ## Oro en Cereté

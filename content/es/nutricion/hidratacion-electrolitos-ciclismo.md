@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "Los electrolitos regulan la contracción muscular, el equilibrio hídrico y la función nerviosa durante el ciclismo. La pérdida de sodio puede superar los 1000 mg por hora en condiciones de calor."
 coverImage: "https://plus.unsplash.com/premium_photo-1683121849049-aded3453fabc?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "electrolytes-and-cycling-the-chemistry-behind-hydration"
 ---
 
 ## Minerales con carga eléctrica

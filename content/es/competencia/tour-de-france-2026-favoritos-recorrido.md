@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "La 113ª edición del Tour de Francia parte desde Barcelona el 4 de julio con 3.333 kilómetros y un diseño en crescendo que reserva el doble ascenso al Alpe d'Huez para las etapas finales. Pogačar defiende el maillot amarillo tras una temporada 2024 sin precedentes."
 coverImage: "https://images.unsplash.com/photo-1758471206484-0eaa2568320c?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "tour-de-france-2026-barcelona-alpe-d-huez-and-the-race-to-dethrone-pogacar"
 ---
 
 ## Barcelona abre la puerta del Tour

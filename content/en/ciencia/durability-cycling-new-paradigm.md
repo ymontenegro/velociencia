@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "Successful professional cyclists do not have higher FTPs when fresh: they show smaller power drops after 45-50 kJ/kg of accumulated work. Exercise science has called that property durability."
 coverImage: "https://images.unsplash.com/photo-1673890686558-0aa0e2e01528?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "durabilidad-ciclismo-nuevo-paradigma"
 ---
 
 ## The attack that breaks the physiological mold

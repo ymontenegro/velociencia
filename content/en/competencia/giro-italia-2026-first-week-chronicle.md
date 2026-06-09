@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "Paul Magnier won stages 1 and 3 of the Giro 2026 in Bulgaria, becoming the first Frenchman to dominate the opening three days of the race since Laurent Fignon. A mass crash in the rain eliminated three UAE Team Emirates leaders in 48 hours. Guillermo Thomas Silva wears the maglia rosa as the first Uruguayan ever to lead the Corsa Rosa."
 coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg/1200px-CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg"
+translationOf: "giro-italia-2026-primera-semana-cronica"
 ---
 
 Of the 184 riders who left Nessebar on May 8, on the Bulgarian shore of the Black Sea, 177 made it to the first rest day. The 2026 Giro d'Italia — the 109th edition and the first ever Grande Partenza on Bulgarian soil — lost six riders in 48 hours, including three of the general classification leaders UAE Team Emirates-XRG had lined up for the overall fight. The maglia rosa that rests today on the shoulders of Guillermo Thomas Silva, a 24-year-old Uruguayan riding for XDS Astana Team, is as surprising as it is completely legitimate.

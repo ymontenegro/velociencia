@@ -29,6 +29,7 @@ sources:
     type: web_search
 excerpt: "The 123rd Paris-Roubaix pits three-time champion Van der Poel against Pogačar, who needs this one Monument to join Merckx, De Vlaeminck and Van Looy as the only riders to have won all five."
 coverImage: "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "paris-roubaix-2026-previa-favoritos"
 ---
 
 258.3 kilometers separate Compiègne from the Roubaix velodrome. 30 cobbled sectors add up to 54.8 kilometers of pavé where a loose stone, a puncture or a single lapse in concentration can destroy months of preparation. The 123rd edition of the Hell of the North takes place this Sunday, April 12, and it arrives loaded with history waiting to be written. Mathieu van der Poel defends a throne he has held for three consecutive years and wants to equal the all-time record of four victories shared by Roger De Vlaeminck and Tom Boonen. Across the start line, Tadej Pogačar hunts the only Monument he has yet to win, the one that would make him the fourth cyclist in history to claim all five.

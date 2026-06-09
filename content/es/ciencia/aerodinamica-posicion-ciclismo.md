@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "A 40 km/h, un ciclista gasta entre el 80% y el 90% de su potencia combatiendo el aire. Reducir el CdA en un 10% equivale a ganar entre 15 y 20 watts sin mejorar la condición física."
 coverImage: "https://images.unsplash.com/photo-1769838509445-f42f1cc0b632?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "aerodynamics-in-cycling-what-your-position-costs-in-watts"
 ---
 
 ## La física que frena al ciclista

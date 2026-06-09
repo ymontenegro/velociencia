@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "El Sweet Spot Training trabaja entre el 88 y el 94% del FTP, una franja donde se acumula estrés fisiológico significativo sin la fatiga demoledora del trabajo a umbral. Es la herramienta más eficiente para ciclistas con tiempo limitado."
 coverImage: "https://images.unsplash.com/photo-1469535327624-436c26d1cf1c?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "sweet-spot-training-the-zone-that-maximizes-your-ftp-with-less-fatigue"
 ---
 
 ## El punto donde el esfuerzo rinde más

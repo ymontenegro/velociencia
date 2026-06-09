@@ -26,6 +26,7 @@ sources:
     type: web
 excerpt: "La zona 2 —esa intensidad que parece demasiado fácil— es donde las mitocondrias se multiplican, la oxidación de grasas alcanza su pico y el lactato se recicla con eficiencia. San Millán la convirtió en el pilar del entrenamiento de Pogačar."
 coverImage: "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "zone-2-aerobic-base-cycling"
 ---
 
 ## La intensidad que no parece entrenamiento

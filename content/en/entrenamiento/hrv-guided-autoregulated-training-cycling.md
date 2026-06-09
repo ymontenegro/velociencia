@@ -17,6 +17,7 @@ sources:
     url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7432021/"
     type: "pubmed"
 excerpt: "Adjusting intensity each morning according to heart-rate variability performs as well as or better than a rigid plan, with fewer hard sessions wasted. How to measure your HRV properly and build a weekly decision framework."
+translationOf: "entrenamiento-autorregulado-hrv-ciclismo"
 ---
 
 A meta-analysis published in 2020 pooled eight studies and found that prescribing training according to heart-rate variability improved VO₂max by 2.84 ml/kg/min more than following a fixed plan. That figure comes from Manresa-Rocamora and colleagues (2020, *Applied Sciences*) and captures an uncomfortable idea for anyone glued to their Excel calendar. The best plan isn't the one carved in stone; it's the one that listens to how you wake up. HRV-guided training proposes adjusting intensity each morning from a single reading: when the nervous system is recovered, you do the hard session; when it isn't, you swap it for an easy ride. Here I explain why it works, what the evidence in cyclists says, and how to set it up without becoming a slave to a number.

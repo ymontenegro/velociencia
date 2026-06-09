@@ -29,6 +29,7 @@ sources:
     type: web_search
 excerpt: "La Vuelta a España 2026 arranca el 22 de agosto en Mónaco y termina el 13 de septiembre en la Alhambra de Granada. Con 3.275 km, 9 finales en alto, el Collado del Alguacil inédito y dos contrarrelojes, el recorrido es el más exigente en años. Roglič busca su quinta victoria para batir el récord histórico."
 coverImage: "https://images.unsplash.com/photo-1766556578867-4b511ab7de4a?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "vuelta-spain-2026-favorites-route"
 ---
 
 ## Mónaco inaugura el recorrido más largo en años

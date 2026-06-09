@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Watts per kilogram is the metric that levels the playing field between cyclists of different sizes. Coggan's table popularized the reference ranges, but the physiological reality behind those numbers is more nuanced than it appears."
 coverImage: "https://images.unsplash.com/photo-1592182811189-87f6ae2f3407?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "potencia-relativa-wkg-niveles"
 ---
 
 ## Why weight matters as much as power

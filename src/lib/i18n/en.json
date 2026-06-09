@@ -1,7 +1,7 @@
 {
   "siteName": "PedalSci",
   "siteDescription": "Science-based cycling: nutrition, physiology and training",
-  "tagline": "Science \u00b7 Nutrition \u00b7 Training",
+  "tagline": "Science · Nutrition · Training",
   "header": {
     "menu": "Menu",
     "closeMenu": "Close menu",
@@ -13,6 +13,7 @@
     "site": "Site",
     "newsletter": "Newsletter",
     "aboutUs": "About us",
+    "team": "The team",
     "home": "Home",
     "privacy": "Privacy policy",
     "contact": "Contact",
@@ -24,7 +25,7 @@
     "disclosure": "Affiliate disclosure"
   },
   "affiliate": {
-    "disclosure": "This article includes affiliate links. If you buy through them, PedalSci may earn a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
+    "disclosure": "This article includes affiliate links. If you buy through them, PedalSci earns a commission at no extra cost to you. We only link products we believe are genuinely useful to cyclists.",
     "disclosureShort": "Affiliate link",
     "recommends": "Recommended",
     "cta": "Check price",
@@ -112,13 +113,15 @@
     "notFound": "Topic not found"
   },
   "authors": {
-    "title": "Columnists",
-    "subtitle": "The four voices behind PedalSci, one for each specialty.",
+    "title": "The team",
+    "subtitle": "The people behind PedalSci: section bylines, editor-in-chief, fact-checker and visual editor.",
+    "bylineAuthors": "Section bylines",
+    "editorialTeam": "Editorial team",
     "sectionLabel": "Section",
     "specialtyLabel": "Specialty",
     "articlesBy": "Articles by",
     "viewAllBy": "View all articles by",
-    "allColumnists": "View all columnists",
+    "allColumnists": "Meet the team",
     "articlesCount": "articles",
     "articleCount": "article",
     "notFound": "Columnist not found"
@@ -164,7 +167,7 @@
     "priceRef": "ref.",
     "lastUpdated": "Data updated:",
     "sourceLabel": "Source",
-    "disclaimer": "Reference prices with verification date. PedalSci may earn a commission on purchases made through the links in this table, at no extra cost to you.",
+    "disclaimer": "Reference prices with verification date. PedalSci earns a commission on purchases made through the links in this table, at no extra cost to you.",
     "methodology": "Methodology",
     "methodologyText": "Nutrition data is manually verified against each manufacturer's official product pages. Cost per gram of carbohydrate is calculated by dividing the gel's retail price by the grams of carbohydrate per serving."
   },
@@ -270,6 +273,152 @@
       "no_verificado": "Not verified"
     }
   },
+  "climbs": {
+    "title": "World climbs database",
+    "subtitle": "Iconic cycling climbs with their FIETS difficulty index and an elevation profile computed from the digital elevation model.",
+    "searchPlaceholder": "Search climb or range…",
+    "filterContinent": "Continent",
+    "filterCountry": "Country",
+    "filterDifficulty": "Difficulty (FIETS)",
+    "filterMinLength": "Min. length (km)",
+    "filterMinGradient": "Min. average gradient (%)",
+    "filterAll": "All",
+    "filterReset": "Clear filters",
+    "sortBy": "Sort by",
+    "noResults": "No results for these filters.",
+    "climbCount": "{n} climbs",
+    "profiledCount": "{n} with DEM profile",
+    "lastReviewed": "Data reviewed:",
+    "colName": "Climb",
+    "colCountry": "Country",
+    "colLength": "Length (km)",
+    "colGain": "Gain (m)",
+    "colAvg": "Avg (%)",
+    "colMax": "Max (%)",
+    "colSummit": "Summit (m)",
+    "colFiets": "FIETS",
+    "showProfile": "View profile & data",
+    "hideProfile": "Hide",
+    "fietsLabel": "FIETS index",
+    "fietsExplain": "The FIETS index summarises difficulty by combining elevation gain, length and summit altitude. The higher the value, the harder the climb.",
+    "profileTitle": "Elevation profile",
+    "profileDistance": "Distance (km)",
+    "profileElevation": "Elevation (m)",
+    "profileDemNote": "Profile sampled from the SRTM 30 m DEM along the real road geometry.",
+    "profileSyntheticNote": "Profile reconstructed from the curated length and gain (approximate, not sampled on the ground).",
+    "fieldLength": "Length",
+    "fieldGain": "Elevation gain",
+    "fieldAvg": "Average gradient",
+    "fieldMax": "Maximum gradient",
+    "fieldSummit": "Summit elevation",
+    "fieldStart": "Foot elevation",
+    "fieldSurface": "Surface",
+    "fieldRegion": "Range",
+    "fieldFamousFor": "Why it's iconic",
+    "fieldNotes": "Notes",
+    "fieldSeason": "Best season",
+    "sourceLabel": "Source",
+    "verifiedLabel": "verified",
+    "legendTitle": "How to read difficulty",
+    "legendNote": "Difficulty bands are derived from the FIETS index, a public, reproducible formula computed from our curated figures.",
+    "continentLabels": {
+      "europa": "Europe",
+      "norteamerica": "North America",
+      "sudamerica": "South America",
+      "oceania": "Oceania",
+      "asia": "Asia",
+      "africa": "Africa"
+    },
+    "difficultyLabels": {
+      "exigente": "Demanding",
+      "muy_dura": "Very hard",
+      "extrema": "Extreme",
+      "mitica": "Legendary"
+    },
+    "difficultyDesc": {
+      "exigente": "Hard day climb, FIETS < 4.",
+      "muy_dura": "Very tough climb, FIETS 4–6.",
+      "extrema": "Elite-level ascent, FIETS 6–9.",
+      "mitica": "The hardest on the planet, FIETS ≥ 9."
+    },
+    "surfaceLabels": {
+      "asfalto": "Paved",
+      "gravel": "Gravel",
+      "mixto": "Mixed"
+    },
+    "methodology": "Methodology",
+    "methodologyText": "Figures (length, gain, gradient and altitude) are verified by hand against specialist sources (Climbfinder, PJAMM Cycling, cyclingcols, Wikipedia), cited per climb. The elevation profile is computed by sampling the open SRTM 30 m digital elevation model (Open Topo Data) along the real road geometry (routed with BRouter); where routing or the DEM was unavailable, the profile is reconstructed from the curated figures and flagged as synthetic.",
+    "disclaimer": "Data provided for ride-planning information only. Always check road condition, seasonal closures and traffic before riding.",
+    "ctaRaces": "Looking for races? See the 2026 UCI calendar"
+  },
+  "races": {
+    "title": "2026 UCI calendar",
+    "subtitle": "The international road-cycling calendar: WorldTour, ProSeries and selected continental races, men's and women's.",
+    "searchPlaceholder": "Search race or country…",
+    "filterMonth": "Month",
+    "filterCategory": "Category",
+    "filterGender": "Gender",
+    "filterKind": "Type",
+    "filterContinent": "Continent",
+    "filterAll": "All",
+    "filterReset": "Clear filters",
+    "noResults": "No results for these filters.",
+    "raceCount": "{n} races",
+    "season": "{n} season",
+    "lastReviewed": "Calendar reviewed:",
+    "colDate": "Date",
+    "colRace": "Race",
+    "colClass": "UCI class",
+    "badgeOngoing": "Ongoing",
+    "badgeUpcoming": "This week",
+    "officialSite": "Official site",
+    "sourceLabel": "Source",
+    "stagesNote": "stage race",
+    "oneDayNote": "one-day",
+    "methodology": "Methodology",
+    "methodologyText": "Calendar curated and verified by hand from public sources (ProCyclingStats, UCI and each race's official site), cited per row. Factual data —name, date, country and UCI class— is not copyrightable; it is re-expressed, not copied as tables. Only races whose 2026 date could be verified are included.",
+    "disclaimer": "Dates and categories are subject to change by the UCI and organisers. Always check each race's official site before planning.",
+    "monthLabels": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "categoryLabels": {
+      "worldtour": "WorldTour",
+      "proseries": "ProSeries",
+      "continental": "Continental"
+    },
+    "genderLabels": {
+      "men": "Men",
+      "women": "Women",
+      "mixed": "Mixed"
+    },
+    "kindLabels": {
+      "grand_tour": "Grand Tour",
+      "monument": "Monument",
+      "classic": "Classic",
+      "stage_race": "Stage race",
+      "one_day": "One-day"
+    },
+    "continentLabels": {
+      "europa": "Europe",
+      "norteamerica": "North America",
+      "sudamerica": "South America",
+      "oceania": "Oceania",
+      "asia": "Asia",
+      "africa": "Africa"
+    },
+    "ctaClimbs": "Looking for climbs? Explore the world climbs database"
+  },
   "error": {
     "somethingWrong": "Something went wrong",
     "tryAgain": "Try again"
@@ -279,7 +428,7 @@
     "intro": "A digital cycling publication that combines artificial intelligence with real scientific sources. Every article is researched and drafted with the help of AI, then edited and reviewed with journalistic rigor before it is published.",
     "whatWeDo": "How PedalSci started",
     "whatWeDoP1": "PedalSci is built on a premise: cycling deserves science-based journalism grounded in evidence. No opinions disguised as science, no sensationalist headlines. Data, studies and verifiable sources.",
-    "whatWeDoP2": "To get there, we use artificial intelligence as a research and writing tool. Every article starts from real scientific sources \u2014 studies from PubMed, Semantic Scholar and peer-reviewed journals. AI speeds up the process; editorial judgment decides what gets published and how.",
+    "whatWeDoP2": "To get there, we use artificial intelligence as a research and writing tool. Every article starts from real scientific sources — studies from PubMed, Semantic Scholar and peer-reviewed journals. AI speeds up the process; editorial judgment decides what gets published and how.",
     "whatWeDoP3": "Before publication, every article goes through editorial review. Sources are cited explicitly so any reader can verify the information on their own.",
     "ourSections": "Our sections",
     "journalist": "Journalist",
@@ -295,13 +444,15 @@
     "step4Text": "Before publishing, the editorial team reviews the text, checks that every claim matches the cited sources and corrects whatever is needed.",
     "step5Title": "We publish and correct",
     "step5Text": "We publish with sources cited explicitly so anyone can verify them. If you spot an error, we fix it.",
+    "ourTeam": "The editorial team",
+    "ourTeamIntro": "The people who research, write, edit and fact-check every article. AI is our working tool; the editorial judgement is always human.",
     "transparency": "Transparency",
     "transparencyText": "PedalSci is produced with an AI-assisted process supervised by our editorial team. AI helps research and draft from real scientific sources; the decision of what gets published, the fact-checking and the final edit are the responsibility of people. The names for each section are the editorial bylines we publish each specialty under.",
     "corrections": "Corrections and contact",
     "correctionsText": "We work to keep every fact accurate and verifiable. If you see something that doesn't add up, write to us and we'll review the article:"
   },
   "localeBanner": {
-    "suggestion": "Este contenido tambi\u00e9n est\u00e1 disponible en espa\u00f1ol en velociencia.cl",
+    "suggestion": "Este contenido también está disponible en español en velociencia.cl",
     "switch": "Cambiar",
     "stay": "Stay here"
   }

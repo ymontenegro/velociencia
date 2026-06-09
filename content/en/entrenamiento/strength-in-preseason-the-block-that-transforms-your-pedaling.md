@@ -39,6 +39,7 @@ excerpt: >-
   heavy strength training improves power without adding body weight.
 coverImage: >-
   https://images.unsplash.com/photo-1647828150413-1717ace5bac2?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "fuerza-pretemporada-ciclistas"
 ---
 ## The Window Most Waste
 

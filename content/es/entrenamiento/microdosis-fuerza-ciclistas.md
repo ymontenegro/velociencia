@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Hacer fuerza en temporada no requiere 45 minutos en el gimnasio. La evidencia respalda sesiones de 8 a 12 minutos de trabajo real ejecutadas cinco veces a la semana: el mismo volumen semanal distribuido en dosis mínimas que no comprometen la recuperación ni interfieren con las sesiones clave en bicicleta."
 coverImage: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "microdosing-strength-training-cyclists"
 ---
 
 ## El error más común en temporada: elegir entre bicicleta y gimnasio

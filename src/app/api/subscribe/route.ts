@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db, schema } from "@/lib/db";
+import { rateLimit, clientKeyFromHeaders } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -7,6 +8,14 @@ export const dynamic = "force-dynamic";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export async function POST(req: NextRequest) {
+  const client = clientKeyFromHeaders(req.headers);
+  if (!rateLimit(`subscribe:${client}`, { limit: 10, windowMs: 60_000 })) {
+    return NextResponse.json(
+      { ok: false, reason: "rate_limited" },
+      { status: 429 }
+    );
+  }
+
   let body: { email?: unknown; locale?: unknown };
 
   try {

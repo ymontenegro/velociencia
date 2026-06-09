@@ -35,6 +35,7 @@ sources:
     type: scientific_paper
 excerpt: "A single night of sleep deprivation lengthens a cycling time trial by roughly 10%. Science explains why sleep is cycling's most underrated recovery tool."
 coverImage: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "sueno-rendimiento-ciclista"
 ---
 
 ## The measurable cost of a bad night

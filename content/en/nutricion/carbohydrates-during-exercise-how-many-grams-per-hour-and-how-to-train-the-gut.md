@@ -44,6 +44,7 @@ excerpt: >-
   reduces gastrointestinal symptoms by 61%.
 coverImage: >-
   https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "carbohidratos-durante-esfuerzo"
 ---
 ## The Gut as the Bottleneck of Performance
 

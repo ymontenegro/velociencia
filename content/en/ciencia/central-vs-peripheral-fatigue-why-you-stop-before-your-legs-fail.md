@@ -52,6 +52,7 @@ excerpt: >-
   fatigue reaches roughly 40% while central fatigue is only 6-7%.
 coverImage: >-
   https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "fatiga-central-periferica-ciclismo"
 ---
 ## The Wall That Isn’t in the Legs
 

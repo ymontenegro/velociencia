@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "Three intensity distribution models compete in training science: polarized, pyramidal, and threshold. Data from Stöggl and Sperlich (2014) and Neal et al. (2013) reveal clear differences in the adaptations each one produces."
 coverImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "distribucion-intensidad-modelos"
 ---
 
 ## The debate dividing endurance training

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useLocale } from "@/components/locale-provider";
 import type { Locale } from "@/lib/i18n";
+import type { ToolComponentProps } from "@/components/tools/calculator-renderer";
+import { ToolPanel, Segmented } from "@/components/tools/ui";
 import UploadMode from "@/components/tools/training-load/upload-mode";
 import PlannerMode from "@/components/tools/training-load/planner-mode";
 
@@ -10,12 +12,14 @@ import PlannerMode from "@/components/tools/training-load/planner-mode";
 
 const STRINGS = {
   es: {
+    eyebrow: "Entrenamiento · Analizador",
     title: "Carga de entrenamiento",
     subtitle: "TSS · NP · IF y tu Performance Management Chart (CTL/ATL/TSB)",
     tabUpload: "Desde tus archivos",
     tabPlanner: "Manual / planificar",
   },
   en: {
+    eyebrow: "Training · Analyzer",
     title: "Training load",
     subtitle: "TSS · NP · IF and your Performance Management Chart (CTL/ATL/TSB)",
     tabUpload: "From your files",
@@ -27,75 +31,51 @@ type Mode = "upload" | "planner";
 
 // ─── Container ───────────────────────────────────────────────────────────────
 //
-// Flagship training-load tool. Two modes share one card:
+// Flagship training-load tool. Two modes share one ToolPanel:
 //   • "upload"  — parse real Strava/Garmin files (client-side) → TSS/NP/IF + PMC
 //   • "planner" — forward simulation of the PMC from an average daily TSS
 //
-// Each mode renders inner content only; the card shell + header + tabs live here.
+// The ToolPanel provides the "Race Telemetry" shell (header, grid, corner ticks).
+// Each mode renders its own content with its own padding.
 
 export default function TrainingLoadCalculator({
-  color = "#0891B2",
-}: {
-  color?: string;
-}) {
+  accent = "#0891B2",
+  accentVar = "--color-entrenamiento",
+}: ToolComponentProps) {
   const locale = useLocale() as Locale;
   const s = STRINGS[locale];
 
   const [mode, setMode] = useState<Mode>("upload");
 
-  return (
-    <div
-      className="not-prose rounded-lg border"
-      style={{
-        borderColor: "var(--color-border)",
-        backgroundColor: "var(--color-bg-card)",
-      }}
-    >
-      {/* Header */}
-      <div
-        className="rounded-t-lg px-5 py-4"
-        style={{ borderBottom: "1px solid var(--color-border-light)" }}
-      >
-        <h3 className="text-base font-semibold" style={{ color: "var(--color-text)" }}>
-          {s.title}
-        </h3>
-        <p className="mt-0.5 text-xs" style={{ color: "var(--color-text-muted)" }}>
-          {s.subtitle}
-        </p>
+  const modeOptions: Array<{ value: Mode; label: string }> = [
+    { value: "upload", label: s.tabUpload },
+    { value: "planner", label: s.tabPlanner },
+  ];
 
-        {/* Tab switcher */}
-        <div
-          className="mt-4 inline-flex rounded-lg p-1"
-          style={{ backgroundColor: "var(--color-bg)" }}
-          role="tablist"
-        >
-          {([
-            { id: "upload" as const, label: s.tabUpload },
-            { id: "planner" as const, label: s.tabPlanner },
-          ]).map((tab) => {
-            const active = mode === tab.id;
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                onClick={() => setMode(tab.id)}
-                className="rounded-md px-3.5 py-1.5 text-sm font-medium transition-colors"
-                style={{
-                  backgroundColor: active ? color : "transparent",
-                  color: active ? "#fff" : "var(--color-text-secondary)",
-                }}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
+  return (
+    <ToolPanel
+      accent={accent}
+      accentVar={accentVar}
+      eyebrow={s.eyebrow}
+      title={s.title}
+      contentClassName=""
+    >
+      {/* ── Mode selector ── */}
+      <div className="border-b border-[var(--color-border)] px-5 pb-5 pt-4 sm:px-7">
+        <Segmented
+          options={modeOptions}
+          value={mode}
+          onChange={setMode}
+          ariaLabel={s.subtitle}
+        />
       </div>
 
-      {/* Active mode */}
-      {mode === "upload" ? <UploadMode color={color} /> : <PlannerMode color={color} />}
-    </div>
+      {/* ── Active mode — manages its own padding ── */}
+      {mode === "upload" ? (
+        <UploadMode accent={accent} accentVar={accentVar} />
+      ) : (
+        <PlannerMode accent={accent} accentVar={accentVar} />
+      )}
+    </ToolPanel>
   );
 }

@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "Los ciclistas profesionales exitosos no tienen FTP superiores en fresco: muestran menos caída de potencia tras 45-50 kJ/kg de trabajo acumulado. La ciencia del ejercicio ha bautizado esa propiedad como durabilidad."
 coverImage: "https://images.unsplash.com/photo-1673890686558-0aa0e2e01528?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "durability-cycling-new-paradigm"
 ---
 
 ## El ataque que rompe el molde fisiológico

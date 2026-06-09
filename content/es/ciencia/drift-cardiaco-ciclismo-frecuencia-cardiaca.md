@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "En 60 minutos de zona 2, la frecuencia cardíaca puede subir entre 5 y 15 pulsaciones sin que la potencia cambie. El drift cardíaco no es ruido del sensor sino un reflejo preciso de la competencia entre músculo y piel por el mismo flujo sanguíneo. Medir el Pw:HR ratio convierte cada salida larga en un test de durabilidad aeróbica."
 coverImage: "https://images.unsplash.com/photo-1754546326803-994b2d510168?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "cardiovascular-drift-cycling-heart-rate"
 ---
 
 ## El monitor no miente, pero tampoco te cuenta todo

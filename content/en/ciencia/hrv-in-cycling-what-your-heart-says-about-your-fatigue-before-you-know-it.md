@@ -46,6 +46,7 @@ excerpt: >-
   decision-making in training.
 coverImage: >-
   https://images.unsplash.com/photo-1654195131868-cac1d8429d86?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "hrv-fatiga-recuperacion-ciclismo"
 ---
 ## A Mirror of the Autonomic Nervous System
 

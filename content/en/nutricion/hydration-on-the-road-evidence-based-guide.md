@@ -38,6 +38,7 @@ excerpt: >-
   can decide a race.
 coverImage: >-
   https://plus.unsplash.com/premium_photo-1723478432144-0156edc72332?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "hidratacion-en-ruta"
 ---
 ## A 2% Body Weight Loss Cuts Power Output by up to 6%
 

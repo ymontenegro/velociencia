@@ -89,11 +89,21 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
   const articleUrl = `${siteUrl}/${sectionSlug}/${slug}`;
 
+  // Build hreflang alternates when a translation pair exists
+  const otherLocale = locale === "en" ? "es" : "en";
+  const otherSiteUrl = locale === "en" ? "https://velociencia.cl" : "https://pedalsci.com";
+  const otherSectionSlug = SECTIONS_I18N[otherLocale][resolved.sectionId].slug;
+  const alternateLanguages: Record<string, string> = { [locale]: articleUrl };
+  if (frontmatter.translationOf) {
+    alternateLanguages[otherLocale] = `${otherSiteUrl}/${otherSectionSlug}/${frontmatter.translationOf}`;
+  }
+
   return {
     title: frontmatter.title,
     description: frontmatter.excerpt,
     alternates: {
       canonical: articleUrl,
+      languages: alternateLanguages,
     },
     openGraph: {
       type: "article",
@@ -202,8 +212,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   // Extract headings for the TOC (server-side, matches rehype-slug).
   const headings = extractHeadings(content);
 
+  const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
+  const homeLabel = locale === "en" ? "Home" : "Inicio";
+
   return (
     <article>
+      {/* NewsArticle JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -221,12 +235,42 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             publisher: {
               "@type": "Organization",
               name: locale === "en" ? "PedalSci" : "Velociencia",
-              url: locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl",
+              url: siteUrl,
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `${locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl"}/${sectionI18n.slug}/${slug}`,
+              "@id": `${siteUrl}/${sectionI18n.slug}/${slug}`,
             },
+          }),
+        }}
+      />
+      {/* BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: homeLabel,
+                item: siteUrl,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: sectionI18n.name,
+                item: `${siteUrl}/${sectionI18n.slug}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: frontmatter.title as string,
+                item: `${siteUrl}/${sectionI18n.slug}/${slug}`,
+              },
+            ],
           }),
         }}
       />

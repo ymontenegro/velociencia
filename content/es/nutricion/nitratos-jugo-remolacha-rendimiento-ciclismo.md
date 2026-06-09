@@ -32,6 +32,7 @@ sources:
     type: pubmed
 excerpt: "La suplementación con nitrato dietético, principalmente vía jugo de remolacha, reduce el costo de oxígeno del ejercicio submáximo hasta un 5% y extiende el tiempo hasta el agotamiento un 16%. La dosis efectiva es de 6-8 mmol de NO₃⁻, equivalente a unos 500 ml de jugo de remolacha o 140 ml de concentrado."
 coverImage: "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "nitrates-beetroot-juice-cycling-performance"
 ---
 
 ## Un 16% más de resistencia con medio litro de jugo de remolacha

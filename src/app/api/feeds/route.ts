@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { rssFeeds } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/admin/auth";
 
 // GET /api/feeds – List all RSS feeds
 export async function GET() {
@@ -23,6 +24,9 @@ export async function GET() {
 
 // POST /api/feeds – Add a new RSS feed
 export async function POST(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await request.json();
     const { name, url, section } = body as {

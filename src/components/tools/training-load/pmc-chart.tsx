@@ -14,8 +14,9 @@ import {
 } from "recharts";
 import type { TooltipContentProps } from "recharts";
 import type { TooltipPayloadEntry } from "recharts";
+import { useAccentColor } from "@/components/tools/ui";
 
-// ─── Chart color constants (match training-load-calculator.tsx exactly) ───────
+// ─── Chart color constants ─────────────────────────────────────────────────────
 
 const ATL_COLOR = "#E11D48"; // rose — fatigue
 const TSB_COLOR = "#7C3AED"; // violet — form
@@ -49,19 +50,24 @@ export interface PmcChartProps {
    * Falls back to the raw value when omitted.
    */
   tooltipLabelFormatter?: (value: number | string) => string;
-  /** Accent color for the CTL (Fitness) line. */
+  /** Accent hex fallback for the CTL (Fitness) line. */
   color: string;
+  /**
+   * Section accent CSS var name (e.g. "--color-entrenamiento"). Used with
+   * useAccentColor so the CTL line follows theme changes live.
+   */
+  accentVar?: string;
   labels: PmcChartLabels;
   /** Chart height in px (default 340). */
   height?: number;
 }
 
-// ─── Custom tooltip ───────────────────────────────────────────────────────────
+// ─── Custom tooltip — mono Race Telemetry style ───────────────────────────────
 
-// recharts injects active/payload/label/coordinate/etc. at render time when the
-// custom tooltip is passed as an element, so those props are Partial here.
+// recharts injects active/payload/label at render time when the custom tooltip
+// is passed as an element, so those props are Partial here.
 interface InternalTooltipProps extends Partial<TooltipContentProps> {
-  color: string;
+  ctlColor: string;
   labels: PmcChartLabels;
   tooltipLabelFormatter?: (value: number | string) => string;
 }
@@ -70,7 +76,7 @@ function PmcTooltip({
   active,
   payload,
   label,
-  color,
+  ctlColor,
   labels,
   tooltipLabelFormatter,
 }: InternalTooltipProps) {
@@ -79,18 +85,15 @@ function PmcTooltip({
   const rawLabel = label as number | string;
   const heading = tooltipLabelFormatter ? tooltipLabelFormatter(rawLabel) : String(rawLabel);
 
-  // Map each dataKey to its display name and stroke color so we can render in
-  // the same order recharts sends the payload (ctl → atl → tsb).
   function resolveEntry(entry: TooltipPayloadEntry): { name: string; entryColor: string } {
     switch (String(entry.dataKey)) {
       case "ctl":
-        return { name: labels.fitness, entryColor: color };
+        return { name: labels.fitness, entryColor: ctlColor };
       case "atl":
         return { name: labels.fatigue, entryColor: ATL_COLOR };
       case "tsb":
         return { name: labels.form, entryColor: TSB_COLOR };
       default:
-        // Fallback: trust recharts' own color/name for unknown keys.
         return {
           name: String(entry.name ?? entry.dataKey ?? ""),
           entryColor: String(entry.color ?? "var(--color-text-secondary)"),
@@ -100,7 +103,7 @@ function PmcTooltip({
 
   return (
     <div
-      className="rounded-lg px-3 py-2 text-sm shadow-md"
+      className="rounded-lg px-3 py-2 shadow-md"
       style={{
         backgroundColor: "var(--color-bg-card)",
         border: "1px solid var(--color-border)",
@@ -108,24 +111,23 @@ function PmcTooltip({
         minWidth: 160,
       }}
     >
-      <p
-        className="mb-1.5 font-semibold uppercase tracking-wide"
-        style={{ color: "var(--color-text-muted)", fontSize: 10 }}
-      >
+      <p className="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
         {heading}
       </p>
       {payload.map((entry: TooltipPayloadEntry) => {
         const { name, entryColor } = resolveEntry(entry);
         const val =
-          typeof entry.value === "number" ? entry.value.toFixed(1) : String(entry.value ?? "");
+          typeof entry.value === "number"
+            ? entry.value.toFixed(1)
+            : String(entry.value ?? "");
         return (
           <p
             key={String(entry.dataKey)}
-            className="flex items-center justify-between gap-4"
+            className="flex items-center justify-between gap-4 font-mono text-xs tabular-nums"
             style={{ color: entryColor }}
           >
             <span>{name}</span>
-            <span className="font-medium tabular-nums">{val}</span>
+            <span className="font-medium">{val}</span>
           </p>
         );
       })}
@@ -144,25 +146,24 @@ export function PmcChart({
   xTickFormatter,
   tooltipLabelFormatter,
   color,
+  accentVar = "--color-entrenamiento",
   labels,
   height = 340,
 }: PmcChartProps): React.ReactElement {
-  // Pass the custom tooltip as an element: recharts clones it and injects
-  // active/payload/label at render time. This keeps PmcTooltip a named
-  // component (no display-name lint issue) and avoids an inline render arrow.
+  // Resolve the section accent to a real color for Recharts (SVG can't use CSS vars).
+  const ctlColor = useAccentColor(accentVar, color);
+
+  // Pass as an element so recharts clones it and injects active/payload/label.
   const tooltipContent = (
     <PmcTooltip
-      color={color}
+      ctlColor={ctlColor}
       labels={labels}
       tooltipLabelFormatter={tooltipLabelFormatter}
     />
   );
 
   return (
-    <div
-      className="rounded-lg border px-2 pb-2 pt-4 sm:px-4"
-      style={{ borderColor: "var(--color-border)" }}
-    >
+    <div className="rounded-xl border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-text)_2%,var(--color-bg-card))] px-2 pb-2 pt-4 sm:px-4">
       <ResponsiveContainer width="100%" height={height}>
         <LineChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
@@ -170,17 +171,24 @@ export function PmcChart({
           <XAxis
             dataKey={xKey}
             type={xType}
-            // Only spread domain/ticks/tickFormatter when the caller provided them,
-            // so recharts can apply its own defaults when they are absent.
+            // Only spread domain/ticks/tickFormatter when the caller provided them.
             {...(xDomain !== undefined ? { domain: xDomain } : {})}
             {...(xTicks !== undefined ? { ticks: xTicks } : {})}
             {...(xTickFormatter !== undefined ? { tickFormatter: xTickFormatter } : {})}
-            tick={{ fontSize: 11, fill: "var(--color-text-muted)" }}
+            tick={{
+              fontSize: 11,
+              fill: "var(--color-text-muted)",
+              fontFamily: "ui-monospace, monospace",
+            }}
             stroke="var(--color-border)"
           />
 
           <YAxis
-            tick={{ fontSize: 11, fill: "var(--color-text-muted)" }}
+            tick={{
+              fontSize: 11,
+              fill: "var(--color-text-muted)",
+              fontFamily: "ui-monospace, monospace",
+            }}
             stroke="var(--color-border)"
             width={40}
           />
@@ -195,20 +203,27 @@ export function PmcChart({
 
           <Tooltip content={tooltipContent} />
 
-          <Legend wrapperStyle={{ fontSize: 12, paddingTop: 4 }} iconType="line" />
+          <Legend
+            wrapperStyle={{
+              fontSize: 11,
+              paddingTop: 8,
+              fontFamily: "ui-monospace, monospace",
+            }}
+            iconType="line"
+          />
 
           {/* CTL — Fitness (accent color, thicker) */}
           <Line
             type="monotone"
             dataKey="ctl"
             name={labels.fitness}
-            stroke={color}
+            stroke={ctlColor}
             strokeWidth={2.5}
             dot={false}
             isAnimationActive={false}
             activeDot={{
               r: 4,
-              fill: color,
+              fill: ctlColor,
               stroke: "var(--color-bg-card)",
               strokeWidth: 2,
             }}

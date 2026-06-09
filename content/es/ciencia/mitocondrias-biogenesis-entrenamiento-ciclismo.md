@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "Una biopsia del vasto lateral de un ciclista entrenado muestra el doble de mitocondrias por fibra que la de un sedentario. Esa diferencia, descubierta por Holloszy en 1967, se construye a través de PGC-1α y explica por qué zona 2 y HIIT no son intercambiables."
 coverImage: "https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "mitochondrial-biogenesis-endurance-training"
 ---
 
 ## La fotografía que cambió la fisiología del ejercicio

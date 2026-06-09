@@ -1,5 +1,25 @@
 import crypto from "crypto";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+
+// En producción los defaults de desarrollo son un bypass trivial de la
+// autenticación: fallar es preferible a quedar expuestos. Se exceptúa la fase
+// de build (next build corre con NODE_ENV=production sin las env de runtime);
+// docker-entrypoint.sh hace la misma validación al arrancar el contenedor.
+if (
+  process.env.NODE_ENV === "production" &&
+  process.env.NEXT_PHASE !== "phase-production-build"
+) {
+  const missing = ["ADMIN_PASSWORD", "ADMIN_SECRET"].filter(
+    (key) => !process.env[key]
+  );
+  if (missing.length > 0) {
+    throw new Error(
+      `Faltan variables de entorno obligatorias en producción: ${missing.join(", ")}. ` +
+        `Configúralas en Coolify antes de desplegar (ADMIN_SECRET: usa un valor aleatorio largo, p. ej. "openssl rand -hex 32").`
+    );
+  }
+}
 
 export const ADMIN_USER = process.env.ADMIN_USER ?? "admin";
 export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "admin123";
@@ -73,6 +93,21 @@ export async function getAdminSession(): Promise<{
   const store = await cookies();
   const token = store.get(ADMIN_COOKIE)?.value;
   return verifySessionToken(token);
+}
+
+/**
+ * Guardia para route handlers que mutan datos. Devuelve una respuesta 401
+ * lista para retornar si no hay sesión de admin válida, o null si la hay.
+ *
+ *   const unauthorized = await requireAdmin();
+ *   if (unauthorized) return unauthorized;
+ */
+export async function requireAdmin(): Promise<NextResponse | null> {
+  const session = await getAdminSession();
+  if (!session.valid) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  return null;
 }
 
 export const ADMIN_COOKIE_OPTIONS = {

@@ -43,6 +43,7 @@ excerpt: >-
   increasing body weight.
 coverImage: >-
   https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "fuerza-gimnasio-ciclistas"
 ---
 ## The Norwegian Laboratory That Changed the Debate
 

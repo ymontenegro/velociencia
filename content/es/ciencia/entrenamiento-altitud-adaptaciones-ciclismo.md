@@ -32,6 +32,7 @@ sources:
     type: pubmed
 excerpt: "El modelo Live High-Train Low lleva casi tres décadas dominando la preparación de ciclistas de élite. Revisamos los estudios clave sobre altitud, masa de hemoglobina, respondedores y la ventana de rendimiento al bajar."
 coverImage: "https://images.unsplash.com/photo-1502904550040-7534597429ae?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "altitude-training-adaptations-cycling"
 ---
 
 ## El laboratorio natural de las montañas

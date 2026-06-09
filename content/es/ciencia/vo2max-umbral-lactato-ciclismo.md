@@ -20,6 +20,7 @@ sources:
     type: pubmed
 excerpt: "El VO2max establece el techo fisiológico, pero el umbral de lactato determina qué porcentaje de ese techo puedes sostener. En ciclistas entrenados, el umbral de lactato es mejor predictor de rendimiento que el VO2max."
 coverImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "vo2max-vs-lactate-threshold-which-better-predicts-your-performance"
 ---
 
 ## El techo y la fracción utilizable

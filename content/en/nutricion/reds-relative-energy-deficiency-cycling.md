@@ -14,6 +14,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/36595659/"
     type: "pubmed"
 excerpt: "The IOC's 2023 consensus redefines relative energy deficiency in sport (REDs) as a spectrum running from adaptable to pathological. In the sport that punishes the skeleton most, knowing where that line sits decides your health and your watts."
+translationOf: "reds-deficit-energetico-relativo-ciclismo"
 ---
 
 In September 2023, the International Olympic Committee published a consensus in the *British Journal of Sports Medicine* (Mountjoy et al., 2023, Br J Sports Med 57(17):1073-1097) that renamed the syndrome: RED-S became REDs, "relative energy deficiency in sport." The change was not cosmetic. The document rewrites the conceptual framework and stops treating low energy availability as an on-off switch, describing it instead as a spectrum. At one end sits adaptable low energy availability, mild and transient, with benign effects; at the other lies the problematic kind, which drags along a cascade of damage to health and performance. For a cyclist, that distinction is the difference between a smart strategy and a hole that takes years to climb out of.

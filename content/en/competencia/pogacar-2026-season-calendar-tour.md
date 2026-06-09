@@ -32,6 +32,7 @@ sources:
     type: web_search
 excerpt: "From the 80-kilometer solo at Strade Bianche to four stage wins at Tour de Romandie, Pogačar has accumulated 9 victories in three months and enters the summer as the most dominant rider in recent cycling history. The objective is a fifth Tour de France, which would place him alongside Anquetil, Merckx, Hinault, and Induráin."
 coverImage: "https://images.unsplash.com/photo-1764150230797-53b7a25b0f1b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "pogacar-2026-temporada-calendario-tour"
 ---
 
 ## Eighty Kilometers Alone in Tuscany to Open the Season

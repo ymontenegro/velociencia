@@ -41,6 +41,7 @@ sources:
     type: web_search
 excerpt: "The 110th Tour of Flanders pits Pogačar, Van der Poel and Van Aert against each other across 271 km with 16 hellingen. Pogačar defends his title after winning Strade Bianche and Milan-San Remo. Van der Poel chases a record fourth victory after his E3 solo."
 coverImage: "https://www.rondevanvlaanderen.be/_media/corp/articles/image/1774521977/fit/750/0/598/fourth-win-for-van-der-poel-and-kopecky.jpg"
+translationOf: "tour-de-flandes-2026-previa-favoritos"
 ---
 
 ## Three men, 16 walls, one cobblestone at the summit

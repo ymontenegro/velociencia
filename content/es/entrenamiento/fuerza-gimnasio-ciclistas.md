@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La evidencia acumulada en más de una década de estudios controlados muestra que añadir dos sesiones semanales de fuerza pesada al entrenamiento habitual mejora la economía de pedaleo, la potencia en umbral y el rendimiento en contrarreloj sin aumentar el peso corporal."
 coverImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "gym-strength-for-cyclists-which-exercises-work-and-when-to-do-them"
 ---
 
 ## El laboratorio noruego que cambió el debate

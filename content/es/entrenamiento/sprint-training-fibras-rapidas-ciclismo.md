@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "La potencia de 6 segundos predice quién gana los finales de etapa, y se puede entrenar sin comprometer el VO2max ni la economía aeróbica. Los protocolos de sprint maximal de corta duración con recuperación amplia desarrollan las fibras IIa y IIx de forma específica mientras preservan las adaptaciones de fondo."
 coverImage: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "sprint-training-fast-twitch-fibers-cycling"
 ---
 
 ## La variable que todos ignoran hasta que la necesitan

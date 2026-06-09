@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Tras 3000 kJ acumulados, corredores con FTP idéntico llegan a los puertos decisivos con capacidades de 5 a 9 puntos porcentuales distintas. El FTP en fresco no mide eso."
 coverImage: "https://images.unsplash.com/photo-1545575439-3261931f52f1?w=1600&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "3000-kj-threshold-grand-tour-predictor-ftp"
 ---
 
 Dos ciclistas arrancan el Tour de Francia con un FTP de 6.0 W/kg medido en laboratorio el mes anterior. Al kilómetro 155 de la etapa del Galibier, con 3100 kilojulios acumulados en las piernas, uno ataca por encima de 5.8 W/kg durante diecisiete minutos. El otro gestiona a 5.0 W/kg y llega con el grupo de seguimiento. La diferencia entre ambos no estaba en el FTP. Estaba en lo que quedaba de ese FTP después de tres horas y cuarto de carrera.

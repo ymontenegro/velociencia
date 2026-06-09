@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "Después de una contrarreloj de 40 km, la activación voluntaria máxima del cuádriceps cae alrededor de un 10% y la fuerza periférica casi un 30%; tras un esfuerzo de 4 km, en cambio, la fatiga periférica se acerca al 40% y la central apenas al 6-7%."
 coverImage: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "central-vs-peripheral-fatigue-why-you-stop-before-your-legs-fail"
 ---
 
 ## El muro que no está en las piernas

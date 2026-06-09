@@ -36,6 +36,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/34792817/"
     type: scientific_paper
 excerpt: "Treinta y nueve minutos y cuarenta y tres segundos. Ese fue el tiempo que Tadej Pogačar tardó en subir Plateau de Beille en 2024, tres minutos y medio más rápido que el récord de Pantani. La pregunta no es si es el mejor escalador de su generación, sino cómo llegó a serlo rompiendo la mayoría de reglas que la fisiología del deporte había establecido."
+translationOf: "pogacar-method-training-broke-rules"
 ---
 
 ## El día que el libro de texto dejó de servir

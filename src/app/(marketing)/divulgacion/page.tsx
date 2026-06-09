@@ -33,7 +33,7 @@ export default async function DivulgacionPage() {
             <section>
               <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">Affiliate links</h2>
               <div className="mt-4 space-y-4 text-sm leading-relaxed">
-                <p>Some articles on {siteName} contain affiliate links. If you click one of these links and buy a product, we may earn a small commission, <strong className="text-[var(--color-text)]">at no extra cost to you</strong>. The price you pay is exactly the same.</p>
+                <p>Some articles on {siteName} contain affiliate links. If you click one of these links and buy a product, we earn a commission, <strong className="text-[var(--color-text)]">at no extra cost to you</strong>. The price you pay is exactly the same.</p>
                 <p>These commissions help us keep the site running and fund the research and editorial review behind our content.</p>
               </div>
             </section>
@@ -80,7 +80,7 @@ export default async function DivulgacionPage() {
           <section>
             <h2 className="font-serif text-xl font-bold text-[var(--color-text)]">Enlaces de afiliado</h2>
             <div className="mt-4 space-y-4 text-sm leading-relaxed">
-              <p>Algunos artículos de {siteName} contienen enlaces de afiliado. Si haces clic en uno de ellos y compras un producto, podemos recibir una pequeña comisión, <strong className="text-[var(--color-text)]">sin ningún costo adicional para ti</strong>. El precio que pagas es exactamente el mismo.</p>
+              <p>Algunos artículos de {siteName} contienen enlaces de afiliado. Si haces clic en uno de ellos y compras un producto, recibimos una comisión, <strong className="text-[var(--color-text)]">sin ningún costo adicional para ti</strong>. El precio que pagas es exactamente el mismo.</p>
               <p>Esas comisiones nos ayudan a mantener el sitio en funcionamiento y a financiar la investigación y la revisión editorial que hay detrás de cada artículo.</p>
             </div>
           </section>

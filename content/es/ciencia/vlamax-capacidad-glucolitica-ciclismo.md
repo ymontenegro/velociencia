@@ -29,6 +29,7 @@ sources:
   - title: "Reliability of Estimating Maximal Glycolytic Power Using VLamax: A Systematic Review — Fernandez Jarillo & Lomero-Arenas (2025)"
     url: "https://doi.org/10.47197/retos.v66.110040"
     type: doi
+translationOf: "vlamax-glycolytic-capacity-cycling"
 ---
 
 ## El número que define quién puede ganar qué

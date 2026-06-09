@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "La curva de potencia-duración es la herramienta más completa para identificar las fortalezas y debilidades de un ciclista. Desde el sprint de 5 segundos hasta el esfuerzo sostenido de una hora, cada punto de la curva refleja un sistema energético distinto."
 coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "power-curve-what-your-cyclist-profile-reveals"
 ---
 
 ## Tu huella dactilar fisiológica

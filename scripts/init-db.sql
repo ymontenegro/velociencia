@@ -177,6 +177,8 @@ CREATE TABLE IF NOT EXISTS `topics` (
 
 CREATE UNIQUE INDEX IF NOT EXISTS `articles_slug_unique` ON `articles` (`slug`);
 
+CREATE INDEX IF NOT EXISTS `idx_agent_runs_status_phase` ON `agent_runs` (`status`,`phase`);
+
 CREATE INDEX IF NOT EXISTS `idx_article_views_section` ON `article_views` (`section`);
 
 CREATE INDEX IF NOT EXISTS `idx_article_views_slug` ON `article_views` (`slug`);
@@ -195,6 +197,8 @@ CREATE INDEX IF NOT EXISTS `idx_pv_viewed_at` ON `page_views` (`viewed_at`);
 
 CREATE INDEX IF NOT EXISTS `idx_pv_visitor` ON `page_views` (`visitor_id`);
 
+CREATE INDEX IF NOT EXISTS `idx_rss_feeds_section` ON `rss_feeds` (`section`);
+
 CREATE INDEX IF NOT EXISTS `idx_rss_items_feed` ON `rss_items` (`feed_id`);
 
 CREATE INDEX IF NOT EXISTS `idx_rss_items_guid` ON `rss_items` (`guid`);
@@ -206,6 +210,8 @@ CREATE INDEX IF NOT EXISTS `idx_scheduled_section` ON `scheduled_posts` (`sectio
 CREATE INDEX IF NOT EXISTS `idx_scheduled_status` ON `scheduled_posts` (`status`);
 
 CREATE INDEX IF NOT EXISTS `idx_sources_article` ON `sources` (`article_id`);
+
+CREATE INDEX IF NOT EXISTS `idx_sources_type` ON `sources` (`type`);
 
 CREATE INDEX IF NOT EXISTS `idx_sources_topic` ON `sources` (`topic_id`);
 

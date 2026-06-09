@@ -31,6 +31,7 @@ excerpt: >-
   lactate threshold is a better predictor of performance than VO2max.
 coverImage: >-
   https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "vo2max-umbral-lactato-ciclismo"
 ---
 ## The Ceiling and the Usable Fraction
 

@@ -76,6 +76,78 @@ export interface AuthorInfo {
   color: string;
 }
 
+/**
+ * Editorial team members without a section-specific byline.
+ * These appear on the About and Authors hub pages but do not have individual
+ * /autor/[slug] archive pages since they don't publish articles under a byline.
+ */
+export interface EditorialMemberInfo {
+  name: string;
+  role: string;
+  specialty: string;
+  bio: string;
+  color: string;
+}
+
+const EDITORIAL_TEAM: Array<{
+  name: Record<Locale, string>;
+  role: Record<Locale, string>;
+  specialty: Record<Locale, string>;
+  bio: Record<Locale, string>;
+  color: string;
+}> = [
+  {
+    name: { es: "Carmen Lagos", en: "Carmen Lagos" },
+    role: { es: "Editora jefa", en: "Editor-in-chief" },
+    specialty: {
+      es: "20+ años en medios deportivos de referencia",
+      en: "20+ years in leading sports media",
+    },
+    bio: {
+      es: "Editora jefa de Velociencia. Supervisa la calidad editorial de cada pieza publicada: rigor factual, estilo periodístico y coherencia entre las versiones en español e inglés. Su criterio es el filtro final antes de cualquier publicación.",
+      en: "Editor-in-chief of PedalSci. Oversees the editorial quality of every published piece: factual rigour, journalistic style and consistency between the Spanish and English versions. Her judgement is the final filter before any publication.",
+    },
+    color: "#374151",
+  },
+  {
+    name: { es: "Rodrigo Pizarro", en: "Rodrigo Pizarro" },
+    role: { es: "Verificador de fuentes", en: "Fact-checker" },
+    specialty: {
+      es: "Verificación de fuentes científicas y datos deportivos",
+      en: "Scientific source and sports data verification",
+    },
+    bio: {
+      es: "Fact-checker de Velociencia. Confirma que cada cita, PMID y dato en un artículo sea real y verificable antes de la publicación. Si un paper no existe en PubMed o un dato de carrera no aparece en ProCyclingStats, no se publica.",
+      en: "PedalSci's fact-checker. Confirms that every citation, PMID and claim in an article is real and verifiable before publication. If a paper isn't on PubMed or a race result isn't on ProCyclingStats, it doesn't get published.",
+    },
+    color: "#374151",
+  },
+  {
+    name: { es: "Valentina Rosas", en: "Valentina Rosas" },
+    role: { es: "Editora visual", en: "Visual editor" },
+    specialty: {
+      es: "Fotografía deportiva y edición visual",
+      en: "Sports photography and visual editing",
+    },
+    bio: {
+      es: "Editora visual de Velociencia. Selecciona y edita las imágenes de portada de cada artículo. Prioriza fotografía específica del corredor o evento cuando existe, y contexto visual relevante cuando no. Cuida que la imagen refuerce el tema del artículo.",
+      en: "PedalSci's visual editor. Selects and edits the cover image for every article. Prioritises specific photography of the rider or event when available, and contextually relevant visuals otherwise. Ensures the image reinforces rather than contradicts the subject.",
+    },
+    color: "#374151",
+  },
+];
+
+/** Return the full editorial team (Carmen, Rodrigo, Valentina) for a given locale. */
+export function getEditorialTeam(locale: Locale = "es"): EditorialMemberInfo[] {
+  return EDITORIAL_TEAM.map((m) => ({
+    name: m.name[locale],
+    role: m.role[locale],
+    specialty: m.specialty[locale],
+    bio: m.bio[locale],
+    color: m.color,
+  }));
+}
+
 const SECTION_COLORS: Record<SectionId, string> = {
   nutricion: "#0D9488",
   ciencia: "#7C3AED",

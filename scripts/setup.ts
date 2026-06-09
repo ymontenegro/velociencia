@@ -1,6 +1,7 @@
 import { execSync } from "child_process";
 import path from "path";
 import fs from "fs";
+import { seedDatabase } from "../src/lib/db/seed";
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -25,9 +26,8 @@ execSync("npx drizzle-kit push", { cwd: ROOT, stdio: "inherit" });
 
 // Seed database
 console.log("\nSeeding database...");
-const { seedDatabase } = require("../src/lib/db/seed");
 seedDatabase();
 
 console.log("\n✅ Setup complete!");
 console.log("Run `npm run dev` to start the development server.");
-console.log("Run `npm run agents:start` to start the agent scheduler.");
+console.log("Run `npm run queue` to manage the editorial queue.");

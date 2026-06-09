@@ -29,6 +29,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/31864419/"
     type: scientific_paper
 excerpt: "Estudios en Nature Medicine y Gut revelan que bacterias específicas como Veillonella y Prevotella modulan el lactato, la inflamación y la recuperación en ciclistas de resistencia."
+translationOf: "impact-of-the-gut-microbiome-on-cyclist-recovery-and-performance"
 ---
 
 ## El ecosistema invisible que pedalea contigo

@@ -29,6 +29,7 @@ sources:
   - title: "Peak fat oxidation is positively associated with vastus lateralis CD36 content, fed-state exercise fat oxidation, and endurance performance — Maunder et al. (2022)"
     url: "https://pubmed.ncbi.nlm.nih.gov/34562114/"
     type: pubmed
+translationOf: "fatmax-fat-oxidation-cycling"
 ---
 
 ## Una curva con un pico preciso

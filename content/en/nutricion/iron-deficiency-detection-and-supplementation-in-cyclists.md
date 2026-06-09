@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Iron deficiency is the most common nutritional shortfall among cyclists, particularly in women. Its effects on VO2max and endurance capacity are significant, but early detection and proper treatment can reverse the situation within weeks."
 coverImage: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "hierro-deficiencia-ciclistas"
 ---
 
 ## The mineral behind aerobic performance

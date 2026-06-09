@@ -63,6 +63,7 @@ excerpt: >-
   career at 24 years old.
 coverImage: >-
   https://www.naiz.eus/media/asset_publics/resources/001/316/711/article_main_landscape/Cata-Soto.JPG
+translationOf: "cata-soto-campeona-panamericana-ruta"
 ---
 ## Gold in Cereté
 

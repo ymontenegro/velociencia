@@ -38,6 +38,7 @@ sources:
     type: pubmed
 excerpt: "En el estudio HERITAGE, 481 adultos sedentarios siguieron un programa de entrenamiento idéntico durante 20 semanas. Las ganancias de VO2max variaron entre prácticamente cero y más de 1.000 ml/min, y la heredabilidad de esa respuesta alcanzó el 47%."
 coverImage: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "genetics-and-training-response-why-your-teammate-improves-more"
 ---
 
 ## El mismo entrenamiento, resultados opuestos

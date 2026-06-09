@@ -13,6 +13,12 @@ import {
   EVIDENCE_LAST_REVIEWED,
 } from "@/lib/datasets/evidence";
 import type { EvidenceLevel, EvidenceDirection } from "@/lib/datasets/evidence";
+import {
+  getAllClimbs,
+  fietsIndex,
+  CLIMBS_LAST_REVIEWED,
+} from "@/lib/datasets/climbs";
+import { getAllRaces, RACES_LAST_REVIEWED } from "@/lib/datasets/races";
 
 /* ------------------------------------------------------------------ */
 /* Small local label maps — avoids pulling in the full i18n dictionary  */
@@ -116,6 +122,60 @@ export function buildDatasetJsonLd(
             description,
           };
         }),
+      };
+    }
+
+    case "climbs-database": {
+      const climbs = getAllClimbs();
+      return {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: opts.name,
+        description: opts.description,
+        url: opts.url,
+        numberOfItems: climbs.length,
+        dateModified: CLIMBS_LAST_REVIEWED,
+        publisher,
+        itemListElement: climbs.map((climb, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: climb.name,
+          url: climb.source_url,
+          description:
+            locale === "es"
+              ? `${climb.region.es}. ${climb.length_km} km al ${climb.avg_gradient}% de media, ${climb.elevation_gain_m} m de desnivel; cima a ${climb.summit_elevation_m} m. Índice FIETS ${fietsIndex(climb).toFixed(1)}.`
+              : `${climb.region.en}. ${climb.length_km} km at ${climb.avg_gradient}% average, ${climb.elevation_gain_m} m of gain; summit at ${climb.summit_elevation_m} m. FIETS index ${fietsIndex(climb).toFixed(1)}.`,
+        })),
+      };
+    }
+
+    case "race-calendar": {
+      const races = getAllRaces();
+      return {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: opts.name,
+        description: opts.description,
+        url: opts.url,
+        numberOfItems: races.length,
+        dateModified: RACES_LAST_REVIEWED,
+        publisher,
+        itemListElement: races.map((race, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "SportsEvent",
+            name: race.name,
+            sport: "Cycling",
+            startDate: race.start_date,
+            endDate: race.end_date,
+            ...(race.website ? { url: race.website } : {}),
+            location: {
+              "@type": "Country",
+              address: { "@type": "PostalAddress", addressCountry: race.country },
+            },
+          },
+        })),
       };
     }
 

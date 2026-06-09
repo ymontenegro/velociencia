@@ -32,6 +32,7 @@ sources:
   - title: "The W' Balance Model: Mathematical and Methodological Considerations — Skiba & Clarke (2021)"
     url: "https://pubmed.ncbi.nlm.nih.gov/34686611/"
     type: pubmed
+translationOf: "w-prime-anaerobic-reserve-cycling"
 ---
 
 ## La línea que separa lo sostenible de lo que agota

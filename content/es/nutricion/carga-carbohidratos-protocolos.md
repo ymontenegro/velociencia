@@ -26,6 +26,7 @@ sources:
     type: pubmed
 excerpt: "Llenar los depósitos de glucógeno muscular antes de una competición es una de las estrategias nutricionales más estudiadas del deporte. Tres protocolos distintos logran el mismo objetivo, pero con tiempos y niveles de sufrimiento muy diferentes."
 coverImage: "https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "carbohydrate-loading-protocols-and-scientific-evidence"
 ---
 
 ## El combustible que define la competición

@@ -23,6 +23,7 @@ sources:
     type: pubmed
 excerpt: "La mejora del FTP sigue una curva predecible: ganancias rápidas en los primeros 3-4 meses, desaceleración progresiva y mesetas inevitables. Los datos varían según el punto de partida, pero el patrón de adaptación es consistente."
 coverImage: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "ftp-progression-in-your-first-year-what-to-expect"
 ---
 
 ## La curva que nadie te muestra

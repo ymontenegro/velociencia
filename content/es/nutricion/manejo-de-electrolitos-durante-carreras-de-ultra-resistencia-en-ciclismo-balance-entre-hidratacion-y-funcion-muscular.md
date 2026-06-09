@@ -32,6 +32,7 @@ sources:
     url: "https://pubmed.ncbi.nlm.nih.gov/26381473/"
     type: scientific_paper
 excerpt: "El manejo adecuado de sodio, potasio, magnesio y calcio es vital para la función muscular y prevenir calambres en ultra resistencia ciclística, ajustando la hidratación según condiciones y metabolismo."
+translationOf: "electrolyte-management-ultra-endurance-cycling"
 ---
 
 ## Manejo de electrolitos durante carreras de ultra resistencia en ciclismo: balance entre hidratación y función muscular

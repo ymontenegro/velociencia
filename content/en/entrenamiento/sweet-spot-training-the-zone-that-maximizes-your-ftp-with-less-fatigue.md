@@ -40,6 +40,7 @@ excerpt: >-
   work. It is the most efficient tool for cyclists with limited time.
 coverImage: >-
   https://images.unsplash.com/photo-1469535327624-436c26d1cf1c?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress
+translationOf: "sweet-spot-training-ciclismo"
 ---
 ## The Point Where Effort Yields the Most
 

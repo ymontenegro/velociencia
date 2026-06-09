@@ -29,6 +29,7 @@ sources:
     type: pubmed
 excerpt: "El intestino no es un cuello de botella fijo: la capacidad de absorber y oxidar carbohidratos durante el ejercicio puede entrenarse. Así funciona la fisiología detrás de los 120 g/h que emplean los mejores ciclistas del mundo."
 coverImage: "https://images.unsplash.com/photo-1558415737-d2d14ef33023?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "train-the-gut-carbohydrates-cycling"
 ---
 
 ## El cuello de botella del intestino: por qué 60 g/h no eran suficientes

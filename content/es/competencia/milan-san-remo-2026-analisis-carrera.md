@@ -23,6 +23,7 @@ sources:
     type: web_search
 excerpt: "Tadej Pogačar ganó la Milán-San Remo 2026 tras sobrevivir a una caída masiva antes de la Cipressa, atacar sin tregua en las últimas subidas y vencer a Tom Pidcock por medio neumático en Via Roma."
 coverImage: "https://plus.unsplash.com/premium_photo-1661964083002-8f020ef771b1?w=1200&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress"
+translationOf: "pogacar-conquers-the-milan-san-remo-2026-in-a-razor-thin-sprint"
 ---
 
 La Classicissima entregó este sábado una de las ediciones más dramáticas que se recuerde. 298 kilómetros desde Pavía hasta San Remo, seis horas y media de carrera, una caída masiva en el momento más inoportuno y un final resuelto por el grosor de un neumático. Tadej Pogačar, campeón del mundo, se quedó con la victoria que más le había esquivado en los últimos años. Lo hizo sangrando del codo izquierdo, con el maillot roto y la determinación intacta.
