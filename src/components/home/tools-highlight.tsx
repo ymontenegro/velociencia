@@ -2,7 +2,13 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
-import { getAllTools, toolHref, toolColor, type ToolInfo } from "@/lib/tools";
+import {
+  getAllTools,
+  toolHref,
+  toolColor,
+  toolsIndexHref,
+  type ToolInfo,
+} from "@/lib/tools";
 
 interface ToolsHighlightProps {
   locale: Locale;
@@ -14,10 +20,12 @@ interface ToolsHighlightProps {
  *
  * Mobile (< md): protagonist block — HUD header, 2×2 grid of 4 featured tools
  * each with Race Telemetry mini-readout (sampleStat), remaining 5 as a
- * horizontally-scrollable chip row, and a full-width HUD CTA button.
+ * horizontally-scrollable chip row, and a full-width split HUD CTA.
  *
- * Desktop (md+): compact single-strip chip bar — unchanged from original,
- * validated design, DO NOT modify.
+ * Desktop (md+): two panels side-by-side inside max-w-7xl — CALCULADORAS (5)
+ * and DATOS (4) — each with a HUD header (live-dot + eyebrow + count), tool
+ * rows (section-dot + title 13px + sampleStat.value right-aligned), and a
+ * footer CTA link. No horizontal scroll; left-border accent on hover.
  *
  * Race Telemetry: mono eyebrow, live dot, per-section accent dots.
  */
@@ -25,8 +33,12 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
   const allTools = getAllTools();
   if (allTools.length === 0) return null;
 
-  const calcHref = locale === "en" ? "/tools" : "/herramientas";
-  const dataHref = locale === "en" ? "/data" : "/datos";
+  const calcHref = toolsIndexHref(locale, "calculator");
+  const dataHref = toolsIndexHref(locale, "dataset");
+
+  // Desktop panels: split by kind
+  const calculators = allTools.filter((t) => !t.kind || t.kind === "calculator");
+  const datasets = allTools.filter((t) => t.kind === "dataset");
 
   // Mobile grid: 4 curated tools — zonas de potencia, carbohidratos, puertos, potencia-peso
   const mobileFeaturedIds = [
@@ -190,62 +202,64 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
         </div>
       </div>
 
-      {/* ── DESKTOP (md+) — validated, DO NOT modify ───────────────────── */}
+      {/* ── DESKTOP (md+) — two panels side-by-side ───────────────────── */}
       <div className="hidden md:block">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 py-3">
-            {/* Eyebrow: live dot + section label */}
-            <div className="flex flex-none items-center gap-2">
-              <span
-                aria-hidden="true"
-                className="tool-live-dot inline-block h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-text-muted)]"
-              />
-              <span className="whitespace-nowrap font-mono text-[9.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                {dict.tools.nav}
-              </span>
-            </div>
+          <div className="grid grid-cols-2 gap-3 py-4">
 
-            {/* Vertical separator */}
-            <div aria-hidden="true" className="h-4 w-px flex-none bg-[var(--color-border)]" />
+            {/* ── Panel CALCULADORAS ── */}
+            <div className="flex flex-col rounded border border-[var(--color-border)]">
+              {/* Panel header */}
+              <div className="flex items-center gap-2 border-b border-[var(--color-border)] px-3 py-2">
+                <span
+                  aria-hidden="true"
+                  className="tool-live-dot inline-block h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-text-muted)]"
+                />
+                <span className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                  {dict.home.toolsCalculators}
+                </span>
+                <span className="ml-auto font-mono text-[9px] tabular-nums text-[var(--color-text-muted)]">
+                  {calculators.length}
+                </span>
+              </div>
 
-            {/* Tool chips — single horizontally-scrollable row */}
-            <div
-              role="list"
-              className="flex flex-1 items-center gap-2 overflow-x-auto py-1"
-            >
-              {allTools.map((tool) => {
-                const color = toolColor(tool);
-                const href = toolHref(tool, locale);
-                const isDataset = tool.kind === "dataset";
-                return (
-                  <Link
-                    key={tool.id}
-                    href={href}
-                    role="listitem"
-                    style={{ "--tool-accent": color } as CSSProperties}
-                    className="tool-scope group inline-flex flex-none items-center gap-1.5 rounded border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 transition-colors hover:border-[var(--tool-accent)]"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="h-1.5 w-1.5 flex-none rounded-full"
-                      style={{ backgroundColor: color }}
-                    />
-                    <span className="whitespace-nowrap font-mono text-[10px] font-medium text-[var(--color-text)]">
-                      {tool.title[locale]}
-                    </span>
-                    <span className="ml-0.5 whitespace-nowrap font-mono text-[8.5px] text-[var(--color-text-muted)]">
-                      {isDataset ? dict.home.toolsDatasets : dict.home.toolsCalculators}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
+              {/* Tool rows */}
+              <div className="flex flex-1 flex-col">
+                {calculators.map((tool) => {
+                  const color = toolColor(tool);
+                  const href = toolHref(tool, locale);
+                  return (
+                    <Link
+                      key={tool.id}
+                      href={href}
+                      style={{ "--tool-accent": color } as CSSProperties}
+                      className="tool-scope group flex items-center gap-2.5 border-b border-l-2 border-b-[var(--color-border)] border-l-transparent px-3 py-2 transition-colors last:border-b-0 hover:border-l-[var(--tool-accent)] hover:bg-[color-mix(in_srgb,var(--tool-accent)_4%,transparent)]"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 flex-none rounded-full"
+                        style={{ backgroundColor: color }}
+                      />
+                      <span className="flex-1 font-mono text-[13px] text-[var(--color-text)] transition-colors group-hover:text-[var(--color-text-secondary)]">
+                        {tool.title[locale]}
+                      </span>
+                      {tool.sampleStat && (
+                        <span
+                          className="font-mono text-[11px] tabular-nums"
+                          style={{ color }}
+                        >
+                          {tool.sampleStat.value[locale]}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
 
-            {/* CTAs — Calculadoras (primary) + Datos (secondary) */}
-            <div className="ml-2 flex flex-none items-center gap-3">
+              {/* CTA footer */}
               <Link
                 href={calcHref}
-                className="group inline-flex flex-none items-center gap-1.5 whitespace-nowrap font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text)] transition-colors hover:text-[var(--color-text-secondary)]"
+                className="group flex items-center justify-center gap-1.5 border-t border-[var(--color-border)] px-3 py-2 font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text)] transition-colors hover:text-[var(--color-text-secondary)]"
               >
                 {dict.home.toolsViewCalc}
                 <svg
@@ -263,10 +277,61 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
                   />
                 </svg>
               </Link>
-              <span aria-hidden="true" className="h-3 w-px flex-none bg-[var(--color-border)]" />
+            </div>
+
+            {/* ── Panel DATOS ── */}
+            <div className="flex flex-col rounded border border-[var(--color-border)]">
+              {/* Panel header */}
+              <div className="flex items-center gap-2 border-b border-[var(--color-border)] px-3 py-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-text-muted)]"
+                />
+                <span className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                  {dict.home.toolsDatasets}
+                </span>
+                <span className="ml-auto font-mono text-[9px] tabular-nums text-[var(--color-text-muted)]">
+                  {datasets.length}
+                </span>
+              </div>
+
+              {/* Tool rows */}
+              <div className="flex flex-1 flex-col">
+                {datasets.map((tool) => {
+                  const color = toolColor(tool);
+                  const href = toolHref(tool, locale);
+                  return (
+                    <Link
+                      key={tool.id}
+                      href={href}
+                      style={{ "--tool-accent": color } as CSSProperties}
+                      className="tool-scope group flex items-center gap-2.5 border-b border-l-2 border-b-[var(--color-border)] border-l-transparent px-3 py-2 transition-colors last:border-b-0 hover:border-l-[var(--tool-accent)] hover:bg-[color-mix(in_srgb,var(--tool-accent)_4%,transparent)]"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 flex-none rounded-full"
+                        style={{ backgroundColor: color }}
+                      />
+                      <span className="flex-1 font-mono text-[13px] text-[var(--color-text)] transition-colors group-hover:text-[var(--color-text-secondary)]">
+                        {tool.title[locale]}
+                      </span>
+                      {tool.sampleStat && (
+                        <span
+                          className="font-mono text-[11px] tabular-nums"
+                          style={{ color }}
+                        >
+                          {tool.sampleStat.value[locale]}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* CTA footer */}
               <Link
                 href={dataHref}
-                className="group inline-flex flex-none items-center gap-1.5 whitespace-nowrap font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                className="group flex items-center justify-center gap-1.5 border-t border-[var(--color-border)] px-3 py-2 font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
               >
                 {dict.home.toolsViewData}
                 <svg
@@ -285,6 +350,7 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
                 </svg>
               </Link>
             </div>
+
           </div>
         </div>
       </div>

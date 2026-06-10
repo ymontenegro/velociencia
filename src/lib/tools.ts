@@ -243,12 +243,11 @@ export const TOOLS: ToolInfo[] = [
     },
     sectionId: "entrenamiento",
     relatedTag: "puertos",
-    // Alpe d'Huez: base = 1120² / (13800×10) = 9.090; altBonus = (1860−1000)/1000 = 0.860
-    // FIETS = 9.950 → toFixed(1) = "9.9"  (difficultyBand: "mitica", f ≥ 9)
+    // Alpe d'Huez: length_km=13.8, avg_gradient=8.1; FIETS=9.9 (base=1120²/(13800×10)+altBonus)
     // Source: climbs-data.ts alpe-dhuez entry + climbs.ts fietsIndex() formula
     sampleStat: {
       label: { es: "Alpe d'Huez", en: "Alpe d'Huez" },
-      value: { es: "FIETS 9.9", en: "FIETS 9.9" },
+      value: { es: "13,8 km · 8,1% · FIETS 9,9", en: "13.8 km · 8.1% · FIETS 9.9" },
     },
   },
   {

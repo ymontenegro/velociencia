@@ -428,19 +428,46 @@ export default function ClimbsDatabase({
                         {climb.region[locale]}
                       </p>
                     </div>
-                    {/* FIETS star metric — DM Mono, section accent */}
-                    <div
-                      className="shrink-0 rounded-lg px-3 py-2 text-right"
-                      style={{ backgroundColor: accentAlpha(14) }}
-                    >
+                    {/* Star metrics: FIETS + Desnivel + Longitud — all text-lg, right-aligned */}
+                    <div className="flex flex-wrap items-end justify-end gap-2 shrink-0">
+                      {/* FIETS — accent bg, accent text */}
                       <div
-                        className="font-mono text-lg font-bold tabular-nums leading-none"
-                        style={{ color: "var(--tool-accent)" }}
+                        className="rounded-lg px-3 py-2 text-right"
+                        style={{ backgroundColor: accentAlpha(14) }}
                       >
-                        {fiets.toFixed(1)}
+                        <div
+                          className="font-mono text-lg font-bold tabular-nums leading-none"
+                          style={{ color: "var(--tool-accent)" }}
+                        >
+                          {fiets.toFixed(1)}
+                        </div>
+                        <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                          {t.colFiets}
+                        </div>
                       </div>
-                      <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
-                        {t.colFiets}
+                      {/* Elevation gain */}
+                      <div
+                        className="rounded-lg px-3 py-2 text-right"
+                        style={{ backgroundColor: accentAlpha(7) }}
+                      >
+                        <div className="font-mono text-lg font-semibold tabular-nums leading-none text-[var(--color-text)]">
+                          {climb.elevation_gain_m}
+                        </div>
+                        <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                          {t.colGain}
+                        </div>
+                      </div>
+                      {/* Length */}
+                      <div
+                        className="rounded-lg px-3 py-2 text-right"
+                        style={{ backgroundColor: accentAlpha(7) }}
+                      >
+                        <div className="font-mono text-lg font-semibold tabular-nums leading-none text-[var(--color-text)]">
+                          {climb.length_km}
+                        </div>
+                        <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                          {t.colLength}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -738,10 +765,10 @@ function MetricCell({
 function Figure({ label, value }: { label: string; value: string }) {
   return (
     <span className="text-[var(--color-text-secondary)]">
-      <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
+      <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-text-muted)]">
         {label}
       </span>{" "}
-      <span className="font-mono font-medium tabular-nums text-[var(--color-text)]">
+      <span className="font-mono text-[11px] font-medium tabular-nums text-[var(--color-text)]">
         {value}
       </span>
     </span>
