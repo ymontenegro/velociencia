@@ -96,21 +96,44 @@ export async function HeroSection() {
           <div className="flex h-full flex-col gap-4 lg:gap-6">
             {sideArticles.map((article) => (
               <div key={article.slug} className="flex-1">
-                <ArticleCard
-                  title={article.title}
-                  excerpt={article.excerpt ?? ""}
-                  date={article.date}
-                  readingTime={article.readingTime}
-                  slug={article.slug}
-                  section={article.section}
-                  coverImage={article.coverImage}
-                  variant="standard"
-                  author={SECTIONS_I18N[locale][article.section as SectionId].journalist}
-                  authorColor={SECTIONS[article.section as SectionId].color}
-                  locale={locale}
-                  byLabel={dict.article.by}
-                  minReadLabel={dict.article.minRead}
-                />
+                {/*
+                 * Mobile (< lg): compact headline row — title + meta only, no large image.
+                 * The hero grid is single-column below lg, so full standard cards would
+                 * stack and consume ~2 screen heights; headline variant collapses each to
+                 * a single tight row (~60px) while keeping navigability intact.
+                 */}
+                <div className="lg:hidden">
+                  <ArticleCard
+                    title={article.title}
+                    excerpt={article.excerpt ?? ""}
+                    date={article.date}
+                    readingTime={article.readingTime}
+                    slug={article.slug}
+                    section={article.section}
+                    coverImage={article.coverImage}
+                    variant="headline"
+                    locale={locale}
+                    minReadLabel={dict.article.minRead}
+                  />
+                </div>
+                {/* Desktop (lg+): full standard card — unchanged */}
+                <div className="hidden h-full lg:block">
+                  <ArticleCard
+                    title={article.title}
+                    excerpt={article.excerpt ?? ""}
+                    date={article.date}
+                    readingTime={article.readingTime}
+                    slug={article.slug}
+                    section={article.section}
+                    coverImage={article.coverImage}
+                    variant="standard"
+                    author={SECTIONS_I18N[locale][article.section as SectionId].journalist}
+                    authorColor={SECTIONS[article.section as SectionId].color}
+                    locale={locale}
+                    byLabel={dict.article.by}
+                    minReadLabel={dict.article.minRead}
+                  />
+                </div>
               </div>
             ))}
           </div>

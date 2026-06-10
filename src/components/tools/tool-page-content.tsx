@@ -137,12 +137,12 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
 
           {/* Inner wrapper: sweep animation (::after) — separate from tool-corners */}
           <div className="tool-sweep relative overflow-hidden">
-            <div className="relative z-10 mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+            <div className="relative z-10 mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
 
               {/* Back link */}
               <Link
                 href={indexHref}
-                className="group mb-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text)]"
+                className="group mb-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text)] sm:mb-8"
               >
                 <svg
                   className="h-4 w-4 transition-transform group-hover:-translate-x-1"
@@ -168,8 +168,8 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
                 </span>
               </div>
 
-              {/* Title */}
-              <h1 className="mt-3 font-serif text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl lg:text-5xl">
+              {/* Title — break-words prevents long compound nouns from overflowing on 360px */}
+              <h1 className="mt-3 break-words font-serif text-3xl font-bold leading-snug text-[var(--color-text)] sm:text-4xl lg:text-5xl">
                 {tool.title[locale]}
               </h1>
 
@@ -188,11 +188,11 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
         </div>
 
         {/* ── Content area ───────────────────────────────────────────────── */}
-        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
 
           {/* Gradient instrument bar — connects header to tool */}
           <div
-            className="mb-8 h-[3px] w-full rounded-full"
+            className="mb-6 h-[3px] w-full rounded-full sm:mb-8"
             style={{
               background: `linear-gradient(to right, var(${sectionConfig.colorVar}-dark, ${color}), ${color} 50%, var(${sectionConfig.colorVar}-light, color-mix(in srgb, ${color} 35%, white)))`,
             }}
@@ -209,7 +209,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
           <CalculatorRenderer toolId={tool.id} color={color} />
 
           {/* Methodology / disclaimer box — instrument panel style with accent bar */}
-          <div className="mt-8 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)]">
+          <div className="mt-6 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] sm:mt-8">
             <div className="flex min-h-0">
               {/* Left accent bar */}
               <div
@@ -237,7 +237,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
 
           {/* Related articles */}
           {relatedArticles.length > 0 && (
-            <aside className="mt-14" aria-label={dict.tools.relatedArticles}>
+            <aside className="mt-10 sm:mt-14" aria-label={dict.tools.relatedArticles}>
               {/* Mono eyebrow above section title */}
               <div className="flex items-center gap-2">
                 <div
@@ -252,7 +252,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
                 {dict.tools.relatedArticles}
               </h2>
 
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-8 sm:grid-cols-2 lg:grid-cols-3">
                 {relatedArticles.map((article, i) => {
                   const articleSection = SECTIONS[article.section];
                   const journalist = SECTIONS_I18N[locale][article.section].journalist;

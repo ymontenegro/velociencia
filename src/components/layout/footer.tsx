@@ -17,18 +17,18 @@ export async function Footer() {
       {/* Top accent line */}
       <div className="h-[2px] w-full bg-[var(--color-text)]" aria-hidden="true" />
 
-      <div className="mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:pt-16 sm:pb-10 sm:px-6 lg:px-8">
         {/* Watermark title */}
-        <div className="mb-6 select-none" aria-hidden="true">
+        <div className="mb-3 sm:mb-6 select-none" aria-hidden="true">
           <span className="font-serif text-3xl font-bold tracking-[0.2em] uppercase text-white/[0.07] sm:text-4xl">
             {dict.siteName}
           </span>
         </div>
 
         {/* 5-column grid on large screens */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-5">
           {/* ── Brand column ──────────────────────────────────────────────── */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <Link
               href="/"
               className="font-serif text-xl font-bold tracking-[0.15em] uppercase text-white"

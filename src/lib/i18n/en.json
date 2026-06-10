@@ -11,7 +11,9 @@
     "toolsGroupData": "Datasets",
     "toolsViewAll": "View all tools",
     "toolsMenuLabel": "Open tools menu",
-    "localeSwitchAriaLabel": "Spanish version — velociencia.cl"
+    "localeSwitchAriaLabel": "Spanish version — velociencia.cl",
+    "navHome": "Home",
+    "navSections": "Sections"
   },
   "footer": {
     "sections": "Sections",

@@ -60,7 +60,7 @@ export function ToolsIndex({
           style={{ background: "radial-gradient(circle, #0D9488, transparent 70%)" }}
         />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
           {/* Mono eyebrow */}
           <div className="mb-3 flex items-center gap-2">
             <span
@@ -72,7 +72,7 @@ export function ToolsIndex({
             </span>
           </div>
 
-          <h1 className="font-serif text-4xl font-bold leading-tight text-[var(--color-text)] sm:text-5xl">
+          <h1 className="font-serif text-3xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl lg:text-5xl">
             {indexTitle}
           </h1>
 
@@ -89,8 +89,8 @@ export function ToolsIndex({
             {indexSubtitle}
           </p>
 
-          {/* HUD instrument counters */}
-          <div className="mt-6 flex items-baseline gap-6">
+          {/* HUD instrument counters — flex-wrap so long locale labels don't overflow on 360px */}
+          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
             <div className="flex items-baseline gap-1.5">
               <span className="font-mono text-2xl font-bold tabular-nums leading-none text-[var(--color-text)]">
                 {calculators.length}
@@ -118,7 +118,7 @@ export function ToolsIndex({
       </div>
 
       {/* ── Tool groups ─────────────────────────────────────────────── */}
-      <div className="mx-auto max-w-6xl space-y-14 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-6xl space-y-10 px-4 py-8 sm:px-6 sm:py-12 sm:space-y-14 lg:px-8 lg:py-16">
         {tools.length === 0 && (
           <p className="font-serif text-xl italic text-[var(--color-text-muted)]">
             {locale === "en" ? "No tools available." : "Sin herramientas disponibles."}
@@ -129,7 +129,7 @@ export function ToolsIndex({
         {calculators.length > 0 && (
           <section aria-label={groupCalculators}>
             {/* Group eyebrow + extending rule */}
-            <div className="mb-8 flex items-center gap-3">
+            <div className="mb-6 flex items-center gap-3 sm:mb-8">
               <div
                 className="h-[2px] w-8 flex-none rounded-full"
                 style={{
@@ -160,7 +160,7 @@ export function ToolsIndex({
         {datasets.length > 0 && (
           <section aria-label={groupDatasets}>
             {/* Group eyebrow + extending rule */}
-            <div className="mb-8 flex items-center gap-3">
+            <div className="mb-6 flex items-center gap-3 sm:mb-8">
               <div
                 className="h-[2px] w-8 flex-none rounded-full"
                 style={{

@@ -831,3 +831,42 @@ input[type="range"].tool-range:focus-visible::-webkit-slider-thumb {
   border-radius: 50%;
   flex-shrink: 0;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BOTTOM NAV — Mobile HUD navigation bar
+   ─────────────────────────────────────────────────────────────────────
+   Fixed bottom bar visible only on mobile (md:hidden).
+   Bar height is 56 px + env(safe-area-inset-bottom) for modern devices.
+   body:has([data-bottom-nav]) adds clearance so page content is never
+   hidden behind the bar. The sections sheet slides up with a subtle
+   translateY+opacity animation that respects prefers-reduced-motion.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Clearance: prevent page content from hiding behind the fixed bar. */
+@media (max-width: 767px) {
+  body:has([data-bottom-nav]) {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Sections sheet slide-up reveal — anchored at bottom, rises into view. */
+@keyframes bottom-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bottom-sheet-enter {
+  animation: bottom-sheet-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-sheet-enter {
+    animation: none;
+  }
+}

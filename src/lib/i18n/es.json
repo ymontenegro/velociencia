@@ -11,7 +11,9 @@
     "toolsGroupData": "Datos",
     "toolsViewAll": "Ver todas las herramientas",
     "toolsMenuLabel": "Abrir menú de herramientas",
-    "localeSwitchAriaLabel": "Versión en inglés — pedalsci.com"
+    "localeSwitchAriaLabel": "Versión en inglés — pedalsci.com",
+    "navHome": "Inicio",
+    "navSections": "Secciones"
   },
   "footer": {
     "sections": "Secciones",

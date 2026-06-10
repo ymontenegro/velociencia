@@ -71,7 +71,7 @@ export function TrendingBarClient({
         />
 
         {/* Article links */}
-        <div className="flex items-center gap-4 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-4">
           {articles.map((article, i) => (
             <Link
               key={`${article.section}-${article.slug}`}
@@ -85,10 +85,8 @@ export function TrendingBarClient({
               >
                 {article.sectionName}
               </span>
-              <span className="whitespace-nowrap uppercase tracking-wide">
-                {article.title.length > 50
-                  ? `${article.title.slice(0, 50)}…`
-                  : article.title}
+              <span className="max-w-[120px] truncate uppercase tracking-wide sm:max-w-[220px]">
+                {article.title}
               </span>
               {i < articles.length - 1 && (
                 <span

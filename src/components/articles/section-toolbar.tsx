@@ -143,7 +143,7 @@ export function SectionToolbar({
             <button
               onClick={() => handleTagChange(null)}
               className={cn(
-                "shrink-0 rounded-sm border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider transition-all duration-150",
+                "inline-flex items-center shrink-0 rounded-sm border px-2.5 min-h-[44px] sm:min-h-0 sm:py-1 font-mono text-[10px] font-semibold uppercase tracking-wider transition-all duration-150",
                 activeTag === null
                   ? "border-transparent text-white"
                   : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-border-light)] hover:text-[var(--color-text)]"
@@ -158,7 +158,7 @@ export function SectionToolbar({
                 key={slug}
                 onClick={() => handleTagChange(slug)}
                 className={cn(
-                  "shrink-0 rounded-sm border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider transition-all duration-150",
+                  "inline-flex items-center shrink-0 rounded-sm border px-2.5 min-h-[44px] sm:min-h-0 sm:py-1 font-mono text-[10px] font-semibold uppercase tracking-wider transition-all duration-150",
                   activeTag === slug
                     ? "border-transparent text-white"
                     : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-border-light)] hover:text-[var(--color-text)]"
@@ -184,7 +184,7 @@ export function SectionToolbar({
                 key={key}
                 onClick={() => handleSortChange(key)}
                 className={cn(
-                  "px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider transition-colors duration-150",
+                  "inline-flex items-center px-3 min-h-[44px] sm:min-h-0 sm:py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider transition-colors duration-150",
                   sort === key
                     ? "text-white"
                     : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
@@ -246,7 +246,7 @@ export function SectionToolbar({
         <div className="flex justify-center pt-4">
           <button
             onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-            className="rounded-sm border border-[var(--color-border)] px-6 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)] transition-all duration-150 hover:border-transparent hover:text-white"
+            className="min-h-[44px] rounded-sm border border-[var(--color-border)] px-6 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)] transition-all duration-150 hover:border-transparent hover:text-white"
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
                 sectionColor;

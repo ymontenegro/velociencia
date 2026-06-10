@@ -326,7 +326,7 @@ export function ArticleCard({
         */}
         <article className="relative flex h-full flex-col rounded-lg tool-panel tool-corners tool-panel-hover">
           {/* Image area — overflow clipped here only */}
-          <div className="relative min-h-[120px] flex-1 overflow-hidden rounded-t-lg">
+          <div className="relative min-h-[160px] sm:min-h-[120px] flex-1 overflow-hidden rounded-t-lg">
             <div
               className="article-card-gradient absolute inset-0"
               style={{

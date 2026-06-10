@@ -105,7 +105,7 @@ export default async function SectionPage({ params }: SectionPageProps) {
           style={{ borderColor: "rgba(255,255,255,0.35)" }}
         />
 
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-20 lg:px-8">
           <div className="animate-fade-in-up relative z-10">
             {/* HUD section badge */}
             <div className="flex items-center gap-2">
@@ -119,7 +119,7 @@ export default async function SectionPage({ params }: SectionPageProps) {
             </div>
 
             {/* Section name */}
-            <h1 className="mt-3 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-3 font-serif text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-6xl">
               {sectionI18n.name}
             </h1>
 
@@ -127,7 +127,7 @@ export default async function SectionPage({ params }: SectionPageProps) {
             <div className="mt-4 h-[2px] w-16 bg-white/40" />
 
             {/* Section description */}
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/85">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
               {sectionI18n.description}
             </p>
 
@@ -159,7 +159,7 @@ export default async function SectionPage({ params }: SectionPageProps) {
       </div>
 
       {/* ── Articles with filters, sort, and load-more ───────────────── */}
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-16 lg:px-8">
         <SectionToolbar
           articles={articles}
           sectionId={sectionId}

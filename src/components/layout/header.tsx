@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useLocale, useDictionary } from "@/components/locale-provider";
 import { CommandPalette } from "@/components/search/command-palette";
 import { getAllTools, toolHref, toolColor } from "@/lib/tools";
+import { BottomNav } from "@/components/layout/bottom-nav";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -543,7 +544,7 @@ export function Header() {
         {/* ── Mobile overlay ─────────────────────────────────────────────── */}
         <div
           className={cn(
-            "fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 md:hidden",
+            "fixed inset-0 z-[55] bg-black/50 transition-opacity duration-300 md:hidden",
             isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0",
           )}
           onClick={() => setIsMenuOpen(false)}
@@ -553,7 +554,7 @@ export function Header() {
         {/* ── Mobile drawer ──────────────────────────────────────────────── */}
         <nav
           className={cn(
-            "fixed right-0 top-0 z-50 h-full w-72 overflow-y-auto bg-[var(--color-bg)] shadow-2xl transition-transform duration-300 ease-out md:hidden",
+            "fixed right-0 top-0 z-[60] h-full w-72 overflow-y-auto bg-[var(--color-bg)] shadow-2xl transition-transform duration-300 ease-out md:hidden",
             isMenuOpen ? "translate-x-0" : "translate-x-full",
           )}
           aria-label={dict.header.menu}
@@ -730,6 +731,13 @@ export function Header() {
           </div>
         </nav>
       </header>
+
+      {/* ── Bottom navigation — mobile HUD, fixed bottom bar ────────────── */}
+      <BottomNav
+        locale={locale}
+        dict={dict}
+        onSearchOpen={() => setSearchOpen(true)}
+      />
     </>
   );
 }
