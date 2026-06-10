@@ -13,7 +13,10 @@
     "toolsMenuLabel": "Open tools menu",
     "localeSwitchAriaLabel": "Spanish version — velociencia.cl",
     "navHome": "Home",
-    "navSections": "Sections"
+    "navSections": "Sections",
+    "navData": "Data",
+    "dataMenuLabel": "Open data menu",
+    "dataViewAll": "View all data"
   },
   "footer": {
     "sections": "Sections",
@@ -31,6 +34,7 @@
     "editorialDesign": "Premium editorial design",
     "disclosure": "Affiliate disclosure",
     "tools": "Tools",
+    "data": "Data",
     "aiTransparency": "AI-assisted content, fact-checked against scientific sources by our editorial team.",
     "aiTransparencyLink": "How we work"
   },
@@ -65,6 +69,10 @@
     "toolsDatasets": "Data",
     "sectionArticles": "articles",
     "toolsViewAll": "View all tools",
+    "toolsViewCalc": "Calculators",
+    "toolsViewData": "Data",
+    "archiveCalc": "calculators",
+    "archiveDatasets": "datasets",
     "editorialHowWeWork": "How we work"
   },
   "article": {
@@ -162,7 +170,13 @@
     "disclaimer": "These calculators provide educational estimates and are not a substitute for professional advice. Any files you upload are processed in your browser and never sent to any server.",
     "groupCalculators": "Calculators",
     "groupDatasets": "Data",
-    "fromEditorial": "From the editorial"
+    "fromEditorial": "From the editorial",
+    "dataIndexTitle": "Data",
+    "dataIndexSubtitle": "Cycling databases: energy gels, supplement evidence, iconic climbs and UCI calendar.",
+    "crossCalcCta": "Calculators: power, carbohydrates, VO₂max →",
+    "crossDataCta": "Databases: gels, supplements, climbs, calendar →",
+    "backToData": "View all databases",
+    "navData": "Data"
   },
   "comparator": {
     "title": "Energy gel comparator",

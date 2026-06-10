@@ -13,7 +13,10 @@
     "toolsMenuLabel": "Abrir menú de herramientas",
     "localeSwitchAriaLabel": "Versión en inglés — pedalsci.com",
     "navHome": "Inicio",
-    "navSections": "Secciones"
+    "navSections": "Secciones",
+    "navData": "Datos",
+    "dataMenuLabel": "Abrir menú de datos",
+    "dataViewAll": "Ver todos los datos"
   },
   "footer": {
     "sections": "Secciones",
@@ -31,6 +34,7 @@
     "editorialDesign": "Diseño editorial premium",
     "disclosure": "Divulgación de afiliados",
     "tools": "Herramientas",
+    "data": "Datos",
     "aiTransparency": "Contenido asistido por IA, verificado con fuentes científicas por nuestro equipo editorial.",
     "aiTransparencyLink": "Cómo trabajamos"
   },
@@ -65,6 +69,10 @@
     "toolsDatasets": "Datos",
     "sectionArticles": "artículos",
     "toolsViewAll": "Ver todas las herramientas",
+    "toolsViewCalc": "Calculadoras",
+    "toolsViewData": "Datos",
+    "archiveCalc": "calculadoras",
+    "archiveDatasets": "datos",
     "editorialHowWeWork": "Cómo trabajamos"
   },
   "article": {
@@ -162,7 +170,13 @@
     "disclaimer": "Estas calculadoras entregan estimaciones con fines educativos y no sustituyen el consejo de un profesional. Los archivos que subas se procesan en tu navegador y no se envían a ningún servidor.",
     "groupCalculators": "Calculadoras",
     "groupDatasets": "Datos",
-    "fromEditorial": "De la redacción"
+    "fromEditorial": "De la redacción",
+    "dataIndexTitle": "Datos",
+    "dataIndexSubtitle": "Bases de datos de ciclismo: geles energéticos, evidencia de suplementos, puertos icónicos y calendario UCI.",
+    "crossCalcCta": "Calculadoras: potencia, carbohidratos, VO₂máx →",
+    "crossDataCta": "Bases de datos: geles, suplementos, puertos, calendario →",
+    "backToData": "Ver todas las bases de datos",
+    "navData": "Datos"
   },
   "comparator": {
     "title": "Comparador de geles energéticos",

@@ -11,6 +11,8 @@ export async function Footer() {
   const dict = await getDictionary(locale);
   const currentYear = new Date().getFullYear();
   const tools = getAllTools();
+  const calculators = tools.filter((t) => !t.kind || t.kind === "calculator");
+  const datasets = tools.filter((t) => t.kind === "dataset");
 
   return (
     <footer className="relative bg-[var(--color-text)] text-white dark:bg-[#0A0A0E]">
@@ -25,8 +27,8 @@ export async function Footer() {
           </span>
         </div>
 
-        {/* 5-column grid on large screens */}
-        <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-5">
+        {/* 6-column grid on large screens */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-6">
           {/* ── Brand column ──────────────────────────────────────────────── */}
           <div className="col-span-2 lg:col-span-1">
             <Link
@@ -69,14 +71,39 @@ export async function Footer() {
             </ul>
           </div>
 
-          {/* ── Tools column ──────────────────────────────────────────────── */}
+          {/* ── Tools column (calculators) ────────────────────────────── */}
           <div>
             <h3 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-white/40">
               {dict.footer.tools}
             </h3>
             <div className="mt-1.5 mb-4 h-px w-8 bg-white/15" aria-hidden="true" />
             <ul className="space-y-2.5">
-              {tools.map((tool) => (
+              {calculators.map((tool) => (
+                <li key={tool.id}>
+                  <Link
+                    href={toolHref(tool, locale)}
+                    className="group flex items-center gap-2 text-xs text-white/60 transition-colors hover:text-white"
+                  >
+                    <span
+                      className="inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full transition-transform group-hover:scale-125"
+                      style={{ backgroundColor: toolColor(tool) }}
+                      aria-hidden="true"
+                    />
+                    {tool.title[locale]}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Data column (datasets) ────────────────────────────────── */}
+          <div>
+            <h3 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-white/40">
+              {dict.footer.data}
+            </h3>
+            <div className="mt-1.5 mb-4 h-px w-8 bg-white/15" aria-hidden="true" />
+            <ul className="space-y-2.5">
+              {datasets.map((tool) => (
                 <li key={tool.id}>
                   <Link
                     href={toolHref(tool, locale)}
@@ -158,7 +185,7 @@ export async function Footer() {
           </div>
 
           {/* ── Newsletter column ─────────────────────────────────────────── */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h3 className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-white/40">
               {dict.footer.newsletter}
             </h3>

@@ -11,17 +11,19 @@
 
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { getAllTools } from "@/lib/tools";
+import { getAllTools, toolsIndexHref } from "@/lib/tools";
 import { ToolsIndex } from "@/components/tools/tools-index";
 
 export async function ToolsIndexContent() {
   const locale = await getLocale();
   const dict = await getDictionary(locale);
-  const tools = getAllTools();
+  // Only show the 5 interactive calculators on this page; datasets live at /datos|/data.
+  const calculators = getAllTools().filter((t) => t.kind !== "dataset");
+  const crossHref = toolsIndexHref(locale, "dataset");
 
   return (
     <ToolsIndex
-      tools={tools}
+      tools={calculators}
       locale={locale}
       indexTitle={dict.tools.indexTitle}
       indexSubtitle={dict.tools.indexSubtitle}
@@ -29,6 +31,7 @@ export async function ToolsIndexContent() {
       openDataset={dict.tools.openDataset}
       groupCalculators={dict.tools.groupCalculators}
       groupDatasets={dict.tools.groupDatasets}
+      crossCta={{ href: crossHref, label: dict.tools.crossDataCta }}
     />
   );
 }

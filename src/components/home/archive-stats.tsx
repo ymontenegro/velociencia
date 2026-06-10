@@ -13,9 +13,13 @@ interface ArchiveStatsProps {
  * Acts as a subtle proof-of-depth positioned between the hero and the tools band.
  */
 export function ArchiveStats({ articleCount, dict }: ArchiveStatsProps) {
+  const calcCount = TOOLS.filter((t) => t.kind !== "dataset").length;
+  const dataCount = TOOLS.filter((t) => t.kind === "dataset").length;
+
   const stats = [
     { value: articleCount, label: dict.home.archiveArticles },
-    { value: TOOLS.length, label: dict.home.archiveTools },
+    { value: calcCount, label: dict.home.archiveCalc },
+    { value: dataCount, label: dict.home.archiveDatasets },
     { value: SECTION_IDS.length, label: dict.home.archiveSections },
     { value: 2, label: dict.home.archiveLanguages },
   ];

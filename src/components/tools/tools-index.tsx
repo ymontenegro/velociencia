@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ToolInfo } from "@/lib/tools";
 import type { Locale } from "@/lib/i18n";
 import { ToolCard } from "./tool-card";
@@ -14,6 +15,11 @@ interface ToolsIndexProps {
   groupCalculators?: string;
   /** Group header for data explorer tools (e.g. "Datos"). */
   groupDatasets?: string;
+  /**
+   * Optional Race Telemetry cross-link block rendered below the tool grid.
+   * Guides visitors towards the complementary section (/datos ↔ /herramientas).
+   */
+  crossCta?: { href: string; label: string };
 }
 
 /**
@@ -33,11 +39,16 @@ export function ToolsIndex({
   openDataset,
   groupCalculators = locale === "en" ? "Calculators" : "Calculadoras",
   groupDatasets = locale === "en" ? "Data" : "Datos",
+  crossCta,
 }: ToolsIndexProps) {
-  const navLabel = locale === "en" ? "Tools" : "Herramientas";
-
   const calculators = tools.filter((t) => t.kind !== "dataset");
   const datasets = tools.filter((t) => t.kind === "dataset");
+
+  // Auto-detect nav eyebrow: "Datos"/"Data" when showing only datasets.
+  const navLabel =
+    calculators.length === 0 && datasets.length > 0
+      ? locale === "en" ? "Data" : "Datos"
+      : locale === "en" ? "Tools" : "Herramientas";
 
   return (
     <div>
@@ -89,30 +100,36 @@ export function ToolsIndex({
             {indexSubtitle}
           </p>
 
-          {/* HUD instrument counters — flex-wrap so long locale labels don't overflow on 360px */}
+          {/* HUD instrument counters — only render counts for kinds actually present */}
           <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-mono text-2xl font-bold tabular-nums leading-none text-[var(--color-text)]">
-                {calculators.length}
+            {calculators.length > 0 && (
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-mono text-2xl font-bold tabular-nums leading-none text-[var(--color-text)]">
+                  {calculators.length}
+                </span>
+                <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                  {groupCalculators}
+                </span>
+              </div>
+            )}
+            {calculators.length > 0 && datasets.length > 0 && (
+              <span
+                aria-hidden="true"
+                className="font-mono text-[var(--color-text-muted)] opacity-30 select-none"
+              >
+                ·
               </span>
-              <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-                {groupCalculators}
-              </span>
-            </div>
-            <span
-              aria-hidden="true"
-              className="font-mono text-[var(--color-text-muted)] opacity-30 select-none"
-            >
-              ·
-            </span>
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-mono text-2xl font-bold tabular-nums leading-none text-[var(--color-text)]">
-                {datasets.length}
-              </span>
-              <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-                {groupDatasets}
-              </span>
-            </div>
+            )}
+            {datasets.length > 0 && (
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-mono text-2xl font-bold tabular-nums leading-none text-[var(--color-text)]">
+                  {datasets.length}
+                </span>
+                <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                  {groupDatasets}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -185,6 +202,36 @@ export function ToolsIndex({
               ))}
             </div>
           </section>
+        )}
+
+        {/* ── Cross-section CTA — Race Telemetry border link ────────────── */}
+        {crossCta && (
+          <div>
+            <Link
+              href={crossCta.href}
+              className="group flex items-center justify-between gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] px-5 py-4 transition-colors hover:bg-[var(--color-bg-card)]/80"
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className="h-[2px] w-6 flex-none rounded-full"
+                  style={{ background: "linear-gradient(90deg, #E11D48, #0891B2)" }}
+                />
+                <span className="font-mono text-[10.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)] transition-colors group-hover:text-[var(--color-text)]">
+                  {crossCta.label}
+                </span>
+              </div>
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4 flex-none text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
         )}
       </div>
     </div>

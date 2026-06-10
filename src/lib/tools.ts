@@ -2,7 +2,8 @@ import type { Locale } from "@/lib/i18n";
 import { SECTIONS, type SectionId } from "@/lib/constants";
 
 /**
- * Registry of interactive calculators (Pilar 4 del plan de interfaz v2).
+ * Registry of interactive calculators and curated datasets (Pilar 4 del plan
+ * de interfaz v2).
  *
  * Pure module (no fs/server-only imports) so it can be used from both server
  * routes and client components. Each tool maps to a self-contained calculator
@@ -14,10 +15,19 @@ export interface ToolInfo {
   /**
    * Discriminates interactive calculators from curated data tables. Absent =
    * 'calculator' (default behaviour); 'dataset' entries render a comparator
-   * table and surface a different CTA. All registry helpers are agnostic to it.
+   * table and surface a different CTA.
+   *
+   * Routing split (since 2026-06):
+   * - calculator → /herramientas/<slug> (ES) | /tools/<slug> (EN)
+   * - dataset    → /datos/<slug>        (ES) | /data/<slug>  (EN)
+   *
+   * Use `toolHref()` to build hrefs — never hardcode the base.
    */
   kind?: "calculator" | "dataset";
-  /** URL slug per locale (routes live under /herramientas y /tools). */
+  /**
+   * URL slug per locale. The base path depends on `kind` — use `toolHref()` to
+   * build the full href; do NOT assume /herramientas or /tools universally.
+   */
   slug: Record<Locale, string>;
   title: Record<Locale, string>;
   /** Short one-liner for cards. */
@@ -326,10 +336,37 @@ export function getToolById(id: string): ToolInfo | null {
   return TOOLS.find((t) => t.id === id) ?? null;
 }
 
-/** Locale-aware href for a tool (/herramientas/... or /tools/...). */
+/**
+ * Returns the locale-aware path for the tools index page of a given kind.
+ *
+ * | kind          | ES               | EN         |
+ * |---------------|------------------|------------|
+ * | "dataset"     | /datos           | /data      |
+ * | "calculator"  | /herramientas    | /tools     |
+ * | undefined     | /herramientas    | /tools     |
+ *
+ * Use this helper instead of hardcoding base paths in components and sitemaps.
+ */
+export function toolsIndexHref(
+  locale: Locale,
+  kind?: ToolInfo["kind"],
+): string {
+  if (kind === "dataset") {
+    return locale === "en" ? "/data" : "/datos";
+  }
+  return locale === "en" ? "/tools" : "/herramientas";
+}
+
+/**
+ * Locale-aware href for a tool page. Kind-aware since 2026-06:
+ * - calculator → /herramientas/<slug> (ES) | /tools/<slug> (EN)
+ * - dataset    → /datos/<slug>        (ES) | /data/<slug>  (EN)
+ *
+ * Signature unchanged; callers that stored the result will automatically
+ * receive the correct new path after this update.
+ */
 export function toolHref(tool: ToolInfo, locale: Locale): string {
-  const base = locale === "en" ? "tools" : "herramientas";
-  return `/${base}/${tool.slug[locale]}`;
+  return `${toolsIndexHref(locale, tool.kind)}/${tool.slug[locale]}`;
 }
 
 /** Section accent color for a tool. */

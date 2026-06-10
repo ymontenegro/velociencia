@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SECTION_IDS, SECTIONS_I18N } from "@/lib/constants";
 import { getAllArticles } from "@/lib/markdown";
-import { getAllTools } from "@/lib/tools";
+import { getAllTools, toolHref, toolsIndexHref } from "@/lib/tools";
 
 const ES_BASE = "https://velociencia.cl";
 const EN_BASE = "https://pedalsci.com";
@@ -82,11 +82,50 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Tools — one entry per ES URL and one per EN URL, each with hreflang alternates
+  // Tools index pages — two index pairs: calculators and datasets.
+  // /herramientas ↔ /tools  (calculators)
+  // /datos        ↔ /data   (datasets)
+  const calcEsIndex = `${ES_BASE}${toolsIndexHref("es", "calculator")}`;
+  const calcEnIndex = `${EN_BASE}${toolsIndexHref("en", "calculator")}`;
+  entries.push({
+    url: calcEsIndex,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: { languages: { es: calcEsIndex, en: calcEnIndex } },
+  });
+  entries.push({
+    url: calcEnIndex,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: { languages: { es: calcEsIndex, en: calcEnIndex } },
+  });
+
+  const dataEsIndex = `${ES_BASE}${toolsIndexHref("es", "dataset")}`;
+  const dataEnIndex = `${EN_BASE}${toolsIndexHref("en", "dataset")}`;
+  entries.push({
+    url: dataEsIndex,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: { languages: { es: dataEsIndex, en: dataEnIndex } },
+  });
+  entries.push({
+    url: dataEnIndex,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: { languages: { es: dataEsIndex, en: dataEnIndex } },
+  });
+
+  // Tools — one entry per ES URL and one per EN URL, each with hreflang alternates.
+  // Uses toolHref() so dataset URLs point to /datos|/data and calculators to
+  // /herramientas|/tools automatically — no hardcoded base paths here.
   const tools = getAllTools();
   for (const tool of tools) {
-    const esUrl = `${ES_BASE}/herramientas/${tool.slug.es}`;
-    const enUrl = `${EN_BASE}/tools/${tool.slug.en}`;
+    const esUrl = `${ES_BASE}${toolHref(tool, "es")}`;
+    const enUrl = `${EN_BASE}${toolHref(tool, "en")}`;
     // ES entry
     entries.push({
       url: esUrl,

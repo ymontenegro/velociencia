@@ -7,6 +7,7 @@ import { SECTIONS, SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
+import { getAllTools, toolHref, toolColor, toolsIndexHref } from "@/lib/tools";
 
 interface BottomNavProps {
   locale: Locale;
@@ -16,43 +17,56 @@ interface BottomNavProps {
 
 export function BottomNav({ locale, dict, onSearchOpen }: BottomNavProps) {
   const [isSectionsOpen, setIsSectionsOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
   const pathname = usePathname();
   const sections = SECTIONS_I18N[locale];
   const navRef = useRef<HTMLElement>(null);
 
-  const toolsHref = locale === "en" ? "/tools" : "/herramientas";
+  const tools = getAllTools();
+  const calculators = tools.filter((t) => !t.kind || t.kind === "calculator");
+  const datasets = tools.filter((t) => t.kind === "dataset");
+  const toolsHref = toolsIndexHref(locale, "calculator");
+  const dataHref = toolsIndexHref(locale, "dataset");
 
-  // ── Close sheet on navigation ────────────────────────────────────────
+  // ── Close both sheets on navigation ──────────────────────────────────
   useEffect(() => {
     // Baja prioridad: solo sincroniza UI tras el cambio de ruta.
-    startTransition(() => setIsSectionsOpen(false));
+    startTransition(() => {
+      setIsSectionsOpen(false);
+      setIsToolsOpen(false);
+    });
   }, [pathname]);
 
-  // ── Close sheet on Escape ────────────────────────────────────────────
+  // ── Close sheets on Escape ────────────────────────────────────────────
   useEffect(() => {
-    if (!isSectionsOpen) return;
+    if (!isSectionsOpen && !isToolsOpen) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsSectionsOpen(false);
+      if (e.key === "Escape") {
+        setIsSectionsOpen(false);
+        setIsToolsOpen(false);
+      }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [isSectionsOpen]);
+  }, [isSectionsOpen, isToolsOpen]);
 
-  // ── Close sheet on outside tap/click ────────────────────────────────
+  // ── Close sheets on outside tap/click ────────────────────────────────
   useEffect(() => {
-    if (!isSectionsOpen) return;
+    if (!isSectionsOpen && !isToolsOpen) return;
     const handler = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setIsSectionsOpen(false);
+        setIsToolsOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [isSectionsOpen]);
+  }, [isSectionsOpen, isToolsOpen]);
 
   // ── Active-state helpers ─────────────────────────────────────────────
   const isHomeActive = pathname === "/";
-  const isToolsActive = pathname.startsWith(toolsHref);
+  const isToolsActive =
+    pathname.startsWith(toolsHref) || pathname.startsWith(dataHref);
   const activeSectionId = SECTION_IDS.find((id) =>
     pathname.startsWith(`/${sections[id].slug}`),
   );
@@ -218,13 +232,119 @@ export function BottomNav({ locale, dict, onSearchOpen }: BottomNavProps) {
           </span>
         </button>
 
-        {/* ── Tools ─────────────────────────────────────────────────── */}
-        <Link
-          href={toolsHref}
-          aria-current={isToolsActive ? "page" : undefined}
+        {/* ── Tools sheet ────────────────────────────────────────────
+            Floats above the bar, same pattern as Sections sheet.   */}
+        {isToolsOpen && (
+          <div
+            className="bottom-sheet-enter tool-scope tool-corners absolute bottom-full left-3 right-3 mb-2 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl"
+            role="navigation"
+            aria-label={dict.tools.nav}
+          >
+            {/* Faint telemetry grid */}
+            <div
+              className="tool-grid-bg pointer-events-none absolute inset-0 opacity-30"
+              style={{
+                maskImage: "linear-gradient(to bottom, black, transparent 80%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black, transparent 80%)",
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Header strip */}
+            <div className="relative border-b border-[var(--color-border)] px-4 py-2.5">
+              <span className="font-mono text-[9px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                {dict.tools.nav}
+              </span>
+            </div>
+
+            {/* CALCULADORAS group */}
+            <div className="relative px-4 pt-3 pb-1">
+              <p className="mb-2 font-mono text-[8.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                {dict.header.toolsGroupCalc}
+              </p>
+              {calculators.map((tool) => (
+                <Link
+                  key={tool.id}
+                  href={toolHref(tool, locale)}
+                  className={cn(
+                    "mb-1 flex items-center gap-2 py-2 text-xs font-medium transition-colors duration-150",
+                    pathname === toolHref(tool, locale)
+                      ? "text-[var(--color-text)]"
+                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
+                  )}
+                >
+                  <span
+                    className="section-dot flex-shrink-0"
+                    style={{ backgroundColor: toolColor(tool) }}
+                    aria-hidden="true"
+                  />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.12em]">
+                    {tool.title[locale]}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            {/* DATOS group */}
+            <div className="relative border-t border-[var(--color-border)] px-4 pt-3 pb-1">
+              <p className="mb-2 font-mono text-[8.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                {dict.header.toolsGroupData}
+              </p>
+              {datasets.map((tool) => (
+                <Link
+                  key={tool.id}
+                  href={toolHref(tool, locale)}
+                  className={cn(
+                    "mb-1 flex items-center gap-2 py-2 text-xs font-medium transition-colors duration-150",
+                    pathname === toolHref(tool, locale)
+                      ? "text-[var(--color-text)]"
+                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
+                  )}
+                >
+                  <span
+                    className="section-dot flex-shrink-0"
+                    style={{ backgroundColor: toolColor(tool) }}
+                    aria-hidden="true"
+                  />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.12em]">
+                    {tool.title[locale]}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            {/* Footer — index links */}
+            <div className="relative border-t border-[var(--color-border)] px-4 py-2.5 flex gap-4">
+              <Link
+                href={toolsHref}
+                className="group flex items-center gap-1 font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+              >
+                {dict.header.toolsViewAll}
+                <svg className="h-2.5 w-2.5 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+              <Link
+                href={dataHref}
+                className="group flex items-center gap-1 font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+              >
+                {dict.header.dataViewAll}
+                <svg className="h-2.5 w-2.5 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* ── Tools tab — opens the tools sheet ─────────────────────── */}
+        <button
+          type="button"
+          aria-expanded={isToolsOpen}
+          onClick={() => setIsToolsOpen((v) => !v)}
           className={cn(
             "relative flex flex-1 flex-col items-center justify-center gap-1 py-2 transition-colors duration-200",
-            isToolsActive
+            isToolsActive || isToolsOpen
               ? "text-[var(--color-text)]"
               : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
           )}
@@ -252,7 +372,7 @@ export function BottomNav({ locale, dict, onSearchOpen }: BottomNavProps) {
           <span className="font-mono text-[9px] uppercase tracking-[0.12em]">
             {dict.tools.nav}
           </span>
-        </Link>
+        </button>
 
         {/* ── Search ────────────────────────────────────────────────── */}
         <button

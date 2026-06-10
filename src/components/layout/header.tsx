@@ -8,13 +8,15 @@ import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useLocale, useDictionary } from "@/components/locale-provider";
 import { CommandPalette } from "@/components/search/command-palette";
-import { getAllTools, toolHref, toolColor } from "@/lib/tools";
+import { getAllTools, toolHref, toolColor, toolsIndexHref } from "@/lib/tools";
 import { BottomNav } from "@/components/layout/bottom-nav";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isDataOpen, setIsDataOpen] = useState(false);
   const [isMobileToolsOpen, setIsMobileToolsOpen] = useState(false);
+  const [isMobileDataOpen, setIsMobileDataOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,11 +29,14 @@ export function Header() {
   const calculators = tools.filter((t) => !t.kind || t.kind === "calculator");
   const datasets = tools.filter((t) => t.kind === "dataset");
 
-  const toolsHref = locale === "en" ? "/tools" : "/herramientas";
+  const toolsHref = toolsIndexHref(locale, "calculator");
+  const dataHref = toolsIndexHref(locale, "dataset");
   const aboutHref = locale === "en" ? "/about" : "/sobre";
 
   const toolsMenuRef = useRef<HTMLDivElement>(null);
   const toolsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dataMenuRef = useRef<HTMLDivElement>(null);
+  const dataCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ── Scroll tracking ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -60,6 +65,7 @@ export function Header() {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setIsToolsOpen(false);
+        setIsDataOpen(false);
         setIsMenuOpen(false);
         setSearchOpen(false);
       }
@@ -86,10 +92,25 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Cleanup hover timer on unmount
+  // ── Close data menu on outside click ────────────────────────────────────
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (
+        dataMenuRef.current &&
+        !dataMenuRef.current.contains(e.target as Node)
+      ) {
+        setIsDataOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  // Cleanup hover timers on unmount
   useEffect(() => {
     return () => {
       if (toolsCloseTimer.current) clearTimeout(toolsCloseTimer.current);
+      if (dataCloseTimer.current) clearTimeout(dataCloseTimer.current);
     };
   }, []);
 
@@ -102,11 +123,22 @@ export function Header() {
     toolsCloseTimer.current = setTimeout(() => setIsToolsOpen(false), 150);
   };
 
+  const openDataMenu = () => {
+    if (dataCloseTimer.current) clearTimeout(dataCloseTimer.current);
+    setIsDataOpen(true);
+  };
+
+  const scheduleCloseDataMenu = () => {
+    dataCloseTimer.current = setTimeout(() => setIsDataOpen(false), 150);
+  };
+
   // ── Helpers ──────────────────────────────────────────────────────────────
   const closeAll = () => {
     setIsMenuOpen(false);
     setIsToolsOpen(false);
+    setIsDataOpen(false);
     setIsMobileToolsOpen(false);
+    setIsMobileDataOpen(false);
   };
 
   return (
@@ -249,17 +281,17 @@ export function Header() {
                   </svg>
                 </button>
 
-                {/* ── Mega-menu panel ─────────────────────────────────── */}
+                {/* ── Mega-menu panel (calculators only) ──────────────── */}
                 {isToolsOpen && (
                   <div
                     id="tools-megamenu"
                     role="navigation"
                     aria-label={dict.tools.nav}
-                    className="menu-enter tool-scope tool-corners absolute right-0 top-full z-50 mt-3 w-[560px] overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl"
+                    className="menu-enter tool-scope tool-corners absolute right-0 top-full z-50 mt-3 w-[300px] overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl"
                     onMouseEnter={openToolsMenu}
                     onMouseLeave={scheduleCloseToolsMenu}
                   >
-                    {/* Faint telemetry grid in the background */}
+                    {/* Faint telemetry grid */}
                     <div
                       className="tool-grid-bg pointer-events-none absolute inset-0 opacity-40"
                       style={{
@@ -272,78 +304,40 @@ export function Header() {
                     {/* Header strip */}
                     <div className="relative border-b border-[var(--color-border)] px-5 py-3">
                       <span className="font-mono text-[9px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
-                        {dict.tools.nav} — {dict.tools.indexSubtitle}
+                        {dict.header.toolsGroupCalc}
                       </span>
                     </div>
 
-                    {/* Two-column grid */}
-                    <div className="relative grid grid-cols-2 gap-0 divide-x divide-[var(--color-border)]">
-                      {/* Calculadoras column */}
-                      <div className="p-4">
-                        <p className="mb-3 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                          {dict.header.toolsGroupCalc}
-                        </p>
-                        <ul className="space-y-1">
-                          {calculators.map((tool) => (
-                            <li key={tool.id}>
-                              <Link
-                                href={toolHref(tool, locale)}
-                                onClick={closeAll}
-                                className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors duration-150 hover:bg-[var(--color-border-light)]"
-                              >
-                                <span
-                                  className="section-dot mt-1.5 flex-shrink-0 transition-transform group-hover:scale-125"
-                                  style={{ backgroundColor: toolColor(tool) }}
-                                  aria-hidden="true"
-                                />
-                                <div className="min-w-0">
-                                  <span className="block text-[11px] font-semibold leading-snug text-[var(--color-text)]">
-                                    {tool.title[locale]}
-                                  </span>
-                                  <span className="block truncate text-[10px] leading-snug text-[var(--color-text-muted)]">
-                                    {tool.tagline[locale]}
-                                  </span>
-                                </div>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Datos column */}
-                      <div className="p-4">
-                        <p className="mb-3 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                          {dict.header.toolsGroupData}
-                        </p>
-                        <ul className="space-y-1">
-                          {datasets.map((tool) => (
-                            <li key={tool.id}>
-                              <Link
-                                href={toolHref(tool, locale)}
-                                onClick={closeAll}
-                                className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors duration-150 hover:bg-[var(--color-border-light)]"
-                              >
-                                <span
-                                  className="section-dot mt-1.5 flex-shrink-0 transition-transform group-hover:scale-125"
-                                  style={{ backgroundColor: toolColor(tool) }}
-                                  aria-hidden="true"
-                                />
-                                <div className="min-w-0">
-                                  <span className="block text-[11px] font-semibold leading-snug text-[var(--color-text)]">
-                                    {tool.title[locale]}
-                                  </span>
-                                  <span className="block truncate text-[10px] leading-snug text-[var(--color-text-muted)]">
-                                    {tool.tagline[locale]}
-                                  </span>
-                                </div>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    {/* Calculators list */}
+                    <div className="relative p-4">
+                      <ul className="space-y-1">
+                        {calculators.map((tool) => (
+                          <li key={tool.id}>
+                            <Link
+                              href={toolHref(tool, locale)}
+                              onClick={closeAll}
+                              className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors duration-150 hover:bg-[var(--color-border-light)]"
+                            >
+                              <span
+                                className="section-dot mt-1.5 flex-shrink-0 transition-transform group-hover:scale-125"
+                                style={{ backgroundColor: toolColor(tool) }}
+                                aria-hidden="true"
+                              />
+                              <div className="min-w-0">
+                                <span className="block text-[11px] font-semibold leading-snug text-[var(--color-text)]">
+                                  {tool.title[locale]}
+                                </span>
+                                <span className="block truncate text-[10px] leading-snug text-[var(--color-text-muted)]">
+                                  {tool.tagline[locale]}
+                                </span>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {/* Footer link — view all */}
+                    {/* Footer — view all calculators */}
                     <div className="relative border-t border-[var(--color-border)] px-5 py-3">
                       <Link
                         href={toolsHref}
@@ -351,6 +345,124 @@ export function Header() {
                         className="group flex items-center gap-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
                       >
                         {dict.header.toolsViewAll}
+                        <svg
+                          className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          aria-hidden="true"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* ── Datos mega-menu trigger ─────────────────────────────── */}
+              <div
+                ref={dataMenuRef}
+                className="relative"
+                onMouseEnter={openDataMenu}
+                onMouseLeave={scheduleCloseDataMenu}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isDataOpen}
+                  aria-haspopup="true"
+                  aria-controls="data-megamenu"
+                  aria-label={dict.header.dataMenuLabel}
+                  onClick={() => setIsDataOpen((v) => !v)}
+                  className={cn(
+                    "nav-link-animated flex items-center gap-1 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ease-out hover:text-[var(--color-text)]",
+                    isDataOpen || pathname.startsWith(dataHref)
+                      ? "font-bold text-[var(--color-text)]"
+                      : "text-[var(--color-text-muted)]",
+                  )}
+                >
+                  {dict.header.navData}
+                  {/* Chevron */}
+                  <svg
+                    className={cn(
+                      "h-3 w-3 transition-transform duration-200",
+                      isDataOpen && "rotate-180",
+                    )}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* ── Data mega-menu panel ─────────────────────────────── */}
+                {isDataOpen && (
+                  <div
+                    id="data-megamenu"
+                    role="navigation"
+                    aria-label={dict.header.navData}
+                    className="menu-enter tool-scope tool-corners absolute right-0 top-full z-50 mt-3 w-[320px] overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl"
+                    onMouseEnter={openDataMenu}
+                    onMouseLeave={scheduleCloseDataMenu}
+                  >
+                    {/* Faint telemetry grid */}
+                    <div
+                      className="tool-grid-bg pointer-events-none absolute inset-0 opacity-40"
+                      style={{
+                        maskImage: "linear-gradient(to bottom, black, transparent 60%)",
+                        WebkitMaskImage: "linear-gradient(to bottom, black, transparent 60%)",
+                      }}
+                      aria-hidden="true"
+                    />
+
+                    {/* Header strip */}
+                    <div className="relative border-b border-[var(--color-border)] px-5 py-3">
+                      <span className="font-mono text-[9px] font-medium uppercase tracking-[0.25em] text-[var(--color-text-muted)]">
+                        {dict.header.toolsGroupData}
+                      </span>
+                    </div>
+
+                    {/* Datasets list */}
+                    <div className="relative p-4">
+                      <ul className="space-y-1">
+                        {datasets.map((tool) => (
+                          <li key={tool.id}>
+                            <Link
+                              href={toolHref(tool, locale)}
+                              onClick={closeAll}
+                              className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors duration-150 hover:bg-[var(--color-border-light)]"
+                            >
+                              <span
+                                className="section-dot mt-1.5 flex-shrink-0 transition-transform group-hover:scale-125"
+                                style={{ backgroundColor: toolColor(tool) }}
+                                aria-hidden="true"
+                              />
+                              <div className="min-w-0">
+                                <span className="block text-[11px] font-semibold leading-snug text-[var(--color-text)]">
+                                  {tool.title[locale]}
+                                </span>
+                                <span className="block truncate text-[10px] leading-snug text-[var(--color-text-muted)]">
+                                  {tool.tagline[locale]}
+                                </span>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Footer — view all data */}
+                    <div className="relative border-t border-[var(--color-border)] px-5 py-3">
+                      <Link
+                        href={dataHref}
+                        onClick={closeAll}
+                        className="group flex items-center gap-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                      >
+                        {dict.header.dataViewAll}
                         <svg
                           className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
                           fill="none"
@@ -650,13 +762,9 @@ export function Header() {
                 </svg>
               </button>
 
-              {/* Expanded tools list */}
+              {/* Expanded tools list — calculators only */}
               {isMobileToolsOpen && (
                 <div className="ml-7 mt-1 border-l border-[var(--color-border)] pl-4">
-                  {/* Calculadoras group */}
-                  <p className="mb-2 font-mono text-[8.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                    {dict.header.toolsGroupCalc}
-                  </p>
                   {calculators.map((tool) => (
                     <Link
                       key={tool.id}
@@ -672,11 +780,63 @@ export function Header() {
                       {tool.title[locale]}
                     </Link>
                   ))}
+                  <Link
+                    href={toolsHref}
+                    onClick={closeAll}
+                    className="mt-3 flex items-center gap-1.5 py-2 font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+                  >
+                    {dict.header.toolsViewAll}
+                    <svg
+                      className="h-3 w-3"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              )}
+            </div>
 
-                  {/* Datos group */}
-                  <p className="mb-2 mt-3 font-mono text-[8.5px] font-medium uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                    {dict.header.toolsGroupData}
-                  </p>
+            {/* Datos expandable section */}
+            <div className="mb-1">
+              <button
+                type="button"
+                onClick={() => setIsMobileDataOpen((v) => !v)}
+                aria-expanded={isMobileDataOpen}
+                className={cn(
+                  "flex w-full items-center gap-3 border-l-2 border-transparent py-3.5 pl-4 text-sm font-medium tracking-wider uppercase transition-colors",
+                  pathname.startsWith(dataHref)
+                    ? "text-[var(--color-text)]"
+                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
+                )}
+              >
+                <span
+                  className="section-dot flex-shrink-0 bg-[var(--color-text-muted)]"
+                  aria-hidden="true"
+                />
+                {dict.header.navData}
+                <svg
+                  className={cn(
+                    "ml-auto h-3.5 w-3.5 transition-transform duration-200",
+                    isMobileDataOpen && "rotate-180",
+                  )}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Expanded data list */}
+              {isMobileDataOpen && (
+                <div className="ml-7 mt-1 border-l border-[var(--color-border)] pl-4">
                   {datasets.map((tool) => (
                     <Link
                       key={tool.id}
@@ -692,14 +852,12 @@ export function Header() {
                       {tool.title[locale]}
                     </Link>
                   ))}
-
-                  {/* View all link */}
                   <Link
-                    href={toolsHref}
+                    href={dataHref}
                     onClick={closeAll}
                     className="mt-3 flex items-center gap-1.5 py-2 font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
                   >
-                    {dict.header.toolsViewAll}
+                    {dict.header.dataViewAll}
                     <svg
                       className="h-3 w-3"
                       fill="none"

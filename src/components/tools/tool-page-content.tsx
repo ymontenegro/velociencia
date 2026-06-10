@@ -16,7 +16,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getLocale, getSiteUrl } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { getToolBySlug, toolColor, toolHref } from "@/lib/tools";
+import { getToolBySlug, toolColor, toolHref, toolsIndexHref } from "@/lib/tools";
 import { SECTIONS, SECTIONS_I18N } from "@/lib/constants";
 import { getArticlesByTag, tagToSlug } from "@/lib/tags";
 import { CalculatorRenderer } from "@/components/tools/calculator-renderer";
@@ -42,9 +42,9 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
   const canonical = `${siteUrl}${toolHref(tool, locale)}`;
 
   const relatedArticles = getArticlesByTag(tagToSlug(tool.relatedTag), locale).slice(0, 3);
-  const indexHref = locale === "en" ? "/tools" : "/herramientas";
-
   const isDataset = tool.kind === "dataset";
+  // Kind-aware: datasets index at /datos|/data, calculators at /herramientas|/tools.
+  const indexHref = toolsIndexHref(locale, tool.kind);
 
   // Eyebrow type label: "Calculator" / "Calculadora" or "Explorer" / "Explorador"
   const toolTypeLabel = isDataset
@@ -153,7 +153,7 @@ export async function ToolPageContent({ toolSlug }: ToolPageContentProps) {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
-                {dict.tools.backToTools}
+                {isDataset ? dict.tools.backToData : dict.tools.backToTools}
               </Link>
 
               {/* Mono eyebrow: section · type */}

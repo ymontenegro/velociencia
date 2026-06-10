@@ -16,45 +16,65 @@ const securityHeaders = [
   },
 ];
 
-// Alias previsibles de las 9 tools: variantes que un usuario puede adivinar
-// a partir del título mostrado, en ambas rutas /tools (EN) y /herramientas (ES).
+// Alias previsibles de las tools: variantes que un usuario puede adivinar
+// a partir del título mostrado. Calculator aliases apuntan a /herramientas|/tools;
+// dataset aliases apuntan ya al destino final /datos|/data (sin doble salto).
 // Los paths ya separan los locales, así que no se necesita condición de host.
 const TOOL_ALIASES: Array<[from: string, to: string]> = [
+  // ── Calculadoras (/herramientas | /tools) ───────────────────────────────
   // power-zones
-  ["/tools/power-zones-calculator",              "/tools/power-zones"],
-  ["/herramientas/calculadora-zonas-de-potencia","/herramientas/zonas-de-potencia"],
-  ["/herramientas/zonas-potencia",               "/herramientas/zonas-de-potencia"],
+  ["/tools/power-zones-calculator",                    "/tools/power-zones"],
+  ["/herramientas/calculadora-zonas-de-potencia",      "/herramientas/zonas-de-potencia"],
+  ["/herramientas/zonas-potencia",                     "/herramientas/zonas-de-potencia"],
   // training-load
-  ["/tools/training-load-calculator",              "/tools/training-load"],
-  ["/herramientas/calculadora-carga-de-entrenamiento","/herramientas/carga-de-entrenamiento"],
+  ["/tools/training-load-calculator",                  "/tools/training-load"],
+  ["/herramientas/calculadora-carga-de-entrenamiento", "/herramientas/carga-de-entrenamiento"],
   // carbohydrate-intake
-  ["/tools/carb-intake",                          "/tools/carbohydrate-intake"],
-  ["/tools/carbohydrate-intake-calculator",       "/tools/carbohydrate-intake"],
-  ["/herramientas/calculadora-carbohidratos",     "/herramientas/ingesta-de-carbohidratos"],
-  ["/herramientas/carbohidratos",                 "/herramientas/ingesta-de-carbohidratos"],
+  ["/tools/carb-intake",                               "/tools/carbohydrate-intake"],
+  ["/tools/carbohydrate-intake-calculator",            "/tools/carbohydrate-intake"],
+  ["/herramientas/calculadora-carbohidratos",          "/herramientas/ingesta-de-carbohidratos"],
+  ["/herramientas/carbohidratos",                      "/herramientas/ingesta-de-carbohidratos"],
   // power-to-weight
-  ["/tools/power-to-weight-calculator",           "/tools/power-to-weight"],
-  ["/tools/watts-per-kg",                         "/tools/power-to-weight"],
-  ["/herramientas/potencia-peso",                 "/herramientas/relacion-potencia-peso"],
+  ["/tools/power-to-weight-calculator",                "/tools/power-to-weight"],
+  ["/tools/watts-per-kg",                              "/tools/power-to-weight"],
+  ["/herramientas/potencia-peso",                      "/herramientas/relacion-potencia-peso"],
   // vo2max-estimator
-  ["/tools/vo2max",                               "/tools/vo2max-estimator"],
-  ["/tools/vo2max-calculator",                    "/tools/vo2max-estimator"],
-  ["/herramientas/vo2max",                        "/herramientas/estimador-vo2max"],
+  ["/tools/vo2max",                                    "/tools/vo2max-estimator"],
+  ["/tools/vo2max-calculator",                         "/tools/vo2max-estimator"],
+  ["/herramientas/vo2max",                             "/herramientas/estimador-vo2max"],
+
+  // ── Datasets — apuntan directo a /datos|/data (sin doble salto) ─────────
   // gel-comparator
-  ["/tools/energy-gel-comparator",               "/tools/gel-comparator"],
-  ["/herramientas/geles",                         "/herramientas/comparador-geles"],
+  ["/tools/energy-gel-comparator",                     "/data/gel-comparator"],
+  ["/herramientas/geles",                              "/datos/comparador-geles"],
   // supplement-evidence
-  ["/tools/evidence-explorer",                   "/tools/supplement-evidence"],
-  ["/tools/supplement-evidence-explorer",        "/tools/supplement-evidence"],
-  ["/herramientas/suplementos",                  "/herramientas/evidencia-suplementos"],
+  ["/tools/evidence-explorer",                         "/data/supplement-evidence"],
+  ["/tools/supplement-evidence-explorer",              "/data/supplement-evidence"],
+  ["/herramientas/suplementos",                        "/datos/evidencia-suplementos"],
   // climbs
-  ["/tools/climbs-database",                     "/tools/climbs"],
-  ["/herramientas/puertos-de-montana",           "/herramientas/puertos"],
-  ["/herramientas/base-de-datos-puertos",        "/herramientas/puertos"],
+  ["/tools/climbs-database",                           "/data/climbs"],
+  ["/herramientas/puertos-de-montana",                 "/datos/puertos"],
+  ["/herramientas/base-de-datos-puertos",              "/datos/puertos"],
   // calendar
-  ["/tools/race-calendar",                       "/tools/calendar"],
-  ["/tools/uci-calendar",                        "/tools/calendar"],
-  ["/herramientas/calendario-uci",               "/herramientas/calendario"],
+  ["/tools/race-calendar",                             "/data/calendar"],
+  ["/tools/uci-calendar",                              "/data/calendar"],
+  ["/herramientas/calendario-uci",                     "/datos/calendario"],
+];
+
+// Movimiento 308: los 4 datasets se mueven de /herramientas|/tools al nuevo
+// dominio /datos (ES) | /data (EN). URLs canónicas antiguas que pueden estar
+// indexadas en Google — redirigimos con 308 para no perder el equity.
+const DATASET_MOVES: Array<[from: string, to: string]> = [
+  // ES: /herramientas → /datos
+  ["/herramientas/comparador-geles",       "/datos/comparador-geles"],
+  ["/herramientas/evidencia-suplementos",  "/datos/evidencia-suplementos"],
+  ["/herramientas/puertos",                "/datos/puertos"],
+  ["/herramientas/calendario",             "/datos/calendario"],
+  // EN: /tools → /data
+  ["/tools/gel-comparator",                "/data/gel-comparator"],
+  ["/tools/supplement-evidence",           "/data/supplement-evidence"],
+  ["/tools/climbs",                        "/data/climbs"],
+  ["/tools/calendar",                      "/data/calendar"],
 ];
 
 // 11 artículos EN publicados originalmente con slug en español y renombrados
@@ -85,6 +105,14 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
+    // Dataset movement redirects (308) must come BEFORE alias redirects so that
+    // a request to e.g. /herramientas/puertos hits the movement rule first and
+    // lands on /datos/puertos without a second hop.
+    const datasetMoveRedirects = DATASET_MOVES.map(([from, to]) => ({
+      source: from,
+      destination: to,
+      permanent: true,
+    }));
     const toolRedirects = TOOL_ALIASES.map(([from, to]) => ({
       source: from,
       destination: to,
@@ -96,7 +124,7 @@ const nextConfig: NextConfig = {
       destination: `/${section}/${to}`,
       permanent: true,
     }));
-    return [...toolRedirects, ...articleRedirects];
+    return [...datasetMoveRedirects, ...toolRedirects, ...articleRedirects];
   },
 };
 

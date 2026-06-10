@@ -12,7 +12,7 @@
 
 import type { Locale } from "@/lib/i18n";
 import { getSiteUrl, getOtherLocale } from "@/lib/i18n";
-import { getToolBySlug, toolHref } from "@/lib/tools";
+import { getToolBySlug, toolHref, toolsIndexHref } from "@/lib/tools";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { IMAGES } from "@/lib/images";
 
@@ -85,5 +85,43 @@ export async function buildToolsIndexMetadata(locale: Locale) {
   return {
     title: dict.tools.indexTitle,
     description: dict.tools.indexSubtitle,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Data index page metadata  (/datos ES  /data EN)
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the full Next.js metadata object for the /datos (ES) and /data (EN)
+ * index pages, including hreflang pair and canonical URL.
+ */
+export async function buildDataIndexMetadata(locale: Locale) {
+  const dict = await getDictionary(locale);
+  const siteUrl = getSiteUrl(locale);
+  const otherLocale = getOtherLocale(locale);
+  const otherSiteUrl = getSiteUrl(otherLocale);
+
+  const canonical = `${siteUrl}${toolsIndexHref(locale, "dataset")}`;
+  const esUrl =
+    locale === "es"
+      ? canonical
+      : `${otherSiteUrl}${toolsIndexHref("es", "dataset")}`;
+  const enUrl =
+    locale === "en"
+      ? canonical
+      : `${otherSiteUrl}${toolsIndexHref("en", "dataset")}`;
+
+  return {
+    title: dict.tools.dataIndexTitle,
+    description: dict.tools.dataIndexSubtitle,
+    alternates: {
+      canonical,
+      languages: {
+        es: esUrl,
+        en: enUrl,
+        "x-default": esUrl,
+      },
+    },
   };
 }

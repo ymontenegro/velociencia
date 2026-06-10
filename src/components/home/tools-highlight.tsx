@@ -25,7 +25,8 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
   const allTools = getAllTools();
   if (allTools.length === 0) return null;
 
-  const allToolsHref = locale === "en" ? "/tools" : "/herramientas";
+  const calcHref = locale === "en" ? "/tools" : "/herramientas";
+  const dataHref = locale === "en" ? "/data" : "/datos";
 
   // Mobile grid: 4 curated tools — zonas de potencia, carbohidratos, puertos, potencia-peso
   const mobileFeaturedIds = [
@@ -144,27 +145,49 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
           })}
         </div>
 
-        {/* Full-width HUD CTA */}
-        <Link
-          href={allToolsHref}
-          className="group mt-3 flex w-full items-center justify-center gap-2 rounded border border-[var(--color-border)] bg-[var(--color-bg)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text)] transition-colors hover:border-[var(--color-text-secondary)] hover:text-[var(--color-text-secondary)]"
-        >
-          {dict.home.toolsViewAll}
-          <svg
-            aria-hidden="true"
-            className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
+        {/* Split HUD CTA — Calculadoras (primary) + Datos (secondary) */}
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          <Link
+            href={calcHref}
+            className="group flex items-center justify-center gap-1.5 rounded border border-[var(--color-border)] bg-[var(--color-bg)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text)] transition-colors hover:border-[var(--color-text-secondary)] hover:text-[var(--color-text-secondary)]"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-        </Link>
+            {dict.home.toolsViewCalc}
+            <svg
+              aria-hidden="true"
+              className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </Link>
+          <Link
+            href={dataHref}
+            className="group flex items-center justify-center gap-1.5 rounded border border-[var(--color-border)] bg-[var(--color-bg)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+          >
+            {dict.home.toolsViewData}
+            <svg
+              aria-hidden="true"
+              className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </Link>
+        </div>
       </div>
 
       {/* ── DESKTOP (md+) — validated, DO NOT modify ───────────────────── */}
@@ -218,27 +241,50 @@ export function ToolsHighlight({ locale, dict }: ToolsHighlightProps) {
               })}
             </div>
 
-            {/* CTA — "Ver todas las herramientas →" */}
-            <Link
-              href={allToolsHref}
-              className="group ml-2 inline-flex flex-none items-center gap-1.5 whitespace-nowrap font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text)] transition-colors hover:text-[var(--color-text-secondary)]"
-            >
-              {dict.home.toolsViewAll}
-              <svg
-                aria-hidden="true"
-                className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
+            {/* CTAs — Calculadoras (primary) + Datos (secondary) */}
+            <div className="ml-2 flex flex-none items-center gap-3">
+              <Link
+                href={calcHref}
+                className="group inline-flex flex-none items-center gap-1.5 whitespace-nowrap font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text)] transition-colors hover:text-[var(--color-text-secondary)]"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
+                {dict.home.toolsViewCalc}
+                <svg
+                  aria-hidden="true"
+                  className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </Link>
+              <span aria-hidden="true" className="h-3 w-px flex-none bg-[var(--color-border)]" />
+              <Link
+                href={dataHref}
+                className="group inline-flex flex-none items-center gap-1.5 whitespace-nowrap font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text)]"
+              >
+                {dict.home.toolsViewData}
+                <svg
+                  aria-hidden="true"
+                  className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
