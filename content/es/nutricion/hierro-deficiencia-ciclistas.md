@@ -122,7 +122,7 @@ La vitamina C potencia la absorción al reducir el hierro férrico (Fe³⁺) a f
 
 El momento del día también importa. Peeling et al. (2017) recomendaron tomar el hierro por la mañana antes del entrenamiento, no después, para evitar la ventana de hepcidina elevada post-ejercicio. Si el ciclista entrena por la mañana, la mejor opción es tomarlo al despertar con al menos 30 minutos de margen antes de comer y entrenar.
 
-![Suplementos de hierro — la suplementación oral cada 48 horas mejora la absorción fraccionada hasta un 40%](https://images.unsplash.com/photo-1505576399279-0d309272b890?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Suplementos de hierro — la suplementación oral cada 48 horas mejora la absorción fraccionada hasta un 40%](https://images.unsplash.com/photo-1549477881-1a8180c72ac8?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Monitorización continua
 

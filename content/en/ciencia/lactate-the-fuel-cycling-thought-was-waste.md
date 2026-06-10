@@ -53,7 +53,7 @@ George A. Brooks, an exercise physiologist at the University of California, Berk
 
 The hypothesis proposed something that contradicted the canonical physiology of the time: type II glycolytic muscle fibers, which produce lactate at high rates during intense effort, do not release it as waste but as an energy substrate that other cells can take up and oxidize. Type I oxidative fibers in the same muscle, fibers in less active muscles at that moment, the heart, the brain, the liver, and the kidneys are all lactate consumers. The molecule does not accumulate because the body is failing but because the rate of production temporarily exceeds the uptake capacity of receiving tissues. That conceptual distinction transformed our understanding of exercise metabolism.
 
-![Cyclist pedaling uphill with visible effort](https://images.unsplash.com/photo-1605235186583-d1a89a9900b0?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Cyclist pedaling uphill with visible effort](https://images.unsplash.com/photo-1542983013-727fa3280ab0?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## How lactate travels between cells
 

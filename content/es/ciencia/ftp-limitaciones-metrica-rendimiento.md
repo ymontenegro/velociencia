@@ -67,7 +67,7 @@ La potencia crítica (CP) se presenta como una métrica con una base teórica m�
 
 La ventaja de la CP sobre el FTP radica en que no depende de un único protocolo ni de un factor de corrección fijo. Al derivarse de la relación potencia-duración, la CP se ajusta al perfil fisiológico individual del ciclista. Además, el modelo proporciona la W' (W prima), que cuantifica la capacidad de trabajo por encima de la CP. Un ciclista con una CP de 280 vatios y una W' de 20 kJ tiene un perfil muy distinto al de uno con la misma CP pero una W' de 30 kJ: el segundo puede tolerar esfuerzos por encima del umbral durante más tiempo antes de agotarse.
 
-![Ciclista en contrarreloj con casco aerodinámico y posición agresiva](https://images.unsplash.com/photo-1505705694340-019e2f4e6160?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Ciclista en contrarreloj con casco aerodinámico y posición agresiva](https://images.unsplash.com/photo-1749174899667-4553e4f248e2?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Cuándo el FTP sigue siendo útil
 

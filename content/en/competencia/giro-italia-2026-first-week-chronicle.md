@@ -31,7 +31,7 @@ sources:
     url: "https://www.giroditalia.it/en/news/thomas-silva-the-uruguayan-talent-determined-to-make-his-mark/"
     type: web_search
 excerpt: "Paul Magnier won stages 1 and 3 of the Giro 2026 in Bulgaria, becoming the first Frenchman to dominate the opening three days of the race since Laurent Fignon. A mass crash in the rain eliminated three UAE Team Emirates leaders in 48 hours. Guillermo Thomas Silva wears the maglia rosa as the first Uruguayan ever to lead the Corsa Rosa."
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg/1200px-CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg"
+coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg/1280px-CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg"
 translationOf: "giro-italia-2026-primera-semana-cronica"
 ---
 
@@ -47,7 +47,7 @@ The second stage changed the race entirely. The 221 kilometres to Veliko Tarnovo
 
 As the peloton reorganised after the neutralisation, Jonas Vingegaard chose the ascent to the Lyaskovets Monastery — the final obstacle before the finish — for the first serious GC move of the 2026 race. The Visma-Lease a Bike leader attacked with 12 kilometres to go and only Giulio Pellizzari (Red Bull-BORA-Hansgrohe) and Lennert Van Eetvelt (Lotto-Intermarché) could follow. The three built roughly 20 seconds on the chasing group. In the final kilometre, however, all three hesitated: none wanted to open the sprint and hand the stage to the other two. The delay was fatal. Jan Christen (UAE) bridged across from behind, the chasers closed the gap, and Guillermo Thomas Silva threaded through with the timing of a seasoned sprinter to take the win. He was the first Uruguayan rider to win a stage of the Giro d'Italia in 109 editions of the race. The maglia rosa passed from Magnier — dropped on the final climb — to Thomas Silva, who also pulled on the white jersey for best young rider.
 
-![Rolling hills of central Bulgaria, stage country for the Giro 2026 Grande Partenza](https://images.unsplash.com/photo-1559827291-72f76dc2da43?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Rolling hills of central Bulgaria, stage country for the Giro 2026 Grande Partenza](https://images.unsplash.com/photo-1745299039187-46e5364d6d9b?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Stage 3 | Plovdiv → Sofia: Magnier Does It Again
 

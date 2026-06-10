@@ -5,7 +5,7 @@ section: "competencia"
 date: "2026-05-30"
 author: "Diego Araya"
 tags: ["Isaac del Toro", "UAE Team Emirates", "2026 UCI ranking", "Mexican cycling", "Tadej Pogačar", "Critérium du Dauphiné", "2026 Tour de France"]
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Isaac_Del_Toro_maglia_rosa.jpg"
+coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Isaac_Del_Toro_maglia_rosa.jpg/960px-Isaac_Del_Toro_maglia_rosa.jpg"
 sources:
   - title: "Cyclingnews — Isaac del Toro gana la etapa inaugural del UAE Tour con un ataque tardío"
     url: "https://www.cyclingnews.com/pro-cycling/races/uae-tour-isaac-del-toro-wins-opening-stage-with-late-attack/"

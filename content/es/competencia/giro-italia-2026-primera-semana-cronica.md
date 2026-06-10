@@ -31,7 +31,7 @@ sources:
     url: "https://www.giroditalia.it/en/news/thomas-silva-the-uruguayan-talent-determined-to-make-his-mark/"
     type: web_search
 excerpt: "Paul Magnier ganó las etapas 1 y 3 del Giro 2026 en Bulgaria y se convirtió en el primer francés en dominar los primeros tres días de la carrera desde Laurent Fignon. Una caída masiva en la lluvia eliminó a tres líderes de UAE Team Emirates en 48 horas. Guillermo Thomas Silva porta la maglia rosa como primer uruguayo en liderar la Corsa Rosa."
-coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg/1200px-CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg"
+coverImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg/1280px-CDF2025-Vend%C3%A9e_057_Paul_Magnier.jpg"
 translationOf: "giro-italia-2026-first-week-chronicle"
 ---
 
@@ -47,7 +47,7 @@ La segunda etapa transformó el Giro en otro tipo de carrera. Los 221 kilómetro
 
 Mientras el pelotón trataba de reordenarse, Jonas Vingegaard eligió la ascensión al monasterio de Lyaskovets —el último obstáculo antes de la llegada— para el primer movimiento serio de GC del Giro 2026. El danés atacó a 12 kilómetros de meta y solo Giulio Pellizzari (Red Bull-BORA-Hansgrohe) y Lennert Van Eetvelt (Lotto-Intermarché) pudieron seguirle. Los tres construyeron unos 20 segundos de ventaja sobre el grupo perseguidor. En el kilómetro final, sin embargo, los tres dudaron: ninguno quiso abrir el sprint para regalar la etapa a los otros dos. La demora fue decisiva. Jan Christen (UAE) enlazó desde atrás, el grupo perseguidor recuperó terreno y Guillermo Thomas Silva se coló con el timing de un sprinter de salón para ganar la etapa. Fue el primer corredor de Uruguay en ganar una etapa del Giro de Italia en los 109 años de historia de la carrera. La maglia rosa pasó de Magnier —descolgado en la subida final— a Thomas Silva, que también vistió la maglia blanca de mejor joven.
 
-![Korona de Arbanassi, colinas sobre Veliko Tarnovo, escenario de la segunda etapa del Giro 2026](https://images.unsplash.com/photo-1559827291-72f76dc2da43?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Korona de Arbanassi, colinas sobre Veliko Tarnovo, escenario de la segunda etapa del Giro 2026](https://images.unsplash.com/photo-1745299039187-46e5364d6d9b?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Etapa 3 | Plovdiv → Sofía: el segundo sprint de Magnier
 

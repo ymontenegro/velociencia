@@ -53,7 +53,7 @@ George A. Brooks, fisiólogo del ejercicio en la Universidad de California en Be
 
 La hipótesis proponía algo que contradecía la fisiología canónica de la época: las fibras musculares glucolíticas de tipo II, que producen lactato a tasas elevadas durante el esfuerzo intenso, no lo liberan como desecho sino como un sustrato energético que otras células pueden captar y oxidar. Las fibras oxidativas de tipo I del mismo músculo, las fibras de músculos menos activos en ese momento, el corazón, el cerebro, el hígado y los riñones son todos consumidores de lactato. La molécula no se acumula porque el organismo falle, sino porque la tasa de producción supera temporalmente la capacidad de captación de los tejidos receptores. Esa distinción conceptual transformó la comprensión del metabolismo del ejercicio.
 
-![Ciclista pedaleando en subida con esfuerzo visible](https://images.unsplash.com/photo-1605235186583-d1a89a9900b0?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Ciclista pedaleando en subida con esfuerzo visible](https://images.unsplash.com/photo-1542983013-727fa3280ab0?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Cómo viaja el lactato entre células
 

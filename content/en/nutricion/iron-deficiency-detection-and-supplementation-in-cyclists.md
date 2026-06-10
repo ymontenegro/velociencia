@@ -122,7 +122,7 @@ Vitamin C enhances absorption by reducing ferric iron (Fe3+) to ferrous iron (Fe
 
 The time of day also matters. Peeling et al. (2017) recommended taking iron in the morning before training, not after, to avoid the post-exercise hepcidin elevation window. If the cyclist trains in the morning, the best option is to take it upon waking with at least a 30-minute gap before eating and training.
 
-![Iron supplements — alternate-day oral supplementation improves fractional absorption by up to 40%](https://images.unsplash.com/photo-1505576399279-0d309272b890?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Iron supplements — alternate-day oral supplementation improves fractional absorption by up to 40%](https://images.unsplash.com/photo-1549477881-1a8180c72ac8?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## Ongoing monitoring
 

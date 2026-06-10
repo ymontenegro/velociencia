@@ -87,7 +87,7 @@ Critical Power (CP) presents itself as a metric with a more solid theoretical ba
 
 The advantage of CP over FTP lies in that it does not depend on a single protocol or fixed correction factor. Derived from the power-duration relationship, CP adjusts to the individual cyclist’s physiological profile. Additionally, the model provides W' (W prime), which quantifies the work capacity above CP. A cyclist with a CP of 280 watts and a W' of 20 kJ has a very different profile than one with the same CP but a W' of 30 kJ: the latter can tolerate efforts above threshold for longer before fatiguing.
 
-![Time trial cyclist with aerodynamic helmet and aggressive position](https://images.unsplash.com/photo-1505705694340-019e2f4e6160?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
+![Time trial cyclist with aerodynamic helmet and aggressive position](https://images.unsplash.com/photo-1749174899667-4553e4f248e2?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
 ## When FTP Is Still Useful
 

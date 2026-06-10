@@ -76,7 +76,7 @@ Primož Roglič llega al Giro 2026 como principal favorito. El esloveno, que sum
 
 Antonio Tiberi es la gran esperanza italiana. Con 24 años, sufrió una caída en la etapa 14 del Giro 2025 cuando marchaba tercero en la general y acabó 15° a 35 minutos del ganador. Comenzó 2026 con un subcampeonato en el UAE Tour, a solo 20 segundos del ganador Isaac del Toro. Su perfil de escalador puro con una contrarreloj en mejora constante lo convierte en candidato legítimo al podio. Correr como líder en casa, con el apoyo del público italiano, añade un factor intangible que no se mide en vatios.
 
-![Isaac del Toro vistiendo la maglia rosa durante la etapa 16 del Giro de Italia 2025 (Foto: Filip Bossuyt, CC BY 2.0, vía Wikimedia Commons)](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Isaac_Del_Toro_maglia_rosa.jpg/900px-Isaac_Del_Toro_maglia_rosa.jpg)
+![Isaac del Toro vistiendo la maglia rosa durante la etapa 16 del Giro de Italia 2025 (Foto: Filip Bossuyt, CC BY 2.0, vía Wikimedia Commons)](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Isaac_Del_Toro_maglia_rosa.jpg/960px-Isaac_Del_Toro_maglia_rosa.jpg)
 
 Isaac del Toro, el mexicano de 22 años del UAE Team Emirates, llega como la incógnita más atractiva. Su talento es indiscutible después de una temporada 2025 en la que demostró capacidad para competir con los mejores en carreras por etapas. Su debilidad es la contrarreloj, donde puede ceder tiempo frente a Roglič y otros rodadores. Pero en la montaña, Del Toro tiene el perfil para ganar etapas y pelear por el podio.
 
