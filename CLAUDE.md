@@ -45,7 +45,7 @@ When the user says "trabaja en la cola" / "next post", run `npm run queue next`,
 
 ### Dual-language site (i18n)
 
-Host-based routing: `velociencia.cl` → Spanish (`es`), `pedalsci.com` → English (`en`). Locale is detected from hostname via middleware (`src/middleware.ts`) which sets `x-locale` header. `src/lib/i18n/` has dictionaries (`es.json`, `en.json`) loaded by `getDictionary(locale)`. `LocaleProvider` makes locale + dict available via React context. URL slugs are translated in middleware (e.g. `nutricion` → `nutrition` on EN domain). All UI text, agent prompts, and logs default to Spanish.
+Host-based routing: `velociencia.cl` → Spanish (`es`), `pedalsci.com` → English (`en`). Locale is detected from hostname via the proxy (`src/proxy.ts` — Next 16's renamed middleware) which sets the `x-locale` header. `src/lib/i18n/` has dictionaries (`es.json`, `en.json`) loaded by `getDictionary(locale)`. `LocaleProvider` makes locale + dict available via React context. URL slugs are translated in the proxy (e.g. `nutricion` → `nutrition` on EN domain). All UI text, agent prompts, and logs default to Spanish.
 
 ### Two content systems coexist
 
@@ -97,6 +97,22 @@ Tables: `articles`, `sources`, `topics`, `agentRuns`, `rssFeeds`, `rssItems`, `a
 ### External data sources
 
 `src/lib/rss.ts` — fetches and stores RSS feed items; used by `/api/feeds/refresh`.
+
+### Tools & datasets (calculators + data assets)
+
+Interactive calculators and curated data tables are registered in `src/lib/tools.ts` (`TOOLS` array, `ToolInfo` type). Routing is kind-aware via `toolHref()`:
+- `kind: "calculator"` (default) → `/herramientas/<slug>` (ES) · `/tools/<slug>` (EN)
+- `kind: "dataset"` → `/datos/<slug>` (ES) · `/data/<slug>` (EN)
+
+Shared route pages (`(marketing)/{herramientas,tools,datos,data}/[tool]/page.tsx`) call `buildToolMetadata()` (`src/lib/tools-metadata.ts`) and render `ToolPageContent` → `CalculatorRenderer` (`src/components/tools/calculator-renderer.tsx`), which maps `tool.id` → the component. Each tool component lives in `src/components/tools/` and keeps its UI strings **embedded in the file** (a `STRINGS: Record<Locale, …>`), NOT in the i18n JSON. Dataset *content* dictionaries (gels/climbs/races/evidence) DO live in the i18n JSON. Tools build on the "Race Telemetry" primitives in `src/components/tools/ui/`. JSON-LD is automatic: `WebApplication` for calculators, `Dataset`/`ItemList` for datasets (`src/lib/datasets/dataset-jsonld.ts`). Related calculators surface inside articles automatically by tag (`related-tools.tsx` via each tool's `relatedTag`).
+
+**Adding a calculator:** add a `ToolInfo` to `TOOLS` (keyword-first title/description, `sectionId`), create the client component (copy `power-zones-calculator.tsx` as the template), and register it in `CALCULATORS` in `calculator-renderer.tsx`. Metadata, route and JSON-LD are then automatic.
+
+**Per-entity detail pages (SEO long-tail pattern):** a dataset can expose one indexable page per row through the generic nested route `(marketing)/{datos,data}/[tool]/[item]/page.tsx`. Climbs use it: `/datos/puertos/<id>` · `/data/climbs/<id>` — one page per climb (`<id>` = the un-localized kebab-case climb id, same in both locales, linked by hreflang), rendered by `climb-detail-content.tsx` with `buildClimbMetadata()` (keyword-first title per entity) plus `Place` + `BreadcrumbList` JSON-LD, and added to `sitemap.ts`. To extend this to gels/races, reuse the same `[tool]/[item]` route and add a content component + metadata builder.
+
+### Redirects (`next.config.ts`)
+
+`async redirects()` returns: `DATASET_MOVES` (308, datasets moved from `/herramientas|/tools` to `/datos|/data`), `TOOL_ALIASES` (guessable tool slugs), `RENAMED_EN_ARTICLES` (301, host-gated to `pedalsci.com`) and `RENAMED_ES_ARTICLES` (301, host-gated to `velociencia.cl`, for retired/renamed ES article URLs still indexed in Search Console). Add an entry here whenever an article/tool slug changes so old indexed URLs 301 instead of 404.
 
 ## Key Conventions
 
