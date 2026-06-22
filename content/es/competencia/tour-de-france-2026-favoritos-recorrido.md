@@ -56,7 +56,7 @@ Los números de esta edición reflejan una tendencia que se consolida en el cicl
 | Etapa 20 | Final en Alpe d'Huez | Croix de Fer, Télégraphe, Galibier, Sarenne | Montaña, 5.600 m desnivel |
 | Etapa 21 | París – Montmartre | Subida a Montmartre | Etapa final con desnivel |
 
-El Tourmalet aparece en la etapa 6 como aperitivo pirenaico, acompañado del Col d'Aspin antes del descenso final a Gavarnie-Gèdre. Pero los Pirineos no serán el campo de batalla definitivo. Esa función corresponde a los Alpes, donde las etapas 19 y 20 concentran la mayor brutalidad del recorrido. La etapa 20 propone 5.600 metros de desnivel positivo con el encadenamiento Croix de Fer, Télégraphe, Galibier y Col de Sarenne antes de coronar en el Alpe d'Huez por segunda vez consecutiva. Es la etapa reina más exigente diseñada en los últimos años.
+El [Tourmalet](/datos/puertos/col-du-tourmalet-luz) aparece en la etapa 6 como aperitivo pirenaico, acompañado del Col d'Aspin antes del descenso final a Gavarnie-Gèdre. Pero los Pirineos no serán el campo de batalla definitivo. Esa función corresponde a los Alpes, donde las etapas 19 y 20 concentran la mayor brutalidad del recorrido. La etapa 20 propone 5.600 metros de desnivel positivo con el encadenamiento Croix de Fer, Télégraphe, [Galibier](/datos/puertos/col-du-galibier-lautaret) y Col de Sarenne antes de coronar en el [Alpe d'Huez](/datos/puertos/alpe-dhuez) por segunda vez consecutiva. Es la etapa reina más exigente diseñada en los últimos años.
 
 ![Pelotón ascendiendo un puerto de montaña en carrera profesional](https://images.unsplash.com/photo-1571188654248-7a89213915f7?w=900&q=75&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 

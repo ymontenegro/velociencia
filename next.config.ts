@@ -94,6 +94,16 @@ const RENAMED_EN_ARTICLES: Array<[section: string, from: string, to: string]> = 
   ["nutrition", "entrenar-el-intestino-carbohidratos", "train-the-gut-carbohydrates-cycling"],
 ];
 
+// Artículos ES retirados/recreados cuya URL antigua sigue indexada en
+// velociencia.cl. Redirigimos 301 en el dominio ES para no perder el equity ni
+// servir un 404 a una URL que aún recibe impresiones en Search Console.
+const RENAMED_ES_ARTICLES: Array<[section: string, from: string, to: string]> = [
+  // Bike fitting / análisis 3D: el artículo largo se retiró; recreado con un
+  // slug keyword-first. La URL vieja aún recibe impresiones ("análisis de
+  // pedaleo 3d", "biomecánica avanzada en ciclismo").
+  ["ciencia", "biomecanica-avanzada-del-bike-fitting-uso-de-tecnologias-3d-y-analisis-dinamico-para-mejorar-la-eficiencia-y-prevenir-lesiones", "bike-fitting-3d-analisis-biomecanico-ciclismo"],
+];
+
 const nextConfig: NextConfig = {
   output: "standalone",
   async headers() {
@@ -124,7 +134,18 @@ const nextConfig: NextConfig = {
       destination: `/${section}/${to}`,
       permanent: true,
     }));
-    return [...datasetMoveRedirects, ...toolRedirects, ...articleRedirects];
+    const articleRedirectsEs = RENAMED_ES_ARTICLES.map(([section, from, to]) => ({
+      source: `/${section}/${from}`,
+      has: [{ type: "host" as const, value: "(www\\.)?velociencia\\.cl" }],
+      destination: `/${section}/${to}`,
+      permanent: true,
+    }));
+    return [
+      ...datasetMoveRedirects,
+      ...toolRedirects,
+      ...articleRedirects,
+      ...articleRedirectsEs,
+    ];
   },
 };
 

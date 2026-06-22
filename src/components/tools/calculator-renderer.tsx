@@ -5,6 +5,8 @@ import CarbIntakeCalculator from "@/components/tools/carb-intake-calculator";
 import PowerToWeightCalculator from "@/components/tools/power-to-weight-calculator";
 import Vo2maxEstimatorCalculator from "@/components/tools/vo2max-estimator-calculator";
 import TrainingLoadCalculator from "@/components/tools/training-load-calculator";
+import FtpTestCalculator from "@/components/tools/ftp-test-calculator";
+import VamCalculator from "@/components/tools/vam-calculator";
 import GelComparatorTable from "@/components/tools/gel-comparator";
 import EvidenceExplorer from "@/components/tools/evidence-explorer";
 import ClimbsDatabase from "@/components/tools/climbs-database";
@@ -41,6 +43,8 @@ const CALCULATORS: Record<string, React.ComponentType<ToolComponentProps>> = {
   "power-to-weight": PowerToWeightCalculator,
   "vo2max-estimator": Vo2maxEstimatorCalculator,
   "training-load": TrainingLoadCalculator,
+  "ftp-test": FtpTestCalculator,
+  vam: VamCalculator,
 };
 
 /**

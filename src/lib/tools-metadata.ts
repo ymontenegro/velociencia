@@ -12,9 +12,10 @@
 
 import type { Locale } from "@/lib/i18n";
 import { getSiteUrl, getOtherLocale } from "@/lib/i18n";
-import { getToolBySlug, toolHref, toolsIndexHref } from "@/lib/tools";
+import { getToolBySlug, getToolById, toolHref, toolsIndexHref } from "@/lib/tools";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { IMAGES } from "@/lib/images";
+import { getClimbById, fietsIndex } from "@/lib/datasets/climbs";
 
 // ---------------------------------------------------------------------------
 // Tool detail page metadata
@@ -82,9 +83,10 @@ export function buildToolMetadata(toolSlug: string, locale: Locale) {
  */
 export async function buildToolsIndexMetadata(locale: Locale) {
   const dict = await getDictionary(locale);
+  // Keyword-first <title>/description for SEO; the visible H1 keeps indexTitle.
   return {
-    title: dict.tools.indexTitle,
-    description: dict.tools.indexSubtitle,
+    title: dict.tools.indexMetaTitle,
+    description: dict.tools.indexMetaDescription,
   };
 }
 
@@ -113,8 +115,9 @@ export async function buildDataIndexMetadata(locale: Locale) {
       : `${otherSiteUrl}${toolsIndexHref("en", "dataset")}`;
 
   return {
-    title: dict.tools.dataIndexTitle,
-    description: dict.tools.dataIndexSubtitle,
+    // Keyword-first <title>/description for SEO; the visible H1 keeps dataIndexTitle.
+    title: dict.tools.dataIndexMetaTitle,
+    description: dict.tools.dataIndexMetaDescription,
     alternates: {
       canonical,
       languages: {
@@ -122,6 +125,68 @@ export async function buildDataIndexMetadata(locale: Locale) {
         en: enUrl,
         "x-default": esUrl,
       },
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Climb detail page metadata  (/datos/puertos/<id> ES  /data/climbs/<id> EN)
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the Next.js metadata object for a single-climb detail page.
+ *
+ * Title/description are keyword-first ("<name>: perfil, pendiente media…") to
+ * match the long-tail intent that lives behind each climb ("alpe d'huez
+ * pendiente media", "alpe d'huez profile"). Returns {} when the id is unknown
+ * so the route can 404.
+ */
+export function buildClimbMetadata(climbId: string, locale: Locale) {
+  const climb = getClimbById(climbId);
+  const tool = getToolById("climbs-database");
+  if (!climb || !tool) return {};
+
+  const esUrl = `${getSiteUrl("es")}${toolHref(tool, "es")}/${climb.id}`;
+  const enUrl = `${getSiteUrl("en")}${toolHref(tool, "en")}/${climb.id}`;
+  const canonical = locale === "es" ? esUrl : enUrl;
+
+  const region = climb.region[locale];
+  const fiets = fietsIndex(climb).toFixed(1);
+
+  const title =
+    locale === "es"
+      ? `${climb.name}: perfil, pendiente media y datos del puerto`
+      : `${climb.name}: profile, average gradient and climb data`;
+
+  const description =
+    locale === "es"
+      ? `${climb.name} (${region}): ${climb.length_km} km al ${climb.avg_gradient}% de media, ${climb.elevation_gain_m} m de desnivel, cima a ${climb.summit_elevation_m} m e índice FIETS ${fiets}. Perfil de altitud calculado desde el modelo digital de elevación SRTM.`
+      : `${climb.name} (${region}): ${climb.length_km} km at ${climb.avg_gradient}% average, ${climb.elevation_gain_m} m of gain, summit at ${climb.summit_elevation_m} m and a FIETS index of ${fiets}. Elevation profile computed from the SRTM digital elevation model.`;
+
+  const ogImageUrl = IMAGES.sections[tool.sectionId].primary;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        es: esUrl,
+        en: enUrl,
+        "x-default": esUrl,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      images: [{ url: ogImageUrl, width: 1600, height: 600 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImageUrl],
     },
   };
 }

@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SECTION_IDS, SECTIONS_I18N } from "@/lib/constants";
 import { getAllArticles } from "@/lib/markdown";
-import { getAllTools, toolHref, toolsIndexHref } from "@/lib/tools";
+import { getAllTools, getToolById, toolHref, toolsIndexHref } from "@/lib/tools";
+import { getAllClimbs } from "@/lib/datasets/climbs";
 
 const ES_BASE = "https://velociencia.cl";
 const EN_BASE = "https://pedalsci.com";
@@ -152,6 +153,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     });
+  }
+
+  // Climb detail pages — one entry per climb, ES + EN, each with the hreflang
+  // pair. /datos/puertos/<id> ↔ /data/climbs/<id>. Same kebab-case id in both.
+  const climbsTool = getToolById("climbs-database");
+  if (climbsTool) {
+    for (const climb of getAllClimbs()) {
+      const esUrl = `${ES_BASE}${toolHref(climbsTool, "es")}/${climb.id}`;
+      const enUrl = `${EN_BASE}${toolHref(climbsTool, "en")}/${climb.id}`;
+      entries.push({
+        url: esUrl,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+        alternates: { languages: { es: esUrl, en: enUrl } },
+      });
+      entries.push({
+        url: enUrl,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+        alternates: { languages: { es: esUrl, en: enUrl } },
+      });
+    }
   }
 
   // Static pages

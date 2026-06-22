@@ -176,6 +176,54 @@ export const TOOLS: ToolInfo[] = [
     },
   },
   {
+    id: "ftp-test",
+    slug: { es: "ftp-test-20min", en: "ftp-20min-test" },
+    title: {
+      es: "Calculadora de FTP (test de 20 minutos)",
+      en: "FTP calculator (20-minute test)",
+    },
+    tagline: {
+      es: "Tu FTP a partir de la potencia media de un test de 20 minutos.",
+      en: "Your FTP from the average power of a 20-minute test.",
+    },
+    description: {
+      es: "Calcula tu FTP (potencia funcional umbral) a partir de la potencia media de un test de 20 minutos a máximo esfuerzo, con la fórmula de Andrew Coggan (95% de la media). Añade tu peso para obtener también tu FTP en vatios por kilo.",
+      en: "Work out your FTP (functional threshold power) from the average power of an all-out 20-minute test using Andrew Coggan's formula (95% of the average). Add your weight to also get your FTP in watts per kilo.",
+    },
+    sectionId: "entrenamiento",
+    relatedTag: "FTP",
+    // FTP = round(260 × 0.95) = 247
+    // Source: ftp-test-calculator.tsx FTP_FACTOR = 0.95
+    sampleStat: {
+      label: { es: "260 W en 20 min", en: "260 W over 20 min" },
+      value: { es: "FTP 247 W", en: "FTP 247 W" },
+    },
+  },
+  {
+    id: "vam",
+    slug: { es: "calculadora-vam", en: "vam-calculator" },
+    title: {
+      es: "Calculadora de VAM (ritmo de escalada)",
+      en: "VAM calculator (climbing pace)",
+    },
+    tagline: {
+      es: "Tus metros de ascensión por hora y tu nivel de escalador.",
+      en: "Your vertical metres per hour and your climber level.",
+    },
+    description: {
+      es: "Calcula tu VAM (velocidad de ascensión media, en metros de desnivel por hora) a partir del desnivel y el tiempo de subida, compárala con las referencias por nivel y estima tu potencia relativa en W/kg con la fórmula de Ferrari.",
+      en: "Calculate your VAM (average climbing speed, in vertical metres per hour) from elevation gain and climb time, compare it against reference levels and estimate your relative power in W/kg with the Ferrari formula.",
+    },
+    sectionId: "entrenamiento",
+    relatedTag: "escalada",
+    // 1000 m en 45 min → round(1000 / (45/60)) = 1333 m/h → banda "Élite amateur"
+    // Source: vam-calculator.tsx vam = round(gain / (timeMin/60))
+    sampleStat: {
+      label: { es: "1000 m en 45 min", en: "1000 m in 45 min" },
+      value: { es: "1333 m/h", en: "1333 m/h" },
+    },
+  },
+  {
     id: "gel-comparator",
     kind: "dataset",
     slug: { es: "comparador-geles", en: "gel-comparator" },

@@ -176,7 +176,11 @@
     "crossCalcCta": "Calculators: power, carbohydrates, VO₂max →",
     "crossDataCta": "Databases: gels, supplements, climbs, calendar →",
     "backToData": "View all databases",
-    "navData": "Data"
+    "navData": "Data",
+    "indexMetaTitle": "Cycling calculators: FTP, power zones, W/kg and carbohydrates",
+    "indexMetaDescription": "Free cycling-science calculators: estimate your FTP, power zones, power-to-weight ratio (W/kg), VO₂max, VAM and carbohydrates per hour.",
+    "dataIndexMetaTitle": "Cycling data: climbs, gels, supplement evidence and UCI calendar",
+    "dataIndexMetaDescription": "Verified cycling databases: iconic climbs with elevation profile and FIETS index, energy-gel comparator, supplement evidence and the 2026 UCI calendar."
   },
   "comparator": {
     "title": "Energy gel comparator",
@@ -389,7 +393,12 @@
     "methodology": "Methodology",
     "methodologyText": "Figures (length, gain, gradient and altitude) are verified by hand against specialist sources (Climbfinder, PJAMM Cycling, cyclingcols, Wikipedia), cited per climb. The elevation profile is computed by sampling the open SRTM 30 m digital elevation model (Open Topo Data) along the real road geometry (routed with BRouter); where routing or the DEM was unavailable, the profile is reconstructed from the curated figures and flagged as synthetic.",
     "disclaimer": "Data provided for ride-planning information only. Always check road condition, seasonal closures and traffic before riding.",
-    "ctaRaces": "Looking for races? See the 2026 UCI calendar"
+    "ctaRaces": "Looking for races? See the 2026 UCI calendar",
+    "detailEyebrow": "Training · Climb",
+    "detailBackToClimbs": "View all climbs",
+    "navHome": "Home",
+    "navClimbs": "Climbs",
+    "detailViewClimb": "View climb"
   },
   "races": {
     "title": "2026 UCI calendar",

@@ -176,7 +176,11 @@
     "crossCalcCta": "Calculadoras: potencia, carbohidratos, VO₂máx →",
     "crossDataCta": "Bases de datos: geles, suplementos, puertos, calendario →",
     "backToData": "Ver todas las bases de datos",
-    "navData": "Datos"
+    "navData": "Datos",
+    "indexMetaTitle": "Calculadoras de ciclismo: FTP, zonas de potencia, W/kg y carbohidratos",
+    "indexMetaDescription": "Calculadoras gratis de ciencia del ciclismo: estima tu FTP, tus zonas de potencia, tu relación potencia-peso (W/kg), tu VO₂máx, tu VAM y los carbohidratos por hora.",
+    "dataIndexMetaTitle": "Datos de ciclismo: puertos, geles, evidencia de suplementos y calendario UCI",
+    "dataIndexMetaDescription": "Bases de datos de ciclismo verificadas: puertos icónicos con perfil de altitud e índice FIETS, comparador de geles energéticos, evidencia de suplementos y el calendario UCI 2026."
   },
   "comparator": {
     "title": "Comparador de geles energéticos",
@@ -389,7 +393,12 @@
     "methodology": "Metodología",
     "methodologyText": "Las cifras (longitud, desnivel, pendiente y altitud) se verifican manualmente contra fuentes especializadas (Climbfinder, PJAMM Cycling, cyclingcols, Wikipedia), citadas en cada puerto. El perfil de altitud se calcula muestreando el modelo digital de elevación abierto SRTM 30 m (Open Topo Data) a lo largo del trazado real de la carretera (enrutado con BRouter); cuando el enrutado o el DEM no estaban disponibles, el perfil se reconstruye desde las cifras curadas y se señala como sintético.",
     "disclaimer": "Datos con fines informativos para la planificación de salidas. Verifica siempre el estado de la carretera, los cierres estacionales y el tráfico antes de subir.",
-    "ctaRaces": "¿Buscas carreras? Consulta el calendario UCI 2026"
+    "ctaRaces": "¿Buscas carreras? Consulta el calendario UCI 2026",
+    "detailEyebrow": "Entrenamiento · Puerto",
+    "detailBackToClimbs": "Ver todos los puertos",
+    "navHome": "Inicio",
+    "navClimbs": "Puertos",
+    "detailViewClimb": "Ver puerto"
   },
   "races": {
     "title": "Calendario UCI 2026",

@@ -34,7 +34,7 @@ La era de los datos de potencia en competición comenzó a mediados de los años
 
 ## Alpe d'Huez: el laboratorio a cielo abierto
 
-El Alpe d'Huez es el ascenso más analizado del ciclismo. Sus 13.8 km al 8.1% de pendiente media, con las 21 curvas numeradas, ofrecen un escenario relativamente estandarizado para comparar rendimientos entre épocas. No es un puerto técnico. Es un esfuerzo sostenido de entre 36 y 45 minutos donde la potencia relativa determina el resultado.
+El [Alpe d'Huez](/datos/puertos/alpe-dhuez) es el ascenso más analizado del ciclismo. Sus 13.8 km al 8.1% de pendiente media, con las 21 curvas numeradas, ofrecen un escenario relativamente estandarizado para comparar rendimientos entre épocas. No es un puerto técnico. Es un esfuerzo sostenido de entre 36 y 45 minutos donde la potencia relativa determina el resultado.
 
 Las estimaciones de W/kg en el Alpe d'Huez revelan tres períodos distintos. La era pre-EPO (antes de 1991), donde los tiempos de ascensión correspondían a aproximadamente 5.5-5.8 W/kg. La era EPO (1995-2008), donde las cifras se dispararon hasta 6.2-6.7 W/kg, con Marco Pantani como referencia máxima. Y la era post-pasaporte biológico (2009 en adelante), que inicialmente vio una corrección hacia 5.8-6.1 W/kg antes de volver a subir con la nueva generación.
 
@@ -78,7 +78,7 @@ La era post-Armstrong trajo una corrección visible. Cuando Alberto Contador gan
 
 Chris Froome ganó cuatro Tours entre 2013 y 2017 con un enfoque que priorizaba la consistencia sobre los ataques explosivos. Sus cifras en los puertos se mantenían en un rango de 5.9-6.1 W/kg, inferiores a las de la era Armstrong pero sostenidas con una regularidad notable. El equipo Sky (luego Ineos) introdujo el concepto de "marginal gains": mejoras incrementales en nutrición, aerodinámica, equipamiento y estrategia de carrera.
 
-Las ascensiones de Froome raramente producían tiempos récord. Su dominio se basaba en mantener un ritmo alto durante más tiempo que sus rivales, no en producir picos explosivos de potencia. En el Ventoux de 2013, su estimación fue de 5.9 W/kg durante 57 minutos. En La Pierre-Saint-Martin en 2015, 6.0 W/kg durante 32 minutos. Números creíbles para un atleta de élite limpio con un VO2max estimado de 84.6 ml/kg/min, según datos publicados por el equipo.
+Las ascensiones de Froome raramente producían tiempos récord. Su dominio se basaba en mantener un ritmo alto durante más tiempo que sus rivales, no en producir picos explosivos de potencia. En el [Mont Ventoux](/datos/puertos/mont-ventoux-bedoin) de 2013, su estimación fue de 5.9 W/kg durante 57 minutos. En La Pierre-Saint-Martin en 2015, 6.0 W/kg durante 32 minutos. Números creíbles para un atleta de élite limpio con un VO2max estimado de 84.6 ml/kg/min, según datos publicados por el equipo.
 
 ![Dos ciclistas de ruta compitiendo intensamente en carrera profesional](https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=900&q=80&fit=crop&crop=entropy&fm=webp&auto=format,compress)
 
