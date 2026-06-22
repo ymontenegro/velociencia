@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SECTIONS, SECTIONS_I18N, SECTION_IDS, SITE_NAME_I18N } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N, SECTION_IDS, SITE_NAME_I18N, CONTACT_EMAIL_I18N } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { AuthorAvatar } from "@/components/shared/author-avatar";
@@ -161,7 +161,7 @@ export default async function SobrePage() {
   const dict = await getDictionary(locale);
   const siteName = SITE_NAME_I18N[locale];
   const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
-  const email = locale === "en" ? "contact@pedalsci.com" : "contacto@velociencia.cl";
+  const email = CONTACT_EMAIL_I18N[locale];
   const team = locale === "en" ? TEAM_EN : TEAM_ES;
   const authorBase = locale === "en" ? "author" : "autor";
 

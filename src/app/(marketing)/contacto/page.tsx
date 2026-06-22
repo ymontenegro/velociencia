@@ -1,4 +1,4 @@
-import { SITE_NAME_I18N } from "@/lib/constants";
+import { SITE_NAME_I18N, CONTACT_EMAIL_I18N } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n";
 
 export async function generateMetadata() {
@@ -15,7 +15,7 @@ export async function generateMetadata() {
 export default async function ContactoPage() {
   const locale = await getLocale();
   const siteName = SITE_NAME_I18N[locale];
-  const email = locale === "en" ? "contact@pedalsci.com" : "contacto@velociencia.cl";
+  const email = CONTACT_EMAIL_I18N[locale];
 
   if (locale === "en") {
     return (

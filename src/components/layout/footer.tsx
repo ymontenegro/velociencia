@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SECTIONS, SECTIONS_I18N, SECTION_IDS } from "@/lib/constants";
+import { SECTIONS, SECTIONS_I18N, SECTION_IDS, CONTACT_EMAIL_I18N } from "@/lib/constants";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { getAllTools, toolHref, toolColor } from "@/lib/tools";
@@ -9,6 +9,7 @@ import { SponsorSlot } from "@/components/shared/sponsor-slot";
 export async function Footer() {
   const locale = await getLocale();
   const dict = await getDictionary(locale);
+  const contactEmail = CONTACT_EMAIL_I18N[locale];
   const currentYear = new Date().getFullYear();
   const tools = getAllTools();
   const calculators = tools.filter((t) => !t.kind || t.kind === "calculator");
@@ -40,6 +41,16 @@ export async function Footer() {
             <p className="mt-3 text-sm leading-relaxed text-white/60">
               {dict.siteDescription}
             </p>
+            <a
+              href={`mailto:${contactEmail}`}
+              className="mt-4 inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+            >
+              <span
+                className="inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/40"
+                aria-hidden="true"
+              />
+              {contactEmail}
+            </a>
             <p className="mt-4 font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-white/30">
               {dict.footer.poweredByAI}
             </p>

@@ -74,6 +74,12 @@ export const SITE_DESCRIPTION_I18N: Record<Locale, string> = {
   en: "Science-based cycling: nutrition, physiology and training",
 };
 
+// Correo de contacto por dominio/idioma (velociencia.cl → es, pedalsci.com → en).
+export const CONTACT_EMAIL_I18N: Record<Locale, string> = {
+  es: "contacto@velociencia.cl",
+  en: "contact@pedalsci.com",
+};
+
 export function getSectionBySlug(slug: string, locale: Locale): { sectionId: SectionId; section: typeof SECTIONS_I18N["es"]["nutricion"] } | null {
   const sections = SECTIONS_I18N[locale];
   for (const [id, section] of Object.entries(sections)) {
