@@ -15,6 +15,7 @@ import Image from "next/image";
 import { SECTIONS, SECTIONS_I18N, getSectionBySlug } from "@/lib/constants";
 import { formatDate, getReadingTime } from "@/lib/utils";
 import { getAllArticles } from "@/lib/markdown";
+import { isPubliclyVisible } from "@/lib/publish";
 import { getRelatedByTags, tagToSlug } from "@/lib/tags";
 import { getLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -88,6 +89,9 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data: frontmatter } = matter(fileContent);
 
+  // Drafts and not-yet-due scheduled articles expose no metadata.
+  if (!isPubliclyVisible(frontmatter)) return {};
+
   const siteUrl = locale === "en" ? "https://pedalsci.com" : "https://velociencia.cl";
   const articleUrl = `${siteUrl}/${sectionSlug}/${slug}`;
 
@@ -143,6 +147,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data: frontmatter, content } = matter(fileContent);
+
+  // Hide drafts and scheduled (future-dated) articles from the public site.
+  // They become reachable automatically once their publication date arrives.
+  if (!isPubliclyVisible(frontmatter)) notFound();
+
   const readingTime = getReadingTime(content);
 
   const affiliateLabels = {

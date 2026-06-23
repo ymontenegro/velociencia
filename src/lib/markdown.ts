@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { getReadingTime } from "@/lib/utils";
 import { SECTION_IDS, type SectionId } from "@/lib/constants";
 import type { Article, ArticleCard, ArticleFrontmatter } from "@/types/article";
+import { articleStatus } from "@/lib/publish";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -14,7 +15,8 @@ const CONTENT_DIR = path.join(process.cwd(), "content");
 export function getArticleBySlug(
   section: string,
   slug: string,
-  locale: string = "es"
+  locale: string = "es",
+  opts: { includeHidden?: boolean } = {}
 ): Article | null {
   const filePath = path.join(CONTENT_DIR, locale, section, `${slug}.md`);
 
@@ -25,6 +27,10 @@ export function getArticleBySlug(
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
   const frontmatter = data as ArticleFrontmatter;
+
+  if (!opts.includeHidden && articleStatus(frontmatter) !== "published") {
+    return null;
+  }
 
   return {
     slug,
@@ -38,8 +44,16 @@ export function getArticleBySlug(
 /**
  * Get all articles, optionally filtered by section.
  * Returns ArticleCard[] sorted by date descending.
+ *
+ * Drafts and not-yet-due scheduled articles are excluded by default so the
+ * public site only ever lists published content. Pass `{ includeHidden: true }`
+ * from admin code that needs the full editorial picture.
  */
-export function getAllArticles(section?: string, locale: string = "es"): ArticleCard[] {
+export function getAllArticles(
+  section?: string,
+  locale: string = "es",
+  opts: { includeHidden?: boolean } = {}
+): ArticleCard[] {
   const sections = section
     ? [section]
     : SECTION_IDS;
@@ -62,6 +76,11 @@ export function getAllArticles(section?: string, locale: string = "es"): Article
       const { data, content } = matter(fileContent);
       const frontmatter = data as ArticleFrontmatter;
 
+      const status = articleStatus(frontmatter);
+      if (!opts.includeHidden && status !== "published") {
+        continue;
+      }
+
       articles.push({
         slug,
         section: sec as SectionId,
@@ -74,6 +93,7 @@ export function getAllArticles(section?: string, locale: string = "es"): Article
         readingTime: getReadingTime(content),
         coverImage: frontmatter.coverImage,
         featured: frontmatter.featured ?? false,
+        status,
         translationOf: frontmatter.translationOf,
       });
     }

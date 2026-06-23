@@ -7,6 +7,11 @@ import { getAllClimbs } from "@/lib/datasets/climbs";
 const ES_BASE = "https://velociencia.cl";
 const EN_BASE = "https://pedalsci.com";
 
+// The sitemap has no per-request signal (it lists both locales), so it would be
+// frozen at build time. Revalidate hourly so scheduled articles enter the
+// sitemap within an hour of their publication date — without a redeploy.
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
