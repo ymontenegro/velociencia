@@ -56,7 +56,7 @@ translationOf: "tour-de-france-2026-favoritos-recorrido"
 ---
 ## Barcelona Opens the Door to the Tour
 
-On July 4, 2026, the Catalan capital will become the starting point of the 113th edition of the Tour de France. It will be the first time in history that the race begins with a team time trial, a 19-kilometer format governed by Paris-Nice rules where the time of the first rider of each squad determines the classification. Barcelona previously hosted Tour starts in 2009, but this edition promises something different. The first three stages will take place in Catalan territory, with the second day featuring 2,400 meters of elevation gain concentrated in a final circuit in Montjuïc.
+On July 4, 2026, the Catalan capital will become the starting point of the 113th edition of the Tour de France. It will be the first time in history that the race begins with a team time trial, a 19-kilometer format governed by Paris-Nice rules where the time of the first rider of each squad determines the classification. Barcelona previously hosted Tour starts in 2009, but this edition promises something different. The first three stages will take place in Catalan territory, with the second day featuring 2,500 meters of elevation gain concentrated in a final circuit in Montjuïc.
 
 Race director Christian Prudhomme described the design of these three weeks as a "crescendo." The word is no accident. The initial stages are contained, mountains appear sparingly in the first half, and the explosion comes at the end, with the two toughest days reserved for stages 19 and 20. This race architecture aims to concentrate the drama in the final days and maintain uncertainty for as long as possible.
 
@@ -99,7 +99,7 @@ The logic behind this strategy is that Vingegaard needs demanding competition be
 
 ## Evenepoel, Roglič, and the Other Contenders
 
-Remco Evenepoel faces his first season with Red Bull-BORA-hansgrohe after leaving Soudal-QuickStep. The Belgian ruled out racing the 2026 Giro, suggesting a full focus on the Tour. Evenepoel won the Olympic time trial and road race in Paris 2024 and finished fourth in the Tour that same year. His pure time trialist profile gives him a specific advantage on stage 16 between Evian and Thonon, where the 26 kilometers with elevation suit his characteristics.
+Remco Evenepoel faces his first season with Red Bull-BORA-hansgrohe after leaving Soudal-QuickStep. The Belgian ruled out racing the 2026 Giro, suggesting a full focus on the Tour. Evenepoel won the Olympic time trial and road race in Paris 2024 and finished third in the Tour that same year. His pure time trialist profile gives him a specific advantage on stage 16 between Evian and Thonon, where the 26 kilometers with elevation suit his characteristics.
 
 Primož Roglič, three-time Vuelta a España winner, remains a name to consider at 36 years old. His ability in time trials and high mountains keeps him a podium candidate, although the gap with Pogačar and Vingegaard seems to widen each season. At Red Bull-BORA-hansgrohe, he will share the roster with Evenepoel, forcing the team to define a clear hierarchy before July.
 

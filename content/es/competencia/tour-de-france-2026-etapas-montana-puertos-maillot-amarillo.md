@@ -77,7 +77,7 @@ Su última aparición como final de etapa fue en 2022, cuando Tom Pidcock conqui
 
 ## Etapa 20: la reina de los Alpes y del Tour
 
-El sábado 25 de julio, la etapa 20 propone el día más exigente de la carrera. Los 170,9 kilómetros entre Le Bourg-d'Oisans y el [Alpe d'Huez](/datos/puertos/alpe-dhuez) suman 5.450 metros de desnivel distribuidos en cinco puertos. El orden y la acumulación de esa montaña hacen de esta jornada algo cualitativamente distinto a cualquier etapa del Tour en los últimos quince años.
+El sábado 25 de julio, la etapa 20 propone el día más exigente de la carrera. Los 170,9 kilómetros entre Le Bourg-d'Oisans y el [Alpe d'Huez](/datos/puertos/alpe-dhuez) suman 5.600 metros de desnivel distribuidos en cinco puertos. El orden y la acumulación de esa montaña hacen de esta jornada algo cualitativamente distinto a cualquier etapa del Tour en los últimos quince años.
 
 El Col de la Croix de Fer abre con 24 kilómetros al 5,2%. No es el más empinado, pero su longitud y el gradiente irregular desgastan a los gregarios desde el inicio y dejan a los líderes más expuestos en el momento en que el Col du Télégraphe (11,9 km al 7,1%) comienza. El Télégraphe conecta directamente con el [Col du Galibier](/datos/puertos/col-du-galibier-lautaret), los 17,7 kilómetros al 6,9% que elevan la carrera hasta los 2.642 metros, el punto más alto de la edición 2026. A esa altitud, la capacidad de intercambio de oxígeno marca la diferencia entre los mejores escaladores del mundo: un corredor de nivel medio pierde el hilo rápidamente, pero incluso los más fuertes acusan la reducción de presión atmosférica.
 
@@ -119,7 +119,7 @@ Las cinco etapas de montaña con datos confirmados ilustran una dificultad creci
 | 6 | Pau → Gavarnie-Gèdre | 186 km | 4.100 m | Col du Tourmalet | 2.115 m |
 | 14 | Mulhouse → Le Markstein | 155 km | 3.800 m | Grand Ballon | 1.424 m |
 | 19 | → Alpe d'Huez | ~130 km | ~3.800 m | Alpe d'Huez | 1.860 m |
-| 20 | Le Bourg d'Oisans → Alpe d'Huez | 171 km | 5.450 m | Col du Galibier | 2.642 m |
+| 20 | Le Bourg d'Oisans → Alpe d'Huez | 171 km | 5.600 m | Col du Galibier | 2.642 m |
 
 <ChartBar
   title="Desnivel acumulado por etapa de montaña — Tour de Francia 2026"
@@ -129,7 +129,7 @@ Las cinco etapas de montaña con datos confirmados ilustran una dificultad creci
     { etapa: "E6 Tourmalet", desnivel: 4100 },
     { etapa: "E14 Vosgos", desnivel: 3800 },
     { etapa: "E19 Alpe I", desnivel: 3800 },
-    { etapa: "E20 Alpe II", desnivel: 5450 }
+    { etapa: "E20 Alpe II", desnivel: 5600 }
   ]}
   xKey="etapa"
   bars={[{ key: "desnivel", color: "#E11D48", name: "Desnivel (m)" }]}

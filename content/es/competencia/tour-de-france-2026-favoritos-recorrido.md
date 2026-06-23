@@ -37,7 +37,7 @@ translationOf: "tour-de-france-2026-barcelona-alpe-d-huez-and-the-race-to-dethro
 
 ## Barcelona abre la puerta del Tour
 
-El 4 de julio de 2026, la capital catalana se convertirá en el punto de partida de la 113ª edición del Tour de Francia. Será la primera vez en la historia que la carrera arranque con una contrarreloj por equipos, un formato de 19 kilómetros con reglas de la París-Niza donde el tiempo del primer corredor de cada escuadra determina la clasificación. Barcelona ya acogió salidas del Tour en 2009, pero esta edición promete algo distinto. Las tres primeras etapas transcurrirán en territorio catalán, con la segunda jornada proponiendo 2.400 metros de desnivel concentrados en un circuito final en Montjuïc.
+El 4 de julio de 2026, la capital catalana se convertirá en el punto de partida de la 113ª edición del Tour de Francia. Será la primera vez en la historia que la carrera arranque con una contrarreloj por equipos, un formato de 19 kilómetros con reglas de la París-Niza donde el tiempo del primer corredor de cada escuadra determina la clasificación. Barcelona ya acogió salidas del Tour en 2009, pero esta edición promete algo distinto. Las tres primeras etapas transcurrirán en territorio catalán, con la segunda jornada proponiendo 2.500 metros de desnivel concentrados en un circuito final en Montjuïc.
 
 El director de carrera Christian Prudhomme describió el diseño de estas tres semanas como un "crescendo". La palabra no es casual. Las etapas iniciales son contenidas, las montañas aparecen con cuentagotas en la primera mitad y la explosión llega al final, con las dos jornadas más duras reservadas para las etapas 19 y 20. Es una arquitectura de carrera que busca condensar el drama en los últimos días y mantener la incertidumbre el mayor tiempo posible.
 
@@ -80,7 +80,7 @@ La lógica detrás de la estrategia es que Vingegaard necesita competición exig
 
 ## Evenepoel, Roglic y los otros contendientes
 
-Remco Evenepoel enfrenta su primera temporada con Red Bull-BORA-hansgrohe tras dejar Soudal-QuickStep. El belga descartó correr el Giro 2026, lo que sugiere un enfoque total en el Tour. Evenepoel ganó la contrarreloj olímpica y la prueba en ruta en París 2024, y terminó cuarto en el Tour ese mismo año. Su perfil de contrarrelojista puro le da una ventaja específica en la etapa 16 entre Evian y Thonon, donde los 26 kilómetros con desnivel se ajustan a sus características.
+Remco Evenepoel enfrenta su primera temporada con Red Bull-BORA-hansgrohe tras dejar Soudal-QuickStep. El belga descartó correr el Giro 2026, lo que sugiere un enfoque total en el Tour. Evenepoel ganó la contrarreloj olímpica y la prueba en ruta en París 2024, y terminó tercero en el Tour ese mismo año. Su perfil de contrarrelojista puro le da una ventaja específica en la etapa 16 entre Evian y Thonon, donde los 26 kilómetros con desnivel se ajustan a sus características.
 
 Primož Roglic, tres veces ganador de la Vuelta a España, sigue siendo un nombre a considerar a sus 36 años. Su capacidad en contrarreloj y alta montaña lo mantienen como candidato al podio, aunque la distancia con Pogačar y Vingegaard parece mayor con cada temporada. En Red Bull-BORA-hansgrohe compartirá filas con Evenepoel, lo que obligará al equipo a definir una jerarquía clara antes de julio.
 

@@ -77,7 +77,7 @@ The climb's last appearance as a stage finish was 2022, when Tom Pidcock soloed 
 
 ## Stage 20: the queen stage and the roof of the race
 
-Saturday July 25, stage 20, is the hardest day of the Tour. The 170.9-kilometre route from Le Bourg-d'Oisans to [Alpe d'Huez](/data/climbs/alpe-dhuez) for a second consecutive day accumulates 5,450 metres of vertical gain across five passes. The sequencing and volume of that climbing make this stage qualitatively different from anything the Tour has staged in recent years.
+Saturday July 25, stage 20, is the hardest day of the Tour. The 170.9-kilometre route from Le Bourg-d'Oisans to [Alpe d'Huez](/data/climbs/alpe-dhuez) for a second consecutive day accumulates 5,600 metres of vertical gain across five passes. The sequencing and volume of that climbing make this stage qualitatively different from anything the Tour has staged in recent years.
 
 The Col de la Croix de Fer opens the day with 24 kilometres at 5.2%. Its length and irregular gradient deplete domestiques from the outset, exposing leaders sooner than planned. The Col du Télégraphe follows with 11.9 kilometres at 7.1% and connects directly into the [Col du Galibier](/data/climbs/col-du-galibier-lautaret) — 17.7 kilometres at 6.9% to 2,642 metres, the highest point of the 2026 Tour. At that altitude, the ability to exchange oxygen becomes the differentiating factor: a rider just below the top level loses rhythm quickly, breathing becomes laboured, and gaps open faster than the same gradient would produce at 1,000 metres.
 
@@ -119,7 +119,7 @@ The five confirmed mountain stages illustrate a progressive scale of difficulty 
 | 6 | Pau → Gavarnie-Gèdre | 186 km | 4,100 m | Col du Tourmalet | 2,115 m |
 | 14 | Mulhouse → Le Markstein | 155 km | 3,800 m | Grand Ballon | 1,424 m |
 | 19 | → Alpe d'Huez | ~130 km | ~3,800 m | Alpe d'Huez | 1,860 m |
-| 20 | Le Bourg d'Oisans → Alpe d'Huez | 171 km | 5,450 m | Col du Galibier | 2,642 m |
+| 20 | Le Bourg d'Oisans → Alpe d'Huez | 171 km | 5,600 m | Col du Galibier | 2,642 m |
 
 <ChartBar
   title="Elevation gain per mountain stage — Tour de France 2026"
@@ -129,7 +129,7 @@ The five confirmed mountain stages illustrate a progressive scale of difficulty 
     { stage: "S6 Tourmalet", elevation: 4100 },
     { stage: "S14 Vosges", elevation: 3800 },
     { stage: "S19 Alpe I", elevation: 3800 },
-    { stage: "S20 Alpe II", elevation: 5450 }
+    { stage: "S20 Alpe II", elevation: 5600 }
   ]}
   xKey="stage"
   bars={[{ key: "elevation", color: "#E11D48", name: "Elevation (m)" }]}
