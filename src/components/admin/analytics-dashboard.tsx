@@ -28,6 +28,16 @@ const RANGE_LABELS: Record<Range, string> = {
 
 const RANGES: Range[] = ["24h", "7d", "30d", "90d", "all"];
 
+type Site = "all" | "es" | "en";
+
+const SITE_LABELS: Record<Site, string> = {
+  all: "Ambos sitios",
+  es: "velociencia.cl",
+  en: "pedalsci.com",
+};
+
+const SITES: Site[] = ["all", "es", "en"];
+
 type AnalyticsResponse = {
   summary: {
     range: Range;
@@ -93,8 +103,9 @@ function countryFlag(code: string | null): string {
 
 export function AnalyticsDashboard() {
   const [range, setRange] = useState<Range>("30d");
+  const [site, setSite] = useState<Site>("all");
   const { data, isLoading, error } = useSWR<AnalyticsResponse>(
-    `/api/admin/analytics?range=${range}`,
+    `/api/admin/analytics?range=${range}${site !== "all" ? `&site=${site}` : ""}`,
     fetcher,
     { refreshInterval: 30000 }
   );
@@ -120,6 +131,21 @@ export function AnalyticsDashboard() {
             <span className="text-sm font-medium text-emerald-700">
               {realtime?.total ?? 0} ahora
             </span>
+          </div>
+          <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden">
+            {SITES.map((s) => (
+              <button
+                key={s}
+                onClick={() => setSite(s)}
+                className={`px-3 py-1.5 text-xs font-medium border-r last:border-r-0 border-[var(--color-border)] transition-colors ${
+                  site === s
+                    ? "bg-[#1A1D23] text-white"
+                    : "bg-white text-[var(--color-text-muted)] hover:bg-[var(--color-border-light)]"
+                }`}
+              >
+                {SITE_LABELS[s]}
+              </button>
+            ))}
           </div>
           <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden">
             {RANGES.map((r) => (

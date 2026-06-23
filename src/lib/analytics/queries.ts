@@ -1,9 +1,17 @@
 import { db, schema } from "@/lib/db";
-import { sql, and, gte } from "drizzle-orm";
+import { sql, and, gte, eq } from "drizzle-orm";
 
 const REALTIME_WINDOW_MIN = 5;
 
 export type Range = "24h" | "7d" | "30d" | "90d" | "all";
+
+/**
+ * Site/locale filter. Each public domain maps 1:1 to a locale
+ * (velociencia.cl → "es", pedalsci.com → "en"), so analytics split by the
+ * normalized `locale` column rather than the raw `host` (which varies with the
+ * www prefix / port). `undefined` = both sites combined.
+ */
+export type SiteLocale = "es" | "en";
 
 function rangeStartMs(range: Range): number {
   const now = Date.now();
@@ -53,8 +61,17 @@ export type DashboardSummary = {
 
 const pv = schema.pageViews;
 
-export function getDashboardSummary(range: Range): DashboardSummary {
+export function getDashboardSummary(
+  range: Range,
+  site?: SiteLocale
+): DashboardSummary {
   const startDate = rangeStart(range);
+
+  // Optional per-site filter (by normalized locale). Folds into every query's
+  // WHERE alongside the time-range condition.
+  const siteCond = site ? eq(pv.locale, site) : undefined;
+  const whereFor = (start: Date) =>
+    siteCond ? and(gte(pv.viewedAt, start), siteCond) : gte(pv.viewedAt, start);
 
   // Totals: pageviews, unique sessions, unique visitors, avg duration
   const totalsRow = db
@@ -65,7 +82,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       avgDuration: sql<number>`coalesce(avg(${pv.durationMs}), 0)`.as("avg_dur"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .get();
 
   // Bounce rate: sessions with exactly 1 pageview / total sessions
@@ -75,7 +92,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       count: sql<number>`count(*)`.as("c"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(pv.sessionId)
     .all();
   const totalSessions = sessionsRows.length;
@@ -88,7 +105,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       visitors: sql<number>`count(distinct ${pv.visitorId})`.as("v"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, new Date(Date.now() - REALTIME_WINDOW_MIN * 60 * 1000)))
+    .where(whereFor(new Date(Date.now() - REALTIME_WINDOW_MIN * 60 * 1000)))
     .get();
 
   // By day
@@ -99,7 +116,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       visitors: sql<number>`count(distinct ${pv.visitorId})`.as("vis"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(sql`strftime('%Y-%m-%d', ${pv.viewedAt}, 'unixepoch')`)
     .orderBy(sql`day asc`)
     .all();
@@ -112,7 +129,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       sessions: sql<number>`count(distinct ${pv.sessionId})`.as("s"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(pv.country, pv.countryName)
     .orderBy(sql`s desc`)
     .limit(15)
@@ -128,7 +145,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       avgDuration: sql<number>`coalesce(avg(${pv.durationMs}), 0)`.as("avg_dur"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(pv.path, pv.section, pv.slug)
     .orderBy(sql`pv desc`)
     .limit(15)
@@ -143,7 +160,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
     .from(pv)
     .where(
       and(
-        gte(pv.viewedAt, startDate),
+        whereFor(startDate),
         sql`${pv.refererDomain} IS NOT NULL AND ${pv.refererDomain} != ''`
       )
     )
@@ -159,7 +176,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       sessions: sql<number>`count(distinct ${pv.sessionId})`.as("s"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(pv.device)
     .orderBy(sql`s desc`)
     .all();
@@ -171,7 +188,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       sessions: sql<number>`count(distinct ${pv.sessionId})`.as("s"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(pv.browser)
     .orderBy(sql`s desc`)
     .limit(8)
@@ -184,7 +201,7 @@ export function getDashboardSummary(range: Range): DashboardSummary {
       pageviews: sql<number>`count(*)`.as("pv"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, startDate))
+    .where(whereFor(startDate))
     .groupBy(pv.locale)
     .orderBy(sql`pv desc`)
     .all();
@@ -241,17 +258,20 @@ export function getDashboardSummary(range: Range): DashboardSummary {
   };
 }
 
-export function getRealtimeVisitors(): {
+export function getRealtimeVisitors(site?: SiteLocale): {
   total: number;
   byPath: { path: string; count: number }[];
 } {
   const since = new Date(Date.now() - REALTIME_WINDOW_MIN * 60 * 1000);
+  const where = site
+    ? and(gte(pv.viewedAt, since), eq(pv.locale, site))
+    : gte(pv.viewedAt, since);
   const total = db
     .select({
       v: sql<number>`count(distinct ${pv.visitorId})`.as("v"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, since))
+    .where(where)
     .get();
   const byPath = db
     .select({
@@ -259,7 +279,7 @@ export function getRealtimeVisitors(): {
       count: sql<number>`count(distinct ${pv.visitorId})`.as("c"),
     })
     .from(pv)
-    .where(gte(pv.viewedAt, since))
+    .where(where)
     .groupBy(pv.path)
     .orderBy(sql`c desc`)
     .limit(8)
